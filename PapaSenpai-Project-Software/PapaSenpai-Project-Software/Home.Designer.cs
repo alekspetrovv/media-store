@@ -31,7 +31,7 @@
             this.btnViewStaff = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnViewSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.dsa = new System.Windows.Forms.Label();
             this.lblMenu = new MaterialSkin.Controls.MaterialLabel();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
@@ -45,6 +45,14 @@
             this.btnAddSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlDashBoard = new System.Windows.Forms.Panel();
+            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.from = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.to = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.lblDashboard = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAddStaff = new System.Windows.Forms.Panel();
@@ -52,6 +60,7 @@
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAddSchedule = new System.Windows.Forms.Panel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
@@ -60,6 +69,7 @@
             this.pnlViewStaff.SuspendLayout();
             this.pnlSchedules.SuspendLayout();
             this.pnlDashBoard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlAddStaff.SuspendLayout();
             this.pnlAddSchedule.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +103,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.materialLabel1);
+            this.panel1.Controls.Add(this.dsa);
             this.panel1.Controls.Add(this.lblMenu);
             this.panel1.Controls.Add(this.iconPictureBox4);
             this.panel1.Controls.Add(this.iconPictureBox3);
@@ -108,18 +118,16 @@
             this.panel1.Size = new System.Drawing.Size(207, 404);
             this.panel1.TabIndex = 0;
             // 
-            // materialLabel1
+            // dsa
             // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(3, 134);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(197, 19);
-            this.materialLabel1.TabIndex = 9;
-            this.materialLabel1.Text = "-----------------------------------------------\r\n";
+            this.dsa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.dsa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dsa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.dsa.Location = new System.Drawing.Point(0, 125);
+            this.dsa.Name = "dsa";
+            this.dsa.Size = new System.Drawing.Size(214, 2);
+            this.dsa.TabIndex = 10;
+            this.dsa.UseMnemonic = false;
             // 
             // lblMenu
             // 
@@ -127,7 +135,7 @@
             this.lblMenu.Depth = 0;
             this.lblMenu.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblMenu.Location = new System.Drawing.Point(72, 99);
+            this.lblMenu.Location = new System.Drawing.Point(84, 100);
             this.lblMenu.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(46, 19);
@@ -141,7 +149,7 @@
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Compass;
             this.iconPictureBox4.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox4.IconSize = 87;
-            this.iconPictureBox4.Location = new System.Drawing.Point(44, 3);
+            this.iconPictureBox4.Location = new System.Drawing.Point(54, 3);
             this.iconPictureBox4.Name = "iconPictureBox4";
             this.iconPictureBox4.Size = new System.Drawing.Size(112, 87);
             this.iconPictureBox4.TabIndex = 7;
@@ -278,12 +286,101 @@
             // 
             this.pnlDashBoard.AutoSize = true;
             this.pnlDashBoard.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDashBoard.Controls.Add(this.materialRaisedButton2);
+            this.pnlDashBoard.Controls.Add(this.materialRaisedButton1);
+            this.pnlDashBoard.Controls.Add(this.label2);
+            this.pnlDashBoard.Controls.Add(this.dataGridView1);
             this.pnlDashBoard.Controls.Add(this.materialLabel2);
             this.pnlDashBoard.Controls.Add(this.lblDashboard);
             this.pnlDashBoard.Location = new System.Drawing.Point(214, 65);
             this.pnlDashBoard.Name = "pnlDashBoard";
-            this.pnlDashBoard.Size = new System.Drawing.Size(654, 390);
+            this.pnlDashBoard.Size = new System.Drawing.Size(659, 390);
             this.pnlDashBoard.TabIndex = 17;
+            // 
+            // materialRaisedButton2
+            // 
+            this.materialRaisedButton2.BackColor = System.Drawing.Color.Transparent;
+            this.materialRaisedButton2.Depth = 0;
+            this.materialRaisedButton2.Location = new System.Drawing.Point(509, 336);
+            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton2.Name = "materialRaisedButton2";
+            this.materialRaisedButton2.Primary = true;
+            this.materialRaisedButton2.Size = new System.Drawing.Size(86, 33);
+            this.materialRaisedButton2.TabIndex = 12;
+            this.materialRaisedButton2.Text = "View All ";
+            this.materialRaisedButton2.UseVisualStyleBackColor = false;
+            // 
+            // materialRaisedButton1
+            // 
+            this.materialRaisedButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialRaisedButton1.Depth = 0;
+            this.materialRaisedButton1.Location = new System.Drawing.Point(288, 336);
+            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton1.Name = "materialRaisedButton1";
+            this.materialRaisedButton1.Primary = true;
+            this.materialRaisedButton1.Size = new System.Drawing.Size(202, 33);
+            this.materialRaisedButton1.TabIndex = 11;
+            this.materialRaisedButton1.Text = "Change Today Schedule";
+            this.materialRaisedButton1.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.label2.Location = new System.Drawing.Point(-33, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(689, 2);
+            this.label2.TabIndex = 11;
+            this.label2.UseMnemonic = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.from,
+            this.to,
+            this.department});
+            this.dataGridView1.Location = new System.Drawing.Point(24, 133);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.Size = new System.Drawing.Size(571, 190);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // name
+            // 
+            this.name.FillWeight = 150F;
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.name.Width = 150;
+            // 
+            // from
+            // 
+            this.from.HeaderText = "from";
+            this.from.Name = "from";
+            this.from.ReadOnly = true;
+            this.from.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.from.Width = 130;
+            // 
+            // to
+            // 
+            this.to.HeaderText = "To";
+            this.to.Name = "to";
+            this.to.ReadOnly = true;
+            this.to.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.to.Width = 130;
+            // 
+            // department
+            // 
+            this.department.HeaderText = "Department";
+            this.department.Name = "department";
+            this.department.ReadOnly = true;
+            this.department.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // materialLabel2
             // 
@@ -291,7 +388,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(244, 111);
+            this.materialLabel2.Location = new System.Drawing.Point(274, 100);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(126, 19);
@@ -304,7 +401,7 @@
             this.lblDashboard.Depth = 0;
             this.lblDashboard.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDashboard.Location = new System.Drawing.Point(264, 13);
+            this.lblDashboard.Location = new System.Drawing.Point(292, 13);
             this.lblDashboard.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDashboard.Name = "lblDashboard";
             this.lblDashboard.Size = new System.Drawing.Size(81, 19);
@@ -369,17 +466,29 @@
             this.materialLabel7.TabIndex = 1;
             this.materialLabel7.Text = "ADD SCHEDULE";
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.label1.Location = new System.Drawing.Point(206, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(2, 397);
+            this.label1.TabIndex = 11;
+            this.label1.UseMnemonic = false;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1391, 684);
+            this.ClientSize = new System.Drawing.Size(869, 470);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlDashBoard);
+            this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlViewStaff);
             this.Controls.Add(this.pnlSchedules);
-            this.Controls.Add(this.pnlDashBoard);
-            this.Controls.Add(this.pnlAddSchedule);
             this.Name = "Home";
             this.Text = "Home Page";
             this.Load += new System.EventHandler(this.Home_Load);
@@ -395,6 +504,7 @@
             this.pnlSchedules.PerformLayout();
             this.pnlDashBoard.ResumeLayout(false);
             this.pnlDashBoard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlAddStaff.ResumeLayout(false);
             this.pnlAddStaff.PerformLayout();
             this.pnlAddSchedule.ResumeLayout(false);
@@ -413,7 +523,6 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private MaterialSkin.Controls.MaterialLabel lblMenu;
         private MaterialSkin.Controls.MaterialRaisedButton btnDashboard;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private System.Windows.Forms.Panel pnlViewStaff;
         private System.Windows.Forms.Panel pnlSchedules;
@@ -429,5 +538,15 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnAddSchedule;
         private System.Windows.Forms.Panel pnlAddSchedule;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn from;
+        private System.Windows.Forms.DataGridViewTextBoxColumn to;
+        private System.Windows.Forms.DataGridViewTextBoxColumn department;
+        private System.Windows.Forms.Label dsa;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
     }
 }

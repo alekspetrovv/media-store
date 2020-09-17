@@ -16,6 +16,22 @@ namespace PapaSenpai_Project_Software
         {
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
+
+            string[] row1 = new string[] { "Ivan Dimitrov", "9:00","17:00", "Cleaner"};
+            string[] row2 = new string[] { "Pepi Georgiev", "9:00","17:00", "Salesman"};
+            string[] row3 = new string[] { "Presqn Viktorov", "9:00","17:00", "Salesman"};
+            string[] row4 = new string[] { "Alex Sashkov", "9:00","17:00", "Cashier"};
+            string[] row5 = new string[] { "Georgi Dimitrov", "9:00","17:00", "Cashier"};
+            string[] row6 = new string[] { "Deyan Bozhilov", "9:00","17:00", "Cashier"};
+            string[] row7 = new string[] { "Pavel Kostadinov", "9:00","17:00", "Technical Support"};
+            string[] row8 = new string[] { "Morsh Porsh", "9:00","17:00", "Technical Support"};
+            
+            object[] rows = new object[] { row1, row2, row3, row4, row5, row6, row7, row8};
+
+            foreach (string[] rowArray in rows)
+            {
+                dataGridView1.Rows.Add(rowArray);
+            }
         }
         private void ChangeLoginStyle()
         {
@@ -79,6 +95,5 @@ namespace PapaSenpai_Project_Software
             this.pnlAddSchedule.Visible = false;
         }
 
-  
     }
 }
