@@ -14,9 +14,9 @@ namespace PapaSenpai_Project_Software
     {
         public Home()
         {
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
-
             string[] row1 = new string[] { "Ivan Dimitrov", "9:00","17:00", "Cleaner"};
             string[] row2 = new string[] { "Pepi Georgiev", "9:00","17:00", "Salesman"};
             string[] row3 = new string[] { "Presqn Viktorov", "9:00","17:00", "Salesman"};

@@ -39,65 +39,92 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.btnDashboard = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlViewStaff = new System.Windows.Forms.Panel();
+            this.materialRaisedButton7 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialRaisedButton6 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.staffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffContract = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             this.btnAddStaff = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlSchedules = new System.Windows.Forms.Panel();
+            this.btnDeleteSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnEditSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.scheduleDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scheduleStaff = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scheduleStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.btnAddSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlDashBoard = new System.Windows.Forms.Panel();
             this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.lblDashboard = new MaterialSkin.Controls.MaterialLabel();
-            this.pnlAddStaff = new System.Windows.Forms.Panel();
-            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            this.pnlAddSchedule = new System.Windows.Forms.Panel();
-            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.from = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.to = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.lblDashboard = new MaterialSkin.Controls.MaterialLabel();
+            this.pnlAddStaff = new System.Windows.Forms.Panel();
+            this.lblAddStaff = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.pnlAddSchedule = new System.Windows.Forms.Panel();
+            this.btnCreateSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.scheduleDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scheduleTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scheduleFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.scheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialRaisedButton3 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.materialRaisedButton4 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialRaisedButton5 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.scheduleDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scheduleStaff = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scheduleStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.materialRaisedButton6 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialRaisedButton7 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.staffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffContract = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scheduleFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scheduleTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scheduleDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
+            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox7 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox8 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox9 = new FontAwesome.Sharp.IconPictureBox();
+            this.iconPictureBox10 = new FontAwesome.Sharp.IconPictureBox();
+            this.cbEmployeeDepartment = new System.Windows.Forms.ComboBox();
+            this.lblEmployeeRole = new MaterialSkin.Controls.MaterialLabel();
+            this.cbEmployeeRole = new System.Windows.Forms.ComboBox();
+            this.lblEmployeeDepartment = new MaterialSkin.Controls.MaterialLabel();
+            this.lblEmployeeGender = new MaterialSkin.Controls.MaterialLabel();
+            this.cbEmployeeGender = new System.Windows.Forms.ComboBox();
+            this.tbEmployeeName = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lblAddEmployeeName = new MaterialSkin.Controls.MaterialLabel();
+            this.lblAddEmployeePassword = new MaterialSkin.Controls.MaterialLabel();
+            this.lblAddEmployeeAdress = new MaterialSkin.Controls.MaterialLabel();
+            this.lblAddHourlyWage = new MaterialSkin.Controls.MaterialLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.pnlViewStaff.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.pnlSchedules.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.pnlDashBoard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlAddStaff.SuspendLayout();
             this.pnlAddSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // btnViewStaff
@@ -238,6 +265,9 @@
             // 
             this.pnlViewStaff.AutoSize = true;
             this.pnlViewStaff.BackColor = System.Drawing.Color.Transparent;
+            this.pnlViewStaff.Controls.Add(this.iconPictureBox7);
+            this.pnlViewStaff.Controls.Add(this.iconPictureBox6);
+            this.pnlViewStaff.Controls.Add(this.iconPictureBox5);
             this.pnlViewStaff.Controls.Add(this.materialRaisedButton7);
             this.pnlViewStaff.Controls.Add(this.materialRaisedButton6);
             this.pnlViewStaff.Controls.Add(this.dataGridView4);
@@ -246,8 +276,81 @@
             this.pnlViewStaff.Controls.Add(this.materialLabel3);
             this.pnlViewStaff.Location = new System.Drawing.Point(214, 65);
             this.pnlViewStaff.Name = "pnlViewStaff";
-            this.pnlViewStaff.Size = new System.Drawing.Size(668, 479);
+            this.pnlViewStaff.Size = new System.Drawing.Size(672, 479);
             this.pnlViewStaff.TabIndex = 19;
+            // 
+            // materialRaisedButton7
+            // 
+            this.materialRaisedButton7.Depth = 0;
+            this.materialRaisedButton7.Location = new System.Drawing.Point(449, 232);
+            this.materialRaisedButton7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton7.Name = "materialRaisedButton7";
+            this.materialRaisedButton7.Primary = true;
+            this.materialRaisedButton7.Size = new System.Drawing.Size(220, 46);
+            this.materialRaisedButton7.TabIndex = 14;
+            this.materialRaisedButton7.Text = "Delete Employee";
+            this.materialRaisedButton7.UseVisualStyleBackColor = true;
+            // 
+            // materialRaisedButton6
+            // 
+            this.materialRaisedButton6.Depth = 0;
+            this.materialRaisedButton6.Location = new System.Drawing.Point(449, 166);
+            this.materialRaisedButton6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton6.Name = "materialRaisedButton6";
+            this.materialRaisedButton6.Primary = true;
+            this.materialRaisedButton6.Size = new System.Drawing.Size(214, 46);
+            this.materialRaisedButton6.TabIndex = 13;
+            this.materialRaisedButton6.Text = "Edit Employee";
+            this.materialRaisedButton6.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.staffName,
+            this.staffWorkingDays,
+            this.staffContract,
+            this.staffRole});
+            this.dataGridView4.Location = new System.Drawing.Point(28, 100);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(415, 284);
+            this.dataGridView4.TabIndex = 12;
+            // 
+            // staffName
+            // 
+            this.staffName.HeaderText = "Name";
+            this.staffName.Name = "staffName";
+            this.staffName.ReadOnly = true;
+            // 
+            // staffWorkingDays
+            // 
+            this.staffWorkingDays.HeaderText = "Working Days";
+            this.staffWorkingDays.Name = "staffWorkingDays";
+            this.staffWorkingDays.ReadOnly = true;
+            // 
+            // staffContract
+            // 
+            this.staffContract.HeaderText = "Contract";
+            this.staffContract.Name = "staffContract";
+            this.staffContract.ReadOnly = true;
+            // 
+            // staffRole
+            // 
+            this.staffRole.HeaderText = "Role";
+            this.staffRole.Name = "staffRole";
+            this.staffRole.ReadOnly = true;
+            // 
+            // materialLabel9
+            // 
+            this.materialLabel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel9.Depth = 0;
+            this.materialLabel9.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel9.Location = new System.Drawing.Point(0, 38);
+            this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel9.Name = "materialLabel9";
+            this.materialLabel9.Size = new System.Drawing.Size(665, 2);
+            this.materialLabel9.TabIndex = 11;
             // 
             // btnAddStaff
             // 
@@ -256,7 +359,7 @@
             this.btnAddStaff.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAddStaff.Name = "btnAddStaff";
             this.btnAddStaff.Primary = true;
-            this.btnAddStaff.Size = new System.Drawing.Size(199, 46);
+            this.btnAddStaff.Size = new System.Drawing.Size(211, 46);
             this.btnAddStaff.TabIndex = 10;
             this.btnAddStaff.Text = "Add Employee";
             this.btnAddStaff.UseVisualStyleBackColor = true;
@@ -279,16 +382,88 @@
             // 
             this.pnlSchedules.AutoSize = true;
             this.pnlSchedules.BackColor = System.Drawing.Color.Transparent;
-            this.pnlSchedules.Controls.Add(this.materialRaisedButton5);
-            this.pnlSchedules.Controls.Add(this.materialRaisedButton4);
+            this.pnlSchedules.Controls.Add(this.iconPictureBox10);
+            this.pnlSchedules.Controls.Add(this.iconPictureBox9);
+            this.pnlSchedules.Controls.Add(this.iconPictureBox8);
+            this.pnlSchedules.Controls.Add(this.btnDeleteSchedule);
+            this.pnlSchedules.Controls.Add(this.btnEditSchedule);
             this.pnlSchedules.Controls.Add(this.dataGridView3);
             this.pnlSchedules.Controls.Add(this.materialLabel8);
             this.pnlSchedules.Controls.Add(this.btnAddSchedule);
             this.pnlSchedules.Controls.Add(this.materialLabel4);
             this.pnlSchedules.Location = new System.Drawing.Point(214, 65);
             this.pnlSchedules.Name = "pnlSchedules";
-            this.pnlSchedules.Size = new System.Drawing.Size(654, 479);
+            this.pnlSchedules.Size = new System.Drawing.Size(661, 479);
             this.pnlSchedules.TabIndex = 18;
+            // 
+            // btnDeleteSchedule
+            // 
+            this.btnDeleteSchedule.Depth = 0;
+            this.btnDeleteSchedule.Location = new System.Drawing.Point(446, 228);
+            this.btnDeleteSchedule.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnDeleteSchedule.Name = "btnDeleteSchedule";
+            this.btnDeleteSchedule.Primary = true;
+            this.btnDeleteSchedule.Size = new System.Drawing.Size(212, 46);
+            this.btnDeleteSchedule.TabIndex = 14;
+            this.btnDeleteSchedule.Text = "Delete Schedule";
+            this.btnDeleteSchedule.UseVisualStyleBackColor = true;
+            // 
+            // btnEditSchedule
+            // 
+            this.btnEditSchedule.Depth = 0;
+            this.btnEditSchedule.Location = new System.Drawing.Point(445, 169);
+            this.btnEditSchedule.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnEditSchedule.Name = "btnEditSchedule";
+            this.btnEditSchedule.Primary = true;
+            this.btnEditSchedule.Size = new System.Drawing.Size(199, 46);
+            this.btnEditSchedule.TabIndex = 13;
+            this.btnEditSchedule.Text = "Edit Schedule";
+            this.btnEditSchedule.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.scheduleDate,
+            this.scheduleStaff,
+            this.scheduleStatus});
+            this.dataGridView3.Location = new System.Drawing.Point(3, 111);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(436, 296);
+            this.dataGridView3.TabIndex = 12;
+            // 
+            // scheduleDate
+            // 
+            this.scheduleDate.HeaderText = "Date";
+            this.scheduleDate.Name = "scheduleDate";
+            this.scheduleDate.ReadOnly = true;
+            this.scheduleDate.Width = 150;
+            // 
+            // scheduleStaff
+            // 
+            this.scheduleStaff.HeaderText = "Staff Count";
+            this.scheduleStaff.Name = "scheduleStaff";
+            this.scheduleStaff.ReadOnly = true;
+            this.scheduleStaff.Width = 120;
+            // 
+            // scheduleStatus
+            // 
+            this.scheduleStatus.HeaderText = "Status";
+            this.scheduleStatus.Name = "scheduleStatus";
+            this.scheduleStatus.ReadOnly = true;
+            this.scheduleStatus.Width = 120;
+            // 
+            // materialLabel8
+            // 
+            this.materialLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel8.Depth = 0;
+            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel8.Location = new System.Drawing.Point(-3, 36);
+            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel8.Name = "materialLabel8";
+            this.materialLabel8.Size = new System.Drawing.Size(654, 2);
+            this.materialLabel8.TabIndex = 11;
             // 
             // btnAddSchedule
             // 
@@ -320,15 +495,15 @@
             // 
             this.pnlDashBoard.AutoSize = true;
             this.pnlDashBoard.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDashBoard.Controls.Add(this.materialLabel5);
             this.pnlDashBoard.Controls.Add(this.materialRaisedButton2);
             this.pnlDashBoard.Controls.Add(this.materialRaisedButton1);
-            this.pnlDashBoard.Controls.Add(this.label2);
             this.pnlDashBoard.Controls.Add(this.dataGridView1);
             this.pnlDashBoard.Controls.Add(this.materialLabel2);
             this.pnlDashBoard.Controls.Add(this.lblDashboard);
             this.pnlDashBoard.Location = new System.Drawing.Point(214, 65);
             this.pnlDashBoard.Name = "pnlDashBoard";
-            this.pnlDashBoard.Size = new System.Drawing.Size(659, 479);
+            this.pnlDashBoard.Size = new System.Drawing.Size(660, 479);
             this.pnlDashBoard.TabIndex = 17;
             // 
             // materialRaisedButton2
@@ -357,17 +532,6 @@
             this.materialRaisedButton1.Text = "Change Today Schedule";
             this.materialRaisedButton1.UseVisualStyleBackColor = false;
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.label2.Location = new System.Drawing.Point(-33, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(689, 2);
-            this.label2.TabIndex = 11;
-            this.label2.UseMnemonic = false;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -383,117 +547,6 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.Size = new System.Drawing.Size(571, 190);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // materialLabel2
-            // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(274, 100);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(126, 19);
-            this.materialLabel2.TabIndex = 1;
-            this.materialLabel2.Text = "Today\'s Schedule";
-            // 
-            // lblDashboard
-            // 
-            this.lblDashboard.AutoSize = true;
-            this.lblDashboard.Depth = 0;
-            this.lblDashboard.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDashboard.Location = new System.Drawing.Point(292, 13);
-            this.lblDashboard.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblDashboard.Name = "lblDashboard";
-            this.lblDashboard.Size = new System.Drawing.Size(81, 19);
-            this.lblDashboard.TabIndex = 0;
-            this.lblDashboard.Text = "Dashboard";
-            // 
-            // pnlAddStaff
-            // 
-            this.pnlAddStaff.AutoSize = true;
-            this.pnlAddStaff.BackColor = System.Drawing.Color.Transparent;
-            this.pnlAddStaff.Controls.Add(this.materialLabel5);
-            this.pnlAddStaff.Controls.Add(this.materialLabel6);
-            this.pnlAddStaff.Location = new System.Drawing.Point(217, 65);
-            this.pnlAddStaff.Name = "pnlAddStaff";
-            this.pnlAddStaff.Size = new System.Drawing.Size(651, 479);
-            this.pnlAddStaff.TabIndex = 18;
-            // 
-            // materialLabel5
-            // 
-            this.materialLabel5.AutoSize = true;
-            this.materialLabel5.Depth = 0;
-            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(244, 111);
-            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(67, 19);
-            this.materialLabel5.TabIndex = 1;
-            this.materialLabel5.Text = "AddStaff";
-            // 
-            // materialLabel6
-            // 
-            this.materialLabel6.AutoSize = true;
-            this.materialLabel6.Depth = 0;
-            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(264, 13);
-            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(0, 19);
-            this.materialLabel6.TabIndex = 0;
-            // 
-            // pnlAddSchedule
-            // 
-            this.pnlAddSchedule.BackColor = System.Drawing.Color.Transparent;
-            this.pnlAddSchedule.Controls.Add(this.materialRaisedButton3);
-            this.pnlAddSchedule.Controls.Add(this.monthCalendar1);
-            this.pnlAddSchedule.Controls.Add(this.dataGridView2);
-            this.pnlAddSchedule.Controls.Add(this.materialLabel1);
-            this.pnlAddSchedule.Controls.Add(this.materialLabel7);
-            this.pnlAddSchedule.Location = new System.Drawing.Point(214, 65);
-            this.pnlAddSchedule.Name = "pnlAddSchedule";
-            this.pnlAddSchedule.Size = new System.Drawing.Size(651, 479);
-            this.pnlAddSchedule.TabIndex = 20;
-            // 
-            // materialLabel7
-            // 
-            this.materialLabel7.AutoSize = true;
-            this.materialLabel7.Depth = 0;
-            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(286, 13);
-            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel7.Name = "materialLabel7";
-            this.materialLabel7.Size = new System.Drawing.Size(119, 19);
-            this.materialLabel7.TabIndex = 1;
-            this.materialLabel7.Text = "ADD SCHEDULE";
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.label1.Location = new System.Drawing.Point(206, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(2, 397);
-            this.label1.TabIndex = 11;
-            this.label1.UseMnemonic = false;
-            // 
-            // materialLabel1
-            // 
-            this.materialLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(-11, 41);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(689, 2);
-            this.materialLabel1.TabIndex = 2;
             // 
             // name
             // 
@@ -527,6 +580,115 @@
             this.department.ReadOnly = true;
             this.department.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.Location = new System.Drawing.Point(274, 100);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(126, 19);
+            this.materialLabel2.TabIndex = 1;
+            this.materialLabel2.Text = "Today\'s Schedule";
+            // 
+            // lblDashboard
+            // 
+            this.lblDashboard.AutoSize = true;
+            this.lblDashboard.Depth = 0;
+            this.lblDashboard.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblDashboard.Location = new System.Drawing.Point(292, 13);
+            this.lblDashboard.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblDashboard.Name = "lblDashboard";
+            this.lblDashboard.Size = new System.Drawing.Size(81, 19);
+            this.lblDashboard.TabIndex = 0;
+            this.lblDashboard.Text = "Dashboard";
+            // 
+            // pnlAddStaff
+            // 
+            this.pnlAddStaff.AutoSize = true;
+            this.pnlAddStaff.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddStaff.Controls.Add(this.lblAddHourlyWage);
+            this.pnlAddStaff.Controls.Add(this.lblAddEmployeeAdress);
+            this.pnlAddStaff.Controls.Add(this.lblAddEmployeePassword);
+            this.pnlAddStaff.Controls.Add(this.lblAddEmployeeName);
+            this.pnlAddStaff.Controls.Add(this.textBox4);
+            this.pnlAddStaff.Controls.Add(this.textBox3);
+            this.pnlAddStaff.Controls.Add(this.textBox2);
+            this.pnlAddStaff.Controls.Add(this.tbEmployeeName);
+            this.pnlAddStaff.Controls.Add(this.lblEmployeeGender);
+            this.pnlAddStaff.Controls.Add(this.cbEmployeeGender);
+            this.pnlAddStaff.Controls.Add(this.lblEmployeeDepartment);
+            this.pnlAddStaff.Controls.Add(this.lblEmployeeRole);
+            this.pnlAddStaff.Controls.Add(this.cbEmployeeRole);
+            this.pnlAddStaff.Controls.Add(this.cbEmployeeDepartment);
+            this.pnlAddStaff.Controls.Add(this.materialLabel10);
+            this.pnlAddStaff.Controls.Add(this.lblAddStaff);
+            this.pnlAddStaff.Controls.Add(this.materialLabel6);
+            this.pnlAddStaff.Location = new System.Drawing.Point(217, 65);
+            this.pnlAddStaff.Name = "pnlAddStaff";
+            this.pnlAddStaff.Size = new System.Drawing.Size(660, 479);
+            this.pnlAddStaff.TabIndex = 18;
+            // 
+            // lblAddStaff
+            // 
+            this.lblAddStaff.AutoSize = true;
+            this.lblAddStaff.Depth = 0;
+            this.lblAddStaff.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAddStaff.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddStaff.Location = new System.Drawing.Point(267, 21);
+            this.lblAddStaff.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAddStaff.Name = "lblAddStaff";
+            this.lblAddStaff.Size = new System.Drawing.Size(130, 19);
+            this.lblAddStaff.TabIndex = 1;
+            this.lblAddStaff.Text = "Add Staff Member";
+            // 
+            // materialLabel6
+            // 
+            this.materialLabel6.AutoSize = true;
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel6.Location = new System.Drawing.Point(264, 13);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(0, 19);
+            this.materialLabel6.TabIndex = 0;
+            // 
+            // pnlAddSchedule
+            // 
+            this.pnlAddSchedule.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddSchedule.Controls.Add(this.btnCreateSchedule);
+            this.pnlAddSchedule.Controls.Add(this.monthCalendar1);
+            this.pnlAddSchedule.Controls.Add(this.dataGridView2);
+            this.pnlAddSchedule.Controls.Add(this.materialLabel1);
+            this.pnlAddSchedule.Controls.Add(this.materialLabel7);
+            this.pnlAddSchedule.Location = new System.Drawing.Point(214, 65);
+            this.pnlAddSchedule.Name = "pnlAddSchedule";
+            this.pnlAddSchedule.Size = new System.Drawing.Size(651, 479);
+            this.pnlAddSchedule.TabIndex = 20;
+            // 
+            // btnCreateSchedule
+            // 
+            this.btnCreateSchedule.Depth = 0;
+            this.btnCreateSchedule.Location = new System.Drawing.Point(222, 416);
+            this.btnCreateSchedule.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCreateSchedule.Name = "btnCreateSchedule";
+            this.btnCreateSchedule.Primary = true;
+            this.btnCreateSchedule.Size = new System.Drawing.Size(202, 46);
+            this.btnCreateSchedule.TabIndex = 11;
+            this.btnCreateSchedule.Text = "Create Schedule";
+            this.btnCreateSchedule.UseVisualStyleBackColor = true;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(2, 1);
+            this.monthCalendar1.Location = new System.Drawing.Point(94, 242);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 11;
+            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -540,29 +702,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(460, 176);
             this.dataGridView2.TabIndex = 3;
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(2, 1);
-            this.monthCalendar1.Location = new System.Drawing.Point(94, 242);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 11;
-            // 
-            // scheduleDepartment
-            // 
-            this.scheduleDepartment.HeaderText = "Department";
-            this.scheduleDepartment.Name = "scheduleDepartment";
-            this.scheduleDepartment.ReadOnly = true;
-            // 
-            // scheduleTo
-            // 
-            this.scheduleTo.HeaderText = "To";
-            this.scheduleTo.Name = "scheduleTo";
-            // 
-            // scheduleFrom
-            // 
-            this.scheduleFrom.HeaderText = "From";
-            this.scheduleFrom.Name = "scheduleFrom";
-            // 
             // scheduleName
             // 
             this.scheduleName.Frozen = true;
@@ -570,159 +709,309 @@
             this.scheduleName.Name = "scheduleName";
             this.scheduleName.ReadOnly = true;
             // 
-            // materialRaisedButton3
+            // scheduleFrom
             // 
-            this.materialRaisedButton3.Depth = 0;
-            this.materialRaisedButton3.Location = new System.Drawing.Point(222, 416);
-            this.materialRaisedButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton3.Name = "materialRaisedButton3";
-            this.materialRaisedButton3.Primary = true;
-            this.materialRaisedButton3.Size = new System.Drawing.Size(202, 46);
-            this.materialRaisedButton3.TabIndex = 11;
-            this.materialRaisedButton3.Text = "Create";
-            this.materialRaisedButton3.UseVisualStyleBackColor = true;
+            this.scheduleFrom.HeaderText = "From";
+            this.scheduleFrom.Name = "scheduleFrom";
             // 
-            // materialLabel8
+            // scheduleTo
             // 
-            this.materialLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.materialLabel8.Depth = 0;
-            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel8.Location = new System.Drawing.Point(-3, 36);
-            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel8.Name = "materialLabel8";
-            this.materialLabel8.Size = new System.Drawing.Size(654, 2);
-            this.materialLabel8.TabIndex = 11;
+            this.scheduleTo.HeaderText = "To";
+            this.scheduleTo.Name = "scheduleTo";
             // 
-            // dataGridView3
+            // scheduleDepartment
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.scheduleDate,
-            this.scheduleStaff,
-            this.scheduleStatus});
-            this.dataGridView3.Location = new System.Drawing.Point(3, 111);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(436, 296);
-            this.dataGridView3.TabIndex = 12;
+            this.scheduleDepartment.HeaderText = "Department";
+            this.scheduleDepartment.Name = "scheduleDepartment";
+            this.scheduleDepartment.ReadOnly = true;
             // 
-            // materialRaisedButton4
+            // materialLabel1
             // 
-            this.materialRaisedButton4.Depth = 0;
-            this.materialRaisedButton4.Location = new System.Drawing.Point(445, 169);
-            this.materialRaisedButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton4.Name = "materialRaisedButton4";
-            this.materialRaisedButton4.Primary = true;
-            this.materialRaisedButton4.Size = new System.Drawing.Size(199, 46);
-            this.materialRaisedButton4.TabIndex = 13;
-            this.materialRaisedButton4.Text = "Edit Schedule";
-            this.materialRaisedButton4.UseVisualStyleBackColor = true;
+            this.materialLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(-11, 41);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(689, 2);
+            this.materialLabel1.TabIndex = 2;
             // 
-            // materialRaisedButton5
+            // materialLabel7
             // 
-            this.materialRaisedButton5.Depth = 0;
-            this.materialRaisedButton5.Location = new System.Drawing.Point(446, 228);
-            this.materialRaisedButton5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton5.Name = "materialRaisedButton5";
-            this.materialRaisedButton5.Primary = true;
-            this.materialRaisedButton5.Size = new System.Drawing.Size(199, 46);
-            this.materialRaisedButton5.TabIndex = 14;
-            this.materialRaisedButton5.Text = "Edit Schedule";
-            this.materialRaisedButton5.UseVisualStyleBackColor = true;
+            this.materialLabel7.AutoSize = true;
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel7.Location = new System.Drawing.Point(286, 13);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(119, 19);
+            this.materialLabel7.TabIndex = 1;
+            this.materialLabel7.Text = "ADD SCHEDULE";
             // 
-            // scheduleDate
+            // label1
             // 
-            this.scheduleDate.HeaderText = "Date";
-            this.scheduleDate.Name = "scheduleDate";
-            this.scheduleDate.ReadOnly = true;
-            this.scheduleDate.Width = 150;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.label1.Location = new System.Drawing.Point(206, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(2, 397);
+            this.label1.TabIndex = 11;
+            this.label1.UseMnemonic = false;
             // 
-            // scheduleStaff
+            // materialLabel5
             // 
-            this.scheduleStaff.HeaderText = "Staff Count";
-            this.scheduleStaff.Name = "scheduleStaff";
-            this.scheduleStaff.ReadOnly = true;
-            this.scheduleStaff.Width = 120;
+            this.materialLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel5.Depth = 0;
+            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel5.Location = new System.Drawing.Point(3, 43);
+            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel5.Name = "materialLabel5";
+            this.materialLabel5.Size = new System.Drawing.Size(654, 2);
+            this.materialLabel5.TabIndex = 13;
             // 
-            // scheduleStatus
+            // materialLabel10
             // 
-            this.scheduleStatus.HeaderText = "Status";
-            this.scheduleStatus.Name = "scheduleStatus";
-            this.scheduleStatus.ReadOnly = true;
-            this.scheduleStatus.Width = 120;
+            this.materialLabel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel10.Depth = 0;
+            this.materialLabel10.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel10.Location = new System.Drawing.Point(3, 59);
+            this.materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel10.Name = "materialLabel10";
+            this.materialLabel10.Size = new System.Drawing.Size(654, 2);
+            this.materialLabel10.TabIndex = 12;
             // 
-            // materialLabel9
+            // iconPictureBox5
             // 
-            this.materialLabel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.materialLabel9.Depth = 0;
-            this.materialLabel9.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel9.Location = new System.Drawing.Point(0, 38);
-            this.materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel9.Name = "materialLabel9";
-            this.materialLabel9.Size = new System.Drawing.Size(665, 2);
-            this.materialLabel9.TabIndex = 11;
+            this.iconPictureBox5.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox5.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.iconPictureBox5.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox5.IconSize = 35;
+            this.iconPictureBox5.Location = new System.Drawing.Point(450, 106);
+            this.iconPictureBox5.Name = "iconPictureBox5";
+            this.iconPictureBox5.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox5.TabIndex = 11;
+            this.iconPictureBox5.TabStop = false;
             // 
-            // dataGridView4
+            // iconPictureBox6
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.staffName,
-            this.staffWorkingDays,
-            this.staffContract,
-            this.staffRole});
-            this.dataGridView4.Location = new System.Drawing.Point(28, 100);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(415, 284);
-            this.dataGridView4.TabIndex = 12;
+            this.iconPictureBox6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox6.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
+            this.iconPictureBox6.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox6.IconSize = 35;
+            this.iconPictureBox6.Location = new System.Drawing.Point(450, 171);
+            this.iconPictureBox6.Name = "iconPictureBox6";
+            this.iconPictureBox6.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox6.TabIndex = 15;
+            this.iconPictureBox6.TabStop = false;
             // 
-            // materialRaisedButton6
+            // iconPictureBox7
             // 
-            this.materialRaisedButton6.Depth = 0;
-            this.materialRaisedButton6.Location = new System.Drawing.Point(449, 166);
-            this.materialRaisedButton6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton6.Name = "materialRaisedButton6";
-            this.materialRaisedButton6.Primary = true;
-            this.materialRaisedButton6.Size = new System.Drawing.Size(199, 46);
-            this.materialRaisedButton6.TabIndex = 13;
-            this.materialRaisedButton6.Text = "Edit Employee";
-            this.materialRaisedButton6.UseVisualStyleBackColor = true;
+            this.iconPictureBox7.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox7.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox7.IconChar = FontAwesome.Sharp.IconChar.UserTimes;
+            this.iconPictureBox7.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox7.IconSize = 35;
+            this.iconPictureBox7.Location = new System.Drawing.Point(450, 239);
+            this.iconPictureBox7.Name = "iconPictureBox7";
+            this.iconPictureBox7.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox7.TabIndex = 16;
+            this.iconPictureBox7.TabStop = false;
             // 
-            // materialRaisedButton7
+            // iconPictureBox8
             // 
-            this.materialRaisedButton7.Depth = 0;
-            this.materialRaisedButton7.Location = new System.Drawing.Point(449, 232);
-            this.materialRaisedButton7.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton7.Name = "materialRaisedButton7";
-            this.materialRaisedButton7.Primary = true;
-            this.materialRaisedButton7.Size = new System.Drawing.Size(199, 46);
-            this.materialRaisedButton7.TabIndex = 14;
-            this.materialRaisedButton7.Text = "Delete Employee";
-            this.materialRaisedButton7.UseVisualStyleBackColor = true;
+            this.iconPictureBox8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox8.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.CalendarPlus;
+            this.iconPictureBox8.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox8.IconSize = 35;
+            this.iconPictureBox8.Location = new System.Drawing.Point(446, 118);
+            this.iconPictureBox8.Name = "iconPictureBox8";
+            this.iconPictureBox8.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox8.TabIndex = 17;
+            this.iconPictureBox8.TabStop = false;
             // 
-            // staffName
+            // iconPictureBox9
             // 
-            this.staffName.HeaderText = "Name";
-            this.staffName.Name = "staffName";
-            this.staffName.ReadOnly = true;
+            this.iconPictureBox9.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox9.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.iconPictureBox9.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox9.IconSize = 35;
+            this.iconPictureBox9.Location = new System.Drawing.Point(446, 175);
+            this.iconPictureBox9.Name = "iconPictureBox9";
+            this.iconPictureBox9.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox9.TabIndex = 18;
+            this.iconPictureBox9.TabStop = false;
             // 
-            // staffWorkingDays
+            // iconPictureBox10
             // 
-            this.staffWorkingDays.HeaderText = "Working Days";
-            this.staffWorkingDays.Name = "staffWorkingDays";
-            this.staffWorkingDays.ReadOnly = true;
+            this.iconPictureBox10.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox10.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox10.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.iconPictureBox10.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox10.IconSize = 35;
+            this.iconPictureBox10.Location = new System.Drawing.Point(446, 232);
+            this.iconPictureBox10.Name = "iconPictureBox10";
+            this.iconPictureBox10.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox10.TabIndex = 19;
+            this.iconPictureBox10.TabStop = false;
             // 
-            // staffContract
+            // cbEmployeeDepartment
             // 
-            this.staffContract.HeaderText = "Contract";
-            this.staffContract.Name = "staffContract";
-            this.staffContract.ReadOnly = true;
+            this.cbEmployeeDepartment.FormattingEnabled = true;
+            this.cbEmployeeDepartment.Location = new System.Drawing.Point(299, 293);
+            this.cbEmployeeDepartment.Name = "cbEmployeeDepartment";
+            this.cbEmployeeDepartment.Size = new System.Drawing.Size(246, 21);
+            this.cbEmployeeDepartment.TabIndex = 15;
             // 
-            // staffRole
+            // lblEmployeeRole
             // 
-            this.staffRole.HeaderText = "Role";
-            this.staffRole.Name = "staffRole";
-            this.staffRole.ReadOnly = true;
+            this.lblEmployeeRole.AutoSize = true;
+            this.lblEmployeeRole.Depth = 0;
+            this.lblEmployeeRole.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblEmployeeRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEmployeeRole.Location = new System.Drawing.Point(161, 342);
+            this.lblEmployeeRole.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEmployeeRole.Name = "lblEmployeeRole";
+            this.lblEmployeeRole.Size = new System.Drawing.Size(132, 19);
+            this.lblEmployeeRole.TabIndex = 18;
+            this.lblEmployeeRole.Text = "Role(permissions)";
+            // 
+            // cbEmployeeRole
+            // 
+            this.cbEmployeeRole.FormattingEnabled = true;
+            this.cbEmployeeRole.Location = new System.Drawing.Point(299, 342);
+            this.cbEmployeeRole.Name = "cbEmployeeRole";
+            this.cbEmployeeRole.Size = new System.Drawing.Size(246, 21);
+            this.cbEmployeeRole.TabIndex = 17;
+            // 
+            // lblEmployeeDepartment
+            // 
+            this.lblEmployeeDepartment.AutoSize = true;
+            this.lblEmployeeDepartment.Depth = 0;
+            this.lblEmployeeDepartment.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblEmployeeDepartment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEmployeeDepartment.Location = new System.Drawing.Point(148, 293);
+            this.lblEmployeeDepartment.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEmployeeDepartment.Name = "lblEmployeeDepartment";
+            this.lblEmployeeDepartment.Size = new System.Drawing.Size(145, 19);
+            this.lblEmployeeDepartment.TabIndex = 19;
+            this.lblEmployeeDepartment.Text = "Select a Department";
+            // 
+            // lblEmployeeGender
+            // 
+            this.lblEmployeeGender.AutoSize = true;
+            this.lblEmployeeGender.Depth = 0;
+            this.lblEmployeeGender.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblEmployeeGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEmployeeGender.Location = new System.Drawing.Point(177, 399);
+            this.lblEmployeeGender.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEmployeeGender.Name = "lblEmployeeGender";
+            this.lblEmployeeGender.Size = new System.Drawing.Size(114, 19);
+            this.lblEmployeeGender.TabIndex = 21;
+            this.lblEmployeeGender.Text = "Select a Gender";
+            // 
+            // cbEmployeeGender
+            // 
+            this.cbEmployeeGender.FormattingEnabled = true;
+            this.cbEmployeeGender.Location = new System.Drawing.Point(299, 399);
+            this.cbEmployeeGender.Name = "cbEmployeeGender";
+            this.cbEmployeeGender.Size = new System.Drawing.Size(246, 21);
+            this.cbEmployeeGender.TabIndex = 20;
+            // 
+            // tbEmployeeName
+            // 
+            this.tbEmployeeName.Location = new System.Drawing.Point(248, 109);
+            this.tbEmployeeName.Name = "tbEmployeeName";
+            this.tbEmployeeName.Size = new System.Drawing.Size(297, 20);
+            this.tbEmployeeName.TabIndex = 22;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(247, 154);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
+            this.textBox2.Size = new System.Drawing.Size(298, 20);
+            this.textBox2.TabIndex = 23;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(247, 197);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(298, 20);
+            this.textBox3.TabIndex = 24;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(247, 241);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(298, 20);
+            this.textBox4.TabIndex = 25;
+            // 
+            // lblAddEmployeeName
+            // 
+            this.lblAddEmployeeName.AutoSize = true;
+            this.lblAddEmployeeName.Depth = 0;
+            this.lblAddEmployeeName.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAddEmployeeName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddEmployeeName.Location = new System.Drawing.Point(123, 108);
+            this.lblAddEmployeeName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAddEmployeeName.Name = "lblAddEmployeeName";
+            this.lblAddEmployeeName.Size = new System.Drawing.Size(119, 19);
+            this.lblAddEmployeeName.TabIndex = 26;
+            this.lblAddEmployeeName.Text = "Employee Name";
+            // 
+            // lblAddEmployeePassword
+            // 
+            this.lblAddEmployeePassword.AutoSize = true;
+            this.lblAddEmployeePassword.Depth = 0;
+            this.lblAddEmployeePassword.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAddEmployeePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddEmployeePassword.Location = new System.Drawing.Point(96, 153);
+            this.lblAddEmployeePassword.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAddEmployeePassword.Name = "lblAddEmployeePassword";
+            this.lblAddEmployeePassword.Size = new System.Drawing.Size(145, 19);
+            this.lblAddEmployeePassword.TabIndex = 27;
+            this.lblAddEmployeePassword.Text = "Employee Password";
+            // 
+            // lblAddEmployeeAdress
+            // 
+            this.lblAddEmployeeAdress.AutoSize = true;
+            this.lblAddEmployeeAdress.Depth = 0;
+            this.lblAddEmployeeAdress.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAddEmployeeAdress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddEmployeeAdress.Location = new System.Drawing.Point(115, 197);
+            this.lblAddEmployeeAdress.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAddEmployeeAdress.Name = "lblAddEmployeeAdress";
+            this.lblAddEmployeeAdress.Size = new System.Drawing.Size(126, 19);
+            this.lblAddEmployeeAdress.TabIndex = 28;
+            this.lblAddEmployeeAdress.Text = "Employee Adress";
+            // 
+            // lblAddHourlyWage
+            // 
+            this.lblAddHourlyWage.AutoSize = true;
+            this.lblAddHourlyWage.Depth = 0;
+            this.lblAddHourlyWage.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAddHourlyWage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddHourlyWage.Location = new System.Drawing.Point(136, 240);
+            this.lblAddHourlyWage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAddHourlyWage.Name = "lblAddHourlyWage";
+            this.lblAddHourlyWage.Size = new System.Drawing.Size(105, 19);
+            this.lblAddHourlyWage.TabIndex = 29;
+            this.lblAddHourlyWage.Text = "Wage per hour";
             // 
             // Home
             // 
@@ -731,11 +1020,11 @@
             this.ClientSize = new System.Drawing.Size(875, 544);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlViewStaff);
             this.Controls.Add(this.pnlSchedules);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAddSchedule);
-            this.Controls.Add(this.pnlAddStaff);
-            this.Controls.Add(this.pnlViewStaff);
             this.Name = "Home";
             this.Text = "Home Page";
             this.Load += new System.EventHandler(this.Home_Load);
@@ -747,8 +1036,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.pnlViewStaff.ResumeLayout(false);
             this.pnlViewStaff.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.pnlSchedules.ResumeLayout(false);
             this.pnlSchedules.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.pnlDashBoard.ResumeLayout(false);
             this.pnlDashBoard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -757,8 +1048,12 @@
             this.pnlAddSchedule.ResumeLayout(false);
             this.pnlAddSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -783,7 +1078,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialRaisedButton btnAddStaff;
         private System.Windows.Forms.Panel pnlAddStaff;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialLabel lblAddStaff;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialRaisedButton btnAddSchedule;
         private System.Windows.Forms.Panel pnlAddSchedule;
@@ -791,7 +1086,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label dsa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
@@ -805,11 +1099,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleDepartment;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton3;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton4;
+        private MaterialSkin.Controls.MaterialRaisedButton btnCreateSchedule;
+        private MaterialSkin.Controls.MaterialRaisedButton btnEditSchedule;
         private System.Windows.Forms.DataGridView dataGridView3;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton5;
+        private MaterialSkin.Controls.MaterialRaisedButton btnDeleteSchedule;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleStaff;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleStatus;
@@ -821,5 +1115,27 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn staffContract;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffRole;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialLabel materialLabel10;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox9;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox8;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox10;
+        private MaterialSkin.Controls.MaterialLabel lblEmployeeGender;
+        private System.Windows.Forms.ComboBox cbEmployeeGender;
+        private MaterialSkin.Controls.MaterialLabel lblEmployeeDepartment;
+        private MaterialSkin.Controls.MaterialLabel lblEmployeeRole;
+        private System.Windows.Forms.ComboBox cbEmployeeRole;
+        private System.Windows.Forms.ComboBox cbEmployeeDepartment;
+        private MaterialSkin.Controls.MaterialLabel lblAddHourlyWage;
+        private MaterialSkin.Controls.MaterialLabel lblAddEmployeeAdress;
+        private MaterialSkin.Controls.MaterialLabel lblAddEmployeePassword;
+        private MaterialSkin.Controls.MaterialLabel lblAddEmployeeName;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbEmployeeName;
     }
 }
