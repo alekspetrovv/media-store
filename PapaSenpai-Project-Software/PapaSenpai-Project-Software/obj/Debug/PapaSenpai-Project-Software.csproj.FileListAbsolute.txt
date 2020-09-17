@@ -1,0 +1,14 @@
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\PapaSenpai-Project-Software.exe.config
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\PapaSenpai-Project-Software.exe
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\PapaSenpai-Project-Software.pdb
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\MaterialSkin.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.csprojAssemblyReference.cache
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai_Project_Software.Properties.Resources.resources
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.csproj.GenerateResource.cache
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.csproj.CoreCompileInputs.cache
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.csproj.CopyComplete
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.exe
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.pdb
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai_Project_Software.Home.resources
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai_Project_Software.Login.resources
