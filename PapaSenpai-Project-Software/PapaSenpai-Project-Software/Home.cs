@@ -134,6 +134,5 @@ namespace PapaSenpai_Project_Software
             this.pnlAddStaff.Visible = true;
             this.pnlAddSchedule.Visible = false;
         }
-
     }
 }

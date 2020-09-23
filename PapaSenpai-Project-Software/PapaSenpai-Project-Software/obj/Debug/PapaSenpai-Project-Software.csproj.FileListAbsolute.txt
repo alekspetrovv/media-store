@@ -26,3 +26,17 @@ C:\Users\George\Documents\Projects\papasenpai-project-cb06\PapaSenpai-Project-So
 C:\Users\George\Documents\Projects\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.csproj.CopyComplete
 C:\Users\George\Documents\Projects\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.exe
 C:\Users\George\Documents\Projects\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.pdb
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\MySql.Data.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\Google.Protobuf.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\Zstandard.Net.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\Renci.SshNet.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\System.Buffers.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\System.Memory.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\bin\Debug\MySql.Data.xml
+C:\Users\Gebruiker\Desktop\University\Semester 2\PRJ\papasenpai-project-cb06\PapaSenpai-Project-Software\PapaSenpai-Project-Software\obj\Debug\PapaSenpai-Project-Software.exe.config
