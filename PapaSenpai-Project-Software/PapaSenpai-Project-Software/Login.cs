@@ -40,7 +40,7 @@ namespace PapaSenpai_Project_Software
             con.Open();
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT * FROM `users` WHERE `name` = @usn AND password = @pass";
+            cmd.CommandText = "SELECT * FROM `admins` WHERE `username` = @usn AND password = @pass";
             cmd.Parameters.Add("@usn", MySqlDbType.VarChar).Value = this.tbUserName.Text;
             cmd.Parameters.Add("@pass", MySqlDbType.VarChar).Value = this.tbUserPassword.Text;
             DataTable dt = new DataTable();
