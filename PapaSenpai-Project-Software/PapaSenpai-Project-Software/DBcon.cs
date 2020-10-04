@@ -35,9 +35,12 @@ namespace PapaSenpai_Project_Software
                 fields.Add(m.ToString());
             }
 
-            for (int i = 0; i < bindings.Length; i++)
+            if (bindings != null)
             {
-                cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
+                for (int i = 0; i < bindings.Length; i++)
+                {
+                    cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
+                }
             }
 
             return cmd.ExecuteReader();

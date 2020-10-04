@@ -11,11 +11,12 @@ namespace PapaSenpai_Project_Software
         private string adress;
         private string city;
         private string country;
-        private uint phone_number;
+        private string phone_number;
         Gender gender;
         Department department;
+
         public Employee(int id, string first_name,string last_name,string email,string adress,string city,string country,
-         uint phone_number,string gender,string department) : base(id,first_name,last_name,email)
+         string phone_number,string gender,string department) : base(id,first_name,last_name,email)
         {
             this.adress = adress;
             this.city = city;
@@ -35,7 +36,7 @@ namespace PapaSenpai_Project_Software
             get { return this.city; }
         }
 
-        public uint PhoneNumber
+        public string PhoneNumber
         {
             get { return this.phone_number; }
         }

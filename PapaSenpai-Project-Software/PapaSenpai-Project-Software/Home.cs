@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace PapaSenpai_Project_Software
             //}
 
             this.lblMenu.Text = StoreControl.getloggedUser().getFullName();
+            retrieveAllEmployees();
             renderStaffTable();
 
 
@@ -52,7 +54,7 @@ namespace PapaSenpai_Project_Software
             ChangeLoginStyle();
         }
 
-  private void btnDashboard_Click(object sender, EventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = true;
             this.pnlEmployee.Visible = false;
@@ -107,7 +109,7 @@ namespace PapaSenpai_Project_Software
             this.pnlAddAdmin.Visible = false;
         }
 
-      
+
         private void btnEditSchedule_Click(object sender, EventArgs e)
         {
 
@@ -120,15 +122,24 @@ namespace PapaSenpai_Project_Software
 
         private void retrieveAllEmployees()
         {
-            //MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department_title FROM `employees` " +
-            //    "INNER JOIN employees_departments ON employees_departments.employee_id = employee.id " +
-            //    "INNER JOIN departments ON departments.id = employees_departments.department_id");
+            MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
+                "INNER JOIN employees_departments ON employees_departments.employee_id = employees.id " +
+                "INNER JOIN departments ON departments.id = employees_departments.department_id GROUP by employees.id");
 
-            //while (employees.Read())
-            //{
-            //    Employee employee = 
-            //}
+            if (employees.HasRows)
+            {
+                while (employees.Read())
+                {
+                    Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
+                        employees["last_name"].ToString(), employees["email"].ToString()
+                        , employees["address"].ToString(), employees["city"].ToString(), employees["country"].ToString(),
+                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString());
 
+                    StoreControl.addEmployee(employee);
+                    Console.WriteLine("User added into the global list");
+
+                }
+            }
 
 
 
@@ -145,9 +156,20 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Gender", typeof(string));
             dtEmp.Columns.Add("Phone", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
-            dtEmp.Columns.Add("Wage (h)", typeof(double));
+            //            dtEmp.Columns.Add("Wage (h)", typeof(double));
             dtEmp.Columns.Add("Deparment", typeof(string));
 
+
+                foreach (Employee employee in StoreControl.getUsers())
+                {
+
+                    Console.WriteLine("rendering user in the table");
+                    dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
+                }
+
+
+
+            dtAdmins.DataSource = dtEmp;
 
 
         }

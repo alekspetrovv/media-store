@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software
 {
-    class StoreControl
+    static class StoreControl
     {
-        private static List<User> users;
+        private static List<Employee> users;
         private static User loggedUser;
 
-        public StoreControl()
+        static StoreControl()
         {
-            StoreControl.users = new List<User>();
+            StoreControl.users = new List<Employee>();
             StoreControl.loggedUser = null;
         }
 
-        public static List<User> getUsers()
+        public static List<Employee> getUsers()
         {
             return StoreControl.users;
         }
@@ -30,6 +30,11 @@ namespace PapaSenpai_Project_Software
         public static void logUser(User user)
         {
             StoreControl.loggedUser = user;
+        }
+
+        public static void addEmployee(Employee employee)
+        {
+            StoreControl.users.Add(employee);
         }
 
     }
