@@ -735,7 +735,6 @@
             this.pnlAddSchedule.Name = "pnlAddSchedule";
             this.pnlAddSchedule.Size = new System.Drawing.Size(698, 412);
             this.pnlAddSchedule.TabIndex = 20;
-            this.pnlAddSchedule.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAddSchedule_Paint);
             // 
             // btnCreateSchedule
             // 
@@ -1053,11 +1052,11 @@
             this.ClientSize = new System.Drawing.Size(921, 479);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddSchedule);
-            this.Controls.Add(this.pnlViewStaff);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlSchedules);
             this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlAddSchedule);
+            this.Controls.Add(this.pnlViewStaff);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
