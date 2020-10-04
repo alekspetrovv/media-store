@@ -9,12 +9,14 @@ namespace PapaSenpai_Project_Software
     class Admin : User
     {
         private string password;
+        private string username;
         private Role role;
 
-        public Admin(string password,Role role,string first_name,string last_name,string email,int id) : base(first_name,last_name,email,id)
+        public Admin(string username,string password,Role role,string first_name,string last_name,string email,int id) : base(first_name,last_name,email,id)
         {
             this.password = password;
             this.role = role;
+            this.username = username;
         }
 
         public string Password 
