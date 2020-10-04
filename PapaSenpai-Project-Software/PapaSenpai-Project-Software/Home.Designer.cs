@@ -64,8 +64,6 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAddStaff = new System.Windows.Forms.Panel();
-            this.lblEmployeeName = new MaterialSkin.Controls.MaterialLabel();
-            this.tbEmployeeEmail = new System.Windows.Forms.TextBox();
             this.tbEmployeeCity = new System.Windows.Forms.TextBox();
             this.lblEmployeeCity = new MaterialSkin.Controls.MaterialLabel();
             this.lblCountry = new MaterialSkin.Controls.MaterialLabel();
@@ -88,8 +86,12 @@
             this.lblAddEmployee = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.lblEmployeeGender = new MaterialSkin.Controls.MaterialLabel();
+            this.lblEmployeeName = new MaterialSkin.Controls.MaterialLabel();
+            this.tbEmployeeEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAddAdmin = new System.Windows.Forms.Panel();
+            this.lblAdminEmail = new MaterialSkin.Controls.MaterialLabel();
+            this.tbAdminEmail = new System.Windows.Forms.TextBox();
             this.lblUserName = new MaterialSkin.Controls.MaterialLabel();
             this.tbAdminUserName = new System.Windows.Forms.TextBox();
             this.lblAdminLastName = new MaterialSkin.Controls.MaterialLabel();
@@ -113,8 +115,6 @@
             this.btnDeleteAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.lblAdminEmail = new MaterialSkin.Controls.MaterialLabel();
-            this.tbAdminEmail = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -637,26 +637,6 @@
             this.pnlAddStaff.Size = new System.Drawing.Size(698, 412);
             this.pnlAddStaff.TabIndex = 18;
             // 
-            // lblEmployeeName
-            // 
-            this.lblEmployeeName.AutoSize = true;
-            this.lblEmployeeName.Depth = 0;
-            this.lblEmployeeName.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblEmployeeName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeName.Location = new System.Drawing.Point(217, 124);
-            this.lblEmployeeName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblEmployeeName.Name = "lblEmployeeName";
-            this.lblEmployeeName.Size = new System.Drawing.Size(47, 19);
-            this.lblEmployeeName.TabIndex = 39;
-            this.lblEmployeeName.Text = "Email";
-            // 
-            // tbEmployeeEmail
-            // 
-            this.tbEmployeeEmail.Location = new System.Drawing.Point(271, 125);
-            this.tbEmployeeEmail.Name = "tbEmployeeEmail";
-            this.tbEmployeeEmail.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeEmail.TabIndex = 38;
-            // 
             // tbEmployeeCity
             // 
             this.tbEmployeeCity.Location = new System.Drawing.Point(274, 213);
@@ -896,6 +876,26 @@
             this.lblEmployeeGender.TabIndex = 21;
             this.lblEmployeeGender.Text = "Select a Gender";
             // 
+            // lblEmployeeName
+            // 
+            this.lblEmployeeName.AutoSize = true;
+            this.lblEmployeeName.Depth = 0;
+            this.lblEmployeeName.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblEmployeeName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEmployeeName.Location = new System.Drawing.Point(217, 124);
+            this.lblEmployeeName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEmployeeName.Name = "lblEmployeeName";
+            this.lblEmployeeName.Size = new System.Drawing.Size(47, 19);
+            this.lblEmployeeName.TabIndex = 39;
+            this.lblEmployeeName.Text = "Email";
+            // 
+            // tbEmployeeEmail
+            // 
+            this.tbEmployeeEmail.Location = new System.Drawing.Point(271, 125);
+            this.tbEmployeeEmail.Name = "tbEmployeeEmail";
+            this.tbEmployeeEmail.Size = new System.Drawing.Size(241, 20);
+            this.tbEmployeeEmail.TabIndex = 38;
+            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
@@ -931,6 +931,26 @@
             this.pnlAddAdmin.Name = "pnlAddAdmin";
             this.pnlAddAdmin.Size = new System.Drawing.Size(698, 412);
             this.pnlAddAdmin.TabIndex = 34;
+            // 
+            // lblAdminEmail
+            // 
+            this.lblAdminEmail.AutoSize = true;
+            this.lblAdminEmail.Depth = 0;
+            this.lblAdminEmail.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAdminEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAdminEmail.Location = new System.Drawing.Point(205, 212);
+            this.lblAdminEmail.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAdminEmail.Name = "lblAdminEmail";
+            this.lblAdminEmail.Size = new System.Drawing.Size(47, 19);
+            this.lblAdminEmail.TabIndex = 57;
+            this.lblAdminEmail.Text = "Email";
+            // 
+            // tbAdminEmail
+            // 
+            this.tbAdminEmail.Location = new System.Drawing.Point(261, 212);
+            this.tbAdminEmail.Name = "tbAdminEmail";
+            this.tbAdminEmail.Size = new System.Drawing.Size(241, 20);
+            this.tbAdminEmail.TabIndex = 56;
             // 
             // lblUserName
             // 
@@ -1212,26 +1232,6 @@
             this.btnAddAdmins.UseVisualStyleBackColor = true;
             this.btnAddAdmins.Click += new System.EventHandler(this.btnAddAdmins_Click);
             // 
-            // lblAdminEmail
-            // 
-            this.lblAdminEmail.AutoSize = true;
-            this.lblAdminEmail.Depth = 0;
-            this.lblAdminEmail.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblAdminEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAdminEmail.Location = new System.Drawing.Point(205, 212);
-            this.lblAdminEmail.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblAdminEmail.Name = "lblAdminEmail";
-            this.lblAdminEmail.Size = new System.Drawing.Size(47, 19);
-            this.lblAdminEmail.TabIndex = 57;
-            this.lblAdminEmail.Text = "Email";
-            // 
-            // tbAdminEmail
-            // 
-            this.tbAdminEmail.Location = new System.Drawing.Point(261, 212);
-            this.tbAdminEmail.Name = "tbAdminEmail";
-            this.tbAdminEmail.Size = new System.Drawing.Size(241, 20);
-            this.tbAdminEmail.TabIndex = 56;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1239,12 +1239,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlDashBoard);
-            this.Controls.Add(this.pnlAdmin);
-            this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddAdmin);
             this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
+            this.Controls.Add(this.pnlDashBoard);
+            this.Controls.Add(this.pnlAdmin);
+            this.Controls.Add(this.pnlAddStaff);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";

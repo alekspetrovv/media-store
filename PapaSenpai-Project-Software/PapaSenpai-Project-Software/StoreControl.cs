@@ -40,6 +40,18 @@ namespace PapaSenpai_Project_Software
             StoreControl.loggedUser = user;
         }
 
+        public static Admin GetCreatedAdmin(string userName) 
+        {
+            foreach(Admin a in getAdmins()) 
+            {
+                if(a.Username == userName) 
+                {
+                    return a;
+                }
+            }
+            return null;
+        }
+
         public static void addEmployee(Employee employee)
         {
             StoreControl.users.Add(employee);
