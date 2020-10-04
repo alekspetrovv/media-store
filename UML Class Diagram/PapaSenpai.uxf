@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>584</x>
+      <y>32</y>
+      <w>144</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>User
+-
+-first_name : string
+-last_name : string
+-email : string
+-id : int
+-
++ FirstName() : string
++ LastName() : string
++ Email() : string
++ Id() : int
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>664</x>
+      <y>232</y>
+      <w>160</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Admin
+-
+- password : string
+- role : Role
+-
++ Admin(string password,
+Role role,
+string first_name,
+string last_name,
+string email,int id)
++ getPassword() : string
++ getRole() : Role</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>232</y>
+      <w>176</w>
+      <h>296</h>
+    </coordinates>
+    <panel_attributes>Employee
+-
+-adress : string
+-city : string
+-country : string
+-phone_number : int
+-gender : Gender
+-department : Department
+-
++ Employee(string adress,
+string first_name,
+string last_name,
+string email,
+id int,
+string city,
+string country,
+string phone_number,
+string gender,int id
+Department department)
++ Adress() : string
++ City() : string
++ Country() : string
++ PhoneNumber() : uint
++ Gender() : Gender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>832</x>
+      <y>96</y>
+      <w>128</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+Role
+-
+SuperAdmin
+Manager
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>152</y>
+      <w>104</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= *
+m2= 1</panel_attributes>
+    <additional_attributes>10.0;160.0;100.0;160.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>176</y>
+      <w>80</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>176</y>
+      <w>88</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>32</y>
+      <w>144</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>StoreControl
+-
++ users: List&lt;User&gt;
+-
++ Users: List&lt;User&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>80</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>304</x>
+      <y>312</y>
+      <w>128</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+Department
+-
+Cleaner
+IT
+Salesman
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>376</x>
+      <y>408</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+m2= *</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>536</y>
+      <w>232</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Schedule
+-
+- id : int 
+- status : string
+- members : ScheduleMember
+-
++ Schedule(int id,string status,
+ScheduleMember members)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>664</x>
+      <y>536</y>
+      <w>208</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>ScheduleMember
+-
+- startDate : DateTime
+- endDate : DateTime 
+- employee : Employee
+-
++ScheduleMember(DateTime startDate,
+DateTime endDate,
+Employee employee)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>592</y>
+      <w>176</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>424</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>360</y>
+      <w>128</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+Status
+-
+Full
+Not Full
+Empty
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>456</y>
+      <w>96</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= * 
+m2= 1</panel_attributes>
+    <additional_attributes>100.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>304</x>
+      <y>200</y>
+      <w>128</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+Gender
+-
+Male 
+Female
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>368</x>
+      <y>256</y>
+      <w>128</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+m2= *</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+</diagram>
