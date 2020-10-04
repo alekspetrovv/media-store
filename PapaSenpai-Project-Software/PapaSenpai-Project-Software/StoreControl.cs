@@ -50,6 +50,19 @@ namespace PapaSenpai_Project_Software
             StoreControl.admins.Add(admin);
         }
 
+        public static void emptyAdmins()
+        {
+            StoreControl.admins.Clear();
+        }
+
+
+        public static void emptyUsers()
+        {
+            StoreControl.users.Clear();
+        }
+
+
+
 
     }
 }

@@ -26,6 +26,7 @@ namespace PapaSenpai_Project_Software
             retrieveAllAdmins();
 
             renderStaffTable();
+            renderStaffTable();
             renderAdminTable();
 
         }
@@ -82,7 +83,7 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
-            this.pnlAddSchedule.Visible = false;
+            this.pnlAddSchedule.Visible = true;
             this.pnlAddStaff.Visible = false;
             this.pnlAdmin.Visible = false;
             this.pnlAddAdmin.Visible = false;
@@ -127,6 +128,7 @@ namespace PapaSenpai_Project_Software
 
             if (employees.HasRows)
             {
+                StoreControl.emptyUsers();
                 while (employees.Read())
                 {
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
@@ -146,9 +148,9 @@ namespace PapaSenpai_Project_Software
 
             if (admins.HasRows)
             {
+                StoreControl.emptyAdmins();
                 while (admins.Read())
                 {
-                    Console.WriteLine("dsa");
                     Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
                         admins["role_title"].ToString(), admins["first_name"].ToString()
                         , admins["last_name"].ToString(), admins["email"].ToString());
@@ -183,7 +185,6 @@ namespace PapaSenpai_Project_Software
         private void renderStaffTable()
         {
             DataTable dtEmp = new DataTable();
-            // add column to datatable  
             dtEmp.Columns.Add("Selected", typeof(bool));
             dtEmp.Columns.Add("ID", typeof(int));
             dtEmp.Columns.Add("First Name", typeof(string));
@@ -201,6 +202,14 @@ namespace PapaSenpai_Project_Software
 
             dtEmployees.DataSource = dtEmp;
 
+        }
+
+        private void renderScheduleMembers()
+        {
+            //get all members
+            //get members from that schedule
+            //foreach all members and fill them in the datable
+            //if found in members of schedule make selected true and and fill the hours worked
         }
 
 
@@ -241,6 +250,7 @@ namespace PapaSenpai_Project_Software
                 {
                     continue;
                 }
+
                 string dr = dataRow.Cells["ID"].Value.ToString();
                 Console.WriteLine(dr);
             }
