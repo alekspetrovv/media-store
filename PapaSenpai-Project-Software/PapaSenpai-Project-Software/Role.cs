@@ -8,7 +8,7 @@ namespace PapaSenpai_Project_Software
 {
     public enum Role
     {
-        SuperAdmin,
+        Admin,
         Manager,
     }
 }
