@@ -16,7 +16,10 @@ namespace PapaSenpai_Project_Software
         public Login()
         {
             InitializeComponent();
-        }
+            Employee e = new Employee("a","b","a",1,"s","hey","s",123213,"Male","IT");
+            Console.WriteLine(e.Gender);
+            Console.WriteLine(e.Department); 
+        }   
 
 
         private void Login_Load(object sender, EventArgs e)
@@ -47,7 +50,7 @@ namespace PapaSenpai_Project_Software
 
         private void userLogin() 
         {
-            MySqlConnection con = DBcon.getConnection();
+            MySqlConnection con = DBcon.GetConnection();
             con.Open();
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;

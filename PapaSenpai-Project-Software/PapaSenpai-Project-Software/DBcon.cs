@@ -9,7 +9,7 @@ namespace PapaSenpai_Project_Software
 {
     class DBcon
     {
-        public static MySqlConnection getConnection() 
+        public static MySqlConnection GetConnection() 
         {
             MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
             return con;

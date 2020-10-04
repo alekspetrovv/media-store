@@ -287,10 +287,10 @@
             this.staffWorkingDays,
             this.staffContract,
             this.staffRole});
-            this.dataGridView4.Location = new System.Drawing.Point(124, 50);
+            this.dataGridView4.Location = new System.Drawing.Point(66, 48);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(415, 295);
+            this.dataGridView4.Size = new System.Drawing.Size(555, 295);
             this.dataGridView4.TabIndex = 12;
             // 
             // staffName
@@ -1052,11 +1052,11 @@
             this.ClientSize = new System.Drawing.Size(921, 479);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlViewStaff);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlSchedules);
             this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddSchedule);
-            this.Controls.Add(this.pnlViewStaff);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
