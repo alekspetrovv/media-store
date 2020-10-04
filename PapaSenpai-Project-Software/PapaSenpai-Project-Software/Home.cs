@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,6 +121,29 @@ namespace PapaSenpai_Project_Software
 
         }
 
+        private void btnViewAdmins_Click(object sender, EventArgs e)
+        {
+            this.pnlDashBoard.Visible = false;
+            this.pnlEmployee.Visible = false;
+            this.pnlSchedules.Visible = false;
+            this.pnlAddStaff.Visible = false;
+            this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = true;
+            this.pnlAddAdmin.Visible = false;
+        }
+
+        private void btnAddAdmins_Click(object sender, EventArgs e)
+        {
+            this.pnlDashBoard.Visible = false;
+            this.pnlEmployee.Visible = false;
+            this.pnlSchedules.Visible = false;
+            this.pnlAddStaff.Visible = false;
+            this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = true;
+        }
+
+
         private void retrieveAllEmployees()
         {
             MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
@@ -158,6 +182,7 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Email", typeof(string));
             //            dtEmp.Columns.Add("Wage (h)", typeof(double));
             dtEmp.Columns.Add("Deparment", typeof(string));
+        }
 
 
                 foreach (Employee employee in StoreControl.getUsers())
@@ -171,29 +196,22 @@ namespace PapaSenpai_Project_Software
 
             dtAdmins.DataSource = dtEmp;
 
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            string gender = (string)this.cbEmployeeGender.SelectedItem;
+            string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+                this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
+                gender, this.tbEmployeeEmail.Text};
+            MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`) " +
+            "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email)", employee_bindings);
 
+            DBcon.CloseConnection(add_employee);
         }
 
-        private void btnViewAdmins_Click(object sender, EventArgs e)
+        private void btnAddAdmin_Click(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = true;
-            this.pnlAddAdmin.Visible = false;
-        }
+            string[] user_bindings = { };
 
-        private void btnAddAdmins_Click(object sender, EventArgs e)
-        {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = true;
         }
     }
 }
