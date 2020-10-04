@@ -56,11 +56,12 @@ namespace PapaSenpai_Project_Software
                 );
 
             user.Read();
-
             //check if user exist if yes show the home page else don't show error message
             if (user.HasRows)
             {
-                MessageBox.Show("User logged in successfully!");
+                Admin admin = new Admin(Convert.ToInt32(user["id"]), user["role_title"].ToString(), user["first_name"].ToString(), user["last_name"].ToString(), user["email"].ToString());
+                StoreControl.logUser(admin);
+
                 this.Hide();
                 Home h = new Home();
                 h.Show();

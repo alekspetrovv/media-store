@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,63 +18,23 @@ namespace PapaSenpai_Project_Software
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
-            string[] row1 = new string[] { "Ivan Dimitrov", "9:00","17:00", "Cleaner"};
-            string[] row2 = new string[] { "Pepi Georgiev", "9:00","17:00", "Salesman"};
-            string[] row3 = new string[] { "Presqn Viktorov", "9:00","17:00", "Salesman"};
-            string[] row4 = new string[] { "Alex Sashkov", "9:00","17:00", "Cashier"};
-            string[] row5 = new string[] { "Georgi Dimitrov", "9:00","17:00", "Cashier"};
-            string[] row6 = new string[] { "Deyan Bozhilov", "9:00","17:00", "Cashier"};
-            string[] row7 = new string[] { "Pavel Kostadinov", "9:00","17:00", "Technical Support"};
-            string[] row8 = new string[] { "Morsh Porsh", "9:00","17:00", "Technical Support"};
+            //            string[] row1 = new string[] { "Ivan Dimitrov", "9:00","17:00", "Cleaner"};
+
+            //           object[] rows = new object[] { row1, row2, row3, row4, row5, row6, row7, row8};
+
+            //foreach (string[] rowArray in rows)
+            //{
+            //    dataGridView1.Rows.Add(rowArray);
+            //    dataGridView2.Rows.Add(rowArray);
+            //}
+
+            this.lblMenu.Text = StoreControl.getloggedUser().getFullName();
+            renderStaffTable();
 
 
-            string[] agenda1 = new string[] { "12/05/2020", "12", "Yes" };
-            string[] agenda2 = new string[] { "11/05/2020", "12", "Yes" };
-            string[] agenda3 = new string[] { "10/05/2020", "08", "No" };
-            string[] agenda4 = new string[] { "09/05/2020", "12", "Yes" };
-            string[] agenda5 = new string[] { "08/05/2020", "10", "No" };
-            string[] agenda6 = new string[] { "07/05/2020", "10", "No" };
-            string[] agenda7 = new string[] { "06/05/2020", "10", "No" };
-            string[] agenda8 = new string[] { "05/05/2020", "10", "No" };
-            string[] agenda9 = new string[] { "04/05/2020", "12", "Yes" };
-            string[] agenda10 = new string[] { "03/05/2020", "12", "Yes" };
-            string[] agenda11 = new string[] { "02/05/2020", "12", "Yes" };
-
-
-            string[] staff1 = new string[] { "Ivan Dimitrov", "112", "Full", "Admin" };
-            string[] staff2 = new string[] { "Georgi Ivanov", "43", "Full", "Manager" };
-            string[] staff3 = new string[] { "Preslav Georgiev", "67", "Partly", "Employee" };
-            string[] staff4 = new string[] { "Momchil Dragomirov", "21", "Hourly", "Employee" };
-            string[] staff5 = new string[] { "Alex Petrov", "37", "Full", "Employee" };
-            string[] staff6 = new string[] { "Rosen Rosenov", "40", "Full", "Employee" };
-            string[] staff7 = new string[] { "Petio Petkov", "11", "Full", "Employee" };
-            string[] staff8 = new string[] { "Momin Zlaten", "31", "Full", "Employee" };
-            string[] staff9 = new string[] { "Rocky Balboa", "8", "Full", "Employee" };
-            string[] staff10 = new string[] { "Vasko Vasilev", "1", "Full", "Employee" };
-
-            
-            object[] rows = new object[] { row1, row2, row3, row4, row5, row6, row7, row8};
-            object[] agendaRows = new object[] { agenda1, agenda2, agenda3, agenda4, agenda5, agenda6, agenda7, agenda8, agenda9, agenda10, agenda11 };
-            object[] staffRows = new object[] { staff1, staff2, staff3, staff4, staff5, staff6, staff7, staff8, staff9, staff10 };
-
-            foreach (string[] rowArray in rows)
-            {
-                dataGridView1.Rows.Add(rowArray);
-                dataGridView2.Rows.Add(rowArray);
-            }
-
-            foreach (string[] rowArray in agendaRows)
-            {
-                dataGridView3.Rows.Add(rowArray);
-            }
-
-            foreach (string[] rowArray in staffRows)
-            {
-                dataGridView4.Rows.Add(rowArray);
-            }
-
- 
         }
+
+
         private void ChangeLoginStyle()
         {
             MaterialSkin.MaterialSkinManager skinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -136,6 +97,49 @@ namespace PapaSenpai_Project_Software
             this.pnlAddSchedule.Visible = false;
         }
 
-    
+        private void btnEditSchedule_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void retrieveAllEmployees()
+        {
+            //MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department_title FROM `employees` " +
+            //    "INNER JOIN employees_departments ON employees_departments.employee_id = employee.id " +
+            //    "INNER JOIN departments ON departments.id = employees_departments.department_id");
+
+            //while (employees.Read())
+            //{
+            //    Employee employee = 
+            //}
+
+
+
+
+        }
+
+        private void renderStaffTable()
+        {
+            DataTable dtEmp = new DataTable();
+            // add column to datatable  
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Gender", typeof(string));
+            dtEmp.Columns.Add("Phone", typeof(string));
+            dtEmp.Columns.Add("Email", typeof(string));
+            dtEmp.Columns.Add("Wage (h)", typeof(double));
+            dtEmp.Columns.Add("Deparment", typeof(string));
+
+
+
+        }
+
     }
 }

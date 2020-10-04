@@ -8,23 +8,29 @@ namespace PapaSenpai_Project_Software
 {
     class StoreControl
     {
-        private List<User> users;
+        private static List<User> users;
+        private static User loggedUser;
 
         public StoreControl()
         {
-            users = new List<User>();
+            StoreControl.users = new List<User>();
+            StoreControl.loggedUser = null;
         }
 
-        public List<User> Users
+        public static List<User> getUsers()
         {
-            get
-            {
-                return this.users;
-            }
-            set
-            {
-                users = value;
-            }
+            return StoreControl.users;
         }
+
+        public static User getloggedUser()
+        {
+            return StoreControl.loggedUser;
+        }
+
+        public static void logUser(User user)
+        {
+            StoreControl.loggedUser = user;
+        }
+
     }
 }

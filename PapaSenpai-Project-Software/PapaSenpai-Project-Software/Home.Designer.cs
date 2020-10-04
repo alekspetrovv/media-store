@@ -39,18 +39,14 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.btnDashboard = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlViewStaff = new System.Windows.Forms.Panel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.staffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffContract = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtStaff = new System.Windows.Forms.DataGridView();
             this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.iconPictureBox7 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             this.materialRaisedButton7 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialRaisedButton6 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnEditEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddStaff = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlSchedules = new System.Windows.Forms.Panel();
             this.iconPictureBox10 = new FontAwesome.Sharp.IconPictureBox();
@@ -111,7 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.pnlViewStaff.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
@@ -265,65 +261,33 @@
             // 
             this.pnlViewStaff.AutoSize = true;
             this.pnlViewStaff.BackColor = System.Drawing.Color.Transparent;
-            this.pnlViewStaff.Controls.Add(this.dataGridView4);
+            this.pnlViewStaff.Controls.Add(this.dtStaff);
             this.pnlViewStaff.Controls.Add(this.materialLabel9);
             this.pnlViewStaff.Controls.Add(this.materialLabel3);
             this.pnlViewStaff.Controls.Add(this.iconPictureBox7);
             this.pnlViewStaff.Controls.Add(this.iconPictureBox6);
             this.pnlViewStaff.Controls.Add(this.iconPictureBox5);
             this.pnlViewStaff.Controls.Add(this.materialRaisedButton7);
-            this.pnlViewStaff.Controls.Add(this.materialRaisedButton6);
+            this.pnlViewStaff.Controls.Add(this.btnEditEmployee);
             this.pnlViewStaff.Controls.Add(this.btnAddStaff);
             this.pnlViewStaff.Location = new System.Drawing.Point(221, 65);
             this.pnlViewStaff.Name = "pnlViewStaff";
             this.pnlViewStaff.Size = new System.Drawing.Size(698, 413);
             this.pnlViewStaff.TabIndex = 19;
             // 
-            // dataGridView4
+            // dtStaff
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.staffName,
-            this.staffWorkingDays,
-            this.staffContract,
-            this.staffRole});
-            this.dataGridView4.Location = new System.Drawing.Point(66, 48);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(555, 295);
-            this.dataGridView4.TabIndex = 12;
-            // 
-            // staffName
-            // 
-            this.staffName.HeaderText = "Name";
-            this.staffName.MinimumWidth = 6;
-            this.staffName.Name = "staffName";
-            this.staffName.ReadOnly = true;
-            this.staffName.Width = 125;
-            // 
-            // staffWorkingDays
-            // 
-            this.staffWorkingDays.HeaderText = "Working Days";
-            this.staffWorkingDays.MinimumWidth = 6;
-            this.staffWorkingDays.Name = "staffWorkingDays";
-            this.staffWorkingDays.ReadOnly = true;
-            this.staffWorkingDays.Width = 125;
-            // 
-            // staffContract
-            // 
-            this.staffContract.HeaderText = "Contract";
-            this.staffContract.MinimumWidth = 6;
-            this.staffContract.Name = "staffContract";
-            this.staffContract.ReadOnly = true;
-            this.staffContract.Width = 125;
-            // 
-            // staffRole
-            // 
-            this.staffRole.HeaderText = "Role";
-            this.staffRole.MinimumWidth = 6;
-            this.staffRole.Name = "staffRole";
-            this.staffRole.ReadOnly = true;
-            this.staffRole.Width = 125;
+            this.dtStaff.AllowUserToAddRows = false;
+            this.dtStaff.AllowUserToDeleteRows = false;
+            this.dtStaff.AllowUserToResizeColumns = false;
+            this.dtStaff.AllowUserToResizeRows = false;
+            this.dtStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtStaff.Location = new System.Drawing.Point(66, 48);
+            this.dtStaff.MultiSelect = false;
+            this.dtStaff.Name = "dtStaff";
+            this.dtStaff.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dtStaff.Size = new System.Drawing.Size(555, 295);
+            this.dtStaff.TabIndex = 12;
             // 
             // materialLabel9
             // 
@@ -405,17 +369,18 @@
             this.materialRaisedButton7.Text = "Delete Employee";
             this.materialRaisedButton7.UseVisualStyleBackColor = true;
             // 
-            // materialRaisedButton6
+            // btnEditEmployee
             // 
-            this.materialRaisedButton6.Depth = 0;
-            this.materialRaisedButton6.Location = new System.Drawing.Point(246, 363);
-            this.materialRaisedButton6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton6.Name = "materialRaisedButton6";
-            this.materialRaisedButton6.Primary = true;
-            this.materialRaisedButton6.Size = new System.Drawing.Size(212, 46);
-            this.materialRaisedButton6.TabIndex = 13;
-            this.materialRaisedButton6.Text = "Edit Employee";
-            this.materialRaisedButton6.UseVisualStyleBackColor = true;
+            this.btnEditEmployee.Depth = 0;
+            this.btnEditEmployee.Location = new System.Drawing.Point(246, 363);
+            this.btnEditEmployee.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnEditEmployee.Name = "btnEditEmployee";
+            this.btnEditEmployee.Primary = true;
+            this.btnEditEmployee.Size = new System.Drawing.Size(212, 46);
+            this.btnEditEmployee.TabIndex = 13;
+            this.btnEditEmployee.Text = "Edit Employee";
+            this.btnEditEmployee.UseVisualStyleBackColor = true;
+            this.btnEditEmployee.Click += new System.EventHandler(this.btnEditEmployee_Click);
             // 
             // btnAddStaff
             // 
@@ -513,6 +478,7 @@
             this.btnEditSchedule.TabIndex = 13;
             this.btnEditSchedule.Text = "Edit Schedule";
             this.btnEditSchedule.UseVisualStyleBackColor = true;
+            this.btnEditSchedule.Click += new System.EventHandler(this.btnEditSchedule_Click);
             // 
             // dataGridView3
             // 
@@ -1069,7 +1035,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.pnlViewStaff.ResumeLayout(false);
             this.pnlViewStaff.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStaff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
@@ -1139,12 +1105,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleStaff;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleStatus;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton7;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton6;
-        private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn staffName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn staffWorkingDays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn staffContract;
-        private System.Windows.Forms.DataGridViewTextBoxColumn staffRole;
+        private MaterialSkin.Controls.MaterialRaisedButton btnEditEmployee;
+        private System.Windows.Forms.DataGridView dtStaff;
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox6;

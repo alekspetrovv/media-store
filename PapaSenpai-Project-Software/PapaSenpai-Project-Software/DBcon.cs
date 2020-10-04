@@ -18,7 +18,7 @@ namespace PapaSenpai_Project_Software
             return con;
         }
 
-        public static MySqlDataReader executeReader(string sql, string[] bindings)
+        public static MySqlDataReader executeReader(string sql, string[] bindings = null)
         {
             MySqlConnection con = DBcon.GetConnection();
             con.Open();

@@ -13,10 +13,9 @@ namespace PapaSenpai_Project_Software
         private string country;
         private uint phone_number;
         Gender gender;
-
         Department department;
-        public Employee(string first_name,string last_name,string email,int id,string adress,string city,string country,
-         uint phone_number,string gender,string department) : base(first_name,last_name,email,id)
+        public Employee(int id, string first_name,string last_name,string email,string adress,string city,string country,
+         uint phone_number,string gender,string department) : base(id,first_name,last_name,email)
         {
             this.adress = adress;
             this.city = city;

@@ -13,7 +13,7 @@ namespace PapaSenpai_Project_Software
         private string email;
         private int id;
 
-        public User(string first_name,string last_name,string email,int id) 
+        public User(int id, string first_name,string last_name,string email) 
         {
             this.first_name = first_name;
             this.last_name = last_name;
@@ -36,6 +36,11 @@ namespace PapaSenpai_Project_Software
         public int ID 
         {
             get { return this.id; }
+        }
+
+        public string getFullName()
+        {
+            return this.first_name + " " + this.last_name;
         }
     }
 }
