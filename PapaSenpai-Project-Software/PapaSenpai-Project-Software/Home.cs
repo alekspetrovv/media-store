@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,7 +53,7 @@ namespace PapaSenpai_Project_Software
             ChangeLoginStyle();
         }
 
-  private void btnDashboard_Click(object sender, EventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = true;
             this.pnlEmployee.Visible = false;
@@ -107,7 +108,7 @@ namespace PapaSenpai_Project_Software
             this.pnlAddAdmin.Visible = false;
         }
 
-      
+
         private void btnEditSchedule_Click(object sender, EventArgs e)
         {
 
@@ -115,40 +116,6 @@ namespace PapaSenpai_Project_Software
 
         private void btnEditEmployee_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void retrieveAllEmployees()
-        {
-            //MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department_title FROM `employees` " +
-            //    "INNER JOIN employees_departments ON employees_departments.employee_id = employee.id " +
-            //    "INNER JOIN departments ON departments.id = employees_departments.department_id");
-
-            //while (employees.Read())
-            //{
-            //    Employee employee = 
-            //}
-
-
-
-
-        }
-
-        private void renderStaffTable()
-        {
-            DataTable dtEmp = new DataTable();
-            // add column to datatable  
-            dtEmp.Columns.Add("Selected", typeof(bool));
-            dtEmp.Columns.Add("ID", typeof(int));
-            dtEmp.Columns.Add("First Name", typeof(string));
-            dtEmp.Columns.Add("Last Name", typeof(string));
-            dtEmp.Columns.Add("Gender", typeof(string));
-            dtEmp.Columns.Add("Phone", typeof(string));
-            dtEmp.Columns.Add("Email", typeof(string));
-            dtEmp.Columns.Add("Wage (h)", typeof(double));
-            dtEmp.Columns.Add("Deparment", typeof(string));
-
-
 
         }
 
@@ -172,6 +139,53 @@ namespace PapaSenpai_Project_Software
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
             this.pnlAddAdmin.Visible = true;
+        }
+
+
+        private void retrieveAllEmployees()
+        {
+            //MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department_title FROM `employees` " +
+            //    "INNER JOIN employees_departments ON employees_departments.employee_id = employee.id " +
+            //    "INNER JOIN departments ON departments.id = employees_departments.department_id");
+
+            //while (employees.Read())
+            //{
+            //    Employee employee = 
+            //}
+
+        }
+
+        private void renderStaffTable()
+        {
+            DataTable dtEmp = new DataTable();
+            // add column to datatable  
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Gender", typeof(string));
+            dtEmp.Columns.Add("Phone", typeof(string));
+            dtEmp.Columns.Add("Email", typeof(string));
+            dtEmp.Columns.Add("Wage (h)", typeof(double));
+            dtEmp.Columns.Add("Deparment", typeof(string));
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            string gender = (string)this.cbEmployeeGender.SelectedItem;
+            string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+                this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
+                gender, this.tbEmployeeEmail.Text};
+            MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`) " +
+            "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email)", employee_bindings);
+
+            DBcon.CloseConnection(add_employee);
+        }
+
+        private void btnAddAdmin_Click(object sender, EventArgs e)
+        {
+            string[] user_bindings = { };
+
         }
     }
 }
