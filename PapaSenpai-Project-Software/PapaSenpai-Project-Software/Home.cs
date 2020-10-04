@@ -50,6 +50,7 @@ namespace PapaSenpai_Project_Software
             string[] staff8 = new string[] { "Momin Zlaten", "31", "Full", "Employee" };
             string[] staff9 = new string[] { "Rocky Balboa", "8", "Full", "Employee" };
             string[] staff10 = new string[] { "Vasko Vasilev", "1", "Full", "Employee" };
+
             
             object[] rows = new object[] { row1, row2, row3, row4, row5, row6, row7, row8};
             object[] agendaRows = new object[] { agenda1, agenda2, agenda3, agenda4, agenda5, agenda6, agenda7, agenda8, agenda9, agenda10, agenda11 };

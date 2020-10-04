@@ -45,20 +45,20 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void userLogin() 
+        private void userLogin()
         {
-            MySqlConnection con = DBcon.getConnection();
-            con.Open();
-            MySqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT * FROM `admins` WHERE `username` = @usn AND password = @pass";
-            cmd.Parameters.Add("@usn", MySqlDbType.VarChar).Value = this.tbUserName.Text;
-            cmd.Parameters.Add("@pass", MySqlDbType.VarChar).Value = this.tbUserPassword.Text;
-            DataTable dt = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            da.Fill(dt);
-            // check if user exist if yes show the home page else don't show error message
-            if (dt.Rows.Count > 0)
+
+            string[] bindings = { this.tbUserName.Text, this.tbUserPassword.Text };
+
+            MySqlDataReader user = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
+                "INNER JOIN roles ON roles.id = admins.role_id " +
+                "WHERE `username` = @usn AND password = @pass", bindings
+                );
+
+            user.Read();
+
+            //check if user exist if yes show the home page else don't show error message
+            if (user.HasRows)
             {
                 MessageBox.Show("User logged in successfully!");
                 this.Hide();
@@ -69,7 +69,8 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("User credetentials are wrong!");
             }
-            con.Close();
+
+            DBcon.CloseConnection(user);
         }
     }
 }
