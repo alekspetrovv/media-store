@@ -206,27 +206,12 @@ namespace PapaSenpai_Project_Software
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            string gender = (string)this.cbEmployeeGender.SelectedItem;
-            string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
-                this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
-                gender, this.tbEmployeeEmail.Text};
-            MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`) " +
-            "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email)", employee_bindings);
-
-            DBcon.CloseConnection(add_employee);
+            AddUser();
         }
 
         private void btnAddAdmin_Click(object sender, EventArgs e)
         {
-            int role_id = this.cbAdminRole.SelectedIndex;
-            role_id++;
-            string increase_role_id = Convert.ToString(role_id);
-            Console.WriteLine(increase_role_id);
-            string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, increase_role_id };
-            MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" + "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
-
-
-            DBcon.CloseConnection(add_admin);
+            AddAdmin();
         }
 
         private void shit()
@@ -251,6 +236,41 @@ namespace PapaSenpai_Project_Software
         {
 
 
+        }
+
+
+        private void AddAdmin() 
+        {
+            if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text)!= null) 
+            {
+                int role_id = this.cbAdminRole.SelectedIndex;
+                role_id++;
+                string increase_role_id = Convert.ToString(role_id);
+                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, increase_role_id };
+                MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
+                    "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
+                DBcon.CloseConnection(add_admin);
+
+
+
+            }
+            else 
+            {
+                MessageBox.Show("You can't add an admin with the same username");
+            }
+        }
+        private void AddUser() 
+        {
+            string gender = (string)this.cbEmployeeGender.SelectedItem;
+            string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+                this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
+                gender, this.tbEmployeeEmail.Text};
+            MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`) " +
+            "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email)", employee_bindings);
+
+
+
+            DBcon.CloseConnection(add_employee);
         }
     }
 }
