@@ -182,19 +182,21 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Email", typeof(string));
             //            dtEmp.Columns.Add("Wage (h)", typeof(double));
             dtEmp.Columns.Add("Deparment", typeof(string));
-        }
 
+            foreach (Employee employee in StoreControl.getUsers())
+            {
 
-                foreach (Employee employee in StoreControl.getUsers())
-                {
-
-                    Console.WriteLine("rendering user in the table");
-                    dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
-                }
+                Console.WriteLine("rendering user in the table");
+                dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
+            }
 
 
 
             dtAdmins.DataSource = dtEmp;
+
+        }
+
+
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {

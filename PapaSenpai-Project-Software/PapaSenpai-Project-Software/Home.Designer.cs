@@ -957,7 +957,6 @@
             this.btnAddUser.TabIndex = 11;
             this.btnAddUser.Text = "Add Employee";
             this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // tbEmployeePhoneNumber
             // 
