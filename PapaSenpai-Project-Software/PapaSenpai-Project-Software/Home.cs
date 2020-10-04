@@ -55,7 +55,7 @@ namespace PapaSenpai_Project_Software
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = true;
-            this.pnlViewStaff.Visible = false;
+            this.pnlEmployee.Visible = false;
             this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;

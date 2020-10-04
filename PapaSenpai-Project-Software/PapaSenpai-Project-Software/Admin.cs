@@ -9,9 +9,11 @@ namespace PapaSenpai_Project_Software
     class Admin : User
     {
         private Role role;
+        private string username;
 
-        public Admin(int id, string role,string first_name,string last_name,string email) : base(id, first_name,last_name,email)
+        public Admin(int id, string username, string role,string first_name,string last_name,string email) : base(id, first_name,last_name,email)
         {
+            this.username = username;
             Enum.TryParse(role,out this.role);
         }
 
