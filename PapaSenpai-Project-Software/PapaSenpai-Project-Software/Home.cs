@@ -20,20 +20,9 @@ namespace PapaSenpai_Project_Software
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
-            //            string[] row1 = new string[] { "Ivan Dimitrov", "9:00","17:00", "Cleaner"};
-
-            //           object[] rows = new object[] { row1, row2, row3, row4, row5, row6, row7, row8};
-
-            //foreach (string[] rowArray in rows)
-            //{
-            //    dataGridView1.Rows.Add(rowArray);
-            //    dataGridView2.Rows.Add(rowArray);
-            //}
-
             this.lblMenu.Text = StoreControl.getloggedUser().getFullName();
             retrieveAllEmployees();
             renderStaffTable();
-
 
         }
 
@@ -59,7 +48,6 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = true;
             this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
@@ -70,7 +58,6 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = true;
-            this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
@@ -81,7 +68,6 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = true;
             this.pnlAdmin.Visible = false;
@@ -93,7 +79,6 @@ namespace PapaSenpai_Project_Software
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
             this.pnlAddSchedule.Visible = false;
-            this.pnlSchedules.Visible = true;
             this.pnlAddStaff.Visible = false;
             this.pnlAdmin.Visible = false;
             this.pnlAddAdmin.Visible = false;
@@ -103,29 +88,16 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = true;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
             this.pnlAddAdmin.Visible = false;
         }
 
-
-        private void btnEditSchedule_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEditEmployee_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnViewAdmins_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = true;
@@ -136,7 +108,6 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
-            this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
@@ -165,8 +136,6 @@ namespace PapaSenpai_Project_Software
                 }
             }
 
-
-
         }
 
         private void renderStaffTable()
@@ -190,12 +159,8 @@ namespace PapaSenpai_Project_Software
                 dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
             }
 
-
-
             dtAdmins.DataSource = dtEmp;
-
         }
-
 
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -212,8 +177,15 @@ namespace PapaSenpai_Project_Software
 
         private void btnAddAdmin_Click(object sender, EventArgs e)
         {
-            string[] user_bindings = { };
+            int role_id = this.cbAdminRole.SelectedIndex;
+            role_id++;
+            string increase_role_id = Convert.ToString(role_id);
+            Console.WriteLine(increase_role_id);
+            string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, increase_role_id };
+            MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" + "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
 
+
+            DBcon.CloseConnection(add_admin);
         }
     }
 }
