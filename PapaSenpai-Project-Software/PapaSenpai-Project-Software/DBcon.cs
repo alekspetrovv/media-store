@@ -20,7 +20,7 @@ namespace PapaSenpai_Project_Software
 
         public static MySqlDataReader executeReader(string sql, string[] bindings)
         {
-            MySqlConnection con = DBcon.getConnection();
+            MySqlConnection con = DBcon.GetConnection();
             con.Open();
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
