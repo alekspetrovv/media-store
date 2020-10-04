@@ -100,13 +100,13 @@
             this.tbEmployeeAdress = new System.Windows.Forms.TextBox();
             this.tbEmployeeLastName = new System.Windows.Forms.TextBox();
             this.tbEmployeeFirstName = new System.Windows.Forms.TextBox();
-            this.lblEmployeeGender = new MaterialSkin.Controls.MaterialLabel();
             this.cbEmployeeGender = new System.Windows.Forms.ComboBox();
             this.lblEmployeeDepartment = new MaterialSkin.Controls.MaterialLabel();
             this.cbEmployeeDepartment = new System.Windows.Forms.ComboBox();
             this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             this.lblAddEmployee = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.lblEmployeeGender = new MaterialSkin.Controls.MaterialLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAddAdmin = new System.Windows.Forms.Panel();
             this.lblAdminSecondName = new MaterialSkin.Controls.MaterialLabel();
@@ -1033,19 +1033,6 @@
             this.tbEmployeeFirstName.Size = new System.Drawing.Size(241, 20);
             this.tbEmployeeFirstName.TabIndex = 22;
             // 
-            // lblEmployeeGender
-            // 
-            this.lblEmployeeGender.AutoSize = true;
-            this.lblEmployeeGender.Depth = 0;
-            this.lblEmployeeGender.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblEmployeeGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeGender.Location = new System.Drawing.Point(169, 253);
-            this.lblEmployeeGender.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblEmployeeGender.Name = "lblEmployeeGender";
-            this.lblEmployeeGender.Size = new System.Drawing.Size(114, 19);
-            this.lblEmployeeGender.TabIndex = 21;
-            this.lblEmployeeGender.Text = "Select a Gender";
-            // 
             // cbEmployeeGender
             // 
             this.cbEmployeeGender.FormattingEnabled = true;
@@ -1119,6 +1106,19 @@
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(0, 19);
             this.materialLabel6.TabIndex = 0;
+            // 
+            // lblEmployeeGender
+            // 
+            this.lblEmployeeGender.AutoSize = true;
+            this.lblEmployeeGender.Depth = 0;
+            this.lblEmployeeGender.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblEmployeeGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEmployeeGender.Location = new System.Drawing.Point(169, 253);
+            this.lblEmployeeGender.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEmployeeGender.Name = "lblEmployeeGender";
+            this.lblEmployeeGender.Size = new System.Drawing.Size(114, 19);
+            this.lblEmployeeGender.TabIndex = 21;
+            this.lblEmployeeGender.Text = "Select a Gender";
             // 
             // label1
             // 

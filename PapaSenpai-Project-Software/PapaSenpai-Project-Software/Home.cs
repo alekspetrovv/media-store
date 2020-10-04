@@ -52,51 +52,62 @@ namespace PapaSenpai_Project_Software
             ChangeLoginStyle();
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
+  private void btnDashboard_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = true;
             this.pnlEmployee.Visible = false;
             this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = false;
         }
 
         private void btnViewStaff_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = false;
-            this.pnlViewStaff.Visible = true;
+            this.pnlEmployee.Visible = true;
             this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = false;
         }
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = false;
-            this.pnlViewStaff.Visible = false;
+            this.pnlEmployee.Visible = false;
             this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = true; 
+            this.pnlAddSchedule.Visible = true;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = false;
         }
 
         private void btnViewSchedule_Click_1(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = false;
-            this.pnlViewStaff.Visible = false;
+            this.pnlEmployee.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlSchedules.Visible = true;
             this.pnlAddStaff.Visible = false;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = false;
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
             this.pnlDashBoard.Visible = false;
-            this.pnlViewStaff.Visible = false;
+            this.pnlEmployee.Visible = false;
             this.pnlSchedules.Visible = false;
             this.pnlAddStaff.Visible = true;
             this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = false;
         }
 
+      
         private void btnEditSchedule_Click(object sender, EventArgs e)
         {
 
@@ -141,5 +152,26 @@ namespace PapaSenpai_Project_Software
 
         }
 
+        private void btnViewAdmins_Click(object sender, EventArgs e)
+        {
+            this.pnlDashBoard.Visible = false;
+            this.pnlEmployee.Visible = false;
+            this.pnlSchedules.Visible = false;
+            this.pnlAddStaff.Visible = false;
+            this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = true;
+            this.pnlAddAdmin.Visible = false;
+        }
+
+        private void btnAddAdmins_Click(object sender, EventArgs e)
+        {
+            this.pnlDashBoard.Visible = false;
+            this.pnlEmployee.Visible = false;
+            this.pnlSchedules.Visible = false;
+            this.pnlAddStaff.Visible = false;
+            this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = false;
+            this.pnlAddAdmin.Visible = true;
+        }
     }
 }
