@@ -31,8 +31,12 @@ namespace PapaSenpai_Project_Software
             //}
 
             this.lblMenu.Text = StoreControl.getloggedUser().getFullName();
+
             retrieveAllEmployees();
+            retrieveAllAdmins();
+
             renderStaffTable();
+            renderAdminTable();
 
 
         }
@@ -160,14 +164,50 @@ namespace PapaSenpai_Project_Software
                         employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString());
 
                     StoreControl.addEmployee(employee);
-                    Console.WriteLine("User added into the global list");
-
                 }
             }
+        }
 
+        private void retrieveAllAdmins()
+        {
+            MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
+                "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
 
+            if (admins.HasRows)
+            {
+                while (admins.Read())
+                {
+                    Console.WriteLine("dsa");
+                    Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
+                        admins["role_title"].ToString(), admins["first_name"].ToString()
+                        , admins["last_name"].ToString(), admins["email"].ToString());
+
+                    StoreControl.addAdmin(admin);
+                }
+            }
+        }
+
+        private void renderAdminTable()
+        {
+            DataTable dtEmp = new DataTable();
+            // add column to datatable  
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("Username", typeof(string));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Role", typeof(string));
+            dtEmp.Columns.Add("Email", typeof(string));
+
+            foreach (Admin admin in StoreControl.getAdmins())
+            {
+                dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.Role, admin.Email);
+            }
+
+            dtAdmins.DataSource = dtEmp;
 
         }
+
 
         private void renderStaffTable()
         {
@@ -185,14 +225,10 @@ namespace PapaSenpai_Project_Software
 
             foreach (Employee employee in StoreControl.getUsers())
             {
-
-                Console.WriteLine("rendering user in the table");
                 dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
             }
 
-
-
-            dtAdmins.DataSource = dtEmp;
+            dtEmployees.DataSource = dtEmp;
 
         }
 
@@ -213,6 +249,30 @@ namespace PapaSenpai_Project_Software
         private void btnAddAdmin_Click(object sender, EventArgs e)
         {
             string[] user_bindings = { };
+
+        }
+
+        private void shit()
+        {
+            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            {
+
+
+                DataGridViewRow dataRow = dtAdmins.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+                string dr = dataRow.Cells["ID"].Value.ToString();
+                Console.WriteLine(dr);
+            }
+
+        }
+
+        private void btnDeleteAdmins_Click(object sender, EventArgs e)
+        {
+
 
         }
     }

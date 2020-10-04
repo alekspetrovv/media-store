@@ -23,5 +23,11 @@ namespace PapaSenpai_Project_Software
             get { return this.role; }
         }
 
+        public string Username 
+        {
+            get { return this.username; }
+        }
+
+
     }
 }
