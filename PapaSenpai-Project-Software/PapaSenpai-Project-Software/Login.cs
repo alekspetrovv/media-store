@@ -13,18 +13,21 @@ namespace PapaSenpai_Project_Software
 {
     public partial class Login : MaterialSkin.Controls.MaterialForm
     {
-        MySqlConnection con;
         public Login()
         {
             InitializeComponent();
-            con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
         }
+
+
         private void Login_Load(object sender, EventArgs e)
         {
             ChangeLoginStyle();
         }
+
+
         private void ChangeLoginStyle()
         {
+            // using MaterialSkin for the project design
             MaterialSkin.MaterialSkinManager skinManager = MaterialSkin.MaterialSkinManager.Instance;
             skinManager.AddFormToManage(this);
             skinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
@@ -34,9 +37,17 @@ namespace PapaSenpai_Project_Software
                 MaterialSkin.Accent.Orange700,
                 MaterialSkin.TextShade.WHITE);
         }
+
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // check if user exist if yes show the home page else don't show error message
+            userLogin();
+        }
+
+
+        private void userLogin() 
+        {
+            MySqlConnection con = DBcon.getConnection();
             con.Open();
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
@@ -46,6 +57,7 @@ namespace PapaSenpai_Project_Software
             DataTable dt = new DataTable();
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             da.Fill(dt);
+            // check if user exist if yes show the home page else don't show error message
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("User logged in successfully!");
