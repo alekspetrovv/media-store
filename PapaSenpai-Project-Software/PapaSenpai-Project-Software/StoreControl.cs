@@ -89,6 +89,18 @@ namespace PapaSenpai_Project_Software
             return null;
         }
 
+        public static Employee GetCreatedUsers(string email)
+        {
+            foreach (Employee employee in getUsers())
+            {
+                if(employee.Email == email) 
+                {
+                    return employee;
+                }
+            }
+            return null; 
+        }
+
         public static void addEmployee(Employee employee)
         {
             StoreControl.users.Add(employee);
