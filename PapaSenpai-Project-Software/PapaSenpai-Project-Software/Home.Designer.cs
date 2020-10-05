@@ -91,6 +91,7 @@
             this.tbEmployeeEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAddEditAdmin = new System.Windows.Forms.Panel();
+            this.btnUpdateAdmin = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblAdminEmail = new MaterialSkin.Controls.MaterialLabel();
             this.tbAdminEmail = new System.Windows.Forms.TextBox();
             this.lblUserName = new MaterialSkin.Controls.MaterialLabel();
@@ -116,7 +117,6 @@
             this.btnDeleteAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnUpdateAdmin = new MaterialSkin.Controls.MaterialRaisedButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -528,13 +528,13 @@
             this.dtTodaySchedule.AllowUserToResizeRows = false;
             this.dtTodaySchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dtTodaySchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtTodaySchedule.Location = new System.Drawing.Point(25, 133);
+            this.dtTodaySchedule.Location = new System.Drawing.Point(64, 133);
             this.dtTodaySchedule.MultiSelect = false;
             this.dtTodaySchedule.Name = "dtTodaySchedule";
             this.dtTodaySchedule.ReadOnly = true;
             this.dtTodaySchedule.RowHeadersWidth = 51;
             this.dtTodaySchedule.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dtTodaySchedule.Size = new System.Drawing.Size(442, 190);
+            this.dtTodaySchedule.Size = new System.Drawing.Size(554, 190);
             this.dtTodaySchedule.TabIndex = 2;
             // 
             // pnlAddSchedule
@@ -578,10 +578,10 @@
             this.dtAddSchedule.AllowUserToResizeColumns = false;
             this.dtAddSchedule.AllowUserToResizeRows = false;
             this.dtAddSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtAddSchedule.Location = new System.Drawing.Point(132, 210);
+            this.dtAddSchedule.Location = new System.Drawing.Point(16, 210);
             this.dtAddSchedule.Name = "dtAddSchedule";
             this.dtAddSchedule.RowHeadersWidth = 51;
-            this.dtAddSchedule.Size = new System.Drawing.Size(418, 156);
+            this.dtAddSchedule.Size = new System.Drawing.Size(668, 156);
             this.dtAddSchedule.TabIndex = 3;
             // 
             // materialLabel1
@@ -954,6 +954,19 @@
             this.pnlAddEditAdmin.Size = new System.Drawing.Size(698, 412);
             this.pnlAddEditAdmin.TabIndex = 34;
             // 
+            // btnUpdateAdmin
+            // 
+            this.btnUpdateAdmin.Depth = 0;
+            this.btnUpdateAdmin.Location = new System.Drawing.Point(287, 341);
+            this.btnUpdateAdmin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUpdateAdmin.Name = "btnUpdateAdmin";
+            this.btnUpdateAdmin.Primary = true;
+            this.btnUpdateAdmin.Size = new System.Drawing.Size(202, 33);
+            this.btnUpdateAdmin.TabIndex = 58;
+            this.btnUpdateAdmin.Text = "Update Admin";
+            this.btnUpdateAdmin.UseVisualStyleBackColor = true;
+            this.btnUpdateAdmin.Click += new System.EventHandler(this.btnUpdateAdmin_Click);
+            // 
             // lblAdminEmail
             // 
             this.lblAdminEmail.AutoSize = true;
@@ -1256,19 +1269,6 @@
             this.btnAddAdmins.UseVisualStyleBackColor = true;
             this.btnAddAdmins.Click += new System.EventHandler(this.btnAddAdmins_Click);
             // 
-            // btnUpdateAdmin
-            // 
-            this.btnUpdateAdmin.Depth = 0;
-            this.btnUpdateAdmin.Location = new System.Drawing.Point(287, 341);
-            this.btnUpdateAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnUpdateAdmin.Name = "btnUpdateAdmin";
-            this.btnUpdateAdmin.Primary = true;
-            this.btnUpdateAdmin.Size = new System.Drawing.Size(202, 33);
-            this.btnUpdateAdmin.TabIndex = 58;
-            this.btnUpdateAdmin.Text = "Update Admin";
-            this.btnUpdateAdmin.UseVisualStyleBackColor = true;
-            this.btnUpdateAdmin.Click += new System.EventHandler(this.btnUpdateAdmin_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1276,12 +1276,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddEditAdmin);
-            this.Controls.Add(this.pnlAddSchedule);
-            this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlAddEditAdmin);
+            this.Controls.Add(this.pnlAddSchedule);
+            this.Controls.Add(this.pnlEmployee);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
