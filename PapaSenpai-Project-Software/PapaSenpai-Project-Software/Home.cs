@@ -26,7 +26,6 @@ namespace PapaSenpai_Project_Software
             retrieveAllAdmins();
 
             renderStaffTable();
-            renderStaffTable();
             renderAdminTable();
 
         }
@@ -119,16 +118,34 @@ namespace PapaSenpai_Project_Software
             this.pnlAddAdmin.Visible = true;
         }
 
+        private void btnDeleteAdmins_Click(object sender, EventArgs e)
+        {
+            DeleteAdmin();
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            AddEmployee();
+        }
+
+        private void btnDeleteEmployee_Click(object sender, EventArgs e)
+        {
+            DeleteEmployee();
+        }
+
+        private void btnAddAdmin_Click(object sender, EventArgs e)
+        {
+            AddAdmin();
+        }
 
         private void retrieveAllEmployees()
         {
             MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
-                "INNER JOIN employees_departments ON employees_departments.employee_id = employees.id " +
-                "INNER JOIN departments ON departments.id = employees_departments.department_id GROUP by employees.id");
-
+                "INNER JOIN departments ON departments.id = employees.department_id GROUP by employees.id");
+            StoreControl.emptyUsers();
             if (employees.HasRows)
             {
-                StoreControl.emptyUsers();
+
                 while (employees.Read())
                 {
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
@@ -145,10 +162,9 @@ namespace PapaSenpai_Project_Software
         {
             MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
                 "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
-
+            StoreControl.emptyAdmins();
             if (admins.HasRows)
             {
-                StoreControl.emptyAdmins();
                 while (admins.Read())
                 {
                     Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
@@ -171,6 +187,7 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Last Name", typeof(string));
             dtEmp.Columns.Add("Role", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
+
 
             foreach (Admin admin in StoreControl.getAdmins())
             {
@@ -197,6 +214,7 @@ namespace PapaSenpai_Project_Software
 
             foreach (Employee employee in StoreControl.getUsers())
             {
+                Console.WriteLine("vlezna v foreach");
                 dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
             }
 
@@ -213,17 +231,8 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void btnAddUser_Click(object sender, EventArgs e)
-        {
-            AddUser();
-        }
 
-        private void btnAddAdmin_Click(object sender, EventArgs e)
-        {
-            AddAdmin();
-        }
-
-        private void shit()
+        private void DeleteAdmin()
         {
             for (int i = 0; i < dtAdmins.Rows.Count; ++i)
             {
@@ -236,51 +245,91 @@ namespace PapaSenpai_Project_Software
                     continue;
                 }
 
-                string dr = dataRow.Cells["ID"].Value.ToString();
-                Console.WriteLine(dr);
+                bool deleteAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (deleteAdmin)
+                {
+                    string id = (dataRow.Cells["ID"].Value.ToString());
+                    MySqlDataReader delete_admin = DBcon.executeReader("DELETE FROM `admins` WHERE `id` =" + id);
+                    this.retrieveAllAdmins();
+                    this.renderAdminTable();
+                    DBcon.CloseConnection(delete_admin);
+                }
+            }
+
+        }
+        private void DeleteEmployee()
+        {
+            for (int i = 0; i < dtEmployees.Rows.Count; ++i)
+            {
+
+
+                DataGridViewRow dataRow = dtEmployees.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool deleteUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (deleteUser)
+                {
+                    string id = (dataRow.Cells["ID"].Value.ToString());
+                    MySqlDataReader delete_users = DBcon.executeReader("DELETE FROM `employees` WHERE `id` =" + id);
+                    this.retrieveAllEmployees();
+                    this.renderStaffTable();
+                    DBcon.CloseConnection(delete_users);
+                }
             }
 
         }
 
-        private void btnDeleteAdmins_Click(object sender, EventArgs e)
+        private void AddAdmin()
         {
-
-
-        }
-
-
-        private void AddAdmin() 
-        {
-            if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text)!= null) 
+            if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text) == null)
             {
                 int role_id = this.cbAdminRole.SelectedIndex;
                 role_id++;
-                string increase_role_id = Convert.ToString(role_id);
-                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, increase_role_id };
+                string increased_role_id = Convert.ToString(role_id);
+                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
+                    increased_role_id };
                 MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
                     "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
                 DBcon.CloseConnection(add_admin);
-
-
+                this.retrieveAllAdmins();
+                this.renderAdminTable();
 
             }
-            else 
+            else
             {
                 MessageBox.Show("You can't add an admin with the same username");
             }
         }
-        private void AddUser() 
+        private void AddEmployee()
         {
-            string gender = (string)this.cbEmployeeGender.SelectedItem;
-            string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+            if (StoreControl.GetCreatedUsers(this.tbEmployeeEmail.Text) == null)
+            {
+                int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                department_id++;
+                string increased_department_id = Convert.ToString(department_id);
+                string gender = (string)this.cbEmployeeGender.SelectedItem;
+                string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                 this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
-                gender, this.tbEmployeeEmail.Text};
-            MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`) " +
-            "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email)", employee_bindings);
+                gender, this.tbEmployeeEmail.Text,increased_department_id};
+                MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`) " +
+                "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id)", employee_bindings);
+                DBcon.CloseConnection(add_employee);
+                this.retrieveAllEmployees();
+                this.renderStaffTable();
+            }
+            else
+            {
+                MessageBox.Show("You can't add an employee with the same email");
+            }
+        }
 
-
-
-            DBcon.CloseConnection(add_employee);
+        private void btnEditEmployee_Click(object sender, EventArgs e)
+        {
+            this.pnlEmployee.Visible = true;
         }
     }
 }

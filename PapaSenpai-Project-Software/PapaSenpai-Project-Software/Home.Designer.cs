@@ -411,6 +411,7 @@
             this.btnDeleteEmployee.TabIndex = 14;
             this.btnDeleteEmployee.Text = "Delete Employee";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
             // 
             // btnEditEmployee
             // 
@@ -423,6 +424,7 @@
             this.btnEditEmployee.TabIndex = 13;
             this.btnEditEmployee.Text = "Edit Employee";
             this.btnEditEmployee.UseVisualStyleBackColor = true;
+            this.btnEditEmployee.Click += new System.EventHandler(this.btnEditEmployee_Click);
             // 
             // btnAddEmployee
             // 
@@ -701,6 +703,7 @@
             this.btnAddUser.TabIndex = 11;
             this.btnAddUser.Text = "Add Employee";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // tbEmployeePhoneNumber
             // 
@@ -817,8 +820,8 @@
             // 
             this.cbEmployeeDepartment.FormattingEnabled = true;
             this.cbEmployeeDepartment.Items.AddRange(new object[] {
+            "Programmer",
             "Cleaner",
-            "IT",
             "Salesman"});
             this.cbEmployeeDepartment.Location = new System.Drawing.Point(276, 299);
             this.cbEmployeeDepartment.Name = "cbEmployeeDepartment";
@@ -1206,6 +1209,7 @@
             this.btnDeleteAdmins.TabIndex = 14;
             this.btnDeleteAdmins.Text = "   Delete Admins";
             this.btnDeleteAdmins.UseVisualStyleBackColor = true;
+            this.btnDeleteAdmins.Click += new System.EventHandler(this.btnDeleteAdmins_Click);
             // 
             // btnEditAdmins
             // 
@@ -1239,12 +1243,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddAdmin);
-            this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlAddAdmin);
+            this.Controls.Add(this.pnlAddSchedule);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
