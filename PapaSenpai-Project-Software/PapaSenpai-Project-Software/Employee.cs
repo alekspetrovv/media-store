@@ -39,6 +39,11 @@ namespace PapaSenpai_Project_Software
             get { return this.city; }
         }
 
+        public string Country 
+        {
+            get { return this.country; }
+        }
+
         public string PhoneNumber
         {
             get { return this.phone_number; }

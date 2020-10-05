@@ -101,7 +101,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Primary = true;
             this.btnLogin.Size = new System.Drawing.Size(114, 39);
-            this.btnLogin.TabIndex = 13;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -118,7 +118,7 @@
             this.tbUserPassword.SelectionLength = 0;
             this.tbUserPassword.SelectionStart = 0;
             this.tbUserPassword.Size = new System.Drawing.Size(305, 23);
-            this.tbUserPassword.TabIndex = 12;
+            this.tbUserPassword.TabIndex = 2;
             this.tbUserPassword.UseSystemPasswordChar = false;
             // 
             // tbUserName
@@ -133,7 +133,7 @@
             this.tbUserName.SelectionLength = 0;
             this.tbUserName.SelectionStart = 0;
             this.tbUserName.Size = new System.Drawing.Size(305, 23);
-            this.tbUserName.TabIndex = 11;
+            this.tbUserName.TabIndex = 1;
             this.tbUserName.UseSystemPasswordChar = false;
             // 
             // Login
