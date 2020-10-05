@@ -51,12 +51,12 @@
             this.btnEditEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlDashBoard = new System.Windows.Forms.Panel();
-            this.dtTodaySchedule = new System.Windows.Forms.DataGridView();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.btnViewAllSchedules = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnChangeTodaySchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.lblDashboard = new MaterialSkin.Controls.MaterialLabel();
+            this.dtTodaySchedule = new System.Windows.Forms.DataGridView();
             this.pnlAddSchedule = new System.Windows.Forms.Panel();
             this.btnUpdateSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.calendarSchedule = new System.Windows.Forms.MonthCalendar();
@@ -64,6 +64,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAddStaff = new System.Windows.Forms.Panel();
+            this.btnUpdateEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tbEmployeeCity = new System.Windows.Forms.TextBox();
             this.lblEmployeeCity = new MaterialSkin.Controls.MaterialLabel();
             this.lblCountry = new MaterialSkin.Controls.MaterialLabel();
@@ -147,7 +148,7 @@
             this.btnViewEmployees.Name = "btnViewEmployees";
             this.btnViewEmployees.Primary = true;
             this.btnViewEmployees.Size = new System.Drawing.Size(198, 46);
-            this.btnViewEmployees.TabIndex = 1;
+            this.btnViewEmployees.TabIndex = 2;
             this.btnViewEmployees.Text = "        View Employees";
             this.btnViewEmployees.UseVisualStyleBackColor = true;
             this.btnViewEmployees.Click += new System.EventHandler(this.btnViewStaff_Click);
@@ -160,7 +161,7 @@
             this.btnViewSchedule.Name = "btnViewSchedule";
             this.btnViewSchedule.Primary = true;
             this.btnViewSchedule.Size = new System.Drawing.Size(198, 46);
-            this.btnViewSchedule.TabIndex = 2;
+            this.btnViewSchedule.TabIndex = 4;
             this.btnViewSchedule.Text = "Schedules";
             this.btnViewSchedule.UseVisualStyleBackColor = true;
             this.btnViewSchedule.Click += new System.EventHandler(this.btnViewSchedule_Click_1);
@@ -206,7 +207,7 @@
             this.btnViewAdmins.Name = "btnViewAdmins";
             this.btnViewAdmins.Primary = true;
             this.btnViewAdmins.Size = new System.Drawing.Size(198, 46);
-            this.btnViewAdmins.TabIndex = 11;
+            this.btnViewAdmins.TabIndex = 3;
             this.btnViewAdmins.Text = "   View Admins";
             this.btnViewAdmins.UseVisualStyleBackColor = true;
             this.btnViewAdmins.Click += new System.EventHandler(this.btnViewAdmins_Click);
@@ -296,7 +297,7 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Primary = true;
             this.btnDashboard.Size = new System.Drawing.Size(198, 46);
-            this.btnDashboard.TabIndex = 0;
+            this.btnDashboard.TabIndex = 1;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = true;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
@@ -408,7 +409,7 @@
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Primary = true;
             this.btnDeleteEmployee.Size = new System.Drawing.Size(221, 46);
-            this.btnDeleteEmployee.TabIndex = 14;
+            this.btnDeleteEmployee.TabIndex = 12;
             this.btnDeleteEmployee.Text = "Delete Employee";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
@@ -421,7 +422,7 @@
             this.btnEditEmployee.Name = "btnEditEmployee";
             this.btnEditEmployee.Primary = true;
             this.btnEditEmployee.Size = new System.Drawing.Size(212, 46);
-            this.btnEditEmployee.TabIndex = 13;
+            this.btnEditEmployee.TabIndex = 11;
             this.btnEditEmployee.Text = "Edit Employee";
             this.btnEditEmployee.UseVisualStyleBackColor = true;
             this.btnEditEmployee.Click += new System.EventHandler(this.btnEditEmployee_Click);
@@ -443,33 +444,16 @@
             // 
             this.pnlDashBoard.AutoSize = true;
             this.pnlDashBoard.BackColor = System.Drawing.Color.Transparent;
-            this.pnlDashBoard.Controls.Add(this.dtTodaySchedule);
             this.pnlDashBoard.Controls.Add(this.materialLabel5);
             this.pnlDashBoard.Controls.Add(this.btnViewAllSchedules);
             this.pnlDashBoard.Controls.Add(this.btnChangeTodaySchedule);
             this.pnlDashBoard.Controls.Add(this.materialLabel2);
             this.pnlDashBoard.Controls.Add(this.lblDashboard);
+            this.pnlDashBoard.Controls.Add(this.dtTodaySchedule);
             this.pnlDashBoard.Location = new System.Drawing.Point(221, 65);
             this.pnlDashBoard.Name = "pnlDashBoard";
             this.pnlDashBoard.Size = new System.Drawing.Size(698, 412);
             this.pnlDashBoard.TabIndex = 17;
-            // 
-            // dtTodaySchedule
-            // 
-            this.dtTodaySchedule.AllowUserToAddRows = false;
-            this.dtTodaySchedule.AllowUserToDeleteRows = false;
-            this.dtTodaySchedule.AllowUserToResizeColumns = false;
-            this.dtTodaySchedule.AllowUserToResizeRows = false;
-            this.dtTodaySchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.dtTodaySchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtTodaySchedule.Location = new System.Drawing.Point(25, 133);
-            this.dtTodaySchedule.MultiSelect = false;
-            this.dtTodaySchedule.Name = "dtTodaySchedule";
-            this.dtTodaySchedule.ReadOnly = true;
-            this.dtTodaySchedule.RowHeadersWidth = 51;
-            this.dtTodaySchedule.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dtTodaySchedule.Size = new System.Drawing.Size(442, 190);
-            this.dtTodaySchedule.TabIndex = 2;
             // 
             // materialLabel5
             // 
@@ -534,6 +518,23 @@
             this.lblDashboard.Size = new System.Drawing.Size(81, 19);
             this.lblDashboard.TabIndex = 0;
             this.lblDashboard.Text = "Dashboard";
+            // 
+            // dtTodaySchedule
+            // 
+            this.dtTodaySchedule.AllowUserToAddRows = false;
+            this.dtTodaySchedule.AllowUserToDeleteRows = false;
+            this.dtTodaySchedule.AllowUserToResizeColumns = false;
+            this.dtTodaySchedule.AllowUserToResizeRows = false;
+            this.dtTodaySchedule.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dtTodaySchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtTodaySchedule.Location = new System.Drawing.Point(25, 133);
+            this.dtTodaySchedule.MultiSelect = false;
+            this.dtTodaySchedule.Name = "dtTodaySchedule";
+            this.dtTodaySchedule.ReadOnly = true;
+            this.dtTodaySchedule.RowHeadersWidth = 51;
+            this.dtTodaySchedule.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dtTodaySchedule.Size = new System.Drawing.Size(442, 190);
+            this.dtTodaySchedule.TabIndex = 2;
             // 
             // pnlAddSchedule
             // 
@@ -611,6 +612,7 @@
             // 
             this.pnlAddStaff.AutoSize = true;
             this.pnlAddStaff.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddStaff.Controls.Add(this.btnUpdateEmployee);
             this.pnlAddStaff.Controls.Add(this.tbEmployeeCity);
             this.pnlAddStaff.Controls.Add(this.lblEmployeeCity);
             this.pnlAddStaff.Controls.Add(this.lblCountry);
@@ -637,15 +639,28 @@
             this.pnlAddStaff.Controls.Add(this.tbEmployeeEmail);
             this.pnlAddStaff.Location = new System.Drawing.Point(221, 65);
             this.pnlAddStaff.Name = "pnlAddStaff";
-            this.pnlAddStaff.Size = new System.Drawing.Size(698, 412);
+            this.pnlAddStaff.Size = new System.Drawing.Size(698, 415);
             this.pnlAddStaff.TabIndex = 18;
+            // 
+            // btnUpdateEmployee
+            // 
+            this.btnUpdateEmployee.Depth = 0;
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(128, 368);
+            this.btnUpdateEmployee.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUpdateEmployee.Name = "btnUpdateEmployee";
+            this.btnUpdateEmployee.Primary = true;
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(175, 37);
+            this.btnUpdateEmployee.TabIndex = 40;
+            this.btnUpdateEmployee.Text = "Update Employee Info";
+            this.btnUpdateEmployee.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // tbEmployeeCity
             // 
-            this.tbEmployeeCity.Location = new System.Drawing.Point(274, 213);
+            this.tbEmployeeCity.Location = new System.Drawing.Point(443, 141);
             this.tbEmployeeCity.Name = "tbEmployeeCity";
             this.tbEmployeeCity.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeCity.TabIndex = 37;
+            this.tbEmployeeCity.TabIndex = 27;
             // 
             // lblEmployeeCity
             // 
@@ -653,7 +668,7 @@
             this.lblEmployeeCity.Depth = 0;
             this.lblEmployeeCity.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeeCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeCity.Location = new System.Drawing.Point(231, 214);
+            this.lblEmployeeCity.Location = new System.Drawing.Point(381, 140);
             this.lblEmployeeCity.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeeCity.Name = "lblEmployeeCity";
             this.lblEmployeeCity.Size = new System.Drawing.Size(35, 19);
@@ -666,7 +681,7 @@
             this.lblCountry.Depth = 0;
             this.lblCountry.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCountry.Location = new System.Drawing.Point(209, 243);
+            this.lblCountry.Location = new System.Drawing.Point(368, 182);
             this.lblCountry.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCountry.Name = "lblCountry";
             this.lblCountry.Size = new System.Drawing.Size(61, 19);
@@ -675,10 +690,10 @@
             // 
             // tbEmployeeCountry
             // 
-            this.tbEmployeeCountry.Location = new System.Drawing.Point(275, 243);
+            this.tbEmployeeCountry.Location = new System.Drawing.Point(443, 182);
             this.tbEmployeeCountry.Name = "tbEmployeeCountry";
             this.tbEmployeeCountry.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeCountry.TabIndex = 34;
+            this.tbEmployeeCountry.TabIndex = 28;
             // 
             // lblEmployeeLastName
             // 
@@ -686,7 +701,7 @@
             this.lblEmployeeLastName.Depth = 0;
             this.lblEmployeeLastName.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeeLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeLastName.Location = new System.Drawing.Point(181, 94);
+            this.lblEmployeeLastName.Location = new System.Drawing.Point(357, 54);
             this.lblEmployeeLastName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeeLastName.Name = "lblEmployeeLastName";
             this.lblEmployeeLastName.Size = new System.Drawing.Size(82, 19);
@@ -696,22 +711,22 @@
             // btnAddUser
             // 
             this.btnAddUser.Depth = 0;
-            this.btnAddUser.Location = new System.Drawing.Point(301, 353);
+            this.btnAddUser.Location = new System.Drawing.Point(118, 329);
             this.btnAddUser.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Primary = true;
             this.btnAddUser.Size = new System.Drawing.Size(202, 33);
             this.btnAddUser.TabIndex = 11;
-            this.btnAddUser.Text = "Add Employee";
+            this.btnAddUser.Text = "Add an Employee";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // tbEmployeePhoneNumber
             // 
-            this.tbEmployeePhoneNumber.Location = new System.Drawing.Point(272, 154);
+            this.tbEmployeePhoneNumber.Location = new System.Drawing.Point(101, 141);
             this.tbEmployeePhoneNumber.Name = "tbEmployeePhoneNumber";
             this.tbEmployeePhoneNumber.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeePhoneNumber.TabIndex = 32;
+            this.tbEmployeePhoneNumber.TabIndex = 26;
             // 
             // lblEmployeePhoneNumber
             // 
@@ -719,12 +734,12 @@
             this.lblEmployeePhoneNumber.Depth = 0;
             this.lblEmployeePhoneNumber.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeePhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeePhoneNumber.Location = new System.Drawing.Point(161, 153);
+            this.lblEmployeePhoneNumber.Location = new System.Drawing.Point(33, 142);
             this.lblEmployeePhoneNumber.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeePhoneNumber.Name = "lblEmployeePhoneNumber";
-            this.lblEmployeePhoneNumber.Size = new System.Drawing.Size(108, 19);
+            this.lblEmployeePhoneNumber.Size = new System.Drawing.Size(62, 19);
             this.lblEmployeePhoneNumber.TabIndex = 31;
-            this.lblEmployeePhoneNumber.Text = "Phone Number";
+            this.lblEmployeePhoneNumber.Text = "Number";
             // 
             // lblAddHourlyWage
             // 
@@ -732,7 +747,7 @@
             this.lblAddHourlyWage.Depth = 0;
             this.lblAddHourlyWage.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblAddHourlyWage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddHourlyWage.Location = new System.Drawing.Point(165, 272);
+            this.lblAddHourlyWage.Location = new System.Drawing.Point(150, 181);
             this.lblAddHourlyWage.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAddHourlyWage.Name = "lblAddHourlyWage";
             this.lblAddHourlyWage.Size = new System.Drawing.Size(105, 19);
@@ -745,7 +760,7 @@
             this.lblAddEmployeeAdress.Depth = 0;
             this.lblAddEmployeeAdress.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblAddEmployeeAdress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddEmployeeAdress.Location = new System.Drawing.Point(208, 184);
+            this.lblAddEmployeeAdress.Location = new System.Drawing.Point(377, 97);
             this.lblAddEmployeeAdress.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAddEmployeeAdress.Name = "lblAddEmployeeAdress";
             this.lblAddEmployeeAdress.Size = new System.Drawing.Size(60, 19);
@@ -758,7 +773,7 @@
             this.lblEmployeeFirstName.Depth = 0;
             this.lblEmployeeFirstName.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeeFirstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeFirstName.Location = new System.Drawing.Point(181, 63);
+            this.lblEmployeeFirstName.Location = new System.Drawing.Point(12, 52);
             this.lblEmployeeFirstName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeeFirstName.Name = "lblEmployeeFirstName";
             this.lblEmployeeFirstName.Size = new System.Drawing.Size(83, 19);
@@ -767,28 +782,28 @@
             // 
             // tbEmployeeWagePerHour
             // 
-            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(276, 271);
+            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(88, 203);
             this.tbEmployeeWagePerHour.Name = "tbEmployeeWagePerHour";
             this.tbEmployeeWagePerHour.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeWagePerHour.TabIndex = 25;
+            this.tbEmployeeWagePerHour.TabIndex = 29;
             // 
             // tbEmployeeAdress
             // 
-            this.tbEmployeeAdress.Location = new System.Drawing.Point(273, 184);
+            this.tbEmployeeAdress.Location = new System.Drawing.Point(443, 98);
             this.tbEmployeeAdress.Name = "tbEmployeeAdress";
             this.tbEmployeeAdress.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeAdress.TabIndex = 24;
+            this.tbEmployeeAdress.TabIndex = 25;
             // 
             // tbEmployeeLastName
             // 
-            this.tbEmployeeLastName.Location = new System.Drawing.Point(270, 93);
+            this.tbEmployeeLastName.Location = new System.Drawing.Point(443, 53);
             this.tbEmployeeLastName.Name = "tbEmployeeLastName";
             this.tbEmployeeLastName.Size = new System.Drawing.Size(241, 20);
             this.tbEmployeeLastName.TabIndex = 23;
             // 
             // tbEmployeeFirstName
             // 
-            this.tbEmployeeFirstName.Location = new System.Drawing.Point(270, 64);
+            this.tbEmployeeFirstName.Location = new System.Drawing.Point(101, 54);
             this.tbEmployeeFirstName.Name = "tbEmployeeFirstName";
             this.tbEmployeeFirstName.Size = new System.Drawing.Size(241, 20);
             this.tbEmployeeFirstName.TabIndex = 22;
@@ -799,10 +814,10 @@
             this.cbEmployeeGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cbEmployeeGender.Location = new System.Drawing.Point(276, 326);
+            this.cbEmployeeGender.Location = new System.Drawing.Point(91, 294);
             this.cbEmployeeGender.Name = "cbEmployeeGender";
             this.cbEmployeeGender.Size = new System.Drawing.Size(241, 21);
-            this.cbEmployeeGender.TabIndex = 20;
+            this.cbEmployeeGender.TabIndex = 31;
             // 
             // lblEmployeeDepartment
             // 
@@ -810,7 +825,7 @@
             this.lblEmployeeDepartment.Depth = 0;
             this.lblEmployeeDepartment.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeeDepartment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeDepartment.Location = new System.Drawing.Point(128, 299);
+            this.lblEmployeeDepartment.Location = new System.Drawing.Point(128, 225);
             this.lblEmployeeDepartment.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeeDepartment.Name = "lblEmployeeDepartment";
             this.lblEmployeeDepartment.Size = new System.Drawing.Size(145, 19);
@@ -824,10 +839,10 @@
             "Programmer",
             "Cleaner",
             "Salesman"});
-            this.cbEmployeeDepartment.Location = new System.Drawing.Point(276, 299);
+            this.cbEmployeeDepartment.Location = new System.Drawing.Point(88, 247);
             this.cbEmployeeDepartment.Name = "cbEmployeeDepartment";
             this.cbEmployeeDepartment.Size = new System.Drawing.Size(241, 21);
-            this.cbEmployeeDepartment.TabIndex = 15;
+            this.cbEmployeeDepartment.TabIndex = 30;
             // 
             // materialLabel10
             // 
@@ -850,9 +865,9 @@
             this.lblAddEmployee.Location = new System.Drawing.Point(292, 13);
             this.lblAddEmployee.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAddEmployee.Name = "lblAddEmployee";
-            this.lblAddEmployee.Size = new System.Drawing.Size(105, 19);
+            this.lblAddEmployee.Size = new System.Drawing.Size(137, 19);
             this.lblAddEmployee.TabIndex = 1;
-            this.lblAddEmployee.Text = "Add Employee";
+            this.lblAddEmployee.Text = "Add/Edit Employee";
             this.lblAddEmployee.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // materialLabel6
@@ -873,7 +888,7 @@
             this.lblEmployeeGender.Depth = 0;
             this.lblEmployeeGender.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeeGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeGender.Location = new System.Drawing.Point(159, 326);
+            this.lblEmployeeGender.Location = new System.Drawing.Point(145, 272);
             this.lblEmployeeGender.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeeGender.Name = "lblEmployeeGender";
             this.lblEmployeeGender.Size = new System.Drawing.Size(114, 19);
@@ -886,7 +901,7 @@
             this.lblEmployeeName.Depth = 0;
             this.lblEmployeeName.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblEmployeeName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEmployeeName.Location = new System.Drawing.Point(217, 124);
+            this.lblEmployeeName.Location = new System.Drawing.Point(48, 97);
             this.lblEmployeeName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmployeeName.Name = "lblEmployeeName";
             this.lblEmployeeName.Size = new System.Drawing.Size(47, 19);
@@ -895,10 +910,10 @@
             // 
             // tbEmployeeEmail
             // 
-            this.tbEmployeeEmail.Location = new System.Drawing.Point(271, 125);
+            this.tbEmployeeEmail.Location = new System.Drawing.Point(101, 97);
             this.tbEmployeeEmail.Name = "tbEmployeeEmail";
             this.tbEmployeeEmail.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeEmail.TabIndex = 38;
+            this.tbEmployeeEmail.TabIndex = 24;
             // 
             // label1
             // 
@@ -954,7 +969,7 @@
             this.tbAdminEmail.Location = new System.Drawing.Point(261, 212);
             this.tbAdminEmail.Name = "tbAdminEmail";
             this.tbAdminEmail.Size = new System.Drawing.Size(241, 20);
-            this.tbAdminEmail.TabIndex = 56;
+            this.tbAdminEmail.TabIndex = 53;
             // 
             // lblUserName
             // 
@@ -974,7 +989,7 @@
             this.tbAdminUserName.Location = new System.Drawing.Point(261, 123);
             this.tbAdminUserName.Name = "tbAdminUserName";
             this.tbAdminUserName.Size = new System.Drawing.Size(239, 20);
-            this.tbAdminUserName.TabIndex = 54;
+            this.tbAdminUserName.TabIndex = 50;
             // 
             // lblAdminLastName
             // 
@@ -1004,7 +1019,7 @@
             this.btnAddAdmin.Name = "btnAddAdmin";
             this.btnAddAdmin.Primary = true;
             this.btnAddAdmin.Size = new System.Drawing.Size(202, 33);
-            this.btnAddAdmin.TabIndex = 34;
+            this.btnAddAdmin.TabIndex = 56;
             this.btnAddAdmin.Text = "Add Admin";
             this.btnAddAdmin.UseVisualStyleBackColor = true;
             this.btnAddAdmin.Click += new System.EventHandler(this.btnAddAdmin_Click);
@@ -1041,14 +1056,14 @@
             this.tbAdminPassword.Name = "tbAdminPassword";
             this.tbAdminPassword.PasswordChar = '*';
             this.tbAdminPassword.Size = new System.Drawing.Size(240, 20);
-            this.tbAdminPassword.TabIndex = 43;
+            this.tbAdminPassword.TabIndex = 54;
             // 
             // tbAdminFirstName
             // 
             this.tbAdminFirstName.Location = new System.Drawing.Point(261, 152);
             this.tbAdminFirstName.Name = "tbAdminFirstName";
             this.tbAdminFirstName.Size = new System.Drawing.Size(239, 20);
-            this.tbAdminFirstName.TabIndex = 42;
+            this.tbAdminFirstName.TabIndex = 51;
             // 
             // materialLabel18
             // 
@@ -1072,7 +1087,7 @@
             this.cbAdminRole.Location = new System.Drawing.Point(262, 275);
             this.cbAdminRole.Name = "cbAdminRole";
             this.cbAdminRole.Size = new System.Drawing.Size(241, 21);
-            this.cbAdminRole.TabIndex = 37;
+            this.cbAdminRole.TabIndex = 55;
             // 
             // materialLabel19
             // 
@@ -1223,6 +1238,7 @@
             this.btnEditAdmins.TabIndex = 13;
             this.btnEditAdmins.Text = "    Edit Admins";
             this.btnEditAdmins.UseVisualStyleBackColor = true;
+            this.btnEditAdmins.Click += new System.EventHandler(this.btnEditAdmins_Click);
             // 
             // btnAddAdmins
             // 
@@ -1244,14 +1260,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddAdmin);
             this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
-            this.Controls.Add(this.pnlAddStaff);
-            this.Controls.Add(this.pnlAddAdmin);
-            this.Controls.Add(this.pnlAddSchedule);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -1378,5 +1392,6 @@
         private System.Windows.Forms.TextBox tbAdminUserName;
         private MaterialSkin.Controls.MaterialLabel lblAdminEmail;
         private System.Windows.Forms.TextBox tbAdminEmail;
+        private MaterialSkin.Controls.MaterialRaisedButton btnUpdateEmployee;
     }
 }

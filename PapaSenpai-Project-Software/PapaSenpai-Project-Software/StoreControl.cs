@@ -89,7 +89,7 @@ namespace PapaSenpai_Project_Software
             return null;
         }
 
-        public static Employee GetCreatedUsers(string email)
+        public static Employee GetEmployeeByEmail(string email)
         {
             foreach (Employee employee in getUsers())
             {
