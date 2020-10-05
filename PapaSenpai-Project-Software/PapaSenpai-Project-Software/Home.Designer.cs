@@ -564,6 +564,7 @@
             this.calendarSchedule.Location = new System.Drawing.Point(115, 45);
             this.calendarSchedule.Name = "calendarSchedule";
             this.calendarSchedule.TabIndex = 11;
+            this.calendarSchedule.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarSchedule_DateChanged);
             // 
             // dtAddSchedule
             // 
@@ -1239,12 +1240,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddAdmin);
             this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlAddAdmin);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";

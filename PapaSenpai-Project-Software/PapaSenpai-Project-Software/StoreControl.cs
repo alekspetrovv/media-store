@@ -10,12 +10,14 @@ namespace PapaSenpai_Project_Software
     {
         private static List<Employee> users;
         private static List<Admin> admins;
+        private static List<Schedule> schedules;
         private static User loggedUser;
 
         static StoreControl()
         {
             StoreControl.users = new List<Employee>();
             StoreControl.admins = new List<Admin>();
+            StoreControl.schedules = new List<Schedule>();
             StoreControl.loggedUser = null;
         }
 
@@ -28,6 +30,13 @@ namespace PapaSenpai_Project_Software
         {
             return StoreControl.admins;
         }
+
+        public static List<Schedule> getSchedules()
+        {
+            return StoreControl.schedules;
+        }
+
+
 
 
         public static User getloggedUser()
@@ -52,6 +61,34 @@ namespace PapaSenpai_Project_Software
             return null;
         }
 
+        public static Schedule getScheduleByDate(DateTime date)
+        {
+            foreach (Schedule schedule in getSchedules())
+            {
+
+                if (schedule.Date.Date == date.Date )
+                {
+                    return schedule;
+                }
+            }
+
+            return null;
+        }
+
+        public static Employee getEmployeeById(int id)
+        {
+
+            foreach (Employee employee in getUsers())
+            {
+                if (id == employee.ID)
+                {
+                    return employee;
+                }
+            }
+
+            return null;
+        }
+
         public static void addEmployee(Employee employee)
         {
             StoreControl.users.Add(employee);
@@ -62,6 +99,12 @@ namespace PapaSenpai_Project_Software
             StoreControl.admins.Add(admin);
         }
 
+        public static void addSchedule(Schedule schedule)
+        {
+            StoreControl.schedules.Add(schedule);
+        }
+
+
         public static void emptyAdmins()
         {
             StoreControl.admins.Clear();
@@ -71,6 +114,11 @@ namespace PapaSenpai_Project_Software
         public static void emptyUsers()
         {
             StoreControl.users.Clear();
+        }
+
+        public static void emptySchedules()
+        {
+            StoreControl.schedules.Clear();
         }
 
 

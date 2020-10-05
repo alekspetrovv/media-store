@@ -15,19 +15,24 @@ namespace PapaSenpai_Project_Software
 {
     public partial class Home : MaterialSkin.Controls.MaterialForm
     {
+
+        private DateTime currentScheduleDate;
         public Home()
         {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
+            this.currentScheduleDate = DateTime.Now;
             this.lblMenu.Text = StoreControl.getloggedUser().getFullName();
 
             retrieveAllEmployees();
+            retrieveSchedules();
             retrieveAllAdmins();
 
             renderStaffTable();
-            renderStaffTable();
             renderAdminTable();
+
+            renderScheduleMembers();
 
         }
 
@@ -123,8 +128,7 @@ namespace PapaSenpai_Project_Software
         private void retrieveAllEmployees()
         {
             MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
-                "INNER JOIN employees_departments ON employees_departments.employee_id = employees.id " +
-                "INNER JOIN departments ON departments.id = employees_departments.department_id GROUP by employees.id");
+                "INNER JOIN departments ON departments.id = employees.department_id GROUP by employees.id");
 
             if (employees.HasRows)
             {
@@ -159,6 +163,43 @@ namespace PapaSenpai_Project_Software
                 }
             }
         }
+
+        private void retrieveSchedules()
+        {
+            MySqlDataReader schedules = DBcon.executeReader("SELECT schedules.* from schedules");
+
+            if (schedules.HasRows)
+            {
+                StoreControl.emptySchedules();
+                while (schedules.Read())
+                {
+
+                    Schedule schedule = new Schedule(Convert.ToInt32(schedules["id"]), schedules["notes"].ToString(), schedules["date"].ToString());
+
+                    string[] bindings = { schedule.ID.ToString() };
+                    MySqlDataReader employees_ids_q = DBcon.executeReader("SELECT employee_id as id ,from_hour, to_hour FROM schedules_employees WHERE" +
+                    " schedule_id = @schedule_id", bindings);
+
+                    if (employees_ids_q.HasRows)
+                    {
+                        while (employees_ids_q.Read())
+                        {
+                            int id = Convert.ToInt32(employees_ids_q["id"]);
+                            Employee foundEmployee = StoreControl.getEmployeeById(id);
+
+                            if (foundEmployee != null)
+                            {
+                                ScheduleMember member = new ScheduleMember(foundEmployee,employees_ids_q["from_hour"].ToString(), employees_ids_q["to_hour"].ToString());
+                                schedule.addMember(member);
+                            }
+                        }
+                    }
+
+                    StoreControl.addSchedule(schedule);
+                }
+            }
+        }
+
 
         private void renderAdminTable()
         {
@@ -206,10 +247,51 @@ namespace PapaSenpai_Project_Software
 
         private void renderScheduleMembers()
         {
+
+            Schedule schedule = StoreControl.getScheduleByDate(this.currentScheduleDate);
+            renderScheduleTable(schedule);
             //get all members
             //get members from that schedule
             //foreach all members and fill them in the datable
             //if found in members of schedule make selected true and and fill the hours worked
+        }
+
+        private void renderScheduleTable(Schedule schedule = null)
+        {
+
+            DataTable dtEmp = new DataTable();
+
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(string));
+            dtEmp.Columns.Add("Name", typeof(string));
+            dtEmp.Columns.Add("From", typeof(string));
+            dtEmp.Columns.Add("To", typeof(string));
+            dtEmp.Columns.Add("Department", typeof(string));
+
+            foreach (Employee employee in StoreControl.getUsers())
+            {
+                ScheduleMember foundMember = null;
+                if (schedule != null)
+                {
+                    foreach (ScheduleMember member in schedule.Members)
+                    {
+                        if (member.Employee.ID == employee.ID)
+                        {
+                            foundMember = member;
+                        }
+                    }
+                }
+                if (foundMember != null)
+                {
+                    dtEmp.Rows.Add(true, employee.ID, employee.getFullName(), foundMember.StartTime.ToString("HH:mm"), foundMember.EndTime.ToString("HH:mm"), employee.Department);
+                }
+                else
+                {
+                    dtEmp.Rows.Add(false, employee.ID, employee.getFullName(), "9:00", "17:00", employee.Department);
+                }
+            }
+
+            dtAddSchedule.DataSource = dtEmp;
         }
 
 
@@ -249,9 +331,9 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void AddAdmin() 
+        private void AddAdmin()
         {
-            if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text)!= null) 
+            if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text) != null)
             {
                 int role_id = this.cbAdminRole.SelectedIndex;
                 role_id++;
@@ -261,15 +343,13 @@ namespace PapaSenpai_Project_Software
                     "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
                 DBcon.CloseConnection(add_admin);
 
-
-
             }
-            else 
+            else
             {
                 MessageBox.Show("You can't add an admin with the same username");
             }
         }
-        private void AddUser() 
+        private void AddUser()
         {
             string gender = (string)this.cbEmployeeGender.SelectedItem;
             string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
@@ -279,8 +359,13 @@ namespace PapaSenpai_Project_Software
             "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email)", employee_bindings);
 
 
-
             DBcon.CloseConnection(add_employee);
+        }
+
+        private void calendarSchedule_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            this.currentScheduleDate = e.End;
+            this.renderScheduleMembers();
         }
     }
 }
