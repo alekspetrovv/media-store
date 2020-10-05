@@ -25,14 +25,14 @@ namespace PapaSenpai_Project_Software
             this.currentScheduleDate = DateTime.Now;
             this.lblMenu.Text = StoreControl.getloggedUser().getFullName();
 
-            retrieveAllEmployees();
-            retrieveSchedules();
-            retrieveAllAdmins();
+            Employee.retrieveAllEmployees();
+            Schedule.retrieveSchedules();
+            Admin.retrieveAllAdmins();
 
             renderStaffTable();
             renderAdminTable();
-
             renderScheduleMembers();
+            renderDailySchedule();
 
         }
 
@@ -54,74 +54,51 @@ namespace PapaSenpai_Project_Software
             ChangeLoginStyle();
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
+        private void showPanel(Panel panel)
         {
-            this.pnlDashBoard.Visible = true;
+            this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
             this.pnlAddAdmin.Visible = false;
+            panel.Visible = true;
+
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlDashBoard);
         }
 
         private void btnViewStaff_Click(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = true;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.showPanel(pnlEmployee);
         }
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = true;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.showPanel(pnlAddSchedule);
         }
 
         private void btnViewSchedule_Click_1(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddSchedule.Visible = true;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.showPanel(pnlAddSchedule);
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = true;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.showPanel(pnlAddStaff);
         }
 
         private void btnViewAdmins_Click(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = true;
-            this.pnlAddAdmin.Visible = false;
+            this.showPanel(pnlAdmin);
         }
 
         private void btnAddAdmins_Click(object sender, EventArgs e)
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = true;
+            this.showPanel(pnlAddAdmin);
         }
 
         private void btnDeleteAdmins_Click(object sender, EventArgs e)
@@ -142,80 +119,6 @@ namespace PapaSenpai_Project_Software
         private void btnAddAdmin_Click(object sender, EventArgs e)
         {
             AddAdmin();
-        }
-
-        private void retrieveAllEmployees()
-        {
-            MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
-                "INNER JOIN departments ON departments.id = employees.department_id GROUP by employees.id");
-            StoreControl.emptyUsers();
-            if (employees.HasRows)
-            {
-
-                while (employees.Read())
-                {
-                    Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
-                        employees["last_name"].ToString(), employees["email"].ToString()
-                        , employees["address"].ToString(), employees["city"].ToString(), employees["country"].ToString(),
-                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString());
-
-                    StoreControl.addEmployee(employee);
-                }
-            }
-        }
-
-        private void retrieveAllAdmins()
-        {
-            MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
-                "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
-            StoreControl.emptyAdmins();
-            if (admins.HasRows)
-            {
-                while (admins.Read())
-                {
-                    Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
-                        admins["role_title"].ToString(), admins["first_name"].ToString()
-                        , admins["last_name"].ToString(), admins["email"].ToString());
-
-                    StoreControl.addAdmin(admin);
-                }
-            }
-        }
-
-        private void retrieveSchedules()
-        {
-            MySqlDataReader schedules = DBcon.executeReader("SELECT schedules.* from schedules");
-
-            if (schedules.HasRows)
-            {
-                StoreControl.emptySchedules();
-                while (schedules.Read())
-                {
-
-                    Schedule schedule = new Schedule(Convert.ToInt32(schedules["id"]), schedules["notes"].ToString(), schedules["date"].ToString());
-
-                    string[] bindings = { schedule.ID.ToString() };
-                    MySqlDataReader employees_ids_q = DBcon.executeReader("SELECT employee_id as id ,from_hour, to_hour FROM schedules_employees WHERE" +
-                    " schedule_id = @schedule_id", bindings);
-
-                    if (employees_ids_q.HasRows)
-                    {
-                        while (employees_ids_q.Read())
-                        {
-                            int id = Convert.ToInt32(employees_ids_q["id"]);
-                            Employee foundEmployee = StoreControl.getEmployeeById(id);
-
-                            if (foundEmployee != null)
-                            {
-                                ScheduleMember member = new ScheduleMember(foundEmployee,employees_ids_q["from_hour"].ToString(), employees_ids_q["to_hour"].ToString());
-                                schedule.addMember(member);
-                            }
-                        }
-                    }
-
-                    StoreControl.addSchedule(schedule);
-                }
-            }
         }
 
 
@@ -257,7 +160,6 @@ namespace PapaSenpai_Project_Software
 
             foreach (Employee employee in StoreControl.getUsers())
             {
-                Console.WriteLine("vlezna v foreach");
                 dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
             }
 
@@ -269,15 +171,15 @@ namespace PapaSenpai_Project_Software
         {
 
             Schedule schedule = StoreControl.getScheduleByDate(this.currentScheduleDate);
-            renderScheduleTable(schedule);
-            //get all members
-            //get members from that schedule
-            //foreach all members and fill them in the datable
-            //if found in members of schedule make selected true and and fill the hours worked
-        }
+            calendarSchedule.AnnuallyBoldedDates = null;
+            List<DateTime> coloredDates = new List<DateTime>();
 
-        private void renderScheduleTable(Schedule schedule = null)
-        {
+            foreach (Schedule found_schedule in StoreControl.getSchedules())
+            {
+                coloredDates.Add(found_schedule.Date);
+            }
+
+            calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
 
             DataTable dtEmp = new DataTable();
 
@@ -314,6 +216,47 @@ namespace PapaSenpai_Project_Software
             dtAddSchedule.DataSource = dtEmp;
         }
 
+        private void renderDailySchedule()
+        {
+
+            Schedule schedule = StoreControl.getScheduleByDate(DateTime.Now);
+
+            DataTable dtEmp = new DataTable();
+
+            dtEmp.Columns.Add("ID", typeof(string));
+            dtEmp.Columns.Add("Name", typeof(string));
+            dtEmp.Columns.Add("From", typeof(string));
+            dtEmp.Columns.Add("To", typeof(string));
+            dtEmp.Columns.Add("Department", typeof(string));
+
+            foreach (Employee employee in StoreControl.getUsers())
+            {
+                ScheduleMember foundMember = null;
+                if (schedule != null)
+                {
+                    foreach (ScheduleMember member in schedule.Members)
+                    {
+                        if (member.Employee.ID == employee.ID)
+                        {
+                            foundMember = member;
+                        }
+                    }
+                }
+                if (foundMember != null)
+                {
+                    dtEmp.Rows.Add(employee.ID, employee.getFullName(), foundMember.StartTime.ToString("HH:mm"), foundMember.EndTime.ToString("HH:mm"), employee.Department);
+                }
+                else
+                {
+                    dtEmp.Rows.Add(employee.ID, employee.getFullName(), "9:00", "17:00", employee.Department);
+                }
+            }
+
+            dtTodaySchedule.DataSource = dtEmp;
+        }
+
+
+
 
 
         private void DeleteAdmin()
@@ -334,7 +277,7 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = (dataRow.Cells["ID"].Value.ToString());
                     MySqlDataReader delete_admin = DBcon.executeReader("DELETE FROM `admins` WHERE `id` =" + id);
-                    this.retrieveAllAdmins();
+                    Admin.retrieveAllAdmins();
                     this.renderAdminTable();
                     DBcon.CloseConnection(delete_admin);
                 }
@@ -359,7 +302,7 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = (dataRow.Cells["ID"].Value.ToString());
                     MySqlDataReader delete_users = DBcon.executeReader("DELETE FROM `employees` WHERE `id` =" + id);
-                    this.retrieveAllEmployees();
+                    Employee.retrieveAllEmployees();
                     this.renderStaffTable();
                     DBcon.CloseConnection(delete_users);
                 }
@@ -379,7 +322,7 @@ namespace PapaSenpai_Project_Software
                 MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
                     "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
                 DBcon.CloseConnection(add_admin);
-                this.retrieveAllAdmins();
+                Admin.retrieveAllAdmins();
                 this.renderAdminTable();
 
             }
@@ -398,11 +341,11 @@ namespace PapaSenpai_Project_Software
                 string gender = (string)this.cbEmployeeGender.SelectedItem;
                 string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                 this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
-                gender, this.tbEmployeeEmail.Text,increased_department_id};
-                MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`) " +
-                "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id)", employee_bindings);
+                gender, this.tbEmployeeEmail.Text,increased_department_id, this.tbEmployeeWagePerHour.Text};
+                MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`, `wage_per_hour`) " +
+                "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id, @wage)", employee_bindings);
                 DBcon.CloseConnection(add_employee);
-                this.retrieveAllEmployees();
+                Employee.retrieveAllEmployees();
                 this.renderStaffTable();
             }
             else
@@ -420,6 +363,75 @@ namespace PapaSenpai_Project_Software
         {
             this.currentScheduleDate = e.End;
             this.renderScheduleMembers();
+        }
+
+        private void btnUpdateSchedule_Click(object sender, EventArgs e)
+        {
+            updateSchedule();
+        }
+
+        private void updateSchedule()
+        {
+            //get if there is a schedule about this date
+            //if yes remove all of the database members and add new ones
+
+            //add the new ones
+            //if not create schedule in db with the employees in related table
+
+            Schedule schedule = StoreControl.getScheduleByDate(this.currentScheduleDate);
+
+            int id;
+            if (schedule == null)
+            {
+                string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
+                id = Convert.ToInt32(DBcon.executeScalar("INSERT INTO `schedules`(`notes`, `date`) VALUES (@notes,@date); SELECT LAST_INSERT_ID()", bindings));
+            }
+            else
+            {
+                id = schedule.ID;
+            }
+
+            //delete all of the attached users for new/pervious schedules
+            string[] delete_bindings = { id.ToString() };
+            DBcon.executeNonQuery("DELETE FROM `schedules_employees` WHERE schedule_id = @id", delete_bindings);
+
+            int user_count = 0;
+
+            for (int i = 0; i < dtAddSchedule.Rows.Count; ++i)
+            {
+
+                DataGridViewRow dataRow = dtAddSchedule.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool userChecked = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                string from = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["From"].Value.ToString();
+                string to = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["To"].Value.ToString();
+
+                if (userChecked)
+                {
+                    string member_id = (dataRow.Cells["ID"].Value.ToString());
+                    string[] member_data = { id.ToString(), member_id.ToString(), from, to };
+                    DBcon.executeNonQuery("INSERT INTO `schedules_employees`(`schedule_id`, `employee_id`, `from_hour`, `to_hour`)" +
+                        " VALUES (@schedule_id, @member_id, @from_hour, @to_hour)", member_data);
+                    user_count++;
+                }
+            }
+
+            if (user_count == 0)
+            {
+                DBcon.executeNonQuery("DELETE FROM `schedules` WHERE id = @id", delete_bindings);
+
+            }
+
+            Schedule.retrieveSchedules();
+            this.renderScheduleMembers();
+
+            calendarSchedule.SelectionRange.End = this.currentScheduleDate;
+
         }
     }
 }

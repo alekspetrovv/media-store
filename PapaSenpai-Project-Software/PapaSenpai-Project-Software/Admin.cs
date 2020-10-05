@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,24 @@ namespace PapaSenpai_Project_Software
         public string Username 
         {
             get { return this.username; }
+        }
+
+        public static void retrieveAllAdmins()
+        {
+            MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
+                "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
+            StoreControl.emptyAdmins();
+            if (admins.HasRows)
+            {
+                while (admins.Read())
+                {
+                    Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
+                        admins["role_title"].ToString(), admins["first_name"].ToString()
+                        , admins["last_name"].ToString(), admins["email"].ToString());
+
+                    StoreControl.addAdmin(admin);
+                }
+            }
         }
 
 

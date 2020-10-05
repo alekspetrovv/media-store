@@ -12,13 +12,13 @@ namespace PapaSenpai_Project_Software
 {
     class DBcon
     {
-        public static MySqlConnection GetConnection() 
+        public static MySqlConnection GetConnection()
         {
             MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
             return con;
         }
 
-        public static MySqlDataReader executeReader(string sql, string[] bindings = null)
+        public static MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
         {
             MySqlConnection con = DBcon.GetConnection();
             con.Open();
@@ -43,9 +43,27 @@ namespace PapaSenpai_Project_Software
                 }
             }
 
-            return cmd.ExecuteReader();
+            return cmd;
 
         }
+
+        public static MySqlDataReader executeReader(string sql, string[] bindings = null)
+        {
+            return DBcon.defaultDatabaseConnection(sql, bindings).ExecuteReader();
+
+        }
+
+        public static Object executeScalar(string sql, string[] bindings = null)
+        {
+            return DBcon.defaultDatabaseConnection(sql, bindings).ExecuteScalar();
+        }
+
+        public static Object executeNonQuery(string sql, string[] bindings = null)
+        {
+            return DBcon.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+        }
+
+
 
         public static void CloseConnection(MySqlDataReader con)
         {

@@ -63,6 +63,7 @@
     <Compile Include="DBcon.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="FormControl.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>

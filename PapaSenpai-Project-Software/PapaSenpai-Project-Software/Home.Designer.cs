@@ -559,6 +559,7 @@
             this.btnUpdateSchedule.TabIndex = 11;
             this.btnUpdateSchedule.Text = "Update Schedule";
             this.btnUpdateSchedule.UseVisualStyleBackColor = true;
+            this.btnUpdateSchedule.Click += new System.EventHandler(this.btnUpdateSchedule_Click);
             // 
             // calendarSchedule
             // 
@@ -1244,14 +1245,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddAdmin);
-            this.Controls.Add(this.pnlAddSchedule);
-            this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddAdmin);
             this.Controls.Add(this.pnlAddSchedule);
+            this.Controls.Add(this.pnlEmployee);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
