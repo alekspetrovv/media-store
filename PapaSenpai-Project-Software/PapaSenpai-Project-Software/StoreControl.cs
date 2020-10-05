@@ -89,6 +89,20 @@ namespace PapaSenpai_Project_Software
             return null;
         }
 
+        public static Admin getAdminById(int id)
+        {
+
+            foreach (Admin admin in getAdmins())
+            {
+                if (id == admin.ID)
+                {
+                    return admin;
+                }
+            }
+
+            return null;
+        }
+
         public static Employee GetEmployeeByEmail(string email)
         {
             foreach (Employee employee in getUsers())
