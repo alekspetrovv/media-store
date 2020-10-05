@@ -169,8 +169,8 @@ namespace PapaSenpai_Project_Software
 
                     MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
                         "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                        ",`department_id`= @departmentid WHERE id = @id",employeeData);
-                     this.retrieveAllEmployees();
+                        ",`department_id`= @departmentid WHERE id = @id", employeeData);
+                    Employee.retrieveAllEmployees();
                     this.renderStaffTable();
                 }
             }
@@ -226,80 +226,6 @@ namespace PapaSenpai_Project_Software
 
         }
 
-
-        private void retrieveAllEmployees()
-        {
-            MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
-                "INNER JOIN departments ON departments.id = employees.department_id GROUP by employees.id");
-            StoreControl.emptyUsers();
-            if (employees.HasRows)
-            {
-
-                while (employees.Read())
-                {
-                    Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
-                        employees["last_name"].ToString(), employees["email"].ToString()
-                        , employees["address"].ToString(), employees["city"].ToString(), employees["country"].ToString(),
-                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString());
-
-                    StoreControl.addEmployee(employee);
-                }
-            }
-        }
-
-        private void retrieveAllAdmins()
-        {
-            MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
-                "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
-            StoreControl.emptyAdmins();
-            if (admins.HasRows)
-            {
-                while (admins.Read())
-                {
-                    Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
-                        admins["role_title"].ToString(), admins["first_name"].ToString()
-                        , admins["last_name"].ToString(), admins["email"].ToString());
-
-                    StoreControl.addAdmin(admin);
-                }
-            }
-        }
-
-        private void retrieveSchedules()
-        {
-            MySqlDataReader schedules = DBcon.executeReader("SELECT schedules.* from schedules");
-
-            if (schedules.HasRows)
-            {
-                StoreControl.emptySchedules();
-                while (schedules.Read())
-                {
-
-                    Schedule schedule = new Schedule(Convert.ToInt32(schedules["id"]), schedules["notes"].ToString(), schedules["date"].ToString());
-
-                    string[] bindings = { schedule.ID.ToString() };
-                    MySqlDataReader employees_ids_q = DBcon.executeReader("SELECT employee_id as id ,from_hour, to_hour FROM schedules_employees WHERE" +
-                    " schedule_id = @schedule_id", bindings);
-
-                    if (employees_ids_q.HasRows)
-                    {
-                        while (employees_ids_q.Read())
-                        {
-                            int id = Convert.ToInt32(employees_ids_q["id"]);
-                            Employee foundEmployee = StoreControl.getEmployeeById(id);
-
-                            if (foundEmployee != null)
-                            {
-                                ScheduleMember member = new ScheduleMember(foundEmployee, employees_ids_q["from_hour"].ToString(), employees_ids_q["to_hour"].ToString());
-                                schedule.addMember(member);
-                            }
-                        }
-                    }
-
-                    StoreControl.addSchedule(schedule);
-                }
-            }
-        }
 
 
         private void renderAdminTable()
@@ -458,7 +384,7 @@ namespace PapaSenpai_Project_Software
                     string adminId = (dataRow.Cells["ID"].Value.ToString());
                     string[] adminID = { adminId };
                     MySqlDataReader delete_admin = DBcon.executeReader("DELETE FROM `admins` WHERE `id` =" + adminID);
-                    this.retrieveAllAdmins();
+                    Admin.retrieveAllAdmins();
                     this.renderAdminTable();
                     DBcon.CloseConnection(delete_admin);
                 }
@@ -487,8 +413,8 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = (dataRow.Cells["ID"].Value.ToString());
                     string[] getID = { id };
-                    MySqlDataReader delete_users = DBcon.executeReader("DELETE FROM `employees` WHERE `id` = @id",getID);
-                    this.retrieveAllEmployees();    
+                    MySqlDataReader delete_users = DBcon.executeReader("DELETE FROM `employees` WHERE `id` = @id", getID);
+                    Employee.retrieveAllEmployees();
                     this.renderStaffTable();
                     DBcon.CloseConnection(delete_users);
                 }
@@ -519,7 +445,7 @@ namespace PapaSenpai_Project_Software
                     increased_role_id };
                     MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
                         "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
-                    this.retrieveAllAdmins();
+                    Admin.retrieveAllAdmins();
                     this.renderAdminTable();
                     this.pnlAdmin.Visible = true;
                     DBcon.CloseConnection(add_admin);
@@ -557,7 +483,7 @@ namespace PapaSenpai_Project_Software
                     gender, this.tbEmployeeEmail.Text,increased_department_id};
                     MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`) " +
                     "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id)", employee_bindings);
-                    this.retrieveAllEmployees();
+                    Employee.retrieveAllEmployees();
                     this.renderStaffTable();
                     this.pnlEmployee.Visible = true;
                     DBcon.CloseConnection(add_employee);
