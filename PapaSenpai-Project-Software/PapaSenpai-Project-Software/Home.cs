@@ -134,17 +134,9 @@ namespace PapaSenpai_Project_Software
 
         private void UpdateEmployee()
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = true;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
-            this.btnAddUser.Visible = false;
-            this.btnUpdateEmployee.Visible = false;
+            this.showPanel(pnlEmployee);
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
-
 
                 DataGridViewRow dataRow = dtEmployees.Rows[i];
 
@@ -167,11 +159,12 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,employeeId};
 
-                    MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
+                     DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
                         "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
                         ",`department_id`= @departmentid WHERE id = @id", employeeData);
                     Employee.retrieveAllEmployees();
                     this.renderStaffTable();
+                    this.showPanel(this.pnlEmployee);
                 }
             }
 
@@ -180,13 +173,7 @@ namespace PapaSenpai_Project_Software
 
         private void EditEmployee()
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = true;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
-            this.btnAddUser.Visible = false;
+            this.showPanel(this.pnlAddStaff);
             this.btnUpdateEmployee.Visible = true;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
@@ -261,7 +248,6 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Gender", typeof(string));
             dtEmp.Columns.Add("Phone", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
-            //            dtEmp.Columns.Add("Wage (h)", typeof(double));
             dtEmp.Columns.Add("Deparment", typeof(string));
 
             foreach (Employee employee in StoreControl.getUsers())
@@ -367,135 +353,136 @@ namespace PapaSenpai_Project_Software
 
         private void DeleteAdmin()
         {
+            bool found = false;
             for (int i = 0; i < dtAdmins.Rows.Count; ++i)
             {
-
-
                 DataGridViewRow dataRow = dtAdmins.Rows[i];
 
-                if (dataRow.IsNewRow)
+                bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (dataRow.IsNewRow || !selectedAdmin)
                 {
                     continue;
                 }
 
-                bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (selectedAdmin)
-                {
-                    string adminId = (dataRow.Cells["ID"].Value.ToString());
-                    string[] adminID = { adminId };
-                    MySqlDataReader delete_admin = DBcon.executeReader("DELETE FROM `admins` WHERE `id` =" + adminID);
-                    Admin.retrieveAllAdmins();
-                    this.renderAdminTable();
-                    DBcon.CloseConnection(delete_admin);
-                }
-                else
-                {
-                    MessageBox.Show("You need to tick the selected box to delete a customer");
-                }
+                string adminId = (dataRow.Cells["ID"].Value.ToString());
+                string[] adminID = { adminId };
+                DBcon.executeNonQuery("DELETE FROM `admins` WHERE `id` = @id", adminID);
+                found = true;
+            }
+
+            Admin.retrieveAllAdmins();
+            this.renderAdminTable();
+
+
+            if (!found)
+            {
+                MessageBox.Show("You need to tick the selected box to delete a admin");
             }
 
         }
         private void DeleteEmployee()
         {
+            bool found = false;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
 
-
                 DataGridViewRow dataRow = dtEmployees.Rows[i];
+                bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
 
-                if (dataRow.IsNewRow)
+                if (dataRow.IsNewRow || !selectedUser)
                 {
                     continue;
                 }
 
-                bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (selectedUser)
-                {
-                    string id = (dataRow.Cells["ID"].Value.ToString());
-                    string[] getID = { id };
-                    MySqlDataReader delete_users = DBcon.executeReader("DELETE FROM `employees` WHERE `id` = @id", getID);
-                    Employee.retrieveAllEmployees();
-                    this.renderStaffTable();
-                    DBcon.CloseConnection(delete_users);
-                }
-                else
-                {
-                    MessageBox.Show("You need to tick the selected box to delete a employee");
-                }
+                string id = (dataRow.Cells["ID"].Value.ToString());
+                string[] getID = { id };
+                DBcon.executeNonQuery("DELETE FROM `employees` WHERE `id` = @id", getID);
+                found = true;
             }
 
+            Employee.retrieveAllEmployees();
+            this.renderStaffTable();
+
+
+            if (!found)
+            {
+                MessageBox.Show("You need to tick the selected box to delete a employee");
+            }
         }
 
         private void AddAdmin()
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = true;
-            if (NullCheckerAdmin())
+            List<String> errors = new List<string>();
+
+            if (!NullCheckerAdmin())
             {
-                if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text) == null)
-                {
-                    int role_id = this.cbAdminRole.SelectedIndex;
-                    role_id++;
-                    string increased_role_id = Convert.ToString(role_id);
-                    string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
-                    increased_role_id };
-                    MySqlDataReader add_admin = DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
-                        "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
-                    Admin.retrieveAllAdmins();
-                    this.renderAdminTable();
-                    this.pnlAdmin.Visible = true;
-                    DBcon.CloseConnection(add_admin);
-                }
-                else
-                {
-                    MessageBox.Show("You can't add an admin with the same username");
-                }
-            }
-            else
-            {
-                MessageBox.Show("You can't create a user without entering all the fields");
+                errors.Add("You can't create a user without entering all the fields");
             }
 
+            if (StoreControl.getAdminByUsername(this.tbAdminUserName.Text) != null)
+            {
+                errors.Add("You can't add an admin with the same username");
+            }
+
+            if (!errors.Any())
+            {
+                int role_id = this.cbAdminRole.SelectedIndex;
+                role_id++;
+                string increased_role_id = Convert.ToString(role_id);
+                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
+                    increased_role_id };
+                DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
+                       "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
+                Admin.retrieveAllAdmins();
+                this.renderAdminTable();
+                this.showPanel(pnlAdmin);
+                return;
+            }
+
+            foreach (string message in errors)
+            {
+                MessageBox.Show(message);
+            }
+
+
         }
+
+
         private void AddEmployee()
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = true;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
-            this.btnUpdateEmployee.Visible = false;
-            if (NullCheckerEmployee())
+
+            List<String> errors = new List<string>();
+
+            if (!NullCheckerEmployee())
             {
-                if (StoreControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) == null)
-                {
-                    int department_id = this.cbEmployeeDepartment.SelectedIndex;
-                    department_id++;
-                    string increased_department_id = Convert.ToString(department_id);
-                    string gender = (string)this.cbEmployeeGender.SelectedItem;
-                    string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+                errors.Add("You can't create a user without entering all the fields");
+            }
+            if (StoreControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) != null)
+            {
+                errors.Add("You can't add an user with the same email");
+            }
+
+            if (!errors.Any())
+            {
+                int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                department_id++;
+                string increased_department_id = Convert.ToString(department_id);
+                string gender = (string)this.cbEmployeeGender.SelectedItem;
+                string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
                     gender, this.tbEmployeeEmail.Text,increased_department_id};
-                    MySqlDataReader add_employee = DBcon.executeReader("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`) " +
-                    "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id)", employee_bindings);
-                    Employee.retrieveAllEmployees();
-                    this.renderStaffTable();
-                    this.pnlEmployee.Visible = true;
-                    DBcon.CloseConnection(add_employee);
-                }
-                else
-                {
-                    MessageBox.Show("You can't add an employee with the same email");
-                }
+                DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`) " +
+                               "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id)", employee_bindings);
+                Employee.retrieveAllEmployees();
+                this.renderStaffTable();
+                this.showPanel(pnlEmployee);
+                return;
+
             }
-            else
+
+            foreach (string message in errors)
             {
-                MessageBox.Show("You can't create an employee without entering all the fields");
+                MessageBox.Show(message);
             }
 
         }
@@ -562,6 +549,7 @@ namespace PapaSenpai_Project_Software
                 }
             }
 
+            //delete schedule if working employees is equal 0
             if (user_count == 0)
             {
                 DBcon.executeNonQuery("DELETE FROM `schedules` WHERE id = @id", delete_bindings);

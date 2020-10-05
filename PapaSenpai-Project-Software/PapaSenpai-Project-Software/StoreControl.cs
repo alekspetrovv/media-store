@@ -49,7 +49,7 @@ namespace PapaSenpai_Project_Software
             StoreControl.loggedUser = user;
         }
 
-        public static Admin GetCreatedAdmin(string userName) 
+        public static Admin getAdminByUsername(string userName) 
         {
             foreach(Admin a in getAdmins()) 
             {
