@@ -59,7 +59,7 @@ namespace PapaSenpai_Project_Software
             //check if user exist if yes show the home page else don't show error message
             if (user.HasRows)
             {
-                Admin admin = new Admin(Convert.ToInt32(user["id"]),user["username"].ToString(),user["password"].ToString(),user["role_title"].ToString(), user["first_name"].ToString(), user["last_name"].ToString(), user["email"].ToString());
+                Admin admin = new Admin(Convert.ToInt32(user["id"]),user["username"].ToString(),user["role_title"].ToString(), user["first_name"].ToString(), user["last_name"].ToString(), user["email"].ToString(), user["password"].ToString());
                 StoreControl.logUser(admin);
 
                 this.Hide();

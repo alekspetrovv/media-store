@@ -12,7 +12,7 @@ namespace PapaSenpai_Project_Software
         private Role role;
         private string username;
         private string password;
-        public Admin(int id, string username, string password, string role,string first_name,string last_name,string email) : base(id, first_name,last_name,email)
+        public Admin(int id, string username,string role,string first_name,string last_name,string email,string password) : base(id, first_name,last_name,email)
         {
             this.password = password;   
             this.username = username;

@@ -127,7 +127,7 @@ namespace PapaSenpai_Project_Software
             EditAdmin();
         }
 
-    
+
         private void btnEditEmployee_Click(object sender, EventArgs e)
         {
             EditEmployee();
@@ -625,7 +625,7 @@ namespace PapaSenpai_Project_Software
             UpdateAdmin();
         }
 
-        private void UpdateAdmin() 
+        private void UpdateAdmin()
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
@@ -656,10 +656,9 @@ namespace PapaSenpai_Project_Software
                     string roleID = Convert.ToString(roleIndex);
                     string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
 
-                    MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` `username`= @username,`password`= @password," +
-                        "`first_name`= @firstname,`last_name`= @lastname," +
-                        "`email`= @email ,`role_id`= @roleid" +
-                        " WHERE ID = @id", adminData);
+                    MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` SET `username`= @usn,`password`= @password," +
+                        "`first_name`= @firstname,`last_name`= @lastname,`email`= @email," +
+                        "`role_id`= @roleid WHERE `id` = @id",adminData);
 
                     Admin.retrieveAllAdmins();
                     this.renderAdminTable();
