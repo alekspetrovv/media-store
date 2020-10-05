@@ -90,7 +90,7 @@
             this.lblEmployeeName = new MaterialSkin.Controls.MaterialLabel();
             this.tbEmployeeEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlAddAdmin = new System.Windows.Forms.Panel();
+            this.pnlAddEditAdmin = new System.Windows.Forms.Panel();
             this.lblAdminEmail = new MaterialSkin.Controls.MaterialLabel();
             this.tbAdminEmail = new System.Windows.Forms.TextBox();
             this.lblUserName = new MaterialSkin.Controls.MaterialLabel();
@@ -105,7 +105,7 @@
             this.materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
             this.cbAdminRole = new System.Windows.Forms.ComboBox();
             this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
-            this.lblAddAdmin = new MaterialSkin.Controls.MaterialLabel();
+            this.lblAddEditAdmin = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAdmin = new System.Windows.Forms.Panel();
             this.dtAdmins = new System.Windows.Forms.DataGridView();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -116,6 +116,7 @@
             this.btnDeleteAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnUpdateAdmin = new MaterialSkin.Controls.MaterialRaisedButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -132,7 +133,7 @@
             this.pnlAddSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAddSchedule)).BeginInit();
             this.pnlAddStaff.SuspendLayout();
-            this.pnlAddAdmin.SuspendLayout();
+            this.pnlAddEditAdmin.SuspendLayout();
             this.pnlAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAdmins)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox12)).BeginInit();
@@ -928,29 +929,30 @@
             this.label1.TabIndex = 11;
             this.label1.UseMnemonic = false;
             // 
-            // pnlAddAdmin
+            // pnlAddEditAdmin
             // 
-            this.pnlAddAdmin.BackColor = System.Drawing.Color.Transparent;
-            this.pnlAddAdmin.Controls.Add(this.lblAdminEmail);
-            this.pnlAddAdmin.Controls.Add(this.tbAdminEmail);
-            this.pnlAddAdmin.Controls.Add(this.lblUserName);
-            this.pnlAddAdmin.Controls.Add(this.tbAdminUserName);
-            this.pnlAddAdmin.Controls.Add(this.lblAdminLastName);
-            this.pnlAddAdmin.Controls.Add(this.tbAdminLastName);
-            this.pnlAddAdmin.Controls.Add(this.btnAddAdmin);
-            this.pnlAddAdmin.Controls.Add(this.lblAdminPassword);
-            this.pnlAddAdmin.Controls.Add(this.lblAdminFirstName);
-            this.pnlAddAdmin.Controls.Add(this.tbAdminPassword);
-            this.pnlAddAdmin.Controls.Add(this.tbAdminFirstName);
-            this.pnlAddAdmin.Controls.Add(this.materialLabel18);
-            this.pnlAddAdmin.Controls.Add(this.cbAdminRole);
-            this.pnlAddAdmin.Controls.Add(this.materialLabel19);
-            this.pnlAddAdmin.Controls.Add(this.lblAddAdmin);
-            this.pnlAddAdmin.ForeColor = System.Drawing.Color.Transparent;
-            this.pnlAddAdmin.Location = new System.Drawing.Point(221, 65);
-            this.pnlAddAdmin.Name = "pnlAddAdmin";
-            this.pnlAddAdmin.Size = new System.Drawing.Size(698, 412);
-            this.pnlAddAdmin.TabIndex = 34;
+            this.pnlAddEditAdmin.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddEditAdmin.Controls.Add(this.btnUpdateAdmin);
+            this.pnlAddEditAdmin.Controls.Add(this.lblAdminEmail);
+            this.pnlAddEditAdmin.Controls.Add(this.tbAdminEmail);
+            this.pnlAddEditAdmin.Controls.Add(this.lblUserName);
+            this.pnlAddEditAdmin.Controls.Add(this.tbAdminUserName);
+            this.pnlAddEditAdmin.Controls.Add(this.lblAdminLastName);
+            this.pnlAddEditAdmin.Controls.Add(this.tbAdminLastName);
+            this.pnlAddEditAdmin.Controls.Add(this.btnAddAdmin);
+            this.pnlAddEditAdmin.Controls.Add(this.lblAdminPassword);
+            this.pnlAddEditAdmin.Controls.Add(this.lblAdminFirstName);
+            this.pnlAddEditAdmin.Controls.Add(this.tbAdminPassword);
+            this.pnlAddEditAdmin.Controls.Add(this.tbAdminFirstName);
+            this.pnlAddEditAdmin.Controls.Add(this.materialLabel18);
+            this.pnlAddEditAdmin.Controls.Add(this.cbAdminRole);
+            this.pnlAddEditAdmin.Controls.Add(this.materialLabel19);
+            this.pnlAddEditAdmin.Controls.Add(this.lblAddEditAdmin);
+            this.pnlAddEditAdmin.ForeColor = System.Drawing.Color.Transparent;
+            this.pnlAddEditAdmin.Location = new System.Drawing.Point(221, 65);
+            this.pnlAddEditAdmin.Name = "pnlAddEditAdmin";
+            this.pnlAddEditAdmin.Size = new System.Drawing.Size(698, 412);
+            this.pnlAddEditAdmin.TabIndex = 34;
             // 
             // lblAdminEmail
             // 
@@ -1102,19 +1104,19 @@
             this.materialLabel19.Size = new System.Drawing.Size(689, 2);
             this.materialLabel19.TabIndex = 35;
             // 
-            // lblAddAdmin
+            // lblAddEditAdmin
             // 
-            this.lblAddAdmin.AutoSize = true;
-            this.lblAddAdmin.Depth = 0;
-            this.lblAddAdmin.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblAddAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddAdmin.Location = new System.Drawing.Point(293, 23);
-            this.lblAddAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblAddAdmin.Name = "lblAddAdmin";
-            this.lblAddAdmin.Size = new System.Drawing.Size(82, 19);
-            this.lblAddAdmin.TabIndex = 33;
-            this.lblAddAdmin.Text = "Add Admin";
-            this.lblAddAdmin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblAddEditAdmin.AutoSize = true;
+            this.lblAddEditAdmin.Depth = 0;
+            this.lblAddEditAdmin.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblAddEditAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddEditAdmin.Location = new System.Drawing.Point(293, 23);
+            this.lblAddEditAdmin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblAddEditAdmin.Name = "lblAddEditAdmin";
+            this.lblAddEditAdmin.Size = new System.Drawing.Size(114, 19);
+            this.lblAddEditAdmin.TabIndex = 33;
+            this.lblAddEditAdmin.Text = "Add/Edit Admin";
+            this.lblAddEditAdmin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pnlAdmin
             // 
@@ -1254,6 +1256,19 @@
             this.btnAddAdmins.UseVisualStyleBackColor = true;
             this.btnAddAdmins.Click += new System.EventHandler(this.btnAddAdmins_Click);
             // 
+            // btnUpdateAdmin
+            // 
+            this.btnUpdateAdmin.Depth = 0;
+            this.btnUpdateAdmin.Location = new System.Drawing.Point(287, 341);
+            this.btnUpdateAdmin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUpdateAdmin.Name = "btnUpdateAdmin";
+            this.btnUpdateAdmin.Primary = true;
+            this.btnUpdateAdmin.Size = new System.Drawing.Size(202, 33);
+            this.btnUpdateAdmin.TabIndex = 58;
+            this.btnUpdateAdmin.Text = "Update Admin";
+            this.btnUpdateAdmin.UseVisualStyleBackColor = true;
+            this.btnUpdateAdmin.Click += new System.EventHandler(this.btnUpdateAdmin_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1261,12 +1276,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddStaff);
-            this.Controls.Add(this.pnlAddAdmin);
+            this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
+            this.Controls.Add(this.pnlAddStaff);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -1292,8 +1307,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtAddSchedule)).EndInit();
             this.pnlAddStaff.ResumeLayout(false);
             this.pnlAddStaff.PerformLayout();
-            this.pnlAddAdmin.ResumeLayout(false);
-            this.pnlAddAdmin.PerformLayout();
+            this.pnlAddEditAdmin.ResumeLayout(false);
+            this.pnlAddEditAdmin.PerformLayout();
             this.pnlAdmin.ResumeLayout(false);
             this.pnlAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAdmins)).EndInit();
@@ -1360,7 +1375,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnAddUser;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox11;
         private MaterialSkin.Controls.MaterialRaisedButton btnViewAdmins;
-        private System.Windows.Forms.Panel pnlAddAdmin;
+        private System.Windows.Forms.Panel pnlAddEditAdmin;
         private MaterialSkin.Controls.MaterialLabel lblAdminLastName;
         private System.Windows.Forms.TextBox tbAdminLastName;
         private MaterialSkin.Controls.MaterialRaisedButton btnAddAdmin;
@@ -1371,7 +1386,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel18;
         private System.Windows.Forms.ComboBox cbAdminRole;
         private MaterialSkin.Controls.MaterialLabel materialLabel19;
-        private MaterialSkin.Controls.MaterialLabel lblAddAdmin;
+        private MaterialSkin.Controls.MaterialLabel lblAddEditAdmin;
         private MaterialSkin.Controls.MaterialLabel lblEmployeeLastName;
         private System.Windows.Forms.Panel pnlAdmin;
         private System.Windows.Forms.DataGridView dtAdmins;
@@ -1394,5 +1409,6 @@
         private MaterialSkin.Controls.MaterialLabel lblAdminEmail;
         private System.Windows.Forms.TextBox tbAdminEmail;
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdateEmployee;
+        private MaterialSkin.Controls.MaterialRaisedButton btnUpdateAdmin;
     }
 }

@@ -60,7 +60,7 @@ namespace PapaSenpai_Project_Software
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.pnlAddEditAdmin.Visible = false;
             panel.Visible = true;
 
         }
@@ -93,11 +93,12 @@ namespace PapaSenpai_Project_Software
         private void btnViewAdmins_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAdmin);
+            this.btnUpdateAdmin.Visible = false;
         }
 
         private void btnAddAdmins_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlAddAdmin);
+            this.showPanel(pnlAddEditAdmin);
         }
 
         private void btnDeleteAdmins_Click(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace PapaSenpai_Project_Software
             EditAdmin();
         }
 
-
+    
         private void btnEditEmployee_Click(object sender, EventArgs e)
         {
             EditEmployee();
@@ -139,7 +140,7 @@ namespace PapaSenpai_Project_Software
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.pnlAddEditAdmin.Visible = false;
             this.btnAddUser.Visible = false;
             this.btnUpdateEmployee.Visible = false;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
@@ -185,7 +186,7 @@ namespace PapaSenpai_Project_Software
             this.pnlAddStaff.Visible = true;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.pnlAddEditAdmin.Visible = false;
             this.btnAddUser.Visible = false;
             this.btnUpdateEmployee.Visible = true;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
@@ -222,7 +223,34 @@ namespace PapaSenpai_Project_Software
 
         private void EditAdmin()
         {
+            this.showPanel(pnlAddEditAdmin);
+            this.btnAddAdmin.Visible = false;
+            this.btnUpdateAdmin.Visible = true;
+            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            {
 
+
+                DataGridViewRow dataRow = dtAdmins.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedAdmins = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedAdmins)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Admin admin = StoreControl.getAdminById(Convert.ToInt32(id));
+                    this.tbAdminUserName.Text = admin.Username;
+                    this.tbAdminFirstName.Text = admin.FirstName;
+                    this.tbAdminLastName.Text = admin.LastName;
+                    this.tbAdminEmail.Text = admin.Email;
+                    this.tbAdminPassword.Text = admin.Password;
+                    this.cbAdminRole.SelectedItem = admin.Role;
+
+                }
+            }
 
         }
 
@@ -381,16 +409,12 @@ namespace PapaSenpai_Project_Software
                 bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                 if (selectedAdmin)
                 {
-                    string adminId = (dataRow.Cells["ID"].Value.ToString());
-                    string[] adminID = { adminId };
-                    MySqlDataReader delete_admin = DBcon.executeReader("DELETE FROM `admins` WHERE `id` =" + adminID);
+                    string Id = (dataRow.Cells["ID"].Value.ToString());
+                    string[] adminID = { Id };
+                    MySqlDataReader delete_admin = DBcon.executeReader("DELETE FROM `admins` WHERE `id` = @id", adminID);
                     Admin.retrieveAllAdmins();
                     this.renderAdminTable();
                     DBcon.CloseConnection(delete_admin);
-                }
-                else
-                {
-                    MessageBox.Show("You need to tick the selected box to delete a customer");
                 }
             }
 
@@ -411,16 +435,12 @@ namespace PapaSenpai_Project_Software
                 bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                 if (selectedUser)
                 {
-                    string id = (dataRow.Cells["ID"].Value.ToString());
+                    string id = dataRow.Cells["ID"].Value.ToString();
                     string[] getID = { id };
                     MySqlDataReader delete_users = DBcon.executeReader("DELETE FROM `employees` WHERE `id` = @id", getID);
                     Employee.retrieveAllEmployees();
                     this.renderStaffTable();
                     DBcon.CloseConnection(delete_users);
-                }
-                else
-                {
-                    MessageBox.Show("You need to tick the selected box to delete a employee");
                 }
             }
 
@@ -432,8 +452,8 @@ namespace PapaSenpai_Project_Software
             this.pnlEmployee.Visible = false;
             this.pnlAddStaff.Visible = false;
             this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = true;
+            this.pnlAdmin.Visible = true;
+            this.pnlAddEditAdmin.Visible = false;
             if (NullCheckerAdmin())
             {
                 if (StoreControl.GetCreatedAdmin(this.tbAdminUserName.Text) == null)
@@ -468,7 +488,7 @@ namespace PapaSenpai_Project_Software
             this.pnlAddStaff.Visible = true;
             this.pnlAddSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
+            this.pnlAddEditAdmin.Visible = false;
             this.btnUpdateEmployee.Visible = false;
             if (NullCheckerEmployee())
             {
@@ -598,6 +618,54 @@ namespace PapaSenpai_Project_Software
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             UpdateEmployee();
+        }
+
+        private void btnUpdateAdmin_Click(object sender, EventArgs e)
+        {
+            UpdateAdmin();
+        }
+
+        private void UpdateAdmin() 
+        {
+            this.pnlDashBoard.Visible = false;
+            this.pnlEmployee.Visible = false;
+            this.pnlAddStaff.Visible = false;
+            this.pnlAddSchedule.Visible = false;
+            this.pnlAdmin.Visible = true;
+            this.pnlAddEditAdmin.Visible = false;
+            this.btnAddUser.Visible = false;
+            this.btnUpdateEmployee.Visible = false;
+            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            {
+
+
+                DataGridViewRow dataRow = dtAdmins.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedAdmin)
+                {
+
+                    string adminId = (dataRow.Cells["ID"].Value.ToString());
+                    int roleIndex = this.cbAdminRole.SelectedIndex;
+                    roleIndex++;
+                    string roleID = Convert.ToString(roleIndex);
+                    string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
+
+                    MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` `username`= @username,`password`= @password," +
+                        "`first_name`= @firstname,`last_name`= @lastname," +
+                        "`email`= @email ,`role_id`= @roleid" +
+                        " WHERE ID = @id", adminData);
+
+                    Admin.retrieveAllAdmins();
+                    this.renderAdminTable();
+
+                }
+            }
         }
     }
 }

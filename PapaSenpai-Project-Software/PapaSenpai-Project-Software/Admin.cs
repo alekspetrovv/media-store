@@ -11,9 +11,10 @@ namespace PapaSenpai_Project_Software
     {
         private Role role;
         private string username;
-
-        public Admin(int id, string username, string role,string first_name,string last_name,string email) : base(id, first_name,last_name,email)
+        private string password;
+        public Admin(int id, string username, string password, string role,string first_name,string last_name,string email) : base(id, first_name,last_name,email)
         {
+            this.password = password;   
             this.username = username;
             Enum.TryParse(role,out this.role);
         }
@@ -29,6 +30,11 @@ namespace PapaSenpai_Project_Software
             get { return this.username; }
         }
 
+        public string Password 
+        {
+            get { return this.password; }
+        }
+
         public static void retrieveAllAdmins()
         {
             MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
@@ -40,7 +46,7 @@ namespace PapaSenpai_Project_Software
                 {
                     Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
                         admins["role_title"].ToString(), admins["first_name"].ToString()
-                        , admins["last_name"].ToString(), admins["email"].ToString());
+                        , admins["last_name"].ToString(), admins["email"].ToString(),admins["password"].ToString());
 
                     StoreControl.addAdmin(admin);
                 }
