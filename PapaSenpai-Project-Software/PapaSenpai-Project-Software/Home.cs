@@ -127,7 +127,7 @@ namespace PapaSenpai_Project_Software
             EditAdmin();
         }
 
-    
+
         private void btnEditEmployee_Click(object sender, EventArgs e)
         {
             EditEmployee();
@@ -135,14 +135,6 @@ namespace PapaSenpai_Project_Software
 
         private void UpdateEmployee()
         {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = true;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
-            this.pnlAddAdmin.Visible = false;
-            this.btnAddUser.Visible = false;
-            this.btnUpdateEmployee.Visible = false;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
 
@@ -167,9 +159,9 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,employeeId};
 
-                     DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
-                        "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                        ",`department_id`= @departmentid WHERE id = @id", employeeData);
+                    DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
+                       "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
+                       ",`department_id`= @departmentid WHERE id = @id", employeeData);
                     Employee.retrieveAllEmployees();
                     this.renderStaffTable();
                     this.showPanel(this.pnlEmployee);
@@ -628,7 +620,7 @@ namespace PapaSenpai_Project_Software
             UpdateAdmin();
         }
 
-        private void UpdateAdmin() 
+        private void UpdateAdmin()
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
