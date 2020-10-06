@@ -144,7 +144,7 @@ m2= 1</panel_attributes>
 -
 + users: List&lt;User&gt;
 -
-+ Users: List&lt;User&gt;
++ Users(): List&lt;User&gt;
 </panel_attributes>
     <additional_attributes/>
   </element>

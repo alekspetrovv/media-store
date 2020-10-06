@@ -99,6 +99,8 @@ namespace PapaSenpai_Project_Software
         private void btnAddAdmins_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAddEditAdmin);
+            this.btnAddAdmin.Visible = true;
+            this.btnUpdateAdmin.Visible = false;
         }
 
         private void btnDeleteAdmins_Click(object sender, EventArgs e)
@@ -175,6 +177,7 @@ namespace PapaSenpai_Project_Software
         {
             this.showPanel(this.pnlAddStaff);
             this.btnUpdateEmployee.Visible = true;
+            this.btnAddUser.Visible = false;   
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
 
@@ -477,7 +480,8 @@ namespace PapaSenpai_Project_Software
 
         private void AddEmployee()
         {
-
+            this.btnAddUser.Visible = true;
+            this.btnUpdateEmployee.Visible = false;
             List<String> errors = new List<string>();
 
             if (!NullCheckerEmployee())
