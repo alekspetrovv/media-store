@@ -65,36 +65,45 @@ namespace PapaSenpai_Project_Software
 
         }
 
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlDashBoard);
         }
+
 
         private void btnViewStaff_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlEmployee);
         }
 
+
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAddSchedule);
         }
+
 
         private void btnViewSchedule_Click_1(object sender, EventArgs e)
         {
             this.showPanel(pnlAddSchedule);
         }
 
+
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAddStaff);
+            this.btnAddUser.Visible = true;
+            this.btnUpdateEmployee.Visible = false;
         }
+
 
         private void btnViewAdmins_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAdmin);
             this.btnUpdateAdmin.Visible = false;
         }
+
 
         private void btnAddAdmins_Click(object sender, EventArgs e)
         {
@@ -103,15 +112,18 @@ namespace PapaSenpai_Project_Software
             this.btnUpdateAdmin.Visible = false;
         }
 
+
         private void btnDeleteAdmins_Click(object sender, EventArgs e)
         {
             DeleteAdmin();
         }
 
+
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             AddEmployee();
         }
+
 
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
@@ -119,10 +131,12 @@ namespace PapaSenpai_Project_Software
 
         }
 
+
         private void btnAddAdmin_Click(object sender, EventArgs e)
         {
             AddAdmin();
         }
+
 
         private void btnEditAdmins_Click(object sender, EventArgs e)
         {
@@ -135,11 +149,40 @@ namespace PapaSenpai_Project_Software
             EditEmployee();
         }
 
+
+        private void UpdateAdmin()
+        {
+            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            {
+
+                DataGridViewRow dataRow = dtAdmins.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                string adminId = (dataRow.Cells["ID"].Value.ToString());
+                int roleIndex = this.cbAdminRole.SelectedIndex;
+                roleIndex++;
+                string roleID = Convert.ToString(roleIndex);
+                string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
+
+                MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` SET `username`= @usn,`password`= @password," +
+                    "`first_name`= @firstname,`last_name`= @lastname,`email`= @email," +
+                    "`role_id`= @roleid WHERE `id` = @id", adminData);
+                this.pnlAdmin.Visible = true;
+                this.showPanel(this.pnlAdmin);
+                Admin.retrieveAllAdmins();
+                this.renderAdminTable();
+            }
+        }
+
+
         private void UpdateEmployee()
         {
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
-
                 DataGridViewRow dataRow = dtEmployees.Rows[i];
 
                 if (dataRow.IsNewRow)
@@ -147,27 +190,21 @@ namespace PapaSenpai_Project_Software
                     continue;
                 }
 
-                bool selectedEmployee = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (selectedEmployee)
-                {
-
-                    string employeeId = (dataRow.Cells["ID"].Value.ToString());
-                    string gender = (string)this.cbEmployeeGender.SelectedItem;
-                    int department_id = this.cbEmployeeDepartment.SelectedIndex;
-                    department_id++;
-                    string increased_department_id = Convert.ToString(department_id);
-
-                    string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
+                string employeeId = (dataRow.Cells["ID"].Value.ToString());
+                string gender = (string)this.cbEmployeeGender.SelectedItem;
+                int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                department_id++;
+                string increased_department_id = Convert.ToString(department_id);
+                string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,employeeId};
-
-                    DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
-                       "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                       ",`department_id`= @departmentid WHERE id = @id", employeeData);
-                    Employee.retrieveAllEmployees();
-                    this.renderStaffTable();
-                    this.showPanel(this.pnlEmployee);
-                }
+                this.pnlEmployee.Visible = true;
+                DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
+                   "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
+                   ",`department_id`= @departmentid WHERE id = @id", employeeData);
+                this.showPanel(this.pnlEmployee);
+                Employee.retrieveAllEmployees();
+                this.renderStaffTable();
             }
 
         }
@@ -175,9 +212,8 @@ namespace PapaSenpai_Project_Software
 
         private void EditEmployee()
         {
-            this.showPanel(this.pnlAddStaff);
             this.btnUpdateEmployee.Visible = true;
-            this.btnAddUser.Visible = false;   
+            this.btnAddUser.Visible = false;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
 
@@ -192,7 +228,6 @@ namespace PapaSenpai_Project_Software
                 bool selectedEmployee = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                 if (selectedEmployee)
                 {
-
                     string employeeId = (dataRow.Cells["ID"].Value.ToString());
                     Employee employee = StoreControl.getEmployeeById(Convert.ToInt32(employeeId));
                     this.tbEmployeeFirstName.Text = employee.FirstName;
@@ -202,17 +237,21 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
                     this.tbEmployeeCity.Text = employee.City;
                     this.tbEmployeeCountry.Text = employee.Country;
+                    this.tbEmployeeWagePerHour.Text = employee.Wage;
                     this.cbEmployeeDepartment.SelectedItem = employee.Department;
                     this.cbEmployeeGender.SelectedItem = employee.Gender;
+                    this.showPanel(this.pnlAddStaff);
+                    Employee.retrieveAllEmployees();
+                    this.renderStaffTable();
                 }
             }
 
 
         }
 
+
         private void EditAdmin()
         {
-            this.showPanel(pnlAddEditAdmin);
             this.btnAddAdmin.Visible = false;
             this.btnUpdateAdmin.Visible = true;
             for (int i = 0; i < dtAdmins.Rows.Count; ++i)
@@ -237,12 +276,13 @@ namespace PapaSenpai_Project_Software
                     this.tbAdminEmail.Text = admin.Email;
                     this.tbAdminPassword.Text = admin.Password;
                     this.cbAdminRole.SelectedItem = admin.Role;
-
+                    Admin.retrieveAllAdmins();
+                    this.renderAdminTable();
+                    this.showPanel(pnlAddEditAdmin);
                 }
             }
 
         }
-
 
 
         private void renderAdminTable()
@@ -288,6 +328,7 @@ namespace PapaSenpai_Project_Software
             dtEmployees.DataSource = dtEmp;
 
         }
+
 
         private void renderScheduleMembers()
         {
@@ -338,6 +379,7 @@ namespace PapaSenpai_Project_Software
             dtAddSchedule.DataSource = dtEmp;
         }
 
+
         private void renderDailySchedule()
         {
 
@@ -378,9 +420,6 @@ namespace PapaSenpai_Project_Software
         }
 
 
-
-
-
         private void DeleteAdmin()
         {
             bool found = false;
@@ -410,6 +449,8 @@ namespace PapaSenpai_Project_Software
             }
 
         }
+
+
         private void DeleteEmployee()
         {
             bool found = false;
@@ -439,6 +480,7 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show("You need to tick the selected box to delete a employee");
             }
         }
+
 
         private void AddAdmin()
         {
@@ -518,16 +560,19 @@ namespace PapaSenpai_Project_Software
 
         }
 
+
         private void calendarSchedule_DateChanged(object sender, DateRangeEventArgs e)
         {
             this.currentScheduleDate = e.End;
             this.renderScheduleMembers();
         }
 
+
         private void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
             updateSchedule();
         }
+
 
         private void updateSchedule()
         {
@@ -594,6 +639,7 @@ namespace PapaSenpai_Project_Software
 
         }
 
+
         private bool NullCheckerEmployee()
         {
             if (this.tbEmployeeFirstName.Text == "" || this.tbEmployeeLastName.Text == "" ||
@@ -605,6 +651,7 @@ namespace PapaSenpai_Project_Software
             return true;
         }
 
+
         private bool NullCheckerAdmin()
         {
             if (this.tbAdminUserName.Text == "" || this.tbAdminFirstName.Text == "" || this.tbAdminLastName.Text == "" || this.tbAdminPassword.Text == "" || this.tbAdminEmail.Text == "")
@@ -614,56 +661,17 @@ namespace PapaSenpai_Project_Software
             return true;
         }
 
+
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             UpdateEmployee();
         }
+
 
         private void btnUpdateAdmin_Click(object sender, EventArgs e)
         {
             UpdateAdmin();
         }
 
-        private void UpdateAdmin()
-        {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
-            this.pnlAdmin.Visible = true;
-            this.pnlAddEditAdmin.Visible = false;
-            this.btnAddUser.Visible = false;
-            this.btnUpdateEmployee.Visible = false;
-            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
-            {
-
-
-                DataGridViewRow dataRow = dtAdmins.Rows[i];
-
-                if (dataRow.IsNewRow)
-                {
-                    continue;
-                }
-
-                bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (selectedAdmin)
-                {
-
-                    string adminId = (dataRow.Cells["ID"].Value.ToString());
-                    int roleIndex = this.cbAdminRole.SelectedIndex;
-                    roleIndex++;
-                    string roleID = Convert.ToString(roleIndex);
-                    string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
-
-                    MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` SET `username`= @usn,`password`= @password," +
-                        "`first_name`= @firstname,`last_name`= @lastname,`email`= @email," +
-                        "`role_id`= @roleid WHERE `id` = @id",adminData);
-
-                    Admin.retrieveAllAdmins();
-                    this.renderAdminTable();
-
-                }
-            }
-        }
     }
 }

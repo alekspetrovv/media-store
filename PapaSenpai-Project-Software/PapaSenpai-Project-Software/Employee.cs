@@ -49,6 +49,11 @@ namespace PapaSenpai_Project_Software
             get { return this.phone_number; }
         }
 
+        public string Wage
+        {
+            get { return this.wage; }
+        }
+
         public Enum Gender
         {
             get { return this.gender; }
