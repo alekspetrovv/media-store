@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>584</x>
-      <y>32</y>
+      <x>712</x>
+      <y>192</y>
       <w>144</w>
       <h>152</h>
     </coordinates>
@@ -19,7 +19,8 @@
 + FirstName() : string
 + LastName() : string
 + Email() : string
-+ Id() : int
++ Id() : int	
++ getFullName() : string
 
 
 </panel_attributes>
@@ -28,32 +29,35 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>664</x>
-      <y>232</y>
-      <w>160</w>
-      <h>160</h>
+      <x>792</x>
+      <y>392</y>
+      <w>216</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>Admin
 -
-- password : string
+- username : string
+- password : string	
 - role : Role
 -
-+ Admin(string password,
++ Admin(string password,string username
 Role role,
 string first_name,
 string last_name,
 string email,int id)
-+ getPassword() : string
-+ getRole() : Role</panel_attributes>
++ Password() : string
++ UserName() : string
++ RetrieveAllAdmins() : static void
++ Role() : Role</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>232</y>
-      <w>176</w>
-      <h>296</h>
+      <x>592</x>
+      <y>392</y>
+      <w>192</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>Employee
 -
@@ -77,15 +81,18 @@ Department department)
 + Adress() : string
 + City() : string
 + Country() : string
-+ PhoneNumber() : uint
-+ Gender() : Gender</panel_attributes>
++ PhoneNumber() : string
++ Gender() : Gender
++ Department() : Department
++ RetrieveAllEmployees() : static void
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>832</x>
-      <y>96</y>
+      <x>960</x>
+      <y>256</y>
       <w>128</w>
       <h>64</h>
     </coordinates>
@@ -100,21 +107,21 @@ Manager
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>816</x>
-      <y>152</y>
-      <w>104</w>
+      <x>1000</x>
+      <y>312</y>
+      <w>48</w>
       <h>152</h>
     </coordinates>
     <panel_attributes>lt=-
 m1= *
 m2= 1</panel_attributes>
-    <additional_attributes>10.0;160.0;100.0;160.0;100.0;10.0</additional_attributes>
+    <additional_attributes>10.0;160.0;30.0;160.0;30.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>176</y>
+      <x>800</x>
+      <y>336</y>
       <w>80</w>
       <h>72</h>
     </coordinates>
@@ -124,8 +131,8 @@ m2= 1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
-      <y>176</y>
+      <x>672</x>
+      <y>336</y>
       <w>88</w>
       <h>72</h>
     </coordinates>
@@ -135,37 +142,54 @@ m2= 1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>344</x>
-      <y>32</y>
-      <w>144</w>
-      <h>152</h>
+      <x>280</x>
+      <y>80</y>
+      <w>280</w>
+      <h>272</h>
     </coordinates>
-    <panel_attributes>StoreControl
+    <panel_attributes>&lt;&lt;static&gt;&gt;
+StoreControl
 -
-+ users: List&lt;User&gt;
+- users: List&lt;User&gt;
+- admins: List&lt;Admin&gt;
+- schedules : List&lt;Schedule&gt;
+- loggedUser : User
 -
-+ Users(): List&lt;User&gt;
++ getUsers(): List&lt;User&gt;
++ getAdmins(): List&lt;Admin&gt;
++ getSchedules(): List&lt;Schedule&gt;
++ getLoggedUesr() : User
++ logUser(User u) : 	static void
++ getAdminByUserName(string userName) : Admin
++ getScheduleByDate(DateTime date) : Schedule
++ getAdminById() : Admin
++ GetEmployeByEmail() : Employee
++ addEmployee() : Employee
++ addAdmin() : Admin
++ addSchedule() : Schedule
++ emptyAdmins() : static void
++ emptySchedules() : static void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>80</y>
-      <w>120</w>
-      <h>40</h>
+      <x>552</x>
+      <y>136</y>
+      <w>176</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m1=*
+m1= User
 </panel_attributes>
-    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>200.0;150.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>304</x>
-      <y>312</y>
+      <x>432</x>
+      <y>472</y>
       <w>128</w>
       <h>104</h>
     </coordinates>
@@ -182,39 +206,46 @@ Salesman
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
-      <y>408</y>
-      <w>120</w>
+      <x>504</x>
+      <y>568</y>
+      <w>104</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1= 1
 m2= *</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0;130.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;20.0;110.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>536</y>
-      <w>232</w>
+      <x>408</x>
+      <y>728</y>
+      <w>256</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>Schedule
 -
 - id : int 
-- status : string
+- notes : string
 - members : ScheduleMember
 -
 + Schedule(int id,string status,
-ScheduleMember members)</panel_attributes>
+string date)
++ Members : List&lt;ScheduleMember)
++ ID : int
++ Date : DateTime
++ AddMember(ScheduleMember member) : void
++ retrieveSchedules() : void
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>664</x>
-      <y>536</y>
+      <x>816</x>
+      <y>728</y>
       <w>208</w>
       <h>160</h>
     </coordinates>
@@ -224,16 +255,21 @@ ScheduleMember members)</panel_attributes>
 - endDate : DateTime 
 - employee : Employee
 -
-+ScheduleMember(DateTime startDate,
-DateTime endDate,
-Employee employee)</panel_attributes>
++ScheduleMember(DateTime startTime,
+DateTime endTime,
+Employee employee)
+
++ Employee : Employee
++ StartTime : startTime
++ EndTime : endTime
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>592</y>
+      <x>656</x>
+      <y>784</y>
       <w>176</w>
       <h>40</h>
     </coordinates>
@@ -246,21 +282,21 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>648</x>
-      <y>424</y>
+      <x>776</x>
+      <y>584</y>
       <w>144</w>
-      <h>120</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0;140.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
-      <y>360</y>
+      <x>272</x>
+      <y>520</y>
       <w>128</w>
       <h>104</h>
     </coordinates>
@@ -277,21 +313,21 @@ Empty
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>456</y>
-      <w>96</w>
-      <h>200</h>
+      <x>328</x>
+      <y>616</y>
+      <w>88</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=-
 m1= * 
 m2= 1</panel_attributes>
-    <additional_attributes>100.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>90.0;250.0;10.0;250.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>304</x>
-      <y>200</y>
+      <x>432</x>
+      <y>360</y>
       <w>128</w>
       <h>64</h>
     </coordinates>
@@ -306,14 +342,27 @@ Female
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>256</y>
-      <w>128</w>
+      <x>496</x>
+      <y>416</y>
+      <w>112</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1= 1
 m2= *</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;20.0;140.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>216</y>
+      <w>248</w>
+      <h>680</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=* schedules
+</panel_attributes>
+    <additional_attributes>290.0;820.0;10.0;820.0;10.0;10.0;140.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -15,7 +15,7 @@ namespace PapaSenpai_Project_Software
         public ScheduleMember(Employee employee, string startDate, string endDate)
         {
             this.employee = employee;
-            this.startTime = DateTime.Parse(startDate);
+            this.startTime = DateTime.ParseExact(date, "MM-dd-yyyy", null);
             this.endTime = DateTime.Parse(endDate);
         }
 

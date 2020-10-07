@@ -8,8 +8,8 @@ namespace PapaSenpai_Project_Software
 {
     public enum Department
     {
+        Programmer = 1,
         Cleaner,
-        IT,
-        Salesman
+        Salesman, 
     }
 }

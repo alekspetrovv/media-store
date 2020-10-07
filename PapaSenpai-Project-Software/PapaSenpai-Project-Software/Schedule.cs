@@ -14,11 +14,11 @@ namespace PapaSenpai_Project_Software
         private List<ScheduleMember> members;
         private DateTime date;
 
-        public Schedule(int id, string notes, string date)
+        public Schedule(int id, string notes, string date)  
         {
             this.id = id;
-            this.notes = notes;
-            this.date = DateTime.Parse(date);
+    
+            this.date = DateTime.ParseExact(date, "MM-dd-yyyy",null);
             this.members = new List<ScheduleMember>();
         }
 

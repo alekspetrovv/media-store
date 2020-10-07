@@ -152,61 +152,55 @@ namespace PapaSenpai_Project_Software
 
         private void UpdateAdmin()
         {
-            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            if (NullCheckerAdmin())
             {
-
-                DataGridViewRow dataRow = dtAdmins.Rows[i];
-
-                if (dataRow.IsNewRow)
-                {
-                    continue;
-                }
-
-                string adminId = (dataRow.Cells["ID"].Value.ToString());
+                string adminId = this.tbAdminId.Text;
                 int roleIndex = this.cbAdminRole.SelectedIndex;
                 roleIndex++;
                 string roleID = Convert.ToString(roleIndex);
                 string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
-
                 MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` SET `username`= @usn,`password`= @password," +
                     "`first_name`= @firstname,`last_name`= @lastname,`email`= @email," +
                     "`role_id`= @roleid WHERE `id` = @id", adminData);
                 this.pnlAdmin.Visible = true;
-                this.showPanel(this.pnlAdmin);
+                MessageBox.Show("You have succesfully update information for that user!");
                 Admin.retrieveAllAdmins();
                 this.renderAdminTable();
+                this.showPanel(this.pnlAdmin);
+            }
+            else 
+            {
+                MessageBox.Show("You need to enter all the details for updating a user!");
             }
         }
 
 
         private void UpdateEmployee()
         {
-            for (int i = 0; i < dtEmployees.Rows.Count; ++i)
+            if (NullCheckerEmployee())
             {
-                DataGridViewRow dataRow = dtEmployees.Rows[i];
-
-                if (dataRow.IsNewRow)
-                {
-                    continue;
-                }
-
-                string employeeId = (dataRow.Cells["ID"].Value.ToString());
+                string employeeId = this.tbEmployeeId.Text;
                 string gender = (string)this.cbEmployeeGender.SelectedItem;
-                int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                int department_id = Convert.ToInt32(this.cbEmployeeDepartment.SelectedIndex);
                 department_id++;
-                string increased_department_id = Convert.ToString(department_id);
+                string department = Convert.ToString(department_id);
                 string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
-                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,employeeId};
+                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,employeeId};
                 this.pnlEmployee.Visible = true;
                 DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
                    "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
                    ",`department_id`= @departmentid WHERE id = @id", employeeData);
+                MessageBox.Show("You have succesfully update information for that employee!");
                 this.showPanel(this.pnlEmployee);
                 Employee.retrieveAllEmployees();
                 this.renderStaffTable();
             }
-
+            else 
+            {
+                MessageBox.Show("You need to enter all the details for updating an employee!");
+            }
+            
         }
 
 
@@ -236,6 +230,7 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeAdress.Text = employee.Adress;
                     this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
                     this.tbEmployeeCity.Text = employee.City;
+                    this.tbEmployeeId.Text = Convert.ToString(employee.ID);
                     this.tbEmployeeCountry.Text = employee.Country;
                     this.tbEmployeeWagePerHour.Text = employee.Wage;
                     this.cbEmployeeDepartment.SelectedItem = employee.Department;
@@ -276,6 +271,7 @@ namespace PapaSenpai_Project_Software
                     this.tbAdminEmail.Text = admin.Email;
                     this.tbAdminPassword.Text = admin.Password;
                     this.cbAdminRole.SelectedItem = admin.Role;
+                    this.tbAdminId.Text = Convert.ToString(admin.ID);
                     Admin.retrieveAllAdmins();
                     this.renderAdminTable();
                     this.showPanel(pnlAddEditAdmin);
@@ -339,6 +335,7 @@ namespace PapaSenpai_Project_Software
 
             foreach (Schedule found_schedule in StoreControl.getSchedules())
             {
+                Console.WriteLine(found_schedule.Date);
                 coloredDates.Add(found_schedule.Date);
             }
 
@@ -432,7 +429,7 @@ namespace PapaSenpai_Project_Software
                 {
                     continue;
                 }
-
+                MessageBox.Show("You have deleted the selected admin!");
                 string adminId = (dataRow.Cells["ID"].Value.ToString());
                 string[] adminID = { adminId };
                 DBcon.executeNonQuery("DELETE FROM `admins` WHERE `id` = @id", adminID);
@@ -470,7 +467,7 @@ namespace PapaSenpai_Project_Software
                 DBcon.executeNonQuery("DELETE FROM `employees` WHERE `id` = @id", getID);
                 found = true;
             }
-
+            MessageBox.Show("You have succesfully deleted the selected employee!");
             Employee.retrieveAllEmployees();
             this.renderStaffTable();
 
@@ -505,6 +502,7 @@ namespace PapaSenpai_Project_Software
                     increased_role_id };
                 DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
                        "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
+                MessageBox.Show("You have created a user!");
                 Admin.retrieveAllAdmins();
                 this.renderAdminTable();
                 this.showPanel(pnlAdmin);

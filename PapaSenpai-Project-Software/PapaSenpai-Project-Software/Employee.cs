@@ -64,14 +64,13 @@ namespace PapaSenpai_Project_Software
             get { return department; }
         }
 
-        public static void retrieveAllEmployees()
+         public static void retrieveAllEmployees()
         {
             MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
                 "INNER JOIN departments ON departments.id = employees.department_id GROUP by employees.id");
             StoreControl.emptyUsers();
             if (employees.HasRows)
             {
-
                 while (employees.Read())
                 {
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),

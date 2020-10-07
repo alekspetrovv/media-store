@@ -117,6 +117,8 @@
             this.btnDeleteAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.tbAdminId = new System.Windows.Forms.TextBox();
+            this.tbEmployeeId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -614,6 +616,7 @@
             // 
             this.pnlAddStaff.AutoSize = true;
             this.pnlAddStaff.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddStaff.Controls.Add(this.tbEmployeeId);
             this.pnlAddStaff.Controls.Add(this.btnUpdateEmployee);
             this.pnlAddStaff.Controls.Add(this.tbEmployeeCity);
             this.pnlAddStaff.Controls.Add(this.lblEmployeeCity);
@@ -812,6 +815,7 @@
             // 
             // cbEmployeeGender
             // 
+            this.cbEmployeeGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEmployeeGender.FormattingEnabled = true;
             this.cbEmployeeGender.Items.AddRange(new object[] {
             "Male",
@@ -836,6 +840,7 @@
             // 
             // cbEmployeeDepartment
             // 
+            this.cbEmployeeDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEmployeeDepartment.FormattingEnabled = true;
             this.cbEmployeeDepartment.Items.AddRange(new object[] {
             "Programmer",
@@ -932,6 +937,7 @@
             // pnlAddEditAdmin
             // 
             this.pnlAddEditAdmin.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddEditAdmin.Controls.Add(this.tbAdminId);
             this.pnlAddEditAdmin.Controls.Add(this.btnUpdateAdmin);
             this.pnlAddEditAdmin.Controls.Add(this.lblAdminEmail);
             this.pnlAddEditAdmin.Controls.Add(this.tbAdminEmail);
@@ -1096,6 +1102,7 @@
             // 
             // cbAdminRole
             // 
+            this.cbAdminRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAdminRole.FormattingEnabled = true;
             this.cbAdminRole.Items.AddRange(new object[] {
             "Admin",
@@ -1269,6 +1276,22 @@
             this.btnAddAdmins.UseVisualStyleBackColor = true;
             this.btnAddAdmins.Click += new System.EventHandler(this.btnAddAdmins_Click);
             // 
+            // tbAdminId
+            // 
+            this.tbAdminId.Location = new System.Drawing.Point(268, 380);
+            this.tbAdminId.Name = "tbAdminId";
+            this.tbAdminId.Size = new System.Drawing.Size(241, 20);
+            this.tbAdminId.TabIndex = 59;
+            this.tbAdminId.Visible = false;
+            // 
+            // tbEmployeeId
+            // 
+            this.tbEmployeeId.Location = new System.Drawing.Point(443, 372);
+            this.tbEmployeeId.Name = "tbEmployeeId";
+            this.tbEmployeeId.Size = new System.Drawing.Size(241, 20);
+            this.tbEmployeeId.TabIndex = 41;
+            this.tbEmployeeId.Visible = false;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1276,12 +1299,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddStaff);
-            this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
+            this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlAddEditAdmin);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -1410,5 +1433,7 @@
         private System.Windows.Forms.TextBox tbAdminEmail;
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdateEmployee;
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdateAdmin;
+        private System.Windows.Forms.TextBox tbAdminId;
+        private System.Windows.Forms.TextBox tbEmployeeId;
     }
 }

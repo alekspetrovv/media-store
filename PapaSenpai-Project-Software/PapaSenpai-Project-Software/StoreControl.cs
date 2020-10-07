@@ -35,10 +35,6 @@ namespace PapaSenpai_Project_Software
         {
             return StoreControl.schedules;
         }
-
-
-
-
         public static User getloggedUser()
         {
             return StoreControl.loggedUser;
@@ -146,9 +142,7 @@ namespace PapaSenpai_Project_Software
         {
             StoreControl.schedules.Clear();
         }
-
-
-
+    
 
     }
 }
