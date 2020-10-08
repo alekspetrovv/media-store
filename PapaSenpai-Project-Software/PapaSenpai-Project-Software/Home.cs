@@ -168,7 +168,7 @@ namespace PapaSenpai_Project_Software
                 this.renderAdminTable();
                 this.showPanel(this.pnlAdmin);
             }
-            else 
+            else
             {
                 MessageBox.Show("You need to enter all the details for updating a user!");
             }
@@ -186,21 +186,21 @@ namespace PapaSenpai_Project_Software
                 string department = Convert.ToString(department_id);
                 string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
-                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,employeeId};
+                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,employeeId};
                 this.pnlEmployee.Visible = true;
                 DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
                    "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                   ",`department_id`= @departmentid WHERE id = @id", employeeData);
+                   ",`department_id`= @departmentid,`wage_per_hour` = @wage WHERE id = @id", employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
                 this.showPanel(this.pnlEmployee);
                 Employee.retrieveAllEmployees();
                 this.renderStaffTable();
             }
-            else 
+            else
             {
                 MessageBox.Show("You need to enter all the details for updating an employee!");
             }
-            
+
         }
 
 
@@ -315,10 +315,11 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Phone", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
             dtEmp.Columns.Add("Deparment", typeof(string));
+            dtEmp.Columns.Add("Wage per hour", typeof(string));
 
             foreach (Employee employee in StoreControl.getUsers())
             {
-                dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department);
+                dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department, employee.Wage);
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -541,9 +542,9 @@ namespace PapaSenpai_Project_Software
                 string gender = (string)this.cbEmployeeGender.SelectedItem;
                 string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
-                    gender, this.tbEmployeeEmail.Text,increased_department_id};
-                DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`) " +
-                               "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id)", employee_bindings);
+                    gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeWagePerHour.Text};
+                DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`,`wage_per_hour`) " +
+                               "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id,@wage)", employee_bindings);
                 Employee.retrieveAllEmployees();
                 this.renderStaffTable();
                 this.showPanel(pnlEmployee);

@@ -64,6 +64,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAddStaff = new System.Windows.Forms.Panel();
+            this.tbEmployeeId = new System.Windows.Forms.TextBox();
             this.btnUpdateEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tbEmployeeCity = new System.Windows.Forms.TextBox();
             this.lblEmployeeCity = new MaterialSkin.Controls.MaterialLabel();
@@ -91,6 +92,7 @@
             this.tbEmployeeEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAddEditAdmin = new System.Windows.Forms.Panel();
+            this.tbAdminId = new System.Windows.Forms.TextBox();
             this.btnUpdateAdmin = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblAdminEmail = new MaterialSkin.Controls.MaterialLabel();
             this.tbAdminEmail = new System.Windows.Forms.TextBox();
@@ -117,8 +119,6 @@
             this.btnDeleteAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.tbAdminId = new System.Windows.Forms.TextBox();
-            this.tbEmployeeId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -330,10 +330,10 @@
             this.dtEmployees.AllowUserToResizeColumns = false;
             this.dtEmployees.AllowUserToResizeRows = false;
             this.dtEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtEmployees.Location = new System.Drawing.Point(84, 48);
+            this.dtEmployees.Location = new System.Drawing.Point(9, 48);
             this.dtEmployees.Name = "dtEmployees";
             this.dtEmployees.RowHeadersWidth = 51;
-            this.dtEmployees.Size = new System.Drawing.Size(555, 295);
+            this.dtEmployees.Size = new System.Drawing.Size(684, 295);
             this.dtEmployees.TabIndex = 12;
             // 
             // materialLabel9
@@ -646,6 +646,14 @@
             this.pnlAddStaff.Name = "pnlAddStaff";
             this.pnlAddStaff.Size = new System.Drawing.Size(698, 415);
             this.pnlAddStaff.TabIndex = 18;
+            // 
+            // tbEmployeeId
+            // 
+            this.tbEmployeeId.Location = new System.Drawing.Point(443, 372);
+            this.tbEmployeeId.Name = "tbEmployeeId";
+            this.tbEmployeeId.Size = new System.Drawing.Size(241, 20);
+            this.tbEmployeeId.TabIndex = 41;
+            this.tbEmployeeId.Visible = false;
             // 
             // btnUpdateEmployee
             // 
@@ -960,6 +968,14 @@
             this.pnlAddEditAdmin.Size = new System.Drawing.Size(698, 412);
             this.pnlAddEditAdmin.TabIndex = 34;
             // 
+            // tbAdminId
+            // 
+            this.tbAdminId.Location = new System.Drawing.Point(268, 380);
+            this.tbAdminId.Name = "tbAdminId";
+            this.tbAdminId.Size = new System.Drawing.Size(241, 20);
+            this.tbAdminId.TabIndex = 59;
+            this.tbAdminId.Visible = false;
+            // 
             // btnUpdateAdmin
             // 
             this.btnUpdateAdmin.Depth = 0;
@@ -1163,10 +1179,10 @@
             this.dtAdmins.AllowUserToResizeColumns = false;
             this.dtAdmins.AllowUserToResizeRows = false;
             this.dtAdmins.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtAdmins.Location = new System.Drawing.Point(84, 48);
+            this.dtAdmins.Location = new System.Drawing.Point(8, 48);
             this.dtAdmins.Name = "dtAdmins";
             this.dtAdmins.RowHeadersWidth = 51;
-            this.dtAdmins.Size = new System.Drawing.Size(555, 295);
+            this.dtAdmins.Size = new System.Drawing.Size(685, 295);
             this.dtAdmins.TabIndex = 12;
             // 
             // materialLabel3
@@ -1276,22 +1292,6 @@
             this.btnAddAdmins.UseVisualStyleBackColor = true;
             this.btnAddAdmins.Click += new System.EventHandler(this.btnAddAdmins_Click);
             // 
-            // tbAdminId
-            // 
-            this.tbAdminId.Location = new System.Drawing.Point(268, 380);
-            this.tbAdminId.Name = "tbAdminId";
-            this.tbAdminId.Size = new System.Drawing.Size(241, 20);
-            this.tbAdminId.TabIndex = 59;
-            this.tbAdminId.Visible = false;
-            // 
-            // tbEmployeeId
-            // 
-            this.tbEmployeeId.Location = new System.Drawing.Point(443, 372);
-            this.tbEmployeeId.Name = "tbEmployeeId";
-            this.tbEmployeeId.Size = new System.Drawing.Size(241, 20);
-            this.tbEmployeeId.TabIndex = 41;
-            this.tbEmployeeId.Visible = false;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1299,12 +1299,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAddSchedule);
-            this.Controls.Add(this.pnlEmployee);
-            this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddEditAdmin);
+            this.Controls.Add(this.pnlAddSchedule);
+            this.Controls.Add(this.pnlEmployee);
+            this.Controls.Add(this.pnlDashBoard);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
