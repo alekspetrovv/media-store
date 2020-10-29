@@ -60,8 +60,6 @@
             this.pnlAddSchedule = new System.Windows.Forms.Panel();
             this.btnUpdateSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.calendarSchedule = new System.Windows.Forms.MonthCalendar();
-            this.dtAddSchedule = new System.Windows.Forms.DataGridView();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlAddStaff = new System.Windows.Forms.Panel();
             this.tbEmployeeId = new System.Windows.Forms.TextBox();
@@ -119,6 +117,8 @@
             this.btnDeleteAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.dtAddSchedule = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -133,7 +133,6 @@
             this.pnlDashBoard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtTodaySchedule)).BeginInit();
             this.pnlAddSchedule.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtAddSchedule)).BeginInit();
             this.pnlAddStaff.SuspendLayout();
             this.pnlAddEditAdmin.SuspendLayout();
             this.pnlAdmin.SuspendLayout();
@@ -141,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtAddSchedule)).BeginInit();
             this.SuspendLayout();
             // 
             // btnViewEmployees
@@ -572,31 +572,6 @@
             this.calendarSchedule.Name = "calendarSchedule";
             this.calendarSchedule.TabIndex = 11;
             this.calendarSchedule.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarSchedule_DateChanged);
-            // 
-            // dtAddSchedule
-            // 
-            this.dtAddSchedule.AllowUserToAddRows = false;
-            this.dtAddSchedule.AllowUserToDeleteRows = false;
-            this.dtAddSchedule.AllowUserToResizeColumns = false;
-            this.dtAddSchedule.AllowUserToResizeRows = false;
-            this.dtAddSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtAddSchedule.Location = new System.Drawing.Point(16, 210);
-            this.dtAddSchedule.Name = "dtAddSchedule";
-            this.dtAddSchedule.RowHeadersWidth = 51;
-            this.dtAddSchedule.Size = new System.Drawing.Size(668, 156);
-            this.dtAddSchedule.TabIndex = 3;
-            // 
-            // materialLabel1
-            // 
-            this.materialLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(4, 40);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(689, 2);
-            this.materialLabel1.TabIndex = 2;
             // 
             // materialLabel7
             // 
@@ -1292,6 +1267,31 @@
             this.btnAddAdmins.UseVisualStyleBackColor = true;
             this.btnAddAdmins.Click += new System.EventHandler(this.btnAddAdmins_Click);
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(4, 40);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(689, 2);
+            this.materialLabel1.TabIndex = 2;
+            // 
+            // dtAddSchedule
+            // 
+            this.dtAddSchedule.AllowUserToAddRows = false;
+            this.dtAddSchedule.AllowUserToDeleteRows = false;
+            this.dtAddSchedule.AllowUserToResizeColumns = false;
+            this.dtAddSchedule.AllowUserToResizeRows = false;
+            this.dtAddSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtAddSchedule.Location = new System.Drawing.Point(16, 210);
+            this.dtAddSchedule.Name = "dtAddSchedule";
+            this.dtAddSchedule.RowHeadersWidth = 51;
+            this.dtAddSchedule.Size = new System.Drawing.Size(668, 156);
+            this.dtAddSchedule.TabIndex = 3;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1299,12 +1299,12 @@
             this.ClientSize = new System.Drawing.Size(934, 492);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlAdmin);
-            this.Controls.Add(this.pnlAddStaff);
-            this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlAddSchedule);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
+            this.Controls.Add(this.pnlAdmin);
+            this.Controls.Add(this.pnlAddStaff);
+            this.Controls.Add(this.pnlAddEditAdmin);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -1327,7 +1327,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtTodaySchedule)).EndInit();
             this.pnlAddSchedule.ResumeLayout(false);
             this.pnlAddSchedule.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtAddSchedule)).EndInit();
             this.pnlAddStaff.ResumeLayout(false);
             this.pnlAddStaff.PerformLayout();
             this.pnlAddEditAdmin.ResumeLayout(false);
@@ -1338,6 +1337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtAddSchedule)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1367,8 +1367,6 @@
         private System.Windows.Forms.DataGridView dtTodaySchedule;
         private MaterialSkin.Controls.MaterialRaisedButton btnChangeTodaySchedule;
         private MaterialSkin.Controls.MaterialRaisedButton btnViewAllSchedules;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private System.Windows.Forms.DataGridView dtAddSchedule;
         private System.Windows.Forms.MonthCalendar calendarSchedule;
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdateSchedule;
         private MaterialSkin.Controls.MaterialRaisedButton btnDeleteEmployee;
@@ -1435,5 +1433,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdateAdmin;
         private System.Windows.Forms.TextBox tbAdminId;
         private System.Windows.Forms.TextBox tbEmployeeId;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private System.Windows.Forms.DataGridView dtAddSchedule;
     }
 }

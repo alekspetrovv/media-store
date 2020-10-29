@@ -16,7 +16,8 @@ namespace PapaSenpai_Project_Software
         {
             this.employee = employee;
             //this.startTime = DateTime.ParseExact(date, "MM-dd-yyyy", null);
-            //this.endTime = DateTime.Parse(endDate);
+            this.endTime = DateTime.Parse(endDate);
+            this.startTime = DateTime.Parse(startDate);
         }
 
         public Employee Employee 
@@ -33,8 +34,5 @@ namespace PapaSenpai_Project_Software
         {
             get { return this.endTime; }
         }
-
-
-
     }
 }

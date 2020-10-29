@@ -238,6 +238,7 @@ namespace PapaSenpai_Project_Software
                     this.showPanel(this.pnlAddStaff);
                     Employee.retrieveAllEmployees();
                     this.renderStaffTable();
+                    this.renderScheduleMembers();
                 }
             }
 
@@ -313,13 +314,16 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Last Name", typeof(string));
             dtEmp.Columns.Add("Gender", typeof(string));
             dtEmp.Columns.Add("Phone", typeof(string));
+            dtEmp.Columns.Add("Country", typeof(string));
+            dtEmp.Columns.Add("City", typeof(string));
+            dtEmp.Columns.Add("Adress", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
             dtEmp.Columns.Add("Deparment", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
 
             foreach (Employee employee in StoreControl.getUsers())
             {
-                dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Email, employee.Department, employee.Wage);
+                dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage);
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -391,28 +395,16 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("To", typeof(string));
             dtEmp.Columns.Add("Department", typeof(string));
 
-            foreach (Employee employee in StoreControl.getUsers())
+            if (schedule != null)
             {
-                ScheduleMember foundMember = null;
-                if (schedule != null)
+                foreach (ScheduleMember member in schedule.Members)
                 {
-                    foreach (ScheduleMember member in schedule.Members)
-                    {
-                        if (member.Employee.ID == employee.ID)
-                        {
-                            foundMember = member;
-                        }
-                    }
-                }
-                if (foundMember != null)
-                {
-                    dtEmp.Rows.Add(employee.ID, employee.getFullName(), foundMember.StartTime.ToString("HH:mm"), foundMember.EndTime.ToString("HH:mm"), employee.Department);
-                }
-                else
-                {
-                    dtEmp.Rows.Add(employee.ID, employee.getFullName(), "9:00", "17:00", employee.Department);
+
+                    dtEmp.Rows.Add(member.Employee.ID, member.Employee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), member.Employee.Department);
+
                 }
             }
+
 
             dtTodaySchedule.DataSource = dtEmp;
         }
@@ -471,6 +463,7 @@ namespace PapaSenpai_Project_Software
             MessageBox.Show("You have succesfully deleted the selected employee!");
             Employee.retrieveAllEmployees();
             this.renderStaffTable();
+            this.renderScheduleMembers();
 
 
             if (!found)
@@ -546,6 +539,7 @@ namespace PapaSenpai_Project_Software
                 DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`,`wage_per_hour`) " +
                                "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id,@wage)", employee_bindings);
                 Employee.retrieveAllEmployees();
+                this.renderScheduleMembers();
                 this.renderStaffTable();
                 this.showPanel(pnlEmployee);
                 return;
@@ -633,6 +627,7 @@ namespace PapaSenpai_Project_Software
 
             Schedule.retrieveSchedules();
             this.renderScheduleMembers();
+            this.renderDailySchedule();
 
             calendarSchedule.SelectionRange.End = this.currentScheduleDate;
 
@@ -672,5 +667,8 @@ namespace PapaSenpai_Project_Software
             UpdateAdmin();
         }
 
+        private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
+        {
+        }
     }
 }
