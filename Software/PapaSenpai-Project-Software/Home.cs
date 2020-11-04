@@ -186,11 +186,11 @@ namespace PapaSenpai_Project_Software
                 string department = Convert.ToString(department_id);
                 string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
-                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,employeeId};
+                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
                 this.pnlEmployee.Visible = true;
                 DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
                    "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                   ",`department_id`= @departmentid,`wage_per_hour` = @wage WHERE id = @id", employeeData);
+                   ",`department_id`= @departmentid,`wage_per_hour` = @wage,`username`= @username,`password`= @password WHERE id = @id", employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
                 this.showPanel(this.pnlEmployee);
                 Employee.retrieveAllEmployees();
@@ -224,6 +224,8 @@ namespace PapaSenpai_Project_Software
                 {
                     string employeeId = (dataRow.Cells["ID"].Value.ToString());
                     Employee employee = StoreControl.getEmployeeById(Convert.ToInt32(employeeId));
+                    this.tbEmployeeUserName.Text = employee.UserName;
+                    this.tbEmployeePassword.Text = employee.Password;
                     this.tbEmployeeFirstName.Text = employee.FirstName;
                     this.tbEmployeeLastName.Text = employee.LastName;
                     this.tbEmployeeEmail.Text = employee.Email;
@@ -235,6 +237,7 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeWagePerHour.Text = employee.Wage;
                     this.cbEmployeeDepartment.SelectedItem = employee.Department;
                     this.cbEmployeeGender.SelectedItem = employee.Gender;
+
                     this.showPanel(this.pnlAddStaff);
                     Employee.retrieveAllEmployees();
                     this.renderStaffTable();
@@ -310,6 +313,8 @@ namespace PapaSenpai_Project_Software
             DataTable dtEmp = new DataTable();
             dtEmp.Columns.Add("Selected", typeof(bool));
             dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("Username", typeof(string));
+            dtEmp.Columns.Add("Password", typeof(string));
             dtEmp.Columns.Add("First Name", typeof(string));
             dtEmp.Columns.Add("Last Name", typeof(string));
             dtEmp.Columns.Add("Gender", typeof(string));
@@ -320,10 +325,11 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Email", typeof(string));
             dtEmp.Columns.Add("Deparment", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
+            dtEmp.Columns.Add("Salary for the shift", typeof(string));
 
             foreach (Employee employee in StoreControl.getUsers())
             {
-                dtEmp.Rows.Add(false, employee.ID, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage);
+                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -534,10 +540,10 @@ namespace PapaSenpai_Project_Software
                 string increased_department_id = Convert.ToString(department_id);
                 string gender = (string)this.cbEmployeeGender.SelectedItem;
                 string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
-                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeePhoneNumber.Text,
-                    gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeWagePerHour.Text};
-                DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`,`phone_number`, `gender`, `email`,`department_id`,`wage_per_hour`) " +
-                               "VALUES(@first_name,@last_name,@address,@city,@country,@phone_number,@gender,@email,@department_id,@wage)", employee_bindings);
+                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
+                    gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
+                DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `username`, `password`)" +
+                               "VALUES(@first_name,@last_name,@address,@city,@country,@wage_per_hour,@phone_number,@gender,@email,@department_id,@username,@password)", employee_bindings);
                 Employee.retrieveAllEmployees();
                 this.renderScheduleMembers();
                 this.renderStaffTable();

@@ -2,8 +2,8 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 26, 2020 at 12:42 PM
+-- Host: localhost
+-- Generation Time: Nov 04, 2020 at 05:26 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -31,6 +31,9 @@ CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -38,8 +41,8 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `password`, `role_id`) VALUES
-(2, 'admin', 'admin', 1);
+INSERT INTO `admins` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `role_id`) VALUES
+(14, 'admin', 'admin', 'Alex', 'Petrov', 'aleks.ppetrov2000@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -52,6 +55,15 @@ CREATE TABLE `departments` (
   `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `title`) VALUES
+(1, 'Programmer'),
+(2, 'Cleaner'),
+(3, 'Salesman');
+
 -- --------------------------------------------------------
 
 --
@@ -62,24 +74,28 @@ CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `address` int(255) NOT NULL,
-  `city` int(255) NOT NULL,
-  `country` int(255) NOT NULL,
-  `wage_per_hour` decimal(10,2) NOT NULL,
-  `gender` varchar(255) NOT NULL
+  `address` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `wage_per_hour` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `department_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `employees_departments`
+-- Dumping data for table `employees`
 --
 
-CREATE TABLE `employees_departments` (
-  `id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `employees` (`id`, `first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `username`, `password`) VALUES
+(9, 'Georgina', 'Dimitrova', '1890  Kelley Road', 'Missisipi', 'United States', '100', '228 - 276 - 3719', 'Female', 'gogboginq@gmail.com', 1, '', ''),
+(10, 'Tyler', 'Augostinho', 'Zuiderparkweg 148', 'Rotterdam', 'Netherlands', '10.00', '06-54431245', 'Male', 'tyler@gmail.com', 3, '', ''),
+(11, 'Michael', 'Mutiti', 'De Gouden Leeuw 38', 'Venray', 'Limburg', '50.00', '06-73128834', 'Male', 'michaelmutiti@gmail.com', 2, '', ''),
+(12, 'Andre', 'Postma', 'Lemmerweg 90', 'Friesland', 'Netherlands', '25.00', '06-59031819', 'Male', 'andrepostma@gmail.com', 1, '', ''),
+(13, 'Alex', 'Petrov', 'Johannes van derwelseg 90', 'Eindhoven', 'Netherlands', '300', '+35988916101', 'Male', 'alexpetrov@gmail.com', 1, 'alexpetrov2020', '2020');
 
 -- --------------------------------------------------------
 
@@ -97,7 +113,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `title`) VALUES
-(1, 'Admin');
+(1, 'Admin'),
+(2, 'Manager');
 
 -- --------------------------------------------------------
 
@@ -108,8 +125,15 @@ INSERT INTO `roles` (`id`, `title`) VALUES
 CREATE TABLE `schedules` (
   `id` int(11) NOT NULL,
   `notes` varchar(255) NOT NULL,
-  `date` date NOT NULL
+  `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`id`, `notes`, `date`) VALUES
+(38, '', '10-29-2020');
 
 -- --------------------------------------------------------
 
@@ -121,9 +145,8 @@ CREATE TABLE `schedules_employees` (
   `id` int(11) NOT NULL,
   `schedule_id` int(11) NOT NULL,
   `employee_id` int(11) NOT NULL,
-  `from_hour` datetime NOT NULL,
-  `to_hour` datetime NOT NULL,
-  `datetime` varchar(255) NOT NULL
+  `from_hour` varchar(255) NOT NULL,
+  `to_hour` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -148,14 +171,6 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `employees_departments`
---
-ALTER TABLE `employees_departments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `employee_id` (`employee_id`),
-  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `roles`
@@ -185,37 +200,31 @@ ALTER TABLE `schedules_employees`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `employees_departments`
---
-ALTER TABLE `employees_departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `schedules_employees`
@@ -232,13 +241,6 @@ ALTER TABLE `schedules_employees`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
-
---
--- Constraints for table `employees_departments`
---
-ALTER TABLE `employees_departments`
-  ADD CONSTRAINT `employees_departments_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
-  ADD CONSTRAINT `employees_departments_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
 
 --
 -- Constraints for table `schedules_employees`

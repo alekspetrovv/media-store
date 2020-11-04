@@ -14,19 +14,36 @@ namespace PapaSenpai_Project_Software
         private string country;
         private string phone_number;
         private string wage;
+        private string username;
+        private string password;
         Gender gender;
         Department department;
 
-        public Employee(int id, string first_name, string last_name, string email, string adress, string city, string country,
-         string phone_number, string gender, string department, string wage) : base(id, first_name, last_name, email)
+        public Employee(int id,string first_name, string last_name, string email, string adress, string city, string country,
+         string phone_number, string gender, string department, string wage, string username, string password) : base(id, first_name, last_name, email)
         {
             this.adress = adress;
             this.city = city;
             this.country = country;
             this.phone_number = phone_number;
             this.wage = wage;
+            this.username = username;
+            this.password = password;
             Enum.TryParse(gender, out this.gender);
             Enum.TryParse(department, out this.department);
+        }
+
+        public string UserName
+        {
+            get
+            {
+                return this.username;
+            }
+        }
+
+        public string Password
+        {
+            get { return this.password; }
         }
 
         public string Adress
@@ -39,7 +56,7 @@ namespace PapaSenpai_Project_Software
             get { return this.city; }
         }
 
-        public string Country 
+        public string Country
         {
             get { return this.country; }
         }
@@ -76,7 +93,7 @@ namespace PapaSenpai_Project_Software
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
                         employees["last_name"].ToString(), employees["email"].ToString()
                         , employees["address"].ToString(), employees["city"].ToString(), employees["country"].ToString(),
-                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString(), employees["wage_per_hour"].ToString());
+                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString(), employees["wage_per_hour"].ToString(), employees["username"].ToString(), employees ["password"].ToString());
 
                     StoreControl.addEmployee(employee);
                 }
