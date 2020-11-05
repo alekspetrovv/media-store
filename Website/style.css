@@ -1,0 +1,91 @@
+body {
+    font-family: 'Open Sans', sans-serif !important;
+    background-color: #e5e5e5 !important;
+}
+
+.display-5 {
+    margin: 0 auto;
+}
+
+.lead {
+    margin: 0 auto;
+}
+
+.wrapper {
+    margin: 10px;
+}
+
+.col-lg {
+    margin-top: 10px;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.col {
+    color: #ffffff;
+}
+
+.form-signin {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 20px 10px 10px;
+    border: 0px solid #ffffff;
+    color: white;
+    background-color: #28a745!important;
+}
+
+.btn.btn-lg.btn-success {
+    color: #28a745!important;
+    background-color: #212529;
+    border-color: white;
+}
+
+.form-signin .form-signin-heading {
+    margin-bottom: 30px;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: 20px;
+    border-radius: 1rem;
+    border-color: #28a745 !important;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 20px;
+    border-radius: 1rem;
+}
+
+.form-signin .form-control {
+    padding: 10px;
+}
+
+.form-signin .btn {
+    font-size: 1.0rem;
+    letter-spacing: 0.05rem;
+    padding: 0.65rem 1rem;
+    border-radius: 2rem;
+}
+
+.nav-item a {
+    color: #ffffff;
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    color: #ffffff;
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+
+.display-5 {
+    color: #ffffff;
+}
+
+.lead {
+    color: #ffffff;
+}

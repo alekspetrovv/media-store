@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -45,6 +46,18 @@ namespace PapaSenpai_Project_Software
 
             return cmd;
 
+        }
+
+        public static void ShowSqlException(MySqlConnection ms)
+        {
+            try
+            {
+                MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("There's been an exception:  " + ex.Message);
+            }
         }
 
         public static MySqlDataReader executeReader(string sql, string[] bindings = null)
