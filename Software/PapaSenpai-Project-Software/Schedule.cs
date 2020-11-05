@@ -74,14 +74,28 @@ namespace PapaSenpai_Project_Software
                             }
                         }
                     }
-
                     StoreControl.addSchedule(schedule);
                 }
             }
-
-
         }
 
+        public static void UpdateSchedule(string[] schedule_bindings)
+        {
+            // to do
+            DBcon.executeScalar("INSERT INTO `schedules`(`notes`, `date`) VALUES (@notes,@date); SELECT LAST_INSERT_ID()",schedule_bindings);
+        }
+
+        public static void DeleteSchedule(string[] schedule_bindings)
+        {
+            DBcon.executeNonQuery("DELETE FROM `schedules_employees` WHERE schedule_id = @id", schedule_bindings);
+        }
+
+        public static void AssignSchedule(string[] schedule_bindings)
+        {
+            // to do
+            DBcon.executeNonQuery("INSERT INTO `schedules_employees`(`schedule_id`, `employee_id`, `from_hour`, `to_hour`)" +
+                       " VALUES (@schedule_id, @member_id, @from_hour, @to_hour)", schedule_bindings);
+        }
 
     }
 }

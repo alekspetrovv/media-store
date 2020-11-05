@@ -100,6 +100,23 @@ namespace PapaSenpai_Project_Software
             }
         }
 
+        public static void AddEmployee(string[] employee_bindings)
+        { 
+            DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `username`, `password`)" +
+                              "VALUES(@first_name,@last_name,@address,@city,@country,@wage_per_hour,@phone_number,@gender,@email,@department_id,@username,@password)", employee_bindings);
+            retrieveAllEmployees();
+        }
+        public static void UpdateEmployee(string[] employee_bindings)
+        {
+            DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
+                   "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
+                   ",`department_id`= @departmentid,`wage_per_hour` = @wage,`username`= @username,`password`= @password WHERE id = @id", employee_bindings);
+            retrieveAllEmployees();
+        }
+        public static void DeleteEmployee(string[] employee_bindings)
+        {
+            DBcon.executeNonQuery("DELETE FROM `employees` WHERE `id` = @id", employee_bindings);
+        }
 
     }
 }

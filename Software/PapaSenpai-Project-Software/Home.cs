@@ -58,9 +58,10 @@ namespace PapaSenpai_Project_Software
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
             this.pnlAddStaff.Visible = false;
-            this.pnlAddSchedule.Visible = false;
+            this.pnlViewSchedule.Visible = false;
             this.pnlAdmin.Visible = false;
             this.pnlAddEditAdmin.Visible = false;
+            this.pnlWorkingEmployees.Visible = false;
             panel.Visible = true;
 
         }
@@ -80,16 +81,8 @@ namespace PapaSenpai_Project_Software
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlAddSchedule);
+            this.showPanel(pnlViewSchedule);
         }
-
-
-        private void btnViewSchedule_Click_1(object sender, EventArgs e)
-        {
-            this.showPanel(pnlAddSchedule);
-        }
-
-
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAddStaff);
@@ -159,12 +152,9 @@ namespace PapaSenpai_Project_Software
                 roleIndex++;
                 string roleID = Convert.ToString(roleIndex);
                 string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
-                MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` SET `username`= @usn,`password`= @password," +
-                    "`first_name`= @firstname,`last_name`= @lastname,`email`= @email," +
-                    "`role_id`= @roleid WHERE `id` = @id", adminData);
+                Admin.UpdateAdmin(adminData);
                 this.pnlAdmin.Visible = true;
                 MessageBox.Show("You have succesfully update information for that user!");
-                Admin.retrieveAllAdmins();
                 this.renderAdminTable();
                 this.showPanel(this.pnlAdmin);
             }
@@ -188,12 +178,8 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
                 this.pnlEmployee.Visible = true;
-                DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
-                   "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                   ",`department_id`= @departmentid,`wage_per_hour` = @wage,`username`= @username,`password`= @password WHERE id = @id", employeeData);
-                MessageBox.Show("You have succesfully update information for that employee!");
+                Employee.UpdateEmployee(employeeData);
                 this.showPanel(this.pnlEmployee);
-                Employee.retrieveAllEmployees();
                 this.renderStaffTable();
             }
             else
@@ -237,7 +223,6 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeWagePerHour.Text = employee.Wage;
                     this.cbEmployeeDepartment.SelectedItem = employee.Department;
                     this.cbEmployeeGender.SelectedItem = employee.Gender;
-
                     this.showPanel(this.pnlAddStaff);
                     Employee.retrieveAllEmployees();
                     this.renderStaffTable();
@@ -384,7 +369,7 @@ namespace PapaSenpai_Project_Software
                 }
             }
 
-            dtAddSchedule.DataSource = dtEmp;
+            dtAssignShift.DataSource = dtEmp;
         }
 
 
@@ -431,7 +416,7 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show("You have deleted the selected admin!");
                 string adminId = (dataRow.Cells["ID"].Value.ToString());
                 string[] adminID = { adminId };
-                DBcon.executeNonQuery("DELETE FROM `admins` WHERE `id` = @id", adminID);
+                Admin.DeleteAdmin(adminID);
                 found = true;
             }
 
@@ -463,7 +448,7 @@ namespace PapaSenpai_Project_Software
 
                 string id = (dataRow.Cells["ID"].Value.ToString());
                 string[] getID = { id };
-                DBcon.executeNonQuery("DELETE FROM `employees` WHERE `id` = @id", getID);
+                Employee.DeleteEmployee(getID);
                 found = true;
             }
             MessageBox.Show("You have succesfully deleted the selected employee!");
@@ -500,10 +485,8 @@ namespace PapaSenpai_Project_Software
                 string increased_role_id = Convert.ToString(role_id);
                 string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
                     increased_role_id };
-                DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
-                       "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
+                Admin.AddAdmin(admin_bindings); 
                 MessageBox.Show("You have created a user!");
-                Admin.retrieveAllAdmins();
                 this.renderAdminTable();
                 this.showPanel(pnlAdmin);
                 return;
@@ -542,14 +525,11 @@ namespace PapaSenpai_Project_Software
                 string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
                     gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
-                DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `username`, `password`)" +
-                               "VALUES(@first_name,@last_name,@address,@city,@country,@wage_per_hour,@phone_number,@gender,@email,@department_id,@username,@password)", employee_bindings);
-                Employee.retrieveAllEmployees();
+                Employee.AddEmployee(employee_bindings);
                 this.renderScheduleMembers();
                 this.renderStaffTable();
                 this.showPanel(pnlEmployee);
                 return;
-
             }
 
             foreach (string message in errors)
@@ -557,19 +537,6 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show(message);
             }
 
-        }
-
-
-        private void calendarSchedule_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            this.currentScheduleDate = e.End;
-            this.renderScheduleMembers();
-        }
-
-
-        private void btnUpdateSchedule_Click(object sender, EventArgs e)
-        {
-            updateSchedule();
         }
 
 
@@ -587,7 +554,8 @@ namespace PapaSenpai_Project_Software
             if (schedule == null)
             {
                 string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
-                id = Convert.ToInt32(DBcon.executeScalar("INSERT INTO `schedules`(`notes`, `date`) VALUES (@notes,@date); SELECT LAST_INSERT_ID()", bindings));
+                // to do - George
+                id = Convert.ToInt32(bindings);
             }
             else
             {
@@ -596,14 +564,14 @@ namespace PapaSenpai_Project_Software
 
             //delete all of the attached users for new/pervious schedules
             string[] delete_bindings = { id.ToString() };
-            DBcon.executeNonQuery("DELETE FROM `schedules_employees` WHERE schedule_id = @id", delete_bindings);
+            Schedule.DeleteSchedule(delete_bindings);
 
             int user_count = 0;
 
-            for (int i = 0; i < dtAddSchedule.Rows.Count; ++i)
+            for (int i = 0; i < dtAssignShift.Rows.Count; ++i)
             {
 
-                DataGridViewRow dataRow = dtAddSchedule.Rows[i];
+                DataGridViewRow dataRow = dtAssignShift.Rows[i];
 
                 if (dataRow.IsNewRow)
                 {
@@ -618,8 +586,7 @@ namespace PapaSenpai_Project_Software
                 {
                     string member_id = (dataRow.Cells["ID"].Value.ToString());
                     string[] member_data = { id.ToString(), member_id.ToString(), from, to };
-                    DBcon.executeNonQuery("INSERT INTO `schedules_employees`(`schedule_id`, `employee_id`, `from_hour`, `to_hour`)" +
-                        " VALUES (@schedule_id, @member_id, @from_hour, @to_hour)", member_data);
+                    Schedule.AssignSchedule(member_data);
                     user_count++;
                 }
             }
@@ -627,8 +594,7 @@ namespace PapaSenpai_Project_Software
             //delete schedule if working employees is equal 0
             if (user_count == 0)
             {
-                DBcon.executeNonQuery("DELETE FROM `schedules` WHERE id = @id", delete_bindings);
-
+                Schedule.DeleteSchedule(delete_bindings);
             }
 
             Schedule.retrieveSchedules();
@@ -675,6 +641,20 @@ namespace PapaSenpai_Project_Software
 
         private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
         {
+            this.showPanel(pnlWorkingEmployees);
+            this.currentScheduleDate = e.End;
+            this.renderScheduleMembers();
+        }
+
+        private void btnViewSchedule_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlViewSchedule);
+        }
+
+        private void btnUpdateSchedule_Click(object sender, EventArgs e)
+        {
+            updateSchedule();
+            this.showPanel(pnlViewSchedule);
         }
     }
 }

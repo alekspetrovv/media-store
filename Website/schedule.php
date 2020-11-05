@@ -51,7 +51,7 @@ $schedules = $schedules->get();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="schedule.php">Schedules<span class="sr-only">(current)</span></a>
+                    <a class="nav-link active" href="schedule.php">Schedule<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="settings.php">User Settings</a>
@@ -64,7 +64,7 @@ $schedules = $schedules->get();
     </nav>
 
     <div class="jumbotron jumbotron-fluid bg-success text-white text-center mb-0">
-        <h1 class="display-5">Schedules</h1>
+        <h1 class="display-5">Schedule</h1>
         <br>
         <p class="lead">This page shows the employee schedule!</p>
         <hr>
