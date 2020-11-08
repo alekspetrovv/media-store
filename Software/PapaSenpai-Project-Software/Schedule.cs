@@ -79,10 +79,10 @@ namespace PapaSenpai_Project_Software
             }
         }
 
-        public static void UpdateSchedule(string[] schedule_bindings)
+        public static Object UpdateSchedule(string[] schedule_bindings)
         {
             // to do
-            DBcon.executeScalar("INSERT INTO `schedules`(`notes`, `date`) VALUES (@notes,@date); SELECT LAST_INSERT_ID()",schedule_bindings);
+           return DBcon.executeScalar("INSERT INTO `schedules`(`notes`, `date`) VALUES (@notes,@date); SELECT LAST_INSERT_ID()",schedule_bindings);
         }
 
         public static void DeleteSchedule(string[] schedule_bindings)

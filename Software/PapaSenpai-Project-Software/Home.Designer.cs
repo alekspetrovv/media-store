@@ -1471,14 +1471,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 494);
-            this.Controls.Add(this.pnlWorkingEmployees);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlViewSchedule);
+            this.Controls.Add(this.pnlWorkingEmployees);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddEditAdmin);
-            this.Controls.Add(this.pnlViewSchedule);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";

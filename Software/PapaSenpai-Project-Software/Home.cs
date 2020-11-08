@@ -555,7 +555,8 @@ namespace PapaSenpai_Project_Software
             {
                 string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
                 // to do - George
-                id = Convert.ToInt32(bindings);
+                id = Convert.ToInt32(Schedule.UpdateSchedule(bindings) );
+
             }
             else
             {
