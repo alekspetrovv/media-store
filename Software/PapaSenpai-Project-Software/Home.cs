@@ -657,5 +657,15 @@ namespace PapaSenpai_Project_Software
             updateSchedule();
             this.showPanel(pnlViewSchedule);
         }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlViewSchedule);
+        }
+
+        private void btnViewAllSchedules_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlViewSchedule);
+        }
     }
 }

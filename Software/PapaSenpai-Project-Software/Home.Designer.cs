@@ -37,7 +37,6 @@
             this.btnViewAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dsa = new System.Windows.Forms.Label();
             this.lblMenu = new MaterialSkin.Controls.MaterialLabel();
-            this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -56,7 +55,6 @@
             this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.btnViewAllSchedules = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnChangeTodaySchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.lblDashboard = new MaterialSkin.Controls.MaterialLabel();
             this.dtTodaySchedule = new System.Windows.Forms.DataGridView();
@@ -125,15 +123,15 @@
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dtAdmins = new System.Windows.Forms.DataGridView();
             this.pnlWorkingEmployees = new System.Windows.Forms.Panel();
-            this.materialLabel14 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
             this.btnUpdateSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dtAssignShift = new System.Windows.Forms.DataGridView();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            this.btnGoBack = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -154,6 +152,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtAdmins)).BeginInit();
             this.pnlWorkingEmployees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAssignShift)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // btnViewEmployees
@@ -277,19 +276,6 @@
             this.lblMenu.Size = new System.Drawing.Size(46, 19);
             this.lblMenu.TabIndex = 8;
             this.lblMenu.Text = "Menu";
-            // 
-            // iconPictureBox4
-            // 
-            this.iconPictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(5)))), ((int)(((byte)(22)))), ((int)(((byte)(21)))));
-            this.iconPictureBox4.ForeColor = System.Drawing.Color.SeaGreen;
-            this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Compass;
-            this.iconPictureBox4.IconColor = System.Drawing.Color.SeaGreen;
-            this.iconPictureBox4.IconSize = 87;
-            this.iconPictureBox4.Location = new System.Drawing.Point(45, 12);
-            this.iconPictureBox4.Name = "iconPictureBox4";
-            this.iconPictureBox4.Size = new System.Drawing.Size(112, 87);
-            this.iconPictureBox4.TabIndex = 7;
-            this.iconPictureBox4.TabStop = false;
             // 
             // iconPictureBox3
             // 
@@ -490,13 +476,12 @@
             this.pnlDashBoard.Controls.Add(this.materialLabel12);
             this.pnlDashBoard.Controls.Add(this.materialLabel5);
             this.pnlDashBoard.Controls.Add(this.btnViewAllSchedules);
-            this.pnlDashBoard.Controls.Add(this.btnChangeTodaySchedule);
             this.pnlDashBoard.Controls.Add(this.materialLabel2);
             this.pnlDashBoard.Controls.Add(this.lblDashboard);
             this.pnlDashBoard.Controls.Add(this.dtTodaySchedule);
             this.pnlDashBoard.Location = new System.Drawing.Point(221, 65);
             this.pnlDashBoard.Name = "pnlDashBoard";
-            this.pnlDashBoard.Size = new System.Drawing.Size(698, 421);
+            this.pnlDashBoard.Size = new System.Drawing.Size(698, 424);
             this.pnlDashBoard.TabIndex = 17;
             // 
             // materialLabel12
@@ -528,27 +513,15 @@
             // 
             this.btnViewAllSchedules.BackColor = System.Drawing.Color.Transparent;
             this.btnViewAllSchedules.Depth = 0;
-            this.btnViewAllSchedules.Location = new System.Drawing.Point(320, 376);
+            this.btnViewAllSchedules.Location = new System.Drawing.Point(282, 380);
             this.btnViewAllSchedules.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewAllSchedules.Name = "btnViewAllSchedules";
             this.btnViewAllSchedules.Primary = true;
-            this.btnViewAllSchedules.Size = new System.Drawing.Size(86, 33);
+            this.btnViewAllSchedules.Size = new System.Drawing.Size(147, 36);
             this.btnViewAllSchedules.TabIndex = 12;
-            this.btnViewAllSchedules.Text = "View All ";
+            this.btnViewAllSchedules.Text = "View all the schedules";
             this.btnViewAllSchedules.UseVisualStyleBackColor = false;
-            // 
-            // btnChangeTodaySchedule
-            // 
-            this.btnChangeTodaySchedule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.btnChangeTodaySchedule.Depth = 0;
-            this.btnChangeTodaySchedule.Location = new System.Drawing.Point(263, 337);
-            this.btnChangeTodaySchedule.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnChangeTodaySchedule.Name = "btnChangeTodaySchedule";
-            this.btnChangeTodaySchedule.Primary = true;
-            this.btnChangeTodaySchedule.Size = new System.Drawing.Size(202, 33);
-            this.btnChangeTodaySchedule.TabIndex = 11;
-            this.btnChangeTodaySchedule.Text = "Change Today Schedule";
-            this.btnChangeTodaySchedule.UseVisualStyleBackColor = false;
+            this.btnViewAllSchedules.Click += new System.EventHandler(this.btnViewAllSchedules_Click);
             // 
             // materialLabel2
             // 
@@ -592,7 +565,7 @@
             this.dtTodaySchedule.ReadOnly = true;
             this.dtTodaySchedule.RowHeadersWidth = 51;
             this.dtTodaySchedule.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dtTodaySchedule.Size = new System.Drawing.Size(667, 213);
+            this.dtTodaySchedule.Size = new System.Drawing.Size(667, 244);
             this.dtTodaySchedule.TabIndex = 2;
             // 
             // pnlViewSchedule
@@ -1372,7 +1345,7 @@
             // pnlWorkingEmployees
             // 
             this.pnlWorkingEmployees.BackColor = System.Drawing.Color.Transparent;
-            this.pnlWorkingEmployees.Controls.Add(this.materialLabel14);
+            this.pnlWorkingEmployees.Controls.Add(this.btnGoBack);
             this.pnlWorkingEmployees.Controls.Add(this.materialLabel13);
             this.pnlWorkingEmployees.Controls.Add(this.btnUpdateSchedule);
             this.pnlWorkingEmployees.Controls.Add(this.dtAssignShift);
@@ -1382,21 +1355,6 @@
             this.pnlWorkingEmployees.Name = "pnlWorkingEmployees";
             this.pnlWorkingEmployees.Size = new System.Drawing.Size(698, 421);
             this.pnlWorkingEmployees.TabIndex = 37;
-            // 
-            // materialLabel14
-            // 
-            this.materialLabel14.AutoSize = true;
-            this.materialLabel14.Depth = 0;
-            this.materialLabel14.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel14.Location = new System.Drawing.Point(34, 363);
-            this.materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel14.Name = "materialLabel14";
-            this.materialLabel14.Size = new System.Drawing.Size(662, 19);
-            this.materialLabel14.TabIndex = 14;
-            this.materialLabel14.Text = "Clicking this button will result in assigning employee to the day you have select" +
-    "ed on the calendar";
-            this.materialLabel14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // materialLabel13
             // 
@@ -1415,13 +1373,13 @@
             // btnUpdateSchedule
             // 
             this.btnUpdateSchedule.Depth = 0;
-            this.btnUpdateSchedule.Location = new System.Drawing.Point(257, 387);
+            this.btnUpdateSchedule.Location = new System.Drawing.Point(443, 382);
             this.btnUpdateSchedule.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnUpdateSchedule.Name = "btnUpdateSchedule";
             this.btnUpdateSchedule.Primary = true;
-            this.btnUpdateSchedule.Size = new System.Drawing.Size(195, 27);
+            this.btnUpdateSchedule.Size = new System.Drawing.Size(238, 32);
             this.btnUpdateSchedule.TabIndex = 12;
-            this.btnUpdateSchedule.Text = "Assign Employee";
+            this.btnUpdateSchedule.Text = "Assign employee to schedule";
             this.btnUpdateSchedule.UseVisualStyleBackColor = true;
             this.btnUpdateSchedule.Click += new System.EventHandler(this.btnUpdateSchedule_Click);
             // 
@@ -1434,7 +1392,7 @@
             this.dtAssignShift.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
             this.dtAssignShift.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtAssignShift.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtAssignShift.Location = new System.Drawing.Point(15, 75);
+            this.dtAssignShift.Location = new System.Drawing.Point(13, 84);
             this.dtAssignShift.Name = "dtAssignShift";
             this.dtAssignShift.RowHeadersWidth = 51;
             this.dtAssignShift.Size = new System.Drawing.Size(668, 282);
@@ -1466,19 +1424,45 @@
             this.materialLabel8.Text = "Employees ";
             this.materialLabel8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnGoBack
+            // 
+            this.btnGoBack.Depth = 0;
+            this.btnGoBack.Location = new System.Drawing.Point(14, 383);
+            this.btnGoBack.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnGoBack.Name = "btnGoBack";
+            this.btnGoBack.Primary = true;
+            this.btnGoBack.Size = new System.Drawing.Size(111, 32);
+            this.btnGoBack.TabIndex = 15;
+            this.btnGoBack.Text = "Go Back";
+            this.btnGoBack.UseVisualStyleBackColor = true;
+            this.btnGoBack.Click += new System.EventHandler(this.btnGoBack_Click);
+            // 
+            // iconPictureBox4
+            // 
+            this.iconPictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(5)))), ((int)(((byte)(22)))), ((int)(((byte)(21)))));
+            this.iconPictureBox4.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Compass;
+            this.iconPictureBox4.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox4.IconSize = 87;
+            this.iconPictureBox4.Location = new System.Drawing.Point(45, 12);
+            this.iconPictureBox4.Name = "iconPictureBox4";
+            this.iconPictureBox4.Size = new System.Drawing.Size(112, 87);
+            this.iconPictureBox4.TabIndex = 7;
+            this.iconPictureBox4.TabStop = false;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 494);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlViewSchedule);
-            this.Controls.Add(this.pnlWorkingEmployees);
-            this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlAdmin);
             this.Controls.Add(this.pnlAddStaff);
             this.Controls.Add(this.pnlAddEditAdmin);
+            this.Controls.Add(this.pnlViewSchedule);
+            this.Controls.Add(this.pnlWorkingEmployees);
+            this.Controls.Add(this.pnlEmployee);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -1486,7 +1470,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
@@ -1514,6 +1497,7 @@
             this.pnlWorkingEmployees.ResumeLayout(false);
             this.pnlWorkingEmployees.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAssignShift)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1528,7 +1512,6 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private MaterialSkin.Controls.MaterialLabel lblMenu;
         private MaterialSkin.Controls.MaterialRaisedButton btnDashboard;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private System.Windows.Forms.Panel pnlEmployee;
         private System.Windows.Forms.Panel pnlDashBoard;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
@@ -1541,7 +1524,6 @@
         private System.Windows.Forms.Panel pnlViewSchedule;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private System.Windows.Forms.DataGridView dtTodaySchedule;
-        private MaterialSkin.Controls.MaterialRaisedButton btnChangeTodaySchedule;
         private MaterialSkin.Controls.MaterialRaisedButton btnViewAllSchedules;
         private System.Windows.Forms.MonthCalendar calendarSchedule;
         private MaterialSkin.Controls.MaterialRaisedButton btnDeleteEmployee;
@@ -1617,11 +1599,12 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
         private MaterialSkin.Controls.MaterialLabel materialLabel11;
         private System.Windows.Forms.Panel pnlWorkingEmployees;
-        private MaterialSkin.Controls.MaterialLabel materialLabel14;
         private MaterialSkin.Controls.MaterialLabel materialLabel13;
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdateSchedule;
         private System.Windows.Forms.DataGridView dtAssignShift;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
+        private MaterialSkin.Controls.MaterialRaisedButton btnGoBack;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
     }
 }
