@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 04, 2020 at 05:26 PM
+-- Generation Time: Nov 19, 2020 at 05:12 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `role_id`) VALUES
-(14, 'admin', 'admin', 'Alex', 'Petrov', 'aleks.ppetrov2000@gmail.com', 1);
+(14, 'admin', 'admin', 'Alex', 'Petrov', 'aleks.ppetrov2000@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -91,11 +91,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `username`, `password`) VALUES
-(9, 'Georgina', 'Dimitrova', '1890  Kelley Road', 'Missisipi', 'United States', '100', '228 - 276 - 3719', 'Female', 'gogboginq@gmail.com', 1, '', ''),
-(10, 'Tyler', 'Augostinho', 'Zuiderparkweg 148', 'Rotterdam', 'Netherlands', '10.00', '06-54431245', 'Male', 'tyler@gmail.com', 3, '', ''),
-(11, 'Michael', 'Mutiti', 'De Gouden Leeuw 38', 'Venray', 'Limburg', '50.00', '06-73128834', 'Male', 'michaelmutiti@gmail.com', 2, '', ''),
-(12, 'Andre', 'Postma', 'Lemmerweg 90', 'Friesland', 'Netherlands', '25.00', '06-59031819', 'Male', 'andrepostma@gmail.com', 1, '', ''),
-(13, 'Alex', 'Petrov', 'Johannes van derwelseg 90', 'Eindhoven', 'Netherlands', '300', '+35988916101', 'Male', 'alexpetrov@gmail.com', 1, 'alexpetrov2020', '2020');
+(16, 'Aleks', 'Petrov', 'Johannes Van derlsweg ', 'Rotterdam', 'Netherlands', '50', '+359 889 161 101', 'Male', 'aleks.ppetrov2000@gmail.com', 1, 'alexpetrov19', '123');
 
 -- --------------------------------------------------------
 
@@ -114,7 +110,10 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `title`) VALUES
 (1, 'Admin'),
-(2, 'Manager');
+(2, 'Manager'),
+(3, 'StoreWorker'),
+(4, 'InventoryWorker'),
+(5, ' StoreManager');
 
 -- --------------------------------------------------------
 
@@ -127,13 +126,6 @@ CREATE TABLE `schedules` (
   `notes` varchar(255) NOT NULL,
   `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `schedules`
---
-
-INSERT INTO `schedules` (`id`, `notes`, `date`) VALUES
-(38, '', '10-29-2020');
 
 -- --------------------------------------------------------
 
@@ -200,7 +192,7 @@ ALTER TABLE `schedules_employees`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -212,25 +204,25 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `schedules_employees`
 --
 ALTER TABLE `schedules_employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

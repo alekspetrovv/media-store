@@ -15,7 +15,7 @@ namespace PapaSenpai_Project_Software
     {
         public static MySqlConnection GetConnection()
         {
-            MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 12345;database=papasenpai");
+            MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
             return con;
         }
 

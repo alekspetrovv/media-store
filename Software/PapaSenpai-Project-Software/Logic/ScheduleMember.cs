@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software
 {
-    class ScheduleMember
+    public class ScheduleMember
     {
         private DateTime startTime;
         private DateTime endTime;

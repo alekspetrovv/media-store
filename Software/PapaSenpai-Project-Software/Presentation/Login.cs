@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using PapaSenpai_Project_Software.Logic;
 
 namespace PapaSenpai_Project_Software
 {
     public partial class Login : MaterialSkin.Controls.MaterialForm
     {
+        private Logic.UserControl a;
         public Login()
         {
+            a = new Logic.UserControl();
             InitializeComponent();
         }
 
@@ -60,7 +63,7 @@ namespace PapaSenpai_Project_Software
             if (user.HasRows)
             {
                 Admin admin = new Admin(Convert.ToInt32(user["id"]),user["username"].ToString(),user["role_title"].ToString(), user["first_name"].ToString(), user["last_name"].ToString(), user["email"].ToString(), user["password"].ToString());
-                StoreControl.logUser(admin);
+                a.logUser(admin);
 
                 this.Hide();
                 Home h = new Home();

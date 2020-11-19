@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software
 {
-    class User
+    public class User
     {
         private string first_name;
         private string last_name;

@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -59,36 +61,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs" />
-    <Compile Include="DBcon.cs" />
-    <Compile Include="Department.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="FormControl.cs" />
-    <Compile Include="Gender.cs" />
-    <Compile Include="Home.cs">
+    <Compile Include="Data\DBqueries.cs" />
+    <Compile Include="Logic\Admin.cs" />
+    <Compile Include="Data\DBcon.cs" />
+    <Compile Include="Logic\UserControl.cs" />
+    <Compile Include="Logic\Department.cs" />
+    <Compile Include="Logic\Employee.cs" />
+    <Compile Include="Logic\EmployeeControl.cs" />
+    <Compile Include="Logic\Gender.cs" />
+    <Compile Include="Logic\Product.cs" />
+    <Compile Include="Logic\ProductControl.cs" />
+    <Compile Include="Logic\ScheduleControl.cs" />
+    <Compile Include="Presentation\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Home.Designer.cs">
+    <Compile Include="Presentation\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Presentation\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Presentation\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="Schedule.cs" />
-    <Compile Include="ScheduleMember.cs" />
-    <Compile Include="Status.cs" />
-    <Compile Include="StoreControl.cs" />
-    <Compile Include="User.cs" />
-    <EmbeddedResource Include="Home.resx">
+    <Compile Include="Logic\Role.cs" />
+    <Compile Include="Logic\Schedule.cs" />
+    <Compile Include="Logic\ScheduleMember.cs" />
+    <Compile Include="Logic\Status.cs" />
+    <Compile Include="Logic\User.cs" />
+    <EmbeddedResource Include="Presentation\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Presentation\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySql.Data.Types;
+using PapaSenpai_Project_Software.Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,20 +14,25 @@ using System.Windows.Forms;
 
 namespace PapaSenpai_Project_Software
 {
-    public partial class Home : MaterialSkin.Controls.MaterialForm
+    public partial class Home : MaterialSkin.Controls.MaterialForm 
     {
-
         private DateTime currentScheduleDate;
+        private EmployeeControl employeeControl;
+        private Logic.UserControl adminControl;
+        private ScheduleControl scheduleControl;
         public Home()
         {
+            this.employeeControl = new EmployeeControl();
+            this.adminControl = new Logic.UserControl();
+            this.scheduleControl = new ScheduleControl();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
             this.currentScheduleDate = DateTime.Now;
 
-            Employee.retrieveAllEmployees();
-            Schedule.retrieveSchedules();
-            Admin.retrieveAllAdmins();
+            this.employeeControl.retrieveAllEmployees();
+            this.scheduleControl.retrieveSchedules();
+            this.adminControl.retrieveAllAdmins();
 
             renderStaffTable();
             renderAdminTable();
@@ -57,11 +63,12 @@ namespace PapaSenpai_Project_Software
         {
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
-            this.pnlAddStaff.Visible = false;
+            this.pnlAddEditEmployee.Visible = false;
             this.pnlViewSchedule.Visible = false;
-            this.pnlAdmin.Visible = false;
+            this.pnlViewUser.Visible = false;
             this.pnlAddEditAdmin.Visible = false;
-            this.pnlWorkingEmployees.Visible = false;
+            this.pnlScheduleEmployees.Visible = false;
+            this.pnlProducts.Visible = false;
             panel.Visible = true;
 
         }
@@ -85,24 +92,24 @@ namespace PapaSenpai_Project_Software
         }
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlAddStaff);
-            this.btnAddUser.Visible = true;
+            this.showPanel(pnlAddEditEmployee);
+            this.btnAssignEmployee.Visible = true;
             this.btnUpdateEmployee.Visible = false;
         }
 
 
         private void btnViewAdmins_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlAdmin);
-            this.btnUpdateAdmin.Visible = false;
+            this.showPanel(pnlViewUser);
+            this.btnUpdateUser.Visible = false;
         }
 
 
         private void btnAddAdmins_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAddEditAdmin);
-            this.btnAddAdmin.Visible = true;
-            this.btnUpdateAdmin.Visible = false;
+            this.btnAddUser.Visible = true;
+            this.btnUpdateUser.Visible = false;
         }
 
 
@@ -145,23 +152,26 @@ namespace PapaSenpai_Project_Software
 
         private void UpdateAdmin()
         {
-            if (NullCheckerAdmin())
+            try
             {
+
                 string adminId = this.tbAdminId.Text;
                 int roleIndex = this.cbAdminRole.SelectedIndex;
                 roleIndex++;
                 string roleID = Convert.ToString(roleIndex);
                 string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
-                Admin.UpdateAdmin(adminData);
-                this.pnlAdmin.Visible = true;
+                adminControl.UpdateAdmin(adminData);
+                this.pnlViewUser.Visible = true;
                 MessageBox.Show("You have succesfully update information for that user!");
                 this.renderAdminTable();
-                this.showPanel(this.pnlAdmin);
+                this.showPanel(this.pnlViewUser);
             }
-            else
+            catch
             {
-                MessageBox.Show("You need to enter all the details for updating a user!");
+                MessageBox.Show("You need to enter all details for updating admin");
             }
+               
+      
         }
 
 
@@ -178,7 +188,7 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
                 this.pnlEmployee.Visible = true;
-                Employee.UpdateEmployee(employeeData);
+                employeeControl.UpdateEmployee(employeeData);
                 this.showPanel(this.pnlEmployee);
                 this.renderStaffTable();
             }
@@ -193,11 +203,9 @@ namespace PapaSenpai_Project_Software
         private void EditEmployee()
         {
             this.btnUpdateEmployee.Visible = true;
-            this.btnAddUser.Visible = false;
+            this.btnAssignEmployee.Visible = false;
             for (int i = 0; i < dtEmployees.Rows.Count; ++i)
             {
-
-
                 DataGridViewRow dataRow = dtEmployees.Rows[i];
 
                 if (dataRow.IsNewRow)
@@ -209,7 +217,7 @@ namespace PapaSenpai_Project_Software
                 if (selectedEmployee)
                 {
                     string employeeId = (dataRow.Cells["ID"].Value.ToString());
-                    Employee employee = StoreControl.getEmployeeById(Convert.ToInt32(employeeId));
+                    Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(employeeId));
                     this.tbEmployeeUserName.Text = employee.UserName;
                     this.tbEmployeePassword.Text = employee.Password;
                     this.tbEmployeeFirstName.Text = employee.FirstName;
@@ -223,8 +231,8 @@ namespace PapaSenpai_Project_Software
                     this.tbEmployeeWagePerHour.Text = employee.Wage;
                     this.cbEmployeeDepartment.SelectedItem = employee.Department;
                     this.cbEmployeeGender.SelectedItem = employee.Gender;
-                    this.showPanel(this.pnlAddStaff);
-                    Employee.retrieveAllEmployees();
+                    this.showPanel(this.pnlAddEditEmployee);
+                    employeeControl.retrieveAllEmployees();
                     this.renderStaffTable();
                     this.renderScheduleMembers();
                 }
@@ -236,13 +244,11 @@ namespace PapaSenpai_Project_Software
 
         private void EditAdmin()
         {
-            this.btnAddAdmin.Visible = false;
-            this.btnUpdateAdmin.Visible = true;
-            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            this.btnAddUser.Visible = false;
+            this.btnUpdateUser.Visible = true;
+            for (int i = 0; i < dtUsers.Rows.Count; ++i)
             {
-
-
-                DataGridViewRow dataRow = dtAdmins.Rows[i];
+                DataGridViewRow dataRow = dtUsers.Rows[i];
 
                 if (dataRow.IsNewRow)
                 {
@@ -253,7 +259,7 @@ namespace PapaSenpai_Project_Software
                 if (selectedAdmins)
                 {
                     string id = dataRow.Cells["ID"].Value.ToString();
-                    Admin admin = StoreControl.getAdminById(Convert.ToInt32(id));
+                    Admin admin = adminControl.getAdminById(Convert.ToInt32(id));
                     this.tbAdminUserName.Text = admin.Username;
                     this.tbAdminFirstName.Text = admin.FirstName;
                     this.tbAdminLastName.Text = admin.LastName;
@@ -261,7 +267,7 @@ namespace PapaSenpai_Project_Software
                     this.tbAdminPassword.Text = admin.Password;
                     this.cbAdminRole.SelectedItem = admin.Role;
                     this.tbAdminId.Text = Convert.ToString(admin.ID);
-                    Admin.retrieveAllAdmins();
+                    adminControl.retrieveAllAdmins();
                     this.renderAdminTable();
                     this.showPanel(pnlAddEditAdmin);
                 }
@@ -283,12 +289,12 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Email", typeof(string));
 
 
-            foreach (Admin admin in StoreControl.getAdmins())
+            foreach (Admin admin in adminControl.getAdmins())
             {
                 dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.Role, admin.Email);
             }
 
-            dtAdmins.DataSource = dtEmp;
+            dtUsers.DataSource = dtEmp;
 
         }
 
@@ -312,7 +318,7 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Wage per hour", typeof(string));
             dtEmp.Columns.Add("Salary for the shift", typeof(string));
 
-            foreach (Employee employee in StoreControl.getUsers())
+            foreach (Employee employee in employeeControl.getEmployees())
             {
                 dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
             }
@@ -325,11 +331,11 @@ namespace PapaSenpai_Project_Software
         private void renderScheduleMembers()
         {
 
-            Schedule schedule = StoreControl.getScheduleByDate(this.currentScheduleDate);
+            Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
             calendarSchedule.AnnuallyBoldedDates = null;
             List<DateTime> coloredDates = new List<DateTime>();
 
-            foreach (Schedule found_schedule in StoreControl.getSchedules())
+            foreach (Schedule found_schedule in scheduleControl.getSchedules())
             {
                 Console.WriteLine(found_schedule.Date);
                 coloredDates.Add(found_schedule.Date);
@@ -346,12 +352,12 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("To", typeof(string));
             dtEmp.Columns.Add("Department", typeof(string));
 
-            foreach (Employee employee in StoreControl.getUsers())
+            foreach (Employee employee in employeeControl.getEmployees())
             {
                 ScheduleMember foundMember = null;
                 if (schedule != null)
                 {
-                    foreach (ScheduleMember member in schedule.Members)
+                    foreach (ScheduleMember member in scheduleControl.Members)
                     {
                         if (member.Employee.ID == employee.ID)
                         {
@@ -376,7 +382,7 @@ namespace PapaSenpai_Project_Software
         private void renderDailySchedule()
         {
 
-            Schedule schedule = StoreControl.getScheduleByDate(DateTime.Now);
+            Schedule schedule = scheduleControl.getScheduleByDate(DateTime.Now);
 
             DataTable dtEmp = new DataTable();
 
@@ -388,7 +394,7 @@ namespace PapaSenpai_Project_Software
 
             if (schedule != null)
             {
-                foreach (ScheduleMember member in schedule.Members)
+                foreach (ScheduleMember member in scheduleControl.Members)
                 {
 
                     dtEmp.Rows.Add(member.Employee.ID, member.Employee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), member.Employee.Department);
@@ -403,64 +409,87 @@ namespace PapaSenpai_Project_Software
 
         private void DeleteAdmin()
         {
-            bool found = false;
-            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
+            try
             {
-                DataGridViewRow dataRow = dtAdmins.Rows[i];
-
-                bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (dataRow.IsNewRow || !selectedAdmin)
+                if(MessageBox.Show("Do you want to delete this user?","Confirm",MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    continue;
-                }
-                MessageBox.Show("You have deleted the selected admin!");
-                string adminId = (dataRow.Cells["ID"].Value.ToString());
-                string[] adminID = { adminId };
-                Admin.DeleteAdmin(adminID);
-                found = true;
+                    bool found = false;
+                    for (int i = 0; i < dtUsers.Rows.Count; ++i)
+                    {
+                        DataGridViewRow dataRow = dtUsers.Rows[i];
+
+                        bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                        if (dataRow.IsNewRow || !selectedAdmin)
+                        {
+                            continue;
+                        }
+                        string adminId = (dataRow.Cells["ID"].Value.ToString());
+                        string[] adminID = { adminId };
+                        adminControl.DeleteAdmin(adminID);
+                        found = true;
+                    }
+
+                    adminControl.retrieveAllAdmins();
+                    this.renderAdminTable();
+
+
+                    if (!found)
+                    {
+                        MessageBox.Show("You need to tick the selected box to delete a admin");
+                    }
+                }   
             }
-
-            Admin.retrieveAllAdmins();
-            this.renderAdminTable();
-
-
-            if (!found)
+            catch
             {
-                MessageBox.Show("You need to tick the selected box to delete a admin");
+                MessageBox.Show("Can't delete that");
             }
+          
 
         }
 
 
         private void DeleteEmployee()
         {
-            bool found = false;
-            for (int i = 0; i < dtEmployees.Rows.Count; ++i)
+            try
             {
-
-                DataGridViewRow dataRow = dtEmployees.Rows[i];
-                bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-
-                if (dataRow.IsNewRow || !selectedUser)
+                bool found = false;
+                for (int i = 0; i < dtEmployees.Rows.Count; ++i)
                 {
-                    continue;
+
+                    DataGridViewRow dataRow = dtEmployees.Rows[i];
+                    bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+
+                    if (dataRow.IsNewRow || !selectedUser)
+                    {
+                        continue;
+                    }
+
+                    string id = (dataRow.Cells["ID"].Value.ToString());
+                    string[] getID = { id };
+                    employeeControl.DeleteEmployee(getID);
+                    found = true;
                 }
 
-                string id = (dataRow.Cells["ID"].Value.ToString());
-                string[] getID = { id };
-                Employee.DeleteEmployee(getID);
-                found = true;
+                if (found)
+                {
+                    MessageBox.Show("Employee/s have been succesfully deleted");
+                }
+
+                employeeControl.retrieveAllEmployees();
+                this.renderStaffTable();
+                this.renderScheduleMembers();
+
+
+                if (!found)
+                {
+                    MessageBox.Show("You need to tick the selected box to delete a employee");
+                }
             }
-            MessageBox.Show("You have succesfully deleted the selected employee!");
-            Employee.retrieveAllEmployees();
-            this.renderStaffTable();
-            this.renderScheduleMembers();
-
-
-            if (!found)
+            catch
             {
-                MessageBox.Show("You need to tick the selected box to delete a employee");
+                MessageBox.Show("Couldn't delete employee because it's already assigned to schedule!");
             }
+           
         }
 
 
@@ -473,7 +502,7 @@ namespace PapaSenpai_Project_Software
                 errors.Add("You can't create a user without entering all the fields");
             }
 
-            if (StoreControl.getAdminByUsername(this.tbAdminUserName.Text) != null)
+            if (adminControl.getAdminByUsername(this.tbAdminUserName.Text) != null)
             {
                 errors.Add("You can't add an admin with the same username");
             }
@@ -485,10 +514,10 @@ namespace PapaSenpai_Project_Software
                 string increased_role_id = Convert.ToString(role_id);
                 string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
                     increased_role_id };
-                Admin.AddAdmin(admin_bindings); 
+                adminControl.AddAdmin(admin_bindings); 
                 MessageBox.Show("You have created a user!");
                 this.renderAdminTable();
-                this.showPanel(pnlAdmin);
+                this.showPanel(pnlViewUser);
                 return;
             }
 
@@ -503,7 +532,7 @@ namespace PapaSenpai_Project_Software
 
         private void AddEmployee()
         {
-            this.btnAddUser.Visible = true;
+            this.btnAssignEmployee.Visible = true;
             this.btnUpdateEmployee.Visible = false;
             List<String> errors = new List<string>();
 
@@ -511,7 +540,7 @@ namespace PapaSenpai_Project_Software
             {
                 errors.Add("You can't create a user without entering all the fields");
             }
-            if (StoreControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) != null)
+            if (employeeControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) != null)
             {
                 errors.Add("You can't add an user with the same email");
             }
@@ -525,7 +554,7 @@ namespace PapaSenpai_Project_Software
                 string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
                     gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
-                Employee.AddEmployee(employee_bindings);
+                 employeeControl.AddEmployee(employee_bindings);
                 this.renderScheduleMembers();
                 this.renderStaffTable();
                 this.showPanel(pnlEmployee);
@@ -548,14 +577,14 @@ namespace PapaSenpai_Project_Software
             //add the new ones
             //if not create schedule in db with the employees in related table
 
-            Schedule schedule = StoreControl.getScheduleByDate(this.currentScheduleDate);
+            Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
 
             int id;
             if (schedule == null)
             {
                 string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
                 // to do - George
-                id = Convert.ToInt32(Schedule.UpdateSchedule(bindings) );
+                id = Convert.ToInt32(scheduleControl.UpdateSchedule(bindings) );
 
             }
             else
@@ -565,7 +594,7 @@ namespace PapaSenpai_Project_Software
 
             //delete all of the attached users for new/pervious schedules
             string[] delete_bindings = { id.ToString() };
-            Schedule.DeleteSchedule(delete_bindings);
+            scheduleControl.DeleteSchedule(delete_bindings);
 
             int user_count = 0;
 
@@ -587,7 +616,7 @@ namespace PapaSenpai_Project_Software
                 {
                     string member_id = (dataRow.Cells["ID"].Value.ToString());
                     string[] member_data = { id.ToString(), member_id.ToString(), from, to };
-                    Schedule.AssignSchedule(member_data);
+                    scheduleControl.AssignSchedule(member_data);
                     user_count++;
                 }
             }
@@ -595,10 +624,10 @@ namespace PapaSenpai_Project_Software
             //delete schedule if working employees is equal 0
             if (user_count == 0)
             {
-                Schedule.DeleteSchedule(delete_bindings);
+               scheduleControl.DeleteSchedule(delete_bindings);
             }
 
-            Schedule.retrieveSchedules();
+            scheduleControl.retrieveSchedules();
             this.renderScheduleMembers();
             this.renderDailySchedule();
 
@@ -642,7 +671,7 @@ namespace PapaSenpai_Project_Software
 
         private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
         {
-            this.showPanel(pnlWorkingEmployees);
+            this.showPanel(pnlScheduleEmployees);
             this.currentScheduleDate = e.End;
             this.renderScheduleMembers();
         }
@@ -655,6 +684,7 @@ namespace PapaSenpai_Project_Software
         private void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
             updateSchedule();
+            UpdateEmployee();
             this.showPanel(pnlViewSchedule);
         }
 
@@ -667,5 +697,11 @@ namespace PapaSenpai_Project_Software
         {
             this.showPanel(pnlViewSchedule);
         }
+
+        private void btnViewProducts_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlProducts);
+        }
+
     }
 }
