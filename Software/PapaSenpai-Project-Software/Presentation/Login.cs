@@ -14,10 +14,10 @@ namespace PapaSenpai_Project_Software
 {
     public partial class Login : MaterialSkin.Controls.MaterialForm
     {
-        private Logic.UserControl a;
+        private Logic.AdminControl a;
         public Login()
         {
-            a = new Logic.UserControl();
+            a = new Logic.AdminControl();
             InitializeComponent();
         }
 

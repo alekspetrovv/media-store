@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Logic
 {
-    public class UserControl
+    public class AdminControl
     {
         private List<Admin> admins;
         private User loggedUser;
-        public UserControl()
+        public AdminControl()
         {
            admins = new List<Admin>();
            loggedUser = null;

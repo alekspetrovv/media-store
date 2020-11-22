@@ -11,19 +11,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PapaSenpai_Project_Software;
 
 namespace PapaSenpai_Project_Software
 {
-    public partial class Home : MaterialSkin.Controls.MaterialForm 
+    public partial class Home : MaterialSkin.Controls.MaterialForm
     {
         private DateTime currentScheduleDate;
         private EmployeeControl employeeControl;
-        private Logic.UserControl adminControl;
+        private AdminControl adminControl;
         private ScheduleControl scheduleControl;
         public Home()
         {
             this.employeeControl = new EmployeeControl();
-            this.adminControl = new Logic.UserControl();
+            this.adminControl = new Logic.AdminControl();
             this.scheduleControl = new ScheduleControl();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
@@ -42,37 +43,10 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void ChangeLoginStyle()
-        {
-            MaterialSkin.MaterialSkinManager skinManager = MaterialSkin.MaterialSkinManager.Instance;
-            skinManager.AddFormToManage(this);
-            skinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
-            skinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Green300,
-                MaterialSkin.Primary.Green300,
-                MaterialSkin.Primary.Blue500,
-                MaterialSkin.Accent.Orange700,
-                MaterialSkin.TextShade.WHITE);
-        }
-
         private void Home_Load(object sender, EventArgs e)
         {
             ChangeLoginStyle();
         }
-
-        private void showPanel(Panel panel)
-        {
-            this.pnlDashBoard.Visible = false;
-            this.pnlEmployee.Visible = false;
-            this.pnlAddEditEmployee.Visible = false;
-            this.pnlViewSchedule.Visible = false;
-            this.pnlViewUser.Visible = false;
-            this.pnlAddEditAdmin.Visible = false;
-            this.pnlScheduleEmployees.Visible = false;
-            this.pnlProducts.Visible = false;
-            panel.Visible = true;
-
-        }
-
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
@@ -90,6 +64,7 @@ namespace PapaSenpai_Project_Software
         {
             this.showPanel(pnlViewSchedule);
         }
+
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
             this.showPanel(pnlAddEditEmployee);
@@ -149,12 +124,152 @@ namespace PapaSenpai_Project_Software
             EditEmployee();
         }
 
+        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        {
+            UpdateEmployee();
+        }
+
+
+        private void btnUpdateAdmin_Click(object sender, EventArgs e)
+        {
+            UpdateAdmin();
+        }
+
+        private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.showPanel(pnlScheduleEmployees);
+            this.currentScheduleDate = e.End;
+            this.renderScheduleMembers();
+        }
+
+        private void btnViewSchedule_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlViewSchedule);
+        }
+
+        private void btnUpdateSchedule_Click(object sender, EventArgs e)
+        {
+            updateSchedule();
+            UpdateEmployee();
+            this.showPanel(pnlViewSchedule);
+        }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlViewSchedule);
+        }
+
+        private void btnViewAllSchedules_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlViewSchedule);
+        }
+
+        private void btnViewProducts_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlProducts);
+        }
+
+
+        private void renderAdminTable()
+        {
+            DataTable dtEmp = new DataTable();
+            // add column to datatable  
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("Username", typeof(string));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Role", typeof(string));
+            dtEmp.Columns.Add("Email", typeof(string));
+
+
+            foreach (Admin admin in adminControl.getAdmins())
+            {
+                dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.Role, admin.Email);
+            }
+
+            dtUsers.DataSource = dtEmp;
+
+        }
+
+
+        private void AddAdmin()
+        {
+            List<String> errors = new List<string>();
+
+            if (!valuesAreEmptyAdmin())
+            {
+                errors.Add("You can't create a user without entering all the fields");
+            }
+
+            if (adminControl.getAdminByUsername(this.tbAdminUserName.Text) != null)
+            {
+                errors.Add("You can't add an admin with the same username");
+            }
+
+            if (!errors.Any())
+            {
+                int role_id = this.cbAdminRole.SelectedIndex;
+                role_id++;
+                string increased_role_id = Convert.ToString(role_id);
+                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
+                    increased_role_id };
+                adminControl.AddAdmin(admin_bindings);
+                MessageBox.Show("You have created a user!");
+                this.renderAdminTable();
+                this.showPanel(pnlViewUser);
+                return;
+            }
+
+            foreach (string message in errors)
+            {
+                MessageBox.Show(message);
+            }
+
+
+        }
+
+
+
+        private void EditAdmin()
+        {
+            this.btnAddUser.Visible = false;
+            this.btnUpdateUser.Visible = true;
+            for (int i = 0; i < dtUsers.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtUsers.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedAdmins = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedAdmins)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Admin admin = adminControl.getAdminById(Convert.ToInt32(id));
+                    this.tbAdminUserName.Text = admin.Username;
+                    this.tbAdminFirstName.Text = admin.FirstName;
+                    this.tbAdminLastName.Text = admin.LastName;
+                    this.tbAdminEmail.Text = admin.Email;
+                    this.tbAdminPassword.Text = admin.Password;
+                    this.cbAdminRole.SelectedItem = admin.Role;
+                    this.tbAdminId.Text = Convert.ToString(admin.ID);
+                    adminControl.retrieveAllAdmins();
+                    this.renderAdminTable();
+                    this.showPanel(pnlAddEditAdmin);
+                }
+            }
+
+        }
+
+
 
         private void UpdateAdmin()
         {
             try
             {
-
                 string adminId = this.tbAdminId.Text;
                 int roleIndex = this.cbAdminRole.SelectedIndex;
                 roleIndex++;
@@ -170,34 +285,133 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("You need to enter all details for updating admin");
             }
-               
-      
+
+
         }
 
 
-        private void UpdateEmployee()
+
+
+        private void DeleteAdmin()
         {
-            if (NullCheckerEmployee())
+            try
             {
-                string employeeId = this.tbEmployeeId.Text;
-                string gender = (string)this.cbEmployeeGender.SelectedItem;
-                int department_id = Convert.ToInt32(this.cbEmployeeDepartment.SelectedIndex);
-                department_id++;
-                string department = Convert.ToString(department_id);
-                string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
-                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
-                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
-                this.pnlEmployee.Visible = true;
-                employeeControl.UpdateEmployee(employeeData);
-                this.showPanel(this.pnlEmployee);
-                this.renderStaffTable();
+                if (MessageBox.Show("Do you want to delete this user?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    bool found = false;
+                    for (int i = 0; i < dtUsers.Rows.Count; ++i)
+                    {
+                        DataGridViewRow dataRow = dtUsers.Rows[i];
+
+                        bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                        if (dataRow.IsNewRow || !selectedAdmin)
+                        {
+                            continue;
+                        }
+                        string adminId = (dataRow.Cells["ID"].Value.ToString());
+                        string[] adminID = { adminId };
+                        adminControl.DeleteAdmin(adminID);
+                        found = true;
+                    }
+
+                    adminControl.retrieveAllAdmins();
+                    this.renderAdminTable();
+
+
+                    if (!found)
+                    {
+                        MessageBox.Show("You need to tick the selected box to delete a admin");
+                    }
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("You need to enter all the details for updating an employee!");
+                MessageBox.Show("Can't delete that");
+            }
+
+
+        }
+
+
+
+
+
+        private void renderStaffTable()
+        {
+            DataTable dtEmp = new DataTable();
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("Username", typeof(string));
+            dtEmp.Columns.Add("Password", typeof(string));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Gender", typeof(string));
+            dtEmp.Columns.Add("Phone", typeof(string));
+            dtEmp.Columns.Add("Country", typeof(string));
+            dtEmp.Columns.Add("City", typeof(string));
+            dtEmp.Columns.Add("Adress", typeof(string));
+            dtEmp.Columns.Add("Email", typeof(string));
+            dtEmp.Columns.Add("Deparment", typeof(string));
+            dtEmp.Columns.Add("Wage per hour", typeof(string));
+            dtEmp.Columns.Add("Salary for the shift", typeof(string));
+
+            foreach (Employee employee in employeeControl.getEmployees())
+            {
+                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
+            }
+
+            dtEmployees.DataSource = dtEmp;
+
+        }
+
+
+
+        private void AddEmployee()
+        {
+            this.btnAssignEmployee.Visible = true;
+            this.btnUpdateEmployee.Visible = false;
+            List<String> errors = new List<string>();
+
+            if (!valuesAreEmptyEmployee())
+            {
+                errors.Add("You can't create a user without entering all the fields");
+            }
+            if (employeeControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) != null)
+            {
+                errors.Add("You can't add an user with the same email");
+            }
+
+            if (!errors.Any())
+            {
+                try
+                {
+                    int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                    department_id++;
+                    string increased_department_id = Convert.ToString(department_id);
+                    string gender = (string)this.cbEmployeeGender.SelectedItem;
+                    string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
+                    gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
+                    employeeControl.AddEmployee(employee_bindings);
+                    this.renderScheduleMembers();
+                    this.renderStaffTable();
+                    this.showPanel(pnlEmployee);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+            foreach (string message in errors)
+            {
+                MessageBox.Show(message);
             }
 
         }
+
 
 
         private void EditEmployee()
@@ -242,88 +456,144 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void EditAdmin()
+
+        private void UpdateEmployee()
         {
-            this.btnAddUser.Visible = false;
-            this.btnUpdateUser.Visible = true;
-            for (int i = 0; i < dtUsers.Rows.Count; ++i)
+            try
             {
-                DataGridViewRow dataRow = dtUsers.Rows[i];
+                string employeeId = this.tbEmployeeId.Text;
+                string gender = (string)this.cbEmployeeGender.SelectedItem;
+                int department_id = Convert.ToInt32(this.cbEmployeeDepartment.SelectedIndex);
+                department_id++;
+                string department = Convert.ToString(department_id);
+                string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
+                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
+                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
+                this.pnlEmployee.Visible = true;
+                employeeControl.UpdateEmployee(employeeData);
+                MessageBox.Show("You have succesfully update information for that employee!");
+                this.showPanel(this.pnlEmployee);
+                this.renderStaffTable();
+            }
+            catch
+            {
+                MessageBox.Show("You need to enter all details for updating employee");
+            }
+
+        }
+
+
+
+        private void DeleteEmployee()
+        {
+            try
+            {
+                bool found = false;
+                for (int i = 0; i < dtEmployees.Rows.Count; ++i)
+                {
+
+                    DataGridViewRow dataRow = dtEmployees.Rows[i];
+                    bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+
+                    if (dataRow.IsNewRow || !selectedUser)
+                    {
+                        continue;
+                    }
+
+                    string id = (dataRow.Cells["ID"].Value.ToString());
+                    string[] getID = { id };
+                    employeeControl.DeleteEmployee(getID);
+                    found = true;
+                }
+
+                if (found)
+                {
+                    MessageBox.Show("Employee/s have been succesfully deleted");
+                }
+
+                employeeControl.retrieveAllEmployees();
+                this.renderStaffTable();
+                this.renderScheduleMembers();
+
+
+                if (!found)
+                {
+                    MessageBox.Show("You need to tick the selected box to delete a employee");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Couldn't delete employee because it's already assigned to schedule!");
+            }
+
+        }
+
+
+
+
+        private void updateSchedule()
+        {
+            //get if there is a schedule about this date
+            //if yes remove all of the database members and add new ones
+
+            //add the new ones
+            //if not create schedule in db with the employees in related table
+
+            Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
+
+            int id;
+            if (schedule == null)
+            {
+                string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
+                // to do - George
+                id = Convert.ToInt32(scheduleControl.UpdateSchedule(bindings));
+
+            }
+            else
+            {
+                id = schedule.ID;
+            }
+
+            //delete all of the attached users for new/pervious schedules
+            string[] delete_bindings = { id.ToString() };
+            scheduleControl.DeleteSchedule(delete_bindings);
+
+            int user_count = 0;
+
+            for (int i = 0; i < dtAssignShift.Rows.Count; ++i)
+            {
+
+                DataGridViewRow dataRow = dtAssignShift.Rows[i];
 
                 if (dataRow.IsNewRow)
                 {
                     continue;
                 }
 
-                bool selectedAdmins = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (selectedAdmins)
+                bool userChecked = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                string from = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["From"].Value.ToString();
+                string to = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["To"].Value.ToString();
+
+                if (userChecked)
                 {
-                    string id = dataRow.Cells["ID"].Value.ToString();
-                    Admin admin = adminControl.getAdminById(Convert.ToInt32(id));
-                    this.tbAdminUserName.Text = admin.Username;
-                    this.tbAdminFirstName.Text = admin.FirstName;
-                    this.tbAdminLastName.Text = admin.LastName;
-                    this.tbAdminEmail.Text = admin.Email;
-                    this.tbAdminPassword.Text = admin.Password;
-                    this.cbAdminRole.SelectedItem = admin.Role;
-                    this.tbAdminId.Text = Convert.ToString(admin.ID);
-                    adminControl.retrieveAllAdmins();
-                    this.renderAdminTable();
-                    this.showPanel(pnlAddEditAdmin);
+                    string member_id = (dataRow.Cells["ID"].Value.ToString());
+                    string[] member_data = { id.ToString(), member_id.ToString(), from, to };
+                    scheduleControl.AssignSchedule(member_data);
+                    user_count++;
                 }
             }
 
-        }
-
-
-        private void renderAdminTable()
-        {
-            DataTable dtEmp = new DataTable();
-            // add column to datatable  
-            dtEmp.Columns.Add("Selected", typeof(bool));
-            dtEmp.Columns.Add("ID", typeof(int));
-            dtEmp.Columns.Add("Username", typeof(string));
-            dtEmp.Columns.Add("First Name", typeof(string));
-            dtEmp.Columns.Add("Last Name", typeof(string));
-            dtEmp.Columns.Add("Role", typeof(string));
-            dtEmp.Columns.Add("Email", typeof(string));
-
-
-            foreach (Admin admin in adminControl.getAdmins())
+            //delete schedule if working employees is equal 0
+            if (user_count == 0)
             {
-                dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.Role, admin.Email);
+                scheduleControl.DeleteSchedule(delete_bindings);
             }
 
-            dtUsers.DataSource = dtEmp;
+            scheduleControl.retrieveSchedules();
+            this.renderScheduleMembers();
+            this.renderDailySchedule();
 
-        }
-
-
-        private void renderStaffTable()
-        {
-            DataTable dtEmp = new DataTable();
-            dtEmp.Columns.Add("Selected", typeof(bool));
-            dtEmp.Columns.Add("ID", typeof(int));
-            dtEmp.Columns.Add("Username", typeof(string));
-            dtEmp.Columns.Add("Password", typeof(string));
-            dtEmp.Columns.Add("First Name", typeof(string));
-            dtEmp.Columns.Add("Last Name", typeof(string));
-            dtEmp.Columns.Add("Gender", typeof(string));
-            dtEmp.Columns.Add("Phone", typeof(string));
-            dtEmp.Columns.Add("Country", typeof(string));
-            dtEmp.Columns.Add("City", typeof(string));
-            dtEmp.Columns.Add("Adress", typeof(string));
-            dtEmp.Columns.Add("Email", typeof(string));
-            dtEmp.Columns.Add("Deparment", typeof(string));
-            dtEmp.Columns.Add("Wage per hour", typeof(string));
-            dtEmp.Columns.Add("Salary for the shift", typeof(string));
-
-            foreach (Employee employee in employeeControl.getEmployees())
-            {
-                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
-            }
-
-            dtEmployees.DataSource = dtEmp;
+            calendarSchedule.SelectionRange.End = this.currentScheduleDate;
 
         }
 
@@ -407,240 +677,24 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void DeleteAdmin()
-        {
-            try
-            {
-                if(MessageBox.Show("Do you want to delete this user?","Confirm",MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    bool found = false;
-                    for (int i = 0; i < dtUsers.Rows.Count; ++i)
-                    {
-                        DataGridViewRow dataRow = dtUsers.Rows[i];
 
-                        bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                        if (dataRow.IsNewRow || !selectedAdmin)
-                        {
-                            continue;
-                        }
-                        string adminId = (dataRow.Cells["ID"].Value.ToString());
-                        string[] adminID = { adminId };
-                        adminControl.DeleteAdmin(adminID);
-                        found = true;
-                    }
-
-                    adminControl.retrieveAllAdmins();
-                    this.renderAdminTable();
-
-
-                    if (!found)
-                    {
-                        MessageBox.Show("You need to tick the selected box to delete a admin");
-                    }
-                }   
-            }
-            catch
-            {
-                MessageBox.Show("Can't delete that");
-            }
-          
-
-        }
-
-
-        private void DeleteEmployee()
-        {
-            try
-            {
-                bool found = false;
-                for (int i = 0; i < dtEmployees.Rows.Count; ++i)
-                {
-
-                    DataGridViewRow dataRow = dtEmployees.Rows[i];
-                    bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-
-                    if (dataRow.IsNewRow || !selectedUser)
-                    {
-                        continue;
-                    }
-
-                    string id = (dataRow.Cells["ID"].Value.ToString());
-                    string[] getID = { id };
-                    employeeControl.DeleteEmployee(getID);
-                    found = true;
-                }
-
-                if (found)
-                {
-                    MessageBox.Show("Employee/s have been succesfully deleted");
-                }
-
-                employeeControl.retrieveAllEmployees();
-                this.renderStaffTable();
-                this.renderScheduleMembers();
-
-
-                if (!found)
-                {
-                    MessageBox.Show("You need to tick the selected box to delete a employee");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Couldn't delete employee because it's already assigned to schedule!");
-            }
-           
-        }
-
-
-        private void AddAdmin()
-        {
-            List<String> errors = new List<string>();
-
-            if (!NullCheckerAdmin())
-            {
-                errors.Add("You can't create a user without entering all the fields");
-            }
-
-            if (adminControl.getAdminByUsername(this.tbAdminUserName.Text) != null)
-            {
-                errors.Add("You can't add an admin with the same username");
-            }
-
-            if (!errors.Any())
-            {
-                int role_id = this.cbAdminRole.SelectedIndex;
-                role_id++;
-                string increased_role_id = Convert.ToString(role_id);
-                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
-                    increased_role_id };
-                adminControl.AddAdmin(admin_bindings); 
-                MessageBox.Show("You have created a user!");
-                this.renderAdminTable();
-                this.showPanel(pnlViewUser);
-                return;
-            }
-
-            foreach (string message in errors)
-            {
-                MessageBox.Show(message);
-            }
-
-
-        }
-
-
-        private void AddEmployee()
-        {
-            this.btnAssignEmployee.Visible = true;
-            this.btnUpdateEmployee.Visible = false;
-            List<String> errors = new List<string>();
-
-            if (!NullCheckerEmployee())
-            {
-                errors.Add("You can't create a user without entering all the fields");
-            }
-            if (employeeControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) != null)
-            {
-                errors.Add("You can't add an user with the same email");
-            }
-
-            if (!errors.Any())
-            {
-                int department_id = this.cbEmployeeDepartment.SelectedIndex;
-                department_id++;
-                string increased_department_id = Convert.ToString(department_id);
-                string gender = (string)this.cbEmployeeGender.SelectedItem;
-                string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
-                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
-                    gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
-                 employeeControl.AddEmployee(employee_bindings);
-                this.renderScheduleMembers();
-                this.renderStaffTable();
-                this.showPanel(pnlEmployee);
-                return;
-            }
-
-            foreach (string message in errors)
-            {
-                MessageBox.Show(message);
-            }
-
-        }
-
-
-        private void updateSchedule()
-        {
-            //get if there is a schedule about this date
-            //if yes remove all of the database members and add new ones
-
-            //add the new ones
-            //if not create schedule in db with the employees in related table
-
-            Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
-
-            int id;
-            if (schedule == null)
-            {
-                string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
-                // to do - George
-                id = Convert.ToInt32(scheduleControl.UpdateSchedule(bindings) );
-
-            }
-            else
-            {
-                id = schedule.ID;
-            }
-
-            //delete all of the attached users for new/pervious schedules
-            string[] delete_bindings = { id.ToString() };
-            scheduleControl.DeleteSchedule(delete_bindings);
-
-            int user_count = 0;
-
-            for (int i = 0; i < dtAssignShift.Rows.Count; ++i)
-            {
-
-                DataGridViewRow dataRow = dtAssignShift.Rows[i];
-
-                if (dataRow.IsNewRow)
-                {
-                    continue;
-                }
-
-                bool userChecked = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                string from = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["From"].Value.ToString();
-                string to = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["To"].Value.ToString();
-
-                if (userChecked)
-                {
-                    string member_id = (dataRow.Cells["ID"].Value.ToString());
-                    string[] member_data = { id.ToString(), member_id.ToString(), from, to };
-                    scheduleControl.AssignSchedule(member_data);
-                    user_count++;
-                }
-            }
-
-            //delete schedule if working employees is equal 0
-            if (user_count == 0)
-            {
-               scheduleControl.DeleteSchedule(delete_bindings);
-            }
-
-            scheduleControl.retrieveSchedules();
-            this.renderScheduleMembers();
-            this.renderDailySchedule();
-
-            calendarSchedule.SelectionRange.End = this.currentScheduleDate;
-
-        }
-
-
-        private bool NullCheckerEmployee()
+        private bool valuesAreEmptyEmployee()
         {
             if (this.tbEmployeeFirstName.Text == "" || this.tbEmployeeLastName.Text == "" ||
                 this.tbEmployeeAdress.Text == "" || this.tbEmployeeCity.Text == "" ||
-                this.tbEmployeeCountry.Text == "" || this.tbEmployeeEmail.Text == "" || this.cbEmployeeGender.SelectedItem == null || this.tbEmployeePhoneNumber == null)
+                this.tbEmployeeCountry.Text == "" || this.tbEmployeeEmail.Text == "" ||
+                this.cbEmployeeGender.SelectedItem == null || this.tbEmployeePhoneNumber == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool valuesAreEmptyAdmin()
+        {
+            if (this.tbAdminUserName.Text == "" || this.tbAdminFirstName.Text == "" ||
+                this.tbAdminLastName.Text == "" || this.tbAdminPassword.Text == "" ||
+                this.tbAdminEmail.Text == "")
             {
                 return false;
             }
@@ -648,60 +702,32 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private bool NullCheckerAdmin()
+        private void ChangeLoginStyle()
         {
-            if (this.tbAdminUserName.Text == "" || this.tbAdminFirstName.Text == "" || this.tbAdminLastName.Text == "" || this.tbAdminPassword.Text == "" || this.tbAdminEmail.Text == "")
-            {
-                return false;
-            }
-            return true;
+            MaterialSkin.MaterialSkinManager skinManager = MaterialSkin.MaterialSkinManager.Instance;
+            skinManager.AddFormToManage(this);
+            skinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
+            skinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Green300,
+                MaterialSkin.Primary.Green300,
+                MaterialSkin.Primary.Blue500,
+                MaterialSkin.Accent.Orange700,
+                MaterialSkin.TextShade.WHITE);
         }
 
-
-        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        private void showPanel(Panel panel)
         {
-            UpdateEmployee();
+            this.pnlDashBoard.Visible = false;
+            this.pnlEmployee.Visible = false;
+            this.pnlAddEditEmployee.Visible = false;
+            this.pnlViewSchedule.Visible = false;
+            this.pnlViewUser.Visible = false;
+            this.pnlAddEditAdmin.Visible = false;
+            this.pnlScheduleEmployees.Visible = false;
+            this.pnlProducts.Visible = false;
+            panel.Visible = true;
+
         }
 
-
-        private void btnUpdateAdmin_Click(object sender, EventArgs e)
-        {
-            UpdateAdmin();
-        }
-
-        private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.showPanel(pnlScheduleEmployees);
-            this.currentScheduleDate = e.End;
-            this.renderScheduleMembers();
-        }
-
-        private void btnViewSchedule_Click(object sender, EventArgs e)
-        {
-            this.showPanel(pnlViewSchedule);
-        }
-
-        private void btnUpdateSchedule_Click(object sender, EventArgs e)
-        {
-            updateSchedule();
-            UpdateEmployee();
-            this.showPanel(pnlViewSchedule);
-        }
-
-        private void btnGoBack_Click(object sender, EventArgs e)
-        {
-            this.showPanel(pnlViewSchedule);
-        }
-
-        private void btnViewAllSchedules_Click(object sender, EventArgs e)
-        {
-            this.showPanel(pnlViewSchedule);
-        }
-
-        private void btnViewProducts_Click(object sender, EventArgs e)
-        {
-            this.showPanel(pnlProducts);
-        }
 
     }
 }

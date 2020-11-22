@@ -64,7 +64,7 @@
     <Compile Include="Data\DBqueries.cs" />
     <Compile Include="Logic\Admin.cs" />
     <Compile Include="Data\DBcon.cs" />
-    <Compile Include="Logic\UserControl.cs" />
+    <Compile Include="Logic\AdminControl.cs" />
     <Compile Include="Logic\Department.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\EmployeeControl.cs" />

@@ -51,14 +51,6 @@ namespace PapaSenpai_Project_Software
         {
             get { return this.adress; }
 
-            set
-            {
-                if (String.IsNullOrWhiteSpace(value))
-                {
-                    throw new Exception("Incorrect Adress!");
-                }
-                this.adress = value;
-            }
         }
 
         public string City

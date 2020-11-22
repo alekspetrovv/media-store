@@ -18,7 +18,7 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
         public void addEmployee(Employee e)
-           {
+        {
             this.employees.Add(e);
         }
 
