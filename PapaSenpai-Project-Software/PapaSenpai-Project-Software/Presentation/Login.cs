@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using PapaSenpai_Project_Software.Data;
 using PapaSenpai_Project_Software.Logic;
 
 namespace PapaSenpai_Project_Software
@@ -15,10 +16,12 @@ namespace PapaSenpai_Project_Software
     public partial class Login : MaterialSkin.Controls.MaterialForm
     {
         private Logic.AdminControl a;
+        private AdminDAL adminDAL;
         public Login()
         {
             a = new Logic.AdminControl();
             InitializeComponent();
+            adminDAL = new AdminDAL();
         }
 
 
@@ -53,10 +56,7 @@ namespace PapaSenpai_Project_Software
 
             string[] bindings = { this.tbUserName.Text, this.tbUserPassword.Text };
 
-            MySqlDataReader user = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
-                "INNER JOIN roles ON roles.id = admins.role_id " +
-                "WHERE `username` = @usn AND password = @pass", bindings
-                );
+            MySqlDataReader user = adminDAL.Login(bindings);
 
             user.Read();
             //check if user exist if yes show the home page else don't show error message
@@ -74,7 +74,7 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show("User credetentials are wrong!");
             }
 
-            DBcon.CloseConnection(user);
+            adminDAL.CloseConnection(user);
         }
     }
 }

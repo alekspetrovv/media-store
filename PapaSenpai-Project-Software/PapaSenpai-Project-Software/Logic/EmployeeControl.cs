@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PapaSenpai_Project_Software.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace PapaSenpai_Project_Software.Logic
     {
         private List<Employee> employees;
 
+        private EmployeeDAL employeeDAL;
 
         public EmployeeControl()
         {
             employees = new List<Employee>();
+            employeeDAL = new EmployeeDAL();
         }
 
         public void addEmployee(Employee e)
@@ -38,8 +41,7 @@ namespace PapaSenpai_Project_Software.Logic
 
         public void retrieveAllEmployees()
         {
-            MySqlDataReader employees = DBcon.executeReader("SELECT employees.*, departments.title as department FROM `employees` " +
-                "INNER JOIN departments ON departments.id = employees.department_id GROUP by employees.id");
+            MySqlDataReader employees = employeeDAL.Select();
             this.emptyEmployees();
             if (employees.HasRows)
             {
@@ -57,20 +59,17 @@ namespace PapaSenpai_Project_Software.Logic
 
         public void AddEmployee(string[] employee_bindings)
         {
-            DBcon.executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `username`, `password`)" +
-                              "VALUES(@first_name,@last_name,@address,@city,@country,@wage_per_hour,@phone_number,@gender,@email,@department_id,@username,@password)", employee_bindings);
+            employeeDAL.Insert(employee_bindings);
             this.retrieveAllEmployees();
         }
         public void UpdateEmployee(string[] employee_bindings)
         {
-            DBcon.executeNonQuery("UPDATE `employees` SET `first_name`= @firstname,`last_name`= @secondname," +
-                   "`address`= @adress,`city`= @city,`country`= @country,`phone_number`=@phonenumber,`gender`=@gender,`email`=@email" +
-                   ",`department_id`= @departmentid,`wage_per_hour` = @wage,`username`= @username,`password`= @password WHERE id = @id", employee_bindings);
+            employeeDAL.Update(employee_bindings);
             this.retrieveAllEmployees();
         }
         public void DeleteEmployee(string[] employee_bindings)
         {
-            DBcon.executeNonQuery("DELETE FROM `employees` WHERE `id` = @id", employee_bindings);
+            employeeDAL.Delete(employee_bindings);
             this.retrieveAllEmployees();
         }
 

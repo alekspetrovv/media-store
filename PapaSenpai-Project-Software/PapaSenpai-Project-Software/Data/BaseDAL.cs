@@ -1,27 +1,25 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace PapaSenpai_Project_Software
+namespace PapaSenpai_Project_Software.Data
 {
-    class DBcon
+    public class BaseDAL
     {
-        public static MySqlConnection GetConnection()
+        public MySqlConnection GetConnection()
         {
             MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
             return con;
         }
 
-        public static MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
+        public MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
         {
-            MySqlConnection con = DBcon.GetConnection();
+            MySqlConnection con = this.GetConnection();
             con.Open();
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
@@ -48,25 +46,27 @@ namespace PapaSenpai_Project_Software
 
         }
 
-        public static MySqlDataReader executeReader(string sql, string[] bindings = null)
+
+        public MySqlDataReader executeReader(string sql, string[] bindings = null)
         {
-            return DBcon.defaultDatabaseConnection(sql, bindings).ExecuteReader();
+            return this.defaultDatabaseConnection(sql, bindings).ExecuteReader();
 
         }
 
-        public static Object executeScalar(string sql, string[] bindings = null)
+        public Object executeScalar(string sql, string[] bindings = null)
         {
-            return DBcon.defaultDatabaseConnection(sql, bindings).ExecuteScalar();
+            return this.defaultDatabaseConnection(sql, bindings).ExecuteScalar();
         }
 
-        public static Object executeNonQuery(string sql, string[] bindings = null)
+        public Object executeNonQuery(string sql, string[] bindings = null)
         {
-            return DBcon.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+            return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
         }
 
 
 
-        public static void CloseConnection(MySqlDataReader con)
+
+        public void CloseConnection(MySqlDataReader con)
         {
             con.Close();
         }

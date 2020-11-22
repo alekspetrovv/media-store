@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PapaSenpai_Project_Software.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace PapaSenpai_Project_Software.Logic
     {
         private List<Admin> admins;
         private User loggedUser;
+        private AdminDAL adminDAL;
         public AdminControl()
         {
            admins = new List<Admin>();
+           adminDAL = new AdminDAL();
            loggedUser = null;
         }
 
@@ -52,30 +55,26 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-        public void AddAdmin(string[] admin_bindings)
+        public void Add(string[] admin_bindings)
         {
-            DBcon.executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
-                         "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);
+            adminDAL.Insert(admin_bindings);
             this.retrieveAllAdmins();
         }
 
-        public void UpdateAdmin(string[] admin_bindings)
+        public void Update(string[] admin_bindings)
         {
-            MySqlDataReader updateEmployee = DBcon.executeReader("UPDATE `admins` SET `username`= @usn,`password`= @password," +
-                   "`first_name`= @firstname,`last_name`= @lastname,`email`= @email," +
-                   "`role_id`= @roleid WHERE `id` = @id", admin_bindings);
+            adminDAL.Update(admin_bindings);
             this.retrieveAllAdmins();
         }
 
-        public void DeleteAdmin(string[] admin_bindings)
+        public void Delete(string[] admin_bindings)
         {
-            DBcon.executeNonQuery("DELETE FROM `admins` WHERE `id` = @id", admin_bindings);
+            adminDAL.Delete(admin_bindings);
         }
 
         public void retrieveAllAdmins()
         {
-            MySqlDataReader admins = DBcon.executeReader("SELECT admins.*, roles.title as role_title FROM `admins` " +
-                  "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
+            MySqlDataReader admins = adminDAL.Select();
             this.emptyAdmins();
             if (admins.HasRows)
             {

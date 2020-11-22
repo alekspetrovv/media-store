@@ -38,8 +38,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FontAwesome.Sharp, Version=5.14.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontAwesome.Sharp.5.14.1\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
@@ -61,9 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DBqueries.cs" />
+    <Compile Include="Data\AdminDAL.cs" />
+    <Compile Include="Data\BaseDAL.cs" />
+    <Compile Include="Data\EmployeeDAL.cs" />
+    <Compile Include="Data\ProductDAL.cs" />
+    <Compile Include="Data\ScheduleDAL.cs" />
     <Compile Include="Logic\Admin.cs" />
-    <Compile Include="Data\DBcon.cs" />
     <Compile Include="Logic\AdminControl.cs" />
     <Compile Include="Logic\Department.cs" />
     <Compile Include="Logic\Employee.cs" />

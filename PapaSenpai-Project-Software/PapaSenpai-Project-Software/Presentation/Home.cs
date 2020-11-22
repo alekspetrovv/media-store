@@ -214,7 +214,7 @@ namespace PapaSenpai_Project_Software
                 string increased_role_id = Convert.ToString(role_id);
                 string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
                     increased_role_id };
-                adminControl.AddAdmin(admin_bindings);
+                adminControl.Add(admin_bindings);
                 MessageBox.Show("You have created a user!");
                 this.renderAdminTable();
                 this.showPanel(pnlViewUser);
@@ -275,7 +275,7 @@ namespace PapaSenpai_Project_Software
                 roleIndex++;
                 string roleID = Convert.ToString(roleIndex);
                 string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
-                adminControl.UpdateAdmin(adminData);
+                adminControl.Update(adminData);
                 this.pnlViewUser.Visible = true;
                 MessageBox.Show("You have succesfully update information for that user!");
                 this.renderAdminTable();
@@ -310,7 +310,7 @@ namespace PapaSenpai_Project_Software
                         }
                         string adminId = (dataRow.Cells["ID"].Value.ToString());
                         string[] adminID = { adminId };
-                        adminControl.DeleteAdmin(adminID);
+                        adminControl.Delete(adminID);
                         found = true;
                     }
 

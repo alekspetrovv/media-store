@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Data
 {
-    class DBqueries
+    public class ProductDAL
     {
     }
 }
