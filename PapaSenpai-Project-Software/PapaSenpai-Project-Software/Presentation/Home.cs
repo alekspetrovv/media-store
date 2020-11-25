@@ -153,7 +153,6 @@ namespace PapaSenpai_Project_Software
         private void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
             updateSchedule();
-            UpdateEmployee();
             this.showPanel(pnlViewSchedule);
         }
 
@@ -655,22 +654,17 @@ namespace PapaSenpai_Project_Software
 
             Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
 
-            int id;
-            if (schedule == null)
+            if (schedule != null)
             {
-                string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
-                // to do - George
-                id = Convert.ToInt32(scheduleControl.UpdateSchedule(bindings));
 
-            }
-            else
-            {
-                id = schedule.ID;
+                string[] delete_bindings = { schedule.ID.ToString() };
+                scheduleControl.Delete(delete_bindings);
             }
 
-            //delete all of the attached users for new/pervious schedules
-            string[] delete_bindings = { id.ToString() };
-            scheduleControl.DeleteSchedule(delete_bindings);
+            string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
+            int id = Convert.ToInt32(scheduleControl.Insert(bindings));
+
+
 
             int user_count = 0;
 
@@ -692,7 +686,7 @@ namespace PapaSenpai_Project_Software
                 {
                     string member_id = (dataRow.Cells["ID"].Value.ToString());
                     string[] member_data = { id.ToString(), member_id.ToString(), from, to };
-                    scheduleControl.AssignSchedule(member_data);
+                    scheduleControl.InsertMember(member_data);
                     user_count++;
                 }
             }
@@ -700,7 +694,9 @@ namespace PapaSenpai_Project_Software
             //delete schedule if working employees is equal 0
             if (user_count == 0)
             {
-                scheduleControl.DeleteSchedule(delete_bindings);
+                Console.WriteLine("vliza");
+                string[] delete_bindings = { id.ToString() };
+                scheduleControl.Delete(delete_bindings);
             }
 
             scheduleControl.retrieveSchedules();
@@ -721,7 +717,6 @@ namespace PapaSenpai_Project_Software
 
             foreach (Schedule found_schedule in scheduleControl.getSchedules())
             {
-                Console.WriteLine(found_schedule.Date);
                 coloredDates.Add(found_schedule.Date);
             }
 
@@ -735,20 +730,16 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("From", typeof(string));
             dtEmp.Columns.Add("To", typeof(string));
             dtEmp.Columns.Add("Department", typeof(string));
-
+            
+            
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 ScheduleMember foundMember = null;
                 if (schedule != null)
                 {
-                    foreach (ScheduleMember member in scheduleControl.Members)
-                    {
-                        if (member.Employee.ID == employee.ID)
-                        {
-                            foundMember = member;
-                        }
-                    }
-                }
+                    foundMember = schedule.findEmployeeMemberById(employee.ID);
+               }
+
                 if (foundMember != null)
                 {
                     dtEmp.Rows.Add(true, employee.ID, employee.getFullName(), foundMember.StartTime.ToString("HH:mm"), foundMember.EndTime.ToString("HH:mm"), employee.Department);
@@ -778,10 +769,10 @@ namespace PapaSenpai_Project_Software
 
             if (schedule != null)
             {
-                foreach (ScheduleMember member in scheduleControl.Members)
+                foreach (ScheduleMember member in schedule.Members)
                 {
 
-                    dtEmp.Rows.Add(member.Employee.ID, member.Employee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), member.Employee.Department);
+//                    dtEmp.Rows.Add(member.EmployeeId, member.Employee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), member.Employee.Department);
 
                 }
             }

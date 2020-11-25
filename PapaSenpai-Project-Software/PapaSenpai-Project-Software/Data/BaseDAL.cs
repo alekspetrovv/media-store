@@ -14,7 +14,7 @@ namespace PapaSenpai_Project_Software.Data
     {
         public MySqlConnection GetConnection()
         {
-            MySqlConnection con = new MySqlConnection(@"Server=studmysql01.fhict.local;Uid=dbi444915;Database=dbi444915;Pwd=123456;");
+            MySqlConnection con = new MySqlConnection(@"Server=localhost;Uid=root;Database=papasenpai;Pwd=123456;");
             return con;
         }
 
@@ -68,7 +68,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public Object executeNonQuery(string sql, string[] bindings = null)
         {
-            return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+           return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
         }
 
 

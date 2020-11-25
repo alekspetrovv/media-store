@@ -10,19 +10,19 @@ namespace PapaSenpai_Project_Software
     {
         private DateTime startTime;
         private DateTime endTime;
-        private Employee employee;
+        private int employee_id;
 
-        public ScheduleMember(Employee employee, string startDate, string endDate)
+        public ScheduleMember(int employee_id, string startDate, string endDate)
         {
-            this.employee = employee;
+            this.employee_id = employee_id;
             //this.startTime = DateTime.ParseExact(date, "MM-dd-yyyy", null);
             this.endTime = DateTime.Parse(endDate);
             this.startTime = DateTime.Parse(startDate);
         }
 
-        public Employee Employee 
+        public int EmployeeId
         {
-            get { return this.employee; }
+            get { return this.employee_id; }
         }
 
         public DateTime StartTime 
