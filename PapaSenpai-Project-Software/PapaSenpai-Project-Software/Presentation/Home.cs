@@ -925,6 +925,7 @@ namespace PapaSenpai_Project_Software
             this.pnlScheduleEmployees.Visible = false;
             this.pnlProducts.Visible = false;
             this.pnlAddEditProduct.Visible = false;
+            this.pnlCart.Visible = false;   
             panel.Visible = true;
 
         }
@@ -960,6 +961,11 @@ namespace PapaSenpai_Project_Software
             this.tbEmployeeUserName.Clear();
             this.cbEmployeeDepartment.Items.Clear();
             this.cbEmployeeGender.Items.Clear();
+        }
+
+        private void btnViewCart_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlCart);
         }
     }
 }
