@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PapaSenpai_Project_Software.Data
 {
@@ -13,37 +14,44 @@ namespace PapaSenpai_Project_Software.Data
     {
         public MySqlConnection GetConnection()
         {
-            MySqlConnection con = new MySqlConnection(@"server=localhost;user id=root;password = 123456;database=papasenpai");
+            MySqlConnection con = new MySqlConnection(@"Server=studmysql01.fhict.local;Uid=dbi444915;Database=dbi444915;Pwd=123456;");
             return con;
         }
 
         public MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
         {
             MySqlConnection con = this.GetConnection();
-            con.Open();
             MySqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = sql;
-
-
-            List<string> fields = new List<string>();
-            MatchCollection mcol = Regex.Matches(sql, @"@\b\S+?\b");
-
-            foreach (Match m in mcol)
+            try
             {
-                fields.Add(m.ToString());
-            }
+                con.Open();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = sql;
 
-            if (bindings != null)
-            {
-                for (int i = 0; i < bindings.Length; i++)
+
+                List<string> fields = new List<string>();
+                MatchCollection mcol = Regex.Matches(sql, @"@\b\S+?\b");
+
+                foreach (Match m in mcol)
                 {
-                    cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
+                    fields.Add(m.ToString());
                 }
+
+                if (bindings != null)
+                {
+                    for (int i = 0; i < bindings.Length; i++)
+                    {
+                        cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
+                    }
+                }
+
+                return cmd;
             }
-
-            return cmd;
-
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return null;
         }
 
 

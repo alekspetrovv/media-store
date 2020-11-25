@@ -21,11 +21,13 @@ namespace PapaSenpai_Project_Software
         private EmployeeControl employeeControl;
         private AdminControl adminControl;
         private ScheduleControl scheduleControl;
+        private ProductControl productControl;
         public Home()
         {
             this.employeeControl = new EmployeeControl();
             this.adminControl = new Logic.AdminControl();
             this.scheduleControl = new ScheduleControl();
+            this.productControl = new ProductControl();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
@@ -34,12 +36,13 @@ namespace PapaSenpai_Project_Software
             this.employeeControl.retrieveAllEmployees();
             this.scheduleControl.retrieveSchedules();
             this.adminControl.retrieveAllAdmins();
+            this.productControl.retrieveAllProducts();
 
-            renderStaffTable();
-            renderAdminTable();
-            renderScheduleMembers();
-            renderDailySchedule();
-
+            this.renderStaffTable();
+            this.renderAdminTable();
+            this.renderScheduleMembers();
+            this.renderDailySchedule();
+            this.renderProductTable();
         }
 
 
@@ -168,6 +171,117 @@ namespace PapaSenpai_Project_Software
         {
             this.showPanel(pnlProducts);
         }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlAddEditProduct);
+        }
+
+        private void btnEditProduct_Click(object sender, EventArgs e)
+        {
+           // to do
+        }
+
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+            // to do
+        }
+
+        private void btnAddProductItem_Click(object sender, EventArgs e)
+        {
+            this.AddProduct();
+        }
+        private void btnUpdateProductItem_Click(object sender, EventArgs e)
+        {
+            // to do
+        }
+
+        private void renderProductTable()
+        {
+            DataTable dtPrd = new DataTable();
+            // add column to datatable  
+            dtPrd.Columns.Add("Selected", typeof(bool));
+            dtPrd.Columns.Add("ID", typeof(int));
+            dtPrd.Columns.Add("Title", typeof(string));
+            dtPrd.Columns.Add("Description", typeof(string));
+            dtPrd.Columns.Add("Quantity", typeof(string));
+            dtPrd.Columns.Add("QuantityDepo", typeof(string));
+            dtPrd.Columns.Add("Selling Price", typeof(string));
+            dtPrd.Columns.Add("Buying Price", typeof(string));
+            dtPrd.Columns.Add("Threshold", typeof(string));
+
+
+            foreach (Product p in productControl.GetProducts())
+            {
+                dtPrd.Rows.Add(false, p.Id, p.Title,p.Description,p.Quantity,p.QuantityDepo,p.SellingPrice,p.BuyingPrice,p.ThreshHold);
+            }
+
+            dtProducts.DataSource = dtPrd;
+        }
+
+
+        private void AddProduct()
+        {
+            List<String> errors = new List<string>();
+
+            if (!valuesAreEmptyProduct())
+            {
+                errors.Add("You can't create a product without entering all the fields");
+            }
+
+            if (productControl.GetProductByTitle(this.tbProductTitle.Text) != null)
+            {
+                errors.Add("You can't add a product with the same title");
+            }
+
+            if (!errors.Any())
+            {
+                int quantity = Convert.ToInt32(this.tbProductQuantity.Text);
+                int quantitydepo = Convert.ToInt32(this.tbProductQuantity.Text);
+                double selling_price = Convert.ToDouble(this.tbProductSellingPrice.Text);
+                double buying_price = Convert.ToDouble(this.tbProductBuyingPrice.Text);
+                int threshold = Convert.ToInt32(this.tbProductThreshHold.Text);
+                string[] product_bindings = { this.tbProductTitle.Text, this.tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
+                selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
+                productControl.AddProduct(product_bindings);
+                MessageBox.Show("You have created a product!");
+                this.renderProductTable();
+                this.showPanel(pnlProducts);
+                return;
+            }
+
+            foreach (string message in errors)
+            {
+                MessageBox.Show(message);
+            }
+
+
+        }
+
+
+        private void EditProduct()
+        {
+            // to do
+        }
+
+
+        private void UpdateProduct()
+        {
+            // to do
+        }
+
+
+
+
+        private void DeleteProduct()
+        {
+            // to do
+        }
+
+
+
+
+
 
 
         private void renderAdminTable()
@@ -677,6 +791,16 @@ namespace PapaSenpai_Project_Software
         }
 
 
+        private bool valuesAreEmptyProduct()
+        {
+            if (this.tbProductDescription.Text == "" || this.tbProductDescription.Text == "" || this.tbProductTitle.Text == "" ||
+                this.tbProductQuantity.Text == "" || this.tbProductSellingPrice.Text == "" || this.tbProductBuyingPrice.Text == "" || this.tbProductThreshHold.Text == "") 
+            {
+                return false;
+            }
+            return true;
+        }
+
 
         private bool valuesAreEmptyEmployee()
         {
@@ -689,6 +813,7 @@ namespace PapaSenpai_Project_Software
             }
             return true;
         }
+
 
         private bool valuesAreEmptyAdmin()
         {
@@ -724,10 +849,10 @@ namespace PapaSenpai_Project_Software
             this.pnlAddEditAdmin.Visible = false;
             this.pnlScheduleEmployees.Visible = false;
             this.pnlProducts.Visible = false;
+            this.pnlAddEditProduct.Visible = false;
             panel.Visible = true;
 
         }
-
 
     }
 }

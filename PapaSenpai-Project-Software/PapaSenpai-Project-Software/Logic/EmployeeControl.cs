@@ -11,7 +11,6 @@ namespace PapaSenpai_Project_Software.Logic
     public class EmployeeControl
     {
         private List<Employee> employees;
-
         private EmployeeDAL employeeDAL;
 
         public EmployeeControl()
@@ -20,10 +19,6 @@ namespace PapaSenpai_Project_Software.Logic
             employeeDAL = new EmployeeDAL();
         }
 
-        public void addEmployee(Employee e)
-        {
-            this.employees.Add(e);
-        }
 
         public Employee getEmployeeById(int id)
         {
@@ -50,9 +45,10 @@ namespace PapaSenpai_Project_Software.Logic
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
                         employees["last_name"].ToString(), employees["email"].ToString()
                         , employees["address"].ToString(), employees["city"].ToString(), employees["country"].ToString(),
-                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["department"].ToString(), employees["wage_per_hour"].ToString(), employees["username"].ToString(), employees["password"].ToString());
+                        employees["phone_number"].ToString(), employees["gender"].ToString(),
+                        employees["department"].ToString(), employees["wage_per_hour"].ToString(), employees["username"].ToString(), employees["password"].ToString());
 
-                    this.addEmployee(employee);
+                    this.employees.Add(employee);
                 }
             }
         }

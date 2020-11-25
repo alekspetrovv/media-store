@@ -46,6 +46,7 @@
             this.btnDashboard = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlEmployee = new System.Windows.Forms.Panel();
             this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
+            this.dtEmployees = new System.Windows.Forms.DataGridView();
             this.lblViewEmployees = new MaterialSkin.Controls.MaterialLabel();
             this.iconPictureBox7 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
@@ -141,7 +142,28 @@
             this.btnDeleteProduct = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditProduct = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddProduct = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.dtEmployees = new System.Windows.Forms.DataGridView();
+            this.pnlAddEditProduct = new System.Windows.Forms.Panel();
+            this.iconPictureBox16 = new FontAwesome.Sharp.IconPictureBox();
+            this.tbProductQuantity = new System.Windows.Forms.TextBox();
+            this.tbProductBuyingPrice = new System.Windows.Forms.TextBox();
+            this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
+            this.btnUpdateProductItem = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel17 = new MaterialSkin.Controls.MaterialLabel();
+            this.tbProductSellingPrice = new System.Windows.Forms.TextBox();
+            this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
+            this.btnAddProductItem = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel24 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel25 = new MaterialSkin.Controls.MaterialLabel();
+            this.tbProductId = new System.Windows.Forms.TextBox();
+            this.tbProductThreshHold = new System.Windows.Forms.TextBox();
+            this.tbProductDescription = new System.Windows.Forms.TextBox();
+            this.tbProductTitle = new System.Windows.Forms.TextBox();
+            this.materialLabel27 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel28 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel29 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel31 = new MaterialSkin.Controls.MaterialLabel();
+            this.tbProductQuantityDepo = new System.Windows.Forms.TextBox();
+            this.materialLabel15 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
@@ -150,6 +172,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.pnlEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
@@ -170,13 +193,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEmployees)).BeginInit();
+            this.pnlAddEditProduct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).BeginInit();
             this.SuspendLayout();
             // 
             // btnViewEmployees
             // 
             this.btnViewEmployees.Depth = 0;
-            this.btnViewEmployees.Location = new System.Drawing.Point(2, 224);
+            this.btnViewEmployees.Location = new System.Drawing.Point(3, 178);
             this.btnViewEmployees.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewEmployees.Name = "btnViewEmployees";
             this.btnViewEmployees.Primary = true;
@@ -189,7 +213,7 @@
             // btnViewSchedule
             // 
             this.btnViewSchedule.Depth = 0;
-            this.btnViewSchedule.Location = new System.Drawing.Point(3, 363);
+            this.btnViewSchedule.Location = new System.Drawing.Point(4, 314);
             this.btnViewSchedule.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewSchedule.Name = "btnViewSchedule";
             this.btnViewSchedule.Primary = true;
@@ -229,17 +253,18 @@
             this.iconPictureBox8.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.ProductHunt;
             this.iconPictureBox8.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox8.IconSize = 40;
-            this.iconPictureBox8.Location = new System.Drawing.Point(5, 435);
+            this.iconPictureBox8.Location = new System.Drawing.Point(7, 388);
             this.iconPictureBox8.Name = "iconPictureBox8";
-            this.iconPictureBox8.Size = new System.Drawing.Size(50, 40);
+            this.iconPictureBox8.Size = new System.Drawing.Size(42, 40);
             this.iconPictureBox8.TabIndex = 15;
             this.iconPictureBox8.TabStop = false;
             // 
             // btnViewProducts
             // 
             this.btnViewProducts.Depth = 0;
-            this.btnViewProducts.Location = new System.Drawing.Point(3, 433);
+            this.btnViewProducts.Location = new System.Drawing.Point(4, 384);
             this.btnViewProducts.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewProducts.Name = "btnViewProducts";
             this.btnViewProducts.Primary = true;
@@ -279,17 +304,18 @@
             this.iconPictureBox11.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox11.IconChar = FontAwesome.Sharp.IconChar.UserFriends;
             this.iconPictureBox11.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox11.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox11.IconSize = 40;
-            this.iconPictureBox11.Location = new System.Drawing.Point(5, 297);
+            this.iconPictureBox11.Location = new System.Drawing.Point(8, 247);
             this.iconPictureBox11.Name = "iconPictureBox11";
-            this.iconPictureBox11.Size = new System.Drawing.Size(50, 40);
+            this.iconPictureBox11.Size = new System.Drawing.Size(41, 40);
             this.iconPictureBox11.TabIndex = 12;
             this.iconPictureBox11.TabStop = false;
             // 
             // btnViewUsers
             // 
             this.btnViewUsers.Depth = 0;
-            this.btnViewUsers.Location = new System.Drawing.Point(2, 295);
+            this.btnViewUsers.Location = new System.Drawing.Point(3, 246);
             this.btnViewUsers.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewUsers.Name = "btnViewUsers";
             this.btnViewUsers.Primary = true;
@@ -304,7 +330,7 @@
             this.dsa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
             this.dsa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dsa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.dsa.Location = new System.Drawing.Point(0, 140);
+            this.dsa.Location = new System.Drawing.Point(0, 108);
             this.dsa.Name = "dsa";
             this.dsa.Size = new System.Drawing.Size(205, 3);
             this.dsa.TabIndex = 10;
@@ -316,7 +342,7 @@
             this.lblMenu.Depth = 0;
             this.lblMenu.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblMenu.Location = new System.Drawing.Point(76, 102);
+            this.lblMenu.Location = new System.Drawing.Point(72, 81);
             this.lblMenu.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(46, 19);
@@ -325,14 +351,16 @@
             // 
             // iconPictureBox4
             // 
+            this.iconPictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.iconPictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(5)))), ((int)(((byte)(22)))), ((int)(((byte)(21)))));
             this.iconPictureBox4.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Compass;
             this.iconPictureBox4.IconColor = System.Drawing.Color.SeaGreen;
-            this.iconPictureBox4.IconSize = 87;
-            this.iconPictureBox4.Location = new System.Drawing.Point(45, 12);
+            this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox4.IconSize = 65;
+            this.iconPictureBox4.Location = new System.Drawing.Point(67, 11);
             this.iconPictureBox4.Name = "iconPictureBox4";
-            this.iconPictureBox4.Size = new System.Drawing.Size(112, 87);
+            this.iconPictureBox4.Size = new System.Drawing.Size(65, 67);
             this.iconPictureBox4.TabIndex = 7;
             this.iconPictureBox4.TabStop = false;
             // 
@@ -342,10 +370,12 @@
             this.iconPictureBox3.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.CalendarWeek;
             this.iconPictureBox3.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox3.IconSize = 40;
-            this.iconPictureBox3.Location = new System.Drawing.Point(5, 365);
+            this.iconPictureBox3.Location = new System.Drawing.Point(8, 316);
+            this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(50, 40);
+            this.iconPictureBox3.Size = new System.Drawing.Size(41, 40);
             this.iconPictureBox3.TabIndex = 6;
             this.iconPictureBox3.TabStop = false;
             // 
@@ -355,31 +385,35 @@
             this.iconPictureBox2.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Users;
             this.iconPictureBox2.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox2.IconSize = 40;
-            this.iconPictureBox2.Location = new System.Drawing.Point(5, 226);
+            this.iconPictureBox2.Location = new System.Drawing.Point(9, 182);
             this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(50, 40);
+            this.iconPictureBox2.Size = new System.Drawing.Size(40, 40);
             this.iconPictureBox2.TabIndex = 5;
             this.iconPictureBox2.TabStop = false;
             // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.iconPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.iconPictureBox1.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Database;
             this.iconPictureBox1.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 40;
-            this.iconPictureBox1.Location = new System.Drawing.Point(6, 160);
+            this.iconPictureBox1.Location = new System.Drawing.Point(9, 119);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(49, 40);
+            this.iconPictureBox1.Size = new System.Drawing.Size(40, 40);
             this.iconPictureBox1.TabIndex = 4;
             this.iconPictureBox1.TabStop = false;
             // 
             // btnDashboard
             // 
             this.btnDashboard.Depth = 0;
-            this.btnDashboard.Location = new System.Drawing.Point(2, 158);
+            this.btnDashboard.Location = new System.Drawing.Point(3, 117);
             this.btnDashboard.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Primary = true;
@@ -419,6 +453,22 @@
             this.materialLabel9.Size = new System.Drawing.Size(694, 1);
             this.materialLabel9.TabIndex = 17;
             // 
+            // dtEmployees
+            // 
+            this.dtEmployees.AllowUserToAddRows = false;
+            this.dtEmployees.AllowUserToDeleteRows = false;
+            this.dtEmployees.AllowUserToResizeColumns = false;
+            this.dtEmployees.AllowUserToResizeRows = false;
+            this.dtEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.dtEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtEmployees.GridColor = System.Drawing.Color.White;
+            this.dtEmployees.Location = new System.Drawing.Point(9, 92);
+            this.dtEmployees.Name = "dtEmployees";
+            this.dtEmployees.RowHeadersVisible = false;
+            this.dtEmployees.RowHeadersWidth = 51;
+            this.dtEmployees.Size = new System.Drawing.Size(684, 279);
+            this.dtEmployees.TabIndex = 12;
+            // 
             // lblViewEmployees
             // 
             this.lblViewEmployees.AutoSize = true;
@@ -440,6 +490,7 @@
             this.iconPictureBox7.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox7.IconChar = FontAwesome.Sharp.IconChar.UserTimes;
             this.iconPictureBox7.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox7.IconSize = 35;
             this.iconPictureBox7.Location = new System.Drawing.Point(481, 437);
             this.iconPictureBox7.Name = "iconPictureBox7";
@@ -454,10 +505,11 @@
             this.iconPictureBox6.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
             this.iconPictureBox6.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox6.IconSize = 35;
             this.iconPictureBox6.Location = new System.Drawing.Point(253, 436);
             this.iconPictureBox6.Name = "iconPictureBox6";
-            this.iconPictureBox6.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox6.Size = new System.Drawing.Size(41, 35);
             this.iconPictureBox6.TabIndex = 15;
             this.iconPictureBox6.TabStop = false;
             // 
@@ -468,6 +520,7 @@
             this.iconPictureBox5.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
             this.iconPictureBox5.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox5.IconSize = 35;
             this.iconPictureBox5.Location = new System.Drawing.Point(16, 436);
             this.iconPictureBox5.Name = "iconPictureBox5";
@@ -1304,6 +1357,7 @@
             this.iconPictureBox12.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox12.IconChar = FontAwesome.Sharp.IconChar.UserTimes;
             this.iconPictureBox12.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox12.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox12.IconSize = 35;
             this.iconPictureBox12.Location = new System.Drawing.Point(481, 426);
             this.iconPictureBox12.Name = "iconPictureBox12";
@@ -1318,6 +1372,7 @@
             this.iconPictureBox13.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox13.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
             this.iconPictureBox13.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox13.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox13.IconSize = 35;
             this.iconPictureBox13.Location = new System.Drawing.Point(252, 425);
             this.iconPictureBox13.Name = "iconPictureBox13";
@@ -1332,6 +1387,7 @@
             this.iconPictureBox14.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox14.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
             this.iconPictureBox14.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox14.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox14.IconSize = 35;
             this.iconPictureBox14.Location = new System.Drawing.Point(15, 425);
             this.iconPictureBox14.Name = "iconPictureBox14";
@@ -1551,8 +1607,9 @@
             this.iconPictureBox9.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.iconPictureBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
             this.iconPictureBox9.ForeColor = System.Drawing.Color.SeaGreen;
-            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
             this.iconPictureBox9.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox9.IconSize = 35;
             this.iconPictureBox9.Location = new System.Drawing.Point(480, 427);
             this.iconPictureBox9.Name = "iconPictureBox9";
@@ -1567,6 +1624,7 @@
             this.iconPictureBox10.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox10.IconChar = FontAwesome.Sharp.IconChar.EyeDropper;
             this.iconPictureBox10.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox10.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox10.IconSize = 35;
             this.iconPictureBox10.Location = new System.Drawing.Point(252, 426);
             this.iconPictureBox10.Name = "iconPictureBox10";
@@ -1581,10 +1639,11 @@
             this.iconPictureBox15.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox15.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
             this.iconPictureBox15.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox15.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox15.IconSize = 35;
-            this.iconPictureBox15.Location = new System.Drawing.Point(15, 426);
+            this.iconPictureBox15.Location = new System.Drawing.Point(16, 426);
             this.iconPictureBox15.Name = "iconPictureBox15";
-            this.iconPictureBox15.Size = new System.Drawing.Size(46, 35);
+            this.iconPictureBox15.Size = new System.Drawing.Size(45, 35);
             this.iconPictureBox15.TabIndex = 11;
             this.iconPictureBox15.TabStop = false;
             // 
@@ -1599,6 +1658,7 @@
             this.btnDeleteProduct.TabIndex = 12;
             this.btnDeleteProduct.Text = "       Delete Product";
             this.btnDeleteProduct.UseVisualStyleBackColor = true;
+            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
             // 
             // btnEditProduct
             // 
@@ -1611,6 +1671,7 @@
             this.btnEditProduct.TabIndex = 11;
             this.btnEditProduct.Text = "     Edit Product";
             this.btnEditProduct.UseVisualStyleBackColor = true;
+            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
             // 
             // btnAddProduct
             // 
@@ -1623,22 +1684,263 @@
             this.btnAddProduct.TabIndex = 10;
             this.btnAddProduct.Text = "    Add Product";
             this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
-            // dtEmployees
+            // pnlAddEditProduct
             // 
-            this.dtEmployees.AllowUserToAddRows = false;
-            this.dtEmployees.AllowUserToDeleteRows = false;
-            this.dtEmployees.AllowUserToResizeColumns = false;
-            this.dtEmployees.AllowUserToResizeRows = false;
-            this.dtEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.dtEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtEmployees.GridColor = System.Drawing.Color.White;
-            this.dtEmployees.Location = new System.Drawing.Point(9, 92);
-            this.dtEmployees.Name = "dtEmployees";
-            this.dtEmployees.RowHeadersVisible = false;
-            this.dtEmployees.RowHeadersWidth = 51;
-            this.dtEmployees.Size = new System.Drawing.Size(684, 279);
-            this.dtEmployees.TabIndex = 12;
+            this.pnlAddEditProduct.AutoSize = true;
+            this.pnlAddEditProduct.BackColor = System.Drawing.Color.Transparent;
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel15);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductQuantityDepo);
+            this.pnlAddEditProduct.Controls.Add(this.iconPictureBox16);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductQuantity);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductBuyingPrice);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel20);
+            this.pnlAddEditProduct.Controls.Add(this.btnUpdateProductItem);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel17);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductSellingPrice);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel21);
+            this.pnlAddEditProduct.Controls.Add(this.btnAddProductItem);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel24);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel25);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductId);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductThreshHold);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductDescription);
+            this.pnlAddEditProduct.Controls.Add(this.tbProductTitle);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel27);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel28);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel29);
+            this.pnlAddEditProduct.Controls.Add(this.materialLabel31);
+            this.pnlAddEditProduct.Location = new System.Drawing.Point(221, 65);
+            this.pnlAddEditProduct.Name = "pnlAddEditProduct";
+            this.pnlAddEditProduct.Size = new System.Drawing.Size(698, 490);
+            this.pnlAddEditProduct.TabIndex = 39;
+            // 
+            // iconPictureBox16
+            // 
+            this.iconPictureBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox16.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox16.IconChar = FontAwesome.Sharp.IconChar.PiedPiperPp;
+            this.iconPictureBox16.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox16.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox16.IconSize = 63;
+            this.iconPictureBox16.Location = new System.Drawing.Point(323, 59);
+            this.iconPictureBox16.Name = "iconPictureBox16";
+            this.iconPictureBox16.Size = new System.Drawing.Size(68, 63);
+            this.iconPictureBox16.TabIndex = 16;
+            this.iconPictureBox16.TabStop = false;
+            // 
+            // tbProductQuantity
+            // 
+            this.tbProductQuantity.Location = new System.Drawing.Point(101, 200);
+            this.tbProductQuantity.Name = "tbProductQuantity";
+            this.tbProductQuantity.Size = new System.Drawing.Size(239, 20);
+            this.tbProductQuantity.TabIndex = 48;
+            // 
+            // tbProductBuyingPrice
+            // 
+            this.tbProductBuyingPrice.Location = new System.Drawing.Point(102, 243);
+            this.tbProductBuyingPrice.Name = "tbProductBuyingPrice";
+            this.tbProductBuyingPrice.Size = new System.Drawing.Size(238, 20);
+            this.tbProductBuyingPrice.TabIndex = 47;
+            // 
+            // materialLabel20
+            // 
+            this.materialLabel20.AutoSize = true;
+            this.materialLabel20.Depth = 0;
+            this.materialLabel20.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel20.Location = new System.Drawing.Point(7, 243);
+            this.materialLabel20.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel20.Name = "materialLabel20";
+            this.materialLabel20.Size = new System.Drawing.Size(91, 19);
+            this.materialLabel20.TabIndex = 46;
+            this.materialLabel20.Text = "Buying Price";
+            // 
+            // btnUpdateProductItem
+            // 
+            this.btnUpdateProductItem.Depth = 0;
+            this.btnUpdateProductItem.Location = new System.Drawing.Point(256, 394);
+            this.btnUpdateProductItem.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnUpdateProductItem.Name = "btnUpdateProductItem";
+            this.btnUpdateProductItem.Primary = true;
+            this.btnUpdateProductItem.Size = new System.Drawing.Size(202, 37);
+            this.btnUpdateProductItem.TabIndex = 40;
+            this.btnUpdateProductItem.Text = "Update Product";
+            this.btnUpdateProductItem.UseVisualStyleBackColor = true;
+            this.btnUpdateProductItem.Click += new System.EventHandler(this.btnUpdateProductItem_Click);
+            // 
+            // materialLabel17
+            // 
+            this.materialLabel17.AutoSize = true;
+            this.materialLabel17.Depth = 0;
+            this.materialLabel17.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel17.Location = new System.Drawing.Point(348, 243);
+            this.materialLabel17.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel17.Name = "materialLabel17";
+            this.materialLabel17.Size = new System.Drawing.Size(92, 19);
+            this.materialLabel17.TabIndex = 36;
+            this.materialLabel17.Text = "Selling Price";
+            // 
+            // tbProductSellingPrice
+            // 
+            this.tbProductSellingPrice.Location = new System.Drawing.Point(440, 243);
+            this.tbProductSellingPrice.Name = "tbProductSellingPrice";
+            this.tbProductSellingPrice.Size = new System.Drawing.Size(241, 20);
+            this.tbProductSellingPrice.TabIndex = 27;
+            // 
+            // materialLabel21
+            // 
+            this.materialLabel21.AutoSize = true;
+            this.materialLabel21.Depth = 0;
+            this.materialLabel21.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel21.Location = new System.Drawing.Point(352, 153);
+            this.materialLabel21.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel21.Name = "materialLabel21";
+            this.materialLabel21.Size = new System.Drawing.Size(86, 19);
+            this.materialLabel21.TabIndex = 33;
+            this.materialLabel21.Text = "Description";
+            // 
+            // btnAddProductItem
+            // 
+            this.btnAddProductItem.Depth = 0;
+            this.btnAddProductItem.Location = new System.Drawing.Point(256, 339);
+            this.btnAddProductItem.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAddProductItem.Name = "btnAddProductItem";
+            this.btnAddProductItem.Primary = true;
+            this.btnAddProductItem.Size = new System.Drawing.Size(202, 37);
+            this.btnAddProductItem.TabIndex = 11;
+            this.btnAddProductItem.Text = "Add a Product";
+            this.btnAddProductItem.UseVisualStyleBackColor = true;
+            this.btnAddProductItem.Click += new System.EventHandler(this.btnAddProductItem_Click);
+            // 
+            // materialLabel24
+            // 
+            this.materialLabel24.AutoSize = true;
+            this.materialLabel24.Depth = 0;
+            this.materialLabel24.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel24.Location = new System.Drawing.Point(161, 290);
+            this.materialLabel24.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel24.Name = "materialLabel24";
+            this.materialLabel24.Size = new System.Drawing.Size(76, 19);
+            this.materialLabel24.TabIndex = 28;
+            this.materialLabel24.Text = "Threshold";
+            // 
+            // materialLabel25
+            // 
+            this.materialLabel25.AutoSize = true;
+            this.materialLabel25.Depth = 0;
+            this.materialLabel25.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel25.Location = new System.Drawing.Point(55, 154);
+            this.materialLabel25.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel25.Name = "materialLabel25";
+            this.materialLabel25.Size = new System.Drawing.Size(39, 19);
+            this.materialLabel25.TabIndex = 26;
+            this.materialLabel25.Text = "Title";
+            // 
+            // tbProductId
+            // 
+            this.tbProductId.Location = new System.Drawing.Point(679, 398);
+            this.tbProductId.Name = "tbProductId";
+            this.tbProductId.Size = new System.Drawing.Size(15, 20);
+            this.tbProductId.TabIndex = 29;
+            this.tbProductId.Visible = false;
+            // 
+            // tbProductThreshHold
+            // 
+            this.tbProductThreshHold.Location = new System.Drawing.Point(243, 290);
+            this.tbProductThreshHold.Name = "tbProductThreshHold";
+            this.tbProductThreshHold.Size = new System.Drawing.Size(241, 20);
+            this.tbProductThreshHold.TabIndex = 25;
+            // 
+            // tbProductDescription
+            // 
+            this.tbProductDescription.Location = new System.Drawing.Point(440, 153);
+            this.tbProductDescription.Name = "tbProductDescription";
+            this.tbProductDescription.Size = new System.Drawing.Size(241, 20);
+            this.tbProductDescription.TabIndex = 23;
+            // 
+            // tbProductTitle
+            // 
+            this.tbProductTitle.Location = new System.Drawing.Point(100, 154);
+            this.tbProductTitle.Name = "tbProductTitle";
+            this.tbProductTitle.Size = new System.Drawing.Size(241, 20);
+            this.tbProductTitle.TabIndex = 22;
+            // 
+            // materialLabel27
+            // 
+            this.materialLabel27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel27.Depth = 0;
+            this.materialLabel27.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel27.Location = new System.Drawing.Point(4, 40);
+            this.materialLabel27.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel27.Name = "materialLabel27";
+            this.materialLabel27.Size = new System.Drawing.Size(689, 1);
+            this.materialLabel27.TabIndex = 12;
+            // 
+            // materialLabel28
+            // 
+            this.materialLabel28.AutoSize = true;
+            this.materialLabel28.Depth = 0;
+            this.materialLabel28.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel28.Location = new System.Drawing.Point(301, 13);
+            this.materialLabel28.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel28.Name = "materialLabel28";
+            this.materialLabel28.Size = new System.Drawing.Size(123, 19);
+            this.materialLabel28.TabIndex = 1;
+            this.materialLabel28.Text = "Add/Edit Product";
+            this.materialLabel28.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel29
+            // 
+            this.materialLabel29.AutoSize = true;
+            this.materialLabel29.Depth = 0;
+            this.materialLabel29.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel29.Location = new System.Drawing.Point(264, 13);
+            this.materialLabel29.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel29.Name = "materialLabel29";
+            this.materialLabel29.Size = new System.Drawing.Size(0, 19);
+            this.materialLabel29.TabIndex = 0;
+            // 
+            // materialLabel31
+            // 
+            this.materialLabel31.AutoSize = true;
+            this.materialLabel31.Depth = 0;
+            this.materialLabel31.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel31.Location = new System.Drawing.Point(34, 200);
+            this.materialLabel31.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel31.Name = "materialLabel31";
+            this.materialLabel31.Size = new System.Drawing.Size(64, 19);
+            this.materialLabel31.TabIndex = 39;
+            this.materialLabel31.Text = "Quantity";
+            // 
+            // tbProductQuantityDepo
+            // 
+            this.tbProductQuantityDepo.Location = new System.Drawing.Point(440, 201);
+            this.tbProductQuantityDepo.Name = "tbProductQuantityDepo";
+            this.tbProductQuantityDepo.Size = new System.Drawing.Size(239, 20);
+            this.tbProductQuantityDepo.TabIndex = 49;
+            // 
+            // materialLabel15
+            // 
+            this.materialLabel15.AutoSize = true;
+            this.materialLabel15.Depth = 0;
+            this.materialLabel15.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel15.Location = new System.Drawing.Point(341, 200);
+            this.materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel15.Name = "materialLabel15";
+            this.materialLabel15.Size = new System.Drawing.Size(99, 19);
+            this.materialLabel15.TabIndex = 50;
+            this.materialLabel15.Text = "QuantityDepo";
             // 
             // Home
             // 
@@ -1646,14 +1948,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 576);
             this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.pnlAddEditProduct);
+            this.Controls.Add(this.pnlAddEditEmployee);
+            this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlViewSchedule);
             this.Controls.Add(this.pnlScheduleEmployees);
             this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
-            this.Controls.Add(this.pnlAddEditEmployee);
-            this.Controls.Add(this.pnlAddEditAdmin);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -1668,6 +1971,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.pnlEmployee.ResumeLayout(false);
             this.pnlEmployee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
@@ -1695,7 +1999,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEmployees)).EndInit();
+            this.pnlAddEditProduct.ResumeLayout(false);
+            this.pnlAddEditProduct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1816,5 +2122,27 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnEditProduct;
         private MaterialSkin.Controls.MaterialRaisedButton btnAddProduct;
         private System.Windows.Forms.DataGridView dtEmployees;
+        private System.Windows.Forms.Panel pnlAddEditProduct;
+        private MaterialSkin.Controls.MaterialRaisedButton btnUpdateProductItem;
+        private MaterialSkin.Controls.MaterialLabel materialLabel17;
+        private System.Windows.Forms.TextBox tbProductSellingPrice;
+        private MaterialSkin.Controls.MaterialLabel materialLabel21;
+        private MaterialSkin.Controls.MaterialRaisedButton btnAddProductItem;
+        private MaterialSkin.Controls.MaterialLabel materialLabel24;
+        private MaterialSkin.Controls.MaterialLabel materialLabel25;
+        private System.Windows.Forms.TextBox tbProductId;
+        private System.Windows.Forms.TextBox tbProductThreshHold;
+        private System.Windows.Forms.TextBox tbProductDescription;
+        private System.Windows.Forms.TextBox tbProductTitle;
+        private MaterialSkin.Controls.MaterialLabel materialLabel27;
+        private MaterialSkin.Controls.MaterialLabel materialLabel28;
+        private MaterialSkin.Controls.MaterialLabel materialLabel29;
+        private MaterialSkin.Controls.MaterialLabel materialLabel31;
+        private System.Windows.Forms.TextBox tbProductQuantity;
+        private System.Windows.Forms.TextBox tbProductBuyingPrice;
+        private MaterialSkin.Controls.MaterialLabel materialLabel20;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox16;
+        private MaterialSkin.Controls.MaterialLabel materialLabel15;
+        private System.Windows.Forms.TextBox tbProductQuantityDepo;
     }
 }
