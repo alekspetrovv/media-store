@@ -31,6 +31,8 @@
             this.btnViewEmployees = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnViewSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.iconPictureBox16 = new FontAwesome.Sharp.IconPictureBox();
+            this.btnViewCart = new MaterialSkin.Controls.MaterialRaisedButton();
             this.iconPictureBox8 = new FontAwesome.Sharp.IconPictureBox();
             this.btnViewProducts = new MaterialSkin.Controls.MaterialRaisedButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -163,7 +165,23 @@
             this.materialLabel28 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel29 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel31 = new MaterialSkin.Controls.MaterialLabel();
+            this.pnlCart = new System.Windows.Forms.Panel();
+            this.materialLabel33 = new MaterialSkin.Controls.MaterialLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.materialLabel32 = new MaterialSkin.Controls.MaterialLabel();
+            this.lbShoppingCart = new System.Windows.Forms.ListBox();
+            this.materialLabel30 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel26 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel23 = new MaterialSkin.Controls.MaterialLabel();
+            this.lbStoreProducts = new System.Windows.Forms.ListBox();
+            this.materialLabel16 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel22 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialRaisedButton4 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel34 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel35 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
@@ -193,6 +211,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).BeginInit();
             this.pnlAddEditProduct.SuspendLayout();
+            this.pnlCart.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnViewEmployees
@@ -224,6 +243,8 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMenu.Controls.Add(this.iconPictureBox16);
+            this.pnlMenu.Controls.Add(this.btnViewCart);
             this.pnlMenu.Controls.Add(this.iconPictureBox8);
             this.pnlMenu.Controls.Add(this.btnViewProducts);
             this.pnlMenu.Controls.Add(this.label1);
@@ -245,6 +266,33 @@
             this.pnlMenu.Size = new System.Drawing.Size(213, 495);
             this.pnlMenu.TabIndex = 0;
             // 
+            // iconPictureBox16
+            // 
+            this.iconPictureBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.iconPictureBox16.ForeColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox16.IconChar = FontAwesome.Sharp.IconChar.CartArrowDown;
+            this.iconPictureBox16.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox16.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox16.IconSize = 40;
+            this.iconPictureBox16.Location = new System.Drawing.Point(6, 437);
+            this.iconPictureBox16.Name = "iconPictureBox16";
+            this.iconPictureBox16.Size = new System.Drawing.Size(42, 40);
+            this.iconPictureBox16.TabIndex = 17;
+            this.iconPictureBox16.TabStop = false;
+            // 
+            // btnViewCart
+            // 
+            this.btnViewCart.Depth = 0;
+            this.btnViewCart.Location = new System.Drawing.Point(3, 433);
+            this.btnViewCart.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnViewCart.Name = "btnViewCart";
+            this.btnViewCart.Primary = true;
+            this.btnViewCart.Size = new System.Drawing.Size(198, 46);
+            this.btnViewCart.TabIndex = 16;
+            this.btnViewCart.Text = "     VIEW Cart";
+            this.btnViewCart.UseVisualStyleBackColor = true;
+            this.btnViewCart.Click += new System.EventHandler(this.btnViewCart_Click);
+            // 
             // iconPictureBox8
             // 
             this.iconPictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
@@ -252,21 +300,21 @@
             this.iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.ProductHunt;
             this.iconPictureBox8.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox8.IconSize = 40;
-            this.iconPictureBox8.Location = new System.Drawing.Point(7, 388);
+            this.iconPictureBox8.IconSize = 39;
+            this.iconPictureBox8.Location = new System.Drawing.Point(7, 381);
             this.iconPictureBox8.Name = "iconPictureBox8";
-            this.iconPictureBox8.Size = new System.Drawing.Size(42, 40);
+            this.iconPictureBox8.Size = new System.Drawing.Size(42, 39);
             this.iconPictureBox8.TabIndex = 15;
             this.iconPictureBox8.TabStop = false;
             // 
             // btnViewProducts
             // 
             this.btnViewProducts.Depth = 0;
-            this.btnViewProducts.Location = new System.Drawing.Point(4, 384);
+            this.btnViewProducts.Location = new System.Drawing.Point(4, 377);
             this.btnViewProducts.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewProducts.Name = "btnViewProducts";
             this.btnViewProducts.Primary = true;
-            this.btnViewProducts.Size = new System.Drawing.Size(198, 46);
+            this.btnViewProducts.Size = new System.Drawing.Size(198, 45);
             this.btnViewProducts.TabIndex = 14;
             this.btnViewProducts.Text = "         View Products";
             this.btnViewProducts.UseVisualStyleBackColor = true;
@@ -425,6 +473,7 @@
             // 
             this.pnlEmployee.AutoSize = true;
             this.pnlEmployee.BackColor = System.Drawing.Color.Transparent;
+            this.pnlEmployee.Controls.Add(this.materialLabel34);
             this.pnlEmployee.Controls.Add(this.materialLabel9);
             this.pnlEmployee.Controls.Add(this.dtEmployees);
             this.pnlEmployee.Controls.Add(this.lblViewEmployees);
@@ -1308,6 +1357,7 @@
             // 
             this.pnlViewUser.AutoSize = true;
             this.pnlViewUser.BackColor = System.Drawing.Color.Transparent;
+            this.pnlViewUser.Controls.Add(this.materialLabel35);
             this.pnlViewUser.Controls.Add(this.materialLabel3);
             this.pnlViewUser.Controls.Add(this.lblViewUsers);
             this.pnlViewUser.Controls.Add(this.iconPictureBox12);
@@ -1925,13 +1975,205 @@
             this.materialLabel31.TabIndex = 39;
             this.materialLabel31.Text = "Quantity";
             // 
+            // pnlCart
+            // 
+            this.pnlCart.AutoSize = true;
+            this.pnlCart.BackColor = System.Drawing.Color.Transparent;
+            this.pnlCart.Controls.Add(this.materialLabel33);
+            this.pnlCart.Controls.Add(this.textBox1);
+            this.pnlCart.Controls.Add(this.materialLabel32);
+            this.pnlCart.Controls.Add(this.lbShoppingCart);
+            this.pnlCart.Controls.Add(this.materialLabel30);
+            this.pnlCart.Controls.Add(this.materialLabel26);
+            this.pnlCart.Controls.Add(this.materialLabel23);
+            this.pnlCart.Controls.Add(this.lbStoreProducts);
+            this.pnlCart.Controls.Add(this.materialLabel16);
+            this.pnlCart.Controls.Add(this.materialLabel22);
+            this.pnlCart.Controls.Add(this.materialRaisedButton2);
+            this.pnlCart.Controls.Add(this.materialRaisedButton4);
+            this.pnlCart.Location = new System.Drawing.Point(221, 65);
+            this.pnlCart.Name = "pnlCart";
+            this.pnlCart.Size = new System.Drawing.Size(698, 490);
+            this.pnlCart.TabIndex = 39;
+            // 
+            // materialLabel33
+            // 
+            this.materialLabel33.AutoSize = true;
+            this.materialLabel33.Depth = 0;
+            this.materialLabel33.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel33.Location = new System.Drawing.Point(97, 95);
+            this.materialLabel33.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel33.Name = "materialLabel33";
+            this.materialLabel33.Size = new System.Drawing.Size(539, 19);
+            this.materialLabel33.TabIndex = 27;
+            this.materialLabel33.Text = "If you wish to buy a product you should select the product and choose quantity!";
+            this.materialLabel33.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(296, 199);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(110, 20);
+            this.textBox1.TabIndex = 26;
+            // 
+            // materialLabel32
+            // 
+            this.materialLabel32.AutoSize = true;
+            this.materialLabel32.Depth = 0;
+            this.materialLabel32.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel32.Location = new System.Drawing.Point(290, 165);
+            this.materialLabel32.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel32.Name = "materialLabel32";
+            this.materialLabel32.Size = new System.Drawing.Size(120, 19);
+            this.materialLabel32.TabIndex = 25;
+            this.materialLabel32.Text = "Choose Quantity";
+            this.materialLabel32.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbShoppingCart
+            // 
+            this.lbShoppingCart.FormattingEnabled = true;
+            this.lbShoppingCart.Location = new System.Drawing.Point(440, 161);
+            this.lbShoppingCart.Name = "lbShoppingCart";
+            this.lbShoppingCart.Size = new System.Drawing.Size(254, 251);
+            this.lbShoppingCart.TabIndex = 24;
+            // 
+            // materialLabel30
+            // 
+            this.materialLabel30.AutoSize = true;
+            this.materialLabel30.Depth = 0;
+            this.materialLabel30.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel30.Location = new System.Drawing.Point(264, 59);
+            this.materialLabel30.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel30.Name = "materialLabel30";
+            this.materialLabel30.Size = new System.Drawing.Size(188, 19);
+            this.materialLabel30.TabIndex = 23;
+            this.materialLabel30.Text = "Welcome to the Cart Page!";
+            this.materialLabel30.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel26
+            // 
+            this.materialLabel26.AutoSize = true;
+            this.materialLabel26.Depth = 0;
+            this.materialLabel26.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel26.Location = new System.Drawing.Point(438, 138);
+            this.materialLabel26.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel26.Name = "materialLabel26";
+            this.materialLabel26.Size = new System.Drawing.Size(103, 19);
+            this.materialLabel26.TabIndex = 21;
+            this.materialLabel26.Text = "Shopping Cart";
+            this.materialLabel26.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel23
+            // 
+            this.materialLabel23.AutoSize = true;
+            this.materialLabel23.Depth = 0;
+            this.materialLabel23.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel23.Location = new System.Drawing.Point(4, 135);
+            this.materialLabel23.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel23.Name = "materialLabel23";
+            this.materialLabel23.Size = new System.Drawing.Size(109, 19);
+            this.materialLabel23.TabIndex = 20;
+            this.materialLabel23.Text = "Store Products";
+            this.materialLabel23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbStoreProducts
+            // 
+            this.lbStoreProducts.FormattingEnabled = true;
+            this.lbStoreProducts.Location = new System.Drawing.Point(6, 161);
+            this.lbStoreProducts.Name = "lbStoreProducts";
+            this.lbStoreProducts.Size = new System.Drawing.Size(254, 251);
+            this.lbStoreProducts.TabIndex = 18;
+            // 
+            // materialLabel16
+            // 
+            this.materialLabel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel16.Depth = 0;
+            this.materialLabel16.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel16.Location = new System.Drawing.Point(1, 38);
+            this.materialLabel16.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel16.Name = "materialLabel16";
+            this.materialLabel16.Size = new System.Drawing.Size(694, 1);
+            this.materialLabel16.TabIndex = 17;
+            // 
+            // materialLabel22
+            // 
+            this.materialLabel22.AutoSize = true;
+            this.materialLabel22.Depth = 0;
+            this.materialLabel22.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel22.Location = new System.Drawing.Point(320, 11);
+            this.materialLabel22.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel22.Name = "materialLabel22";
+            this.materialLabel22.Size = new System.Drawing.Size(74, 19);
+            this.materialLabel22.TabIndex = 2;
+            this.materialLabel22.Text = "View Cart";
+            this.materialLabel22.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialRaisedButton2
+            // 
+            this.materialRaisedButton2.Depth = 0;
+            this.materialRaisedButton2.Location = new System.Drawing.Point(472, 431);
+            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton2.Name = "materialRaisedButton2";
+            this.materialRaisedButton2.Primary = true;
+            this.materialRaisedButton2.Size = new System.Drawing.Size(221, 37);
+            this.materialRaisedButton2.TabIndex = 12;
+            this.materialRaisedButton2.Text = "Purchase Products";
+            this.materialRaisedButton2.UseVisualStyleBackColor = true;
+            // 
+            // materialRaisedButton4
+            // 
+            this.materialRaisedButton4.Depth = 0;
+            this.materialRaisedButton4.Location = new System.Drawing.Point(314, 256);
+            this.materialRaisedButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton4.Name = "materialRaisedButton4";
+            this.materialRaisedButton4.Primary = true;
+            this.materialRaisedButton4.Size = new System.Drawing.Size(65, 58);
+            this.materialRaisedButton4.TabIndex = 10;
+            this.materialRaisedButton4.Text = "Add  To Cart";
+            this.materialRaisedButton4.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel34
+            // 
+            this.materialLabel34.AutoSize = true;
+            this.materialLabel34.Depth = 0;
+            this.materialLabel34.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel34.Location = new System.Drawing.Point(99, 59);
+            this.materialLabel34.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel34.Name = "materialLabel34";
+            this.materialLabel34.Size = new System.Drawing.Size(490, 19);
+            this.materialLabel34.TabIndex = 28;
+            this.materialLabel34.Text = "Welcome to the Employee page.Here you can add,edit,delete employees";
+            this.materialLabel34.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel35
+            // 
+            this.materialLabel35.AutoSize = true;
+            this.materialLabel35.Depth = 0;
+            this.materialLabel35.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel35.Location = new System.Drawing.Point(138, 50);
+            this.materialLabel35.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel35.Name = "materialLabel35";
+            this.materialLabel35.Size = new System.Drawing.Size(419, 19);
+            this.materialLabel35.TabIndex = 29;
+            this.materialLabel35.Text = "Welcome to the User page.Here you can add,edit,delete users";
+            this.materialLabel35.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 576);
+            this.ClientSize = new System.Drawing.Size(942, 567);
             this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlProducts);
+            this.Controls.Add(this.pnlCart);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
@@ -1940,12 +2182,14 @@
             this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlViewSchedule);
             this.Controls.Add(this.pnlScheduleEmployees);
+            this.Controls.Add(this.pnlProducts);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
             this.Load += new System.EventHandler(this.Home_Load);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
@@ -1984,6 +2228,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).EndInit();
             this.pnlAddEditProduct.ResumeLayout(false);
             this.pnlAddEditProduct.PerformLayout();
+            this.pnlCart.ResumeLayout(false);
+            this.pnlCart.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2125,5 +2371,22 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel20;
         private MaterialSkin.Controls.MaterialLabel materialLabel15;
         private System.Windows.Forms.TextBox tbProductQuantityDepo;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox16;
+        private MaterialSkin.Controls.MaterialRaisedButton btnViewCart;
+        private System.Windows.Forms.Panel pnlCart;
+        private MaterialSkin.Controls.MaterialLabel materialLabel33;
+        private System.Windows.Forms.TextBox textBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel32;
+        private System.Windows.Forms.ListBox lbShoppingCart;
+        private MaterialSkin.Controls.MaterialLabel materialLabel30;
+        private MaterialSkin.Controls.MaterialLabel materialLabel26;
+        private MaterialSkin.Controls.MaterialLabel materialLabel23;
+        private System.Windows.Forms.ListBox lbStoreProducts;
+        private MaterialSkin.Controls.MaterialLabel materialLabel16;
+        private MaterialSkin.Controls.MaterialLabel materialLabel22;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel34;
+        private MaterialSkin.Controls.MaterialLabel materialLabel35;
     }
 }
