@@ -11,13 +11,14 @@ namespace PapaSenpai_Project_Software.Logic
     public class ScheduleControl
     {
         private List<Schedule> schedules;
-        private List<ScheduleMember> scheduleMembers;
         private ScheduleDAL scheduleDAL;
+        private ScheduleMemberDAL scheduleMemberDAL;
+
         public ScheduleControl()
         {
             this.scheduleDAL = new ScheduleDAL();
+            this.scheduleMemberDAL = new ScheduleMemberDAL();
             this.schedules = new List<Schedule>();
-            scheduleMembers = new List<ScheduleMember>();
         }
 
 
@@ -65,13 +66,8 @@ namespace PapaSenpai_Project_Software.Logic
                         while (employees_ids_q.Read())
                         {
                             int id = Convert.ToInt32(employees_ids_q["id"]);
-                            //Employee foundEmployee = getEmployeeById(id);
-
-                            //if (foundEmployee != null)
-                            //{
-                            //    ScheduleMember member = new ScheduleMember(foundEmployee, employees_ids_q["from_hour"].ToString(), employees_ids_q["to_hour"].ToString());
-                            //    this.addScheduleMember(member);
-                            //}
+                            ScheduleMember member = new ScheduleMember(id, employees_ids_q["from_hour"].ToString(), employees_ids_q["to_hour"].ToString());
+                            schedule.addScheduleMember(member);
                         }
                     }
                     this.addSchedule(schedule);
@@ -79,38 +75,20 @@ namespace PapaSenpai_Project_Software.Logic
             }
         }
 
-        public Object UpdateSchedule(string[] schedule_bindings)
+        public Object Insert(string[] schedule_bindings)
         {
-            // to do
-            return scheduleDAL.Update(schedule_bindings);
+            Object id = scheduleDAL.Insert(schedule_bindings);
+            return id;
         }
 
-        public void DeleteSchedule(string[] schedule_bindings)
+        public void Delete(string[] schedule_bindings)
         {
             scheduleDAL.Delete(schedule_bindings);
         }
 
-        public void AssignSchedule(string[] schedule_bindings)
+        public void InsertMember(string[] schedule_bindings)
         {
-            // to do
-            scheduleDAL.Assign(schedule_bindings);
-        }
-
-        public void addScheduleMember(ScheduleMember member)
-        {
-            if (scheduleMembers.Count > 5)
-            {
-                throw new Exception("You can't add more than 5 members to a schedule");
-            }
-
-            this.scheduleMembers.Add(member);
-        }
-
-
-        public List<ScheduleMember> Members
-        {
-            get { return scheduleMembers; }
-            set { this.scheduleMembers = value; }
+            scheduleMemberDAL.Insert(schedule_bindings);
         }
 
 
@@ -118,5 +96,6 @@ namespace PapaSenpai_Project_Software.Logic
         {
             return this.schedules;
         }
-    }
+
+ }
 }

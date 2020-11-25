@@ -68,7 +68,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public Object executeNonQuery(string sql, string[] bindings = null)
         {
-            return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+           return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
         }
 
 

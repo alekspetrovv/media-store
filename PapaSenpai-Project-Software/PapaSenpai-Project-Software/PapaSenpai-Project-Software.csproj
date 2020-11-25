@@ -66,6 +66,7 @@
     <Compile Include="Data\EmployeeDAL.cs" />
     <Compile Include="Data\ProductDAL.cs" />
     <Compile Include="Data\ScheduleDAL.cs" />
+    <Compile Include="Data\ScheduleMemberDAL.cs" />
     <Compile Include="Logic\Admin.cs" />
     <Compile Include="Logic\AdminControl.cs" />
     <Compile Include="Logic\Department.cs" />
