@@ -42,7 +42,7 @@ namespace PapaSenpai_Project_Software
             this.renderAdminTable();
             this.renderScheduleMembers();
             this.renderDailySchedule();
-            this.renderProductTable();
+            this.renderProductsTable();
         }
 
 
@@ -175,28 +175,30 @@ namespace PapaSenpai_Project_Software
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlAddEditProduct);
+            this.showButton(this.btnAddProductItem);
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
-           // to do
+            this.EditProduct();
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            // to do
+            this.DeleteProduct();
         }
 
         private void btnAddProductItem_Click(object sender, EventArgs e)
         {
             this.AddProduct();
         }
+
         private void btnUpdateProductItem_Click(object sender, EventArgs e)
         {
-            // to do
+            this.UpdateProduct();
         }
 
-        private void renderProductTable()
+        private void renderProductsTable()
         {
             DataTable dtPrd = new DataTable();
             // add column to datatable  
@@ -229,7 +231,7 @@ namespace PapaSenpai_Project_Software
                 errors.Add("You can't create a product without entering all the fields");
             }
 
-            if (productControl.GetProductByTitle(this.tbProductTitle.Text) != null)
+            if (this.productControl.GetProductByTitle(this.tbProductTitle.Text) != null)
             {
                 errors.Add("You can't add a product with the same title");
             }
@@ -237,15 +239,15 @@ namespace PapaSenpai_Project_Software
             if (!errors.Any())
             {
                 int quantity = Convert.ToInt32(this.tbProductQuantity.Text);
-                int quantitydepo = Convert.ToInt32(this.tbProductQuantity.Text);
+                int quantitydepo = Convert.ToInt32(this.tbProductQuantityDepo.Text);
                 double selling_price = Convert.ToDouble(this.tbProductSellingPrice.Text);
                 double buying_price = Convert.ToDouble(this.tbProductBuyingPrice.Text);
                 int threshold = Convert.ToInt32(this.tbProductThreshHold.Text);
                 string[] product_bindings = { this.tbProductTitle.Text, this.tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
                 selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
-                productControl.AddProduct(product_bindings);
-                MessageBox.Show("You have created a product!");
-                this.renderProductTable();
+                this.productControl.AddProduct(product_bindings);
+                MessageBox.Show("you have successfully created a product!");
+                this.renderProductsTable();
                 this.showPanel(pnlProducts);
                 return;
             }
@@ -261,26 +263,104 @@ namespace PapaSenpai_Project_Software
 
         private void EditProduct()
         {
-            // to do
+            this.btnAddProductItem.Visible = false;
+            this.btnUpdateProductItem.Visible = true;
+            try
+            {
+                for (int i = 0; i < dtProducts.Rows.Count; ++i)
+                {
+                    DataGridViewRow dataRow = dtProducts.Rows[i];
+
+                    if (dataRow.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    bool selectedProduct = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                    if (selectedProduct)
+                    {
+                        string id = dataRow.Cells["ID"].Value.ToString();
+                        Product product = productControl.GetProductById(Convert.ToInt32(id));
+                        this.tbProductTitle.Text = product.Title;
+                        this.tbProductDescription.Text = product.Description;
+                        this.tbProductQuantity.Text = Convert.ToString(product.Quantity);
+                        this.tbProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
+                        this.tbProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
+                        this.tbProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
+                        this.tbProductThreshHold.Text = Convert.ToString(product.ThreshHold);
+                        this.tbProductId.Text = Convert.ToString(product.Id);
+                        this.productControl.retrieveAllProducts();
+                        this.renderProductsTable();
+                        this.showPanel(pnlAddEditProduct);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("There's been an error: " + e.Message);
+            }
         }
 
 
         private void UpdateProduct()
         {
-            // to do
+            try
+            {
+
+                string productID = this.tbProductId.Text;
+                string[] productData = { this.tbProductTitle.Text,this.tbProductDescription.Text,this.tbProductQuantity.Text,this.tbProductQuantityDepo.Text,
+                this.tbProductSellingPrice.Text,this.tbProductBuyingPrice.Text,this.tbProductThreshHold.Text, productID };
+                this.productControl.UpdateProduct(productData);
+                MessageBox.Show("You have succesfully updated information for that product!");
+                this.renderProductsTable();
+                this.showPanel(this.pnlProducts);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            this.clearProductFields();
         }
-
-
 
 
         private void DeleteProduct()
         {
-            // to do
+            try
+            {
+                if (MessageBox.Show("Do you want to delete this product?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    bool found = false;
+                    for (int i = 0; i < dtProducts.Rows.Count; ++i)
+                    {
+                        DataGridViewRow dataRow = dtProducts.Rows[i];
+
+                        bool selectedProduct = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                        if (dataRow.IsNewRow || !selectedProduct)
+                        {
+                            continue;
+                        }
+                        string productId = (dataRow.Cells["ID"].Value.ToString());
+                        string[] product = { productId };
+                        this.productControl.DeleteProduct(product);
+                        found = true;
+                    }
+
+                    this.productControl.retrieveAllProducts();
+                    this.renderProductsTable();
+
+
+                    if (!found)
+                    {
+                        MessageBox.Show("You need to tick the selected box to delete a product");
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Can't delete that");
+            }
+
         }
-
-
-
-
 
 
 
@@ -471,7 +551,8 @@ namespace PapaSenpai_Project_Software
 
             foreach (Employee employee in employeeControl.getEmployees())
             {
-                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName, employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
+                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName,
+                    employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -593,7 +674,7 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("You need to enter all details for updating employee");
             }
-
+            this.clearEmployeeFields();
         }
 
 
@@ -602,42 +683,45 @@ namespace PapaSenpai_Project_Software
         {
             try
             {
-                bool found = false;
-                for (int i = 0; i < dtEmployees.Rows.Count; ++i)
+                if (MessageBox.Show("Do you want to delete this employee?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-
-                    DataGridViewRow dataRow = dtEmployees.Rows[i];
-                    bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-
-                    if (dataRow.IsNewRow || !selectedUser)
+                    bool found = false;
+                    for (int i = 0; i < dtEmployees.Rows.Count; ++i)
                     {
-                        continue;
+
+                        DataGridViewRow dataRow = dtEmployees.Rows[i];
+                        bool selectedUser = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+
+                        if (dataRow.IsNewRow || !selectedUser)
+                        {
+                            continue;
+                        }
+
+                        string id = (dataRow.Cells["ID"].Value.ToString());
+                        string[] getID = { id };
+                        employeeControl.DeleteEmployee(getID);
+                        found = true;
                     }
 
-                    string id = (dataRow.Cells["ID"].Value.ToString());
-                    string[] getID = { id };
-                    employeeControl.DeleteEmployee(getID);
-                    found = true;
-                }
+                    if (found)
+                    {
+                        MessageBox.Show("Employee/s have been succesfully deleted");
+                    }
 
-                if (found)
-                {
-                    MessageBox.Show("Employee/s have been succesfully deleted");
-                }
-
-                employeeControl.retrieveAllEmployees();
-                this.renderStaffTable();
-                this.renderScheduleMembers();
+                    employeeControl.retrieveAllEmployees();
+                    this.renderStaffTable();
+                    this.renderScheduleMembers();
 
 
-                if (!found)
-                {
-                    MessageBox.Show("You need to tick the selected box to delete a employee");
+                    if (!found)
+                    {
+                        MessageBox.Show("You need to tick the selected box to delete a employee");
+                    }
                 }
             }
-            catch
+            catch(Exception e)
             {
-                MessageBox.Show("Couldn't delete employee because it's already assigned to schedule!");
+                MessageBox.Show("There's been an exception!" + e.Message);
             }
 
         }
@@ -854,5 +938,37 @@ namespace PapaSenpai_Project_Software
 
         }
 
+        private void showButton(Button button)
+        {
+            this.btnUpdateProductItem.Visible = false;
+            button.Visible = true;
+        }
+
+        private void clearProductFields()
+        {
+            this.tbProductTitle.Clear();
+            this.tbProductDescription.Clear();
+            this.tbProductQuantity.Clear();
+            this.tbProductQuantityDepo.Clear();
+            this.tbProductSellingPrice.Clear();
+            this.tbProductThreshHold.Clear();
+            this.tbProductBuyingPrice.Clear();
+        }
+
+        private void clearEmployeeFields()
+        {
+            this.tbEmployeeAdress.Clear();
+            this.tbEmployeeCountry.Clear();
+            this.tbEmployeeCity.Clear();
+            this.tbEmployeeEmail.Clear();
+            this.tbEmployeeLastName.Clear();
+            this.tbEmployeePassword.Clear();
+            this.tbEmployeePhoneNumber.Clear();
+            this.tbEmployeeWagePerHour.Clear();
+            this.tbEmployeeFirstName.Clear();
+            this.tbEmployeeUserName.Clear();
+            this.cbEmployeeDepartment.Items.Clear();
+            this.cbEmployeeGender.Items.Clear();
+        }
     }
 }

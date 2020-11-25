@@ -14,7 +14,7 @@ namespace PapaSenpai_Project_Software.Data
     {
         public MySqlConnection GetConnection()
         {
-            MySqlConnection con = new MySqlConnection(@"Server=studmysql01.fhict.local;Uid=dbi444915;Database=dbi444915;Pwd=123456;");
+            MySqlConnection con = new MySqlConnection(@"Server=localhost;Uid=root;Database=dbi444915;Pwd=123456;");
             return con;
         }
 
@@ -28,7 +28,7 @@ namespace PapaSenpai_Project_Software.Data
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = sql;
 
-
+                
                 List<string> fields = new List<string>();
                 MatchCollection mcol = Regex.Matches(sql, @"@\b\S+?\b");
 

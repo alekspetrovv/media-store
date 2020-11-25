@@ -143,7 +143,8 @@
             this.btnEditProduct = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddProduct = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlAddEditProduct = new System.Windows.Forms.Panel();
-            this.iconPictureBox16 = new FontAwesome.Sharp.IconPictureBox();
+            this.materialLabel15 = new MaterialSkin.Controls.MaterialLabel();
+            this.tbProductQuantityDepo = new System.Windows.Forms.TextBox();
             this.tbProductQuantity = new System.Windows.Forms.TextBox();
             this.tbProductBuyingPrice = new System.Windows.Forms.TextBox();
             this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
@@ -162,8 +163,6 @@
             this.materialLabel28 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel29 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel31 = new MaterialSkin.Controls.MaterialLabel();
-            this.tbProductQuantityDepo = new System.Windows.Forms.TextBox();
-            this.materialLabel15 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
@@ -194,7 +193,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).BeginInit();
             this.pnlAddEditProduct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).BeginInit();
             this.SuspendLayout();
             // 
             // btnViewEmployees
@@ -1692,7 +1690,6 @@
             this.pnlAddEditProduct.BackColor = System.Drawing.Color.Transparent;
             this.pnlAddEditProduct.Controls.Add(this.materialLabel15);
             this.pnlAddEditProduct.Controls.Add(this.tbProductQuantityDepo);
-            this.pnlAddEditProduct.Controls.Add(this.iconPictureBox16);
             this.pnlAddEditProduct.Controls.Add(this.tbProductQuantity);
             this.pnlAddEditProduct.Controls.Add(this.tbProductBuyingPrice);
             this.pnlAddEditProduct.Controls.Add(this.materialLabel20);
@@ -1716,19 +1713,25 @@
             this.pnlAddEditProduct.Size = new System.Drawing.Size(698, 490);
             this.pnlAddEditProduct.TabIndex = 39;
             // 
-            // iconPictureBox16
+            // materialLabel15
             // 
-            this.iconPictureBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.iconPictureBox16.ForeColor = System.Drawing.Color.SeaGreen;
-            this.iconPictureBox16.IconChar = FontAwesome.Sharp.IconChar.PiedPiperPp;
-            this.iconPictureBox16.IconColor = System.Drawing.Color.SeaGreen;
-            this.iconPictureBox16.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox16.IconSize = 63;
-            this.iconPictureBox16.Location = new System.Drawing.Point(323, 59);
-            this.iconPictureBox16.Name = "iconPictureBox16";
-            this.iconPictureBox16.Size = new System.Drawing.Size(68, 63);
-            this.iconPictureBox16.TabIndex = 16;
-            this.iconPictureBox16.TabStop = false;
+            this.materialLabel15.AutoSize = true;
+            this.materialLabel15.Depth = 0;
+            this.materialLabel15.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel15.Location = new System.Drawing.Point(341, 200);
+            this.materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel15.Name = "materialLabel15";
+            this.materialLabel15.Size = new System.Drawing.Size(99, 19);
+            this.materialLabel15.TabIndex = 50;
+            this.materialLabel15.Text = "QuantityDepo";
+            // 
+            // tbProductQuantityDepo
+            // 
+            this.tbProductQuantityDepo.Location = new System.Drawing.Point(440, 201);
+            this.tbProductQuantityDepo.Name = "tbProductQuantityDepo";
+            this.tbProductQuantityDepo.Size = new System.Drawing.Size(239, 20);
+            this.tbProductQuantityDepo.TabIndex = 49;
             // 
             // tbProductQuantity
             // 
@@ -1922,41 +1925,21 @@
             this.materialLabel31.TabIndex = 39;
             this.materialLabel31.Text = "Quantity";
             // 
-            // tbProductQuantityDepo
-            // 
-            this.tbProductQuantityDepo.Location = new System.Drawing.Point(440, 201);
-            this.tbProductQuantityDepo.Name = "tbProductQuantityDepo";
-            this.tbProductQuantityDepo.Size = new System.Drawing.Size(239, 20);
-            this.tbProductQuantityDepo.TabIndex = 49;
-            // 
-            // materialLabel15
-            // 
-            this.materialLabel15.AutoSize = true;
-            this.materialLabel15.Depth = 0;
-            this.materialLabel15.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel15.Location = new System.Drawing.Point(341, 200);
-            this.materialLabel15.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel15.Name = "materialLabel15";
-            this.materialLabel15.Size = new System.Drawing.Size(99, 19);
-            this.materialLabel15.TabIndex = 50;
-            this.materialLabel15.Text = "QuantityDepo";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 576);
             this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.pnlProducts);
+            this.Controls.Add(this.pnlEmployee);
+            this.Controls.Add(this.pnlDashBoard);
+            this.Controls.Add(this.pnlViewUser);
             this.Controls.Add(this.pnlAddEditProduct);
             this.Controls.Add(this.pnlAddEditEmployee);
             this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlViewSchedule);
             this.Controls.Add(this.pnlScheduleEmployees);
-            this.Controls.Add(this.pnlProducts);
-            this.Controls.Add(this.pnlEmployee);
-            this.Controls.Add(this.pnlDashBoard);
-            this.Controls.Add(this.pnlViewUser);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -2001,7 +1984,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).EndInit();
             this.pnlAddEditProduct.ResumeLayout(false);
             this.pnlAddEditProduct.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2141,7 +2123,6 @@
         private System.Windows.Forms.TextBox tbProductQuantity;
         private System.Windows.Forms.TextBox tbProductBuyingPrice;
         private MaterialSkin.Controls.MaterialLabel materialLabel20;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox16;
         private MaterialSkin.Controls.MaterialLabel materialLabel15;
         private System.Windows.Forms.TextBox tbProductQuantityDepo;
     }
