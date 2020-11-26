@@ -10,7 +10,7 @@ namespace PapaSenpai_Project_Software.Data
     {
         public void Insert(string[] bindings)
         {
-            this.executeNonQuery("INSERT INTO `orders_products`(`user_id`,`product_id`,`price`)  VALUES (@user_id, @product_id, @price)", bindings);
+            this.executeNonQuery("INSERT INTO `orders_products`(`order_id`,`product_id`,`price`)  VALUES (@order_id, @product_id, @price)", bindings);
         }
 
     }

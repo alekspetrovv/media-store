@@ -67,6 +67,7 @@ namespace PapaSenpai_Project_Software
 
                 this.Hide();
                 Home h = new Home();
+                h.setAdminControl(this.a);
                 h.Show();
             }
             else

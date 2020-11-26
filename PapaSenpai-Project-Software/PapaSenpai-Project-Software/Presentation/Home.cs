@@ -22,12 +22,14 @@ namespace PapaSenpai_Project_Software
         private AdminControl adminControl;
         private ScheduleControl scheduleControl;
         private ProductControl productControl;
+        private OrdersControl ordersControl;
         public Home()
         {
             this.employeeControl = new EmployeeControl();
             this.adminControl = new Logic.AdminControl();
             this.scheduleControl = new ScheduleControl();
             this.productControl = new ProductControl();
+            this.ordersControl = new OrdersControl();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
@@ -43,6 +45,12 @@ namespace PapaSenpai_Project_Software
             this.renderScheduleMembers();
             this.renderDailySchedule();
             this.renderProductsTable();
+            this.renderProductsForOrder();
+        }
+
+        public void setAdminControl(AdminControl control)
+        {
+            this.adminControl = control;
         }
 
 
@@ -241,6 +249,19 @@ namespace PapaSenpai_Project_Software
         {
             this.showPanel(this.pnlEmployee);
         }
+
+        private void renderProductsForOrder()
+        {
+            foreach (Product p in productControl.GetProducts())
+            {
+                if (p.Quantity > 0)
+                {
+                lbStoreProducts.Items.Add(p);
+                }
+            }
+
+        }
+
 
         private void renderProductsTable()
         {
@@ -1154,6 +1175,26 @@ namespace PapaSenpai_Project_Software
         }
 
         private void pnlAddEditEmployee_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tbAddToCart_Click(object sender, EventArgs e)
+        {
+            Product product = (Product) lbStoreProducts.SelectedItem;
+            int quantity = Convert.ToInt32(this.tbQuantity.Text);
+            if (product.Quantity < quantity || quantity <= 0)
+            {
+                MessageBox.Show("The desired quanity of the product is not in stock");
+                return;
+            }
+
+            this.ordersControl.addProduct(product, quantity);
+            this.lbShoppingCart.Items.Add($"{product.Title} - {quantity}");
+            this.lbStoreProducts.Items.Remove(product);
+        }
+
+        private void tbPurchase_Click(object sender, EventArgs e)
         {
 
         }
