@@ -69,6 +69,7 @@
     <Compile Include="Data\ScheduleMemberDAL.cs" />
     <Compile Include="Logic\Admin.cs" />
     <Compile Include="Logic\AdminControl.cs" />
+    <Compile Include="Logic\Contract.cs" />
     <Compile Include="Logic\Department.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\EmployeeControl.cs" />

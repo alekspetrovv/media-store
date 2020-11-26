@@ -43,10 +43,12 @@ namespace PapaSenpai_Project_Software.Logic
                 while (employees.Read())
                 {
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
-                        employees["last_name"].ToString(), employees["email"].ToString()
-                        , employees["address"].ToString(), employees["city"].ToString(), employees["country"].ToString(),
-                        employees["phone_number"].ToString(), employees["gender"].ToString(),
-                        employees["department"].ToString(), employees["wage_per_hour"].ToString(), employees["username"].ToString(), employees["password"].ToString());
+                        employees["last_name"].ToString(), employees["email"].ToString(), employees["address"].ToString(), 
+                        employees["city"].ToString(), employees["country"].ToString(),
+                        employees["phone_number"].ToString(),employees["gender"].ToString(), 
+                        employees["department"].ToString(),employees["contract"].ToString(),
+                        employees["wage_per_hour"].ToString(), employees["username"].ToString(), 
+                        employees["password"].ToString());
 
                     this.employees.Add(employee);
                 }

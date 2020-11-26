@@ -73,6 +73,7 @@ namespace PapaSenpai_Project_Software
             this.showPanel(pnlAddEditEmployee);
             this.btnAssignEmployee.Visible = true;
             this.btnUpdateEmployee.Visible = false;
+            this.valuesAreEmptyEmployee();
         }
 
 
@@ -88,6 +89,7 @@ namespace PapaSenpai_Project_Software
             this.showPanel(pnlAddEditAdmin);
             this.btnAddUser.Visible = true;
             this.btnUpdateUser.Visible = false;
+            this.clearAdminFields();
         }
 
 
@@ -197,6 +199,44 @@ namespace PapaSenpai_Project_Software
             this.UpdateProduct();
         }
 
+        private void btnViewCart_Click(object sender, EventArgs e)
+        {
+            this.showPanel(pnlCart);
+        }
+
+        private void btnViewEmployeeDetails_Click(object sender, EventArgs e)
+        {
+            this.ShowEmployeeDetails();
+        }
+
+        private void btnViewProduct_Click(object sender, EventArgs e)
+        {
+            ShowProductDetails();
+        }
+        private void btnBackToUserPage_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlViewUser);
+        }
+        private void btnBackToEmployeePage_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlEmployee);
+        }
+        private void btnBackToProductPageFromAddEdit_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlProducts);
+            this.clearEmployeeFields();
+        }
+
+        private void btnBackToProductPage_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlProducts);
+        }
+
+        private void btnBackToEmployeePageFromDetails_Click(object sender, EventArgs e)
+        {
+            this.showPanel(this.pnlEmployee);
+        }
+
         private void renderProductsTable()
         {
             DataTable dtPrd = new DataTable();
@@ -214,7 +254,7 @@ namespace PapaSenpai_Project_Software
 
             foreach (Product p in productControl.GetProducts())
             {
-                dtPrd.Rows.Add(false, p.Id, p.Title,p.Description,p.Quantity,p.QuantityDepo,p.SellingPrice,p.BuyingPrice,p.ThreshHold);
+                dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, p.ThreshHold);
             }
 
             dtProducts.DataSource = dtPrd;
@@ -294,7 +334,7 @@ namespace PapaSenpai_Project_Software
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show("There's been an error: " + e.Message);
             }
@@ -314,7 +354,7 @@ namespace PapaSenpai_Project_Software
                 this.renderProductsTable();
                 this.showPanel(this.pnlProducts);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -361,6 +401,37 @@ namespace PapaSenpai_Project_Software
 
         }
 
+
+        private void ShowProductDetails()
+        {
+            for (int i = 0; i < dtProducts.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtProducts.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedProduct = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedProduct)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Product product = productControl.GetProductById(Convert.ToInt32(id));
+                    this.lblProductTitle.Text = product.Title;
+                    this.lblProductDescription.Text = product.Description;
+                    this.lblProductQuantity.Text = Convert.ToString(product.Quantity);
+                    this.lblProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
+                    this.lblProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
+                    this.lblProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
+                    this.lblProductPlaceHolder.Text = Convert.ToString(product.ThreshHold);
+                    this.lblProductID.Text = Convert.ToString(product.Id);
+                    this.productControl.retrieveAllProducts();
+                    this.renderProductsTable();
+                    this.showPanel(pnlProductInformation);
+                }
+            }
+        }
 
 
         private void renderAdminTable()
@@ -447,7 +518,7 @@ namespace PapaSenpai_Project_Software
                     this.tbAdminLastName.Text = admin.LastName;
                     this.tbAdminEmail.Text = admin.Email;
                     this.tbAdminPassword.Text = admin.Password;
-                    this.cbAdminRole.SelectedItem = admin.Role;
+                    this.cbAdminRole.SelectedItem = Convert.ToString(admin.Role);
                     this.tbAdminId.Text = Convert.ToString(admin.ID);
                     adminControl.retrieveAllAdmins();
                     this.renderAdminTable();
@@ -474,12 +545,10 @@ namespace PapaSenpai_Project_Software
                 this.renderAdminTable();
                 this.showPanel(this.pnlViewUser);
             }
-            catch
+            catch(Exception e)
             {
-                MessageBox.Show("You need to enter all details for updating admin");
+                MessageBox.Show(e.Message);
             }
-
-
         }
 
 
@@ -526,6 +595,36 @@ namespace PapaSenpai_Project_Software
         }
 
 
+        private void ShowAdminDetails()
+        {
+
+            for (int i = 0; i < dtUsers.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtUsers.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedAdmins = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedAdmins)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Admin admin = adminControl.getAdminById(Convert.ToInt32(id));
+                    this.tbAdminUserName.Text = admin.Username;
+                    this.tbAdminFirstName.Text = admin.FirstName;
+                    this.tbAdminLastName.Text = admin.LastName;
+                    this.tbAdminEmail.Text = admin.Email;
+                    this.tbAdminPassword.Text = admin.Password;
+                    this.cbAdminRole.SelectedItem = admin.Role;
+                    this.tbAdminId.Text = Convert.ToString(admin.ID);
+                    adminControl.retrieveAllAdmins();
+                    this.renderAdminTable();
+                    this.showPanel(pnlAddEditAdmin);
+                }
+            }
+        }
 
 
 
@@ -545,13 +644,15 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Adress", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
             dtEmp.Columns.Add("Deparment", typeof(string));
+            dtEmp.Columns.Add("Contract", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
             dtEmp.Columns.Add("Salary for the shift", typeof(string));
 
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName,
-                    employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, employee.Adress, employee.Email, employee.Department, employee.Wage, "10");
+                    employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, 
+                    employee.Adress, employee.Email, employee.Department,employee.Contract,employee.Wage, "10");
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -582,10 +683,14 @@ namespace PapaSenpai_Project_Software
                     int department_id = this.cbEmployeeDepartment.SelectedIndex;
                     department_id++;
                     string increased_department_id = Convert.ToString(department_id);
-                    string gender = (string)this.cbEmployeeGender.SelectedItem;
+                    int contract_id = this.cbEmployeeContract.SelectedIndex;
+                    contract_id++;
+                    string increased_contract_id = Convert.ToString(contract_id);
+                    Console.WriteLine(increased_contract_id);
+                    string gender = Convert.ToString(this.cbEmployeeGender.Text);
                     string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
-                    gender, this.tbEmployeeEmail.Text,increased_department_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
+                    gender, this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
                     employeeControl.AddEmployee(employee_bindings);
                     this.renderScheduleMembers();
                     this.renderStaffTable();
@@ -624,21 +729,29 @@ namespace PapaSenpai_Project_Software
                 bool selectedEmployee = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                 if (selectedEmployee)
                 {
-                    string employeeId = (dataRow.Cells["ID"].Value.ToString());
-                    Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(employeeId));
-                    this.tbEmployeeUserName.Text = employee.UserName;
-                    this.tbEmployeePassword.Text = employee.Password;
-                    this.tbEmployeeFirstName.Text = employee.FirstName;
-                    this.tbEmployeeLastName.Text = employee.LastName;
-                    this.tbEmployeeEmail.Text = employee.Email;
-                    this.tbEmployeeAdress.Text = employee.Adress;
-                    this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
-                    this.tbEmployeeCity.Text = employee.City;
-                    this.tbEmployeeId.Text = Convert.ToString(employee.ID);
-                    this.tbEmployeeCountry.Text = employee.Country;
-                    this.tbEmployeeWagePerHour.Text = employee.Wage;
-                    this.cbEmployeeDepartment.SelectedItem = employee.Department;
-                    this.cbEmployeeGender.SelectedItem = employee.Gender;
+                    try
+                    {
+                        string employeeId = (dataRow.Cells["ID"].Value.ToString());
+                        Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(employeeId));
+                        this.tbEmployeeUserName.Text = employee.UserName;
+                        this.tbEmployeePassword.Text = employee.Password;
+                        this.tbEmployeeFirstName.Text = employee.FirstName;
+                        this.tbEmployeeLastName.Text = employee.LastName;
+                        this.tbEmployeeEmail.Text = employee.Email;
+                        this.tbEmployeeAdress.Text = employee.Adress;
+                        this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
+                        this.tbEmployeeCity.Text = employee.City;
+                        this.tbEmployeeId.Text = Convert.ToString(employee.ID);
+                        this.tbEmployeeCountry.Text = employee.Country;
+                        this.tbEmployeeWagePerHour.Text = employee.Wage;
+                        this.cbEmployeeDepartment.SelectedItem = Convert.ToString(employee.Department);
+                        this.cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
+                        this.cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show("There's been an exception: " + e.Message);
+                    }
                     this.showPanel(this.pnlAddEditEmployee);
                     employeeControl.retrieveAllEmployees();
                     this.renderStaffTable();
@@ -656,24 +769,27 @@ namespace PapaSenpai_Project_Software
             try
             {
                 string employeeId = this.tbEmployeeId.Text;
-                string gender = (string)this.cbEmployeeGender.SelectedItem;
-                int department_id = Convert.ToInt32(this.cbEmployeeDepartment.SelectedIndex);
+                string gender = Convert.ToString(this.cbEmployeeGender.SelectedItem);
+                int department_id = this.cbEmployeeDepartment.SelectedIndex;
                 department_id++;
-                string department = Convert.ToString(department_id);
+                string increased_department_id = Convert.ToString(department_id);
+                int contract_id = this.cbEmployeeContract.SelectedIndex;
+                contract_id++;
+                string increased_contract_id = Convert.ToString(contract_id);
                 string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
-                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,department,this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
+                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,
+                    this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
                 this.pnlEmployee.Visible = true;
                 employeeControl.UpdateEmployee(employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
                 this.showPanel(this.pnlEmployee);
                 this.renderStaffTable();
             }
-            catch
+            catch(Exception e)
             {
-                MessageBox.Show("You need to enter all details for updating employee");
+                MessageBox.Show(e.Message);
             }
-            this.clearEmployeeFields();
         }
 
 
@@ -726,7 +842,49 @@ namespace PapaSenpai_Project_Software
         }
 
 
+        private void ShowEmployeeDetails()
+        {
 
+            for (int i = 0; i < dtEmployees.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtEmployees.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedEmployee = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedEmployee)
+                {
+                    try
+                    {
+                        string id = dataRow.Cells["ID"].Value.ToString();
+                        Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(id));
+                        this.tbeUserName.Text = employee.UserName;
+                        this.tbeFirstName.Text = employee.FirstName;
+                        this.tbeLastName.Text = employee.LastName;
+                        this.tbeEmail.Text = employee.Email;
+                        this.tbePassword.Text = employee.Password;
+                        this.tbeAddress.Text = employee.Adress;
+                        this.tbeCity.Text = employee.City;
+                        this.tbePhoneNumber.Text = employee.PhoneNumber;
+                        //this.tbeSalary.Text = // to do;
+                        //this.tbeTotalHours.Text = // to do;
+                        this.tbeGender.Text = Convert.ToString(employee.Gender);
+                        this.tbeDepartment.Text = Convert.ToString(employee.Department);
+                        this.tbeId.Text = Convert.ToString(employee.ID);
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    adminControl.retrieveAllAdmins();
+                    this.renderAdminTable();
+                    this.showPanel(this.pnlViewEmployeeDetails);
+                }
+            }
+        }
 
         private void updateSchedule()
         {
@@ -881,7 +1039,7 @@ namespace PapaSenpai_Project_Software
         {
             if (this.tbEmployeeFirstName.Text == "" || this.tbEmployeeLastName.Text == "" ||
                 this.tbEmployeeAdress.Text == "" || this.tbEmployeeCity.Text == "" ||
-                this.tbEmployeeCountry.Text == "" || this.tbEmployeeEmail.Text == "" ||
+                this.tbEmployeeCountry.Text == "" || this.tbEmployeeEmail.Text == "" || this.cbEmployeeContract == null ||
                 this.cbEmployeeGender.SelectedItem == null || this.tbEmployeePhoneNumber == null)
             {
                 return false;
@@ -925,7 +1083,9 @@ namespace PapaSenpai_Project_Software
             this.pnlScheduleEmployees.Visible = false;
             this.pnlProducts.Visible = false;
             this.pnlAddEditProduct.Visible = false;
-            this.pnlCart.Visible = false;   
+            this.pnlCart.Visible = false;
+            this.pnlProductInformation.Visible = false;
+            this.pnlViewEmployeeDetails.Visible = false;
             panel.Visible = true;
 
         }
@@ -959,13 +1119,16 @@ namespace PapaSenpai_Project_Software
             this.tbEmployeeWagePerHour.Clear();
             this.tbEmployeeFirstName.Clear();
             this.tbEmployeeUserName.Clear();
-            this.cbEmployeeDepartment.Items.Clear();
-            this.cbEmployeeGender.Items.Clear();
         }
 
-        private void btnViewCart_Click(object sender, EventArgs e)
+        private void clearAdminFields()
         {
-            this.showPanel(pnlCart);
+            this.tbAdminEmail.Clear();
+            this.tbAdminFirstName.Clear();
+            this.tbAdminLastName.Clear();
+            this.tbAdminUserName.Clear();
+            this.tbAdminPassword.Clear();
         }
+
     }
 }
