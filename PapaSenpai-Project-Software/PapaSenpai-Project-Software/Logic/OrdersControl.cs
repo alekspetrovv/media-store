@@ -41,8 +41,8 @@ namespace PapaSenpai_Project_Software.Logic
                 string[] product_bind = { order_id.ToString(), product.Product.Id.ToString(), product.Product.SellingPrice.ToString() };
                 this.ordersProductsDAL.Insert(product_bind);
             }
-            //create order
-            //add all of the products
+
+            this.products.Clear();
         }
     }
 }

@@ -68,8 +68,7 @@ namespace PapaSenpai_Project_Software
                 a.logUser(admin);
 
                 this.Hide();
-                Home h = new Home();
-                h.setAdminControl(this.a);
+                Home h = new Home(this.a);
                 h.Show();
             }
             else

@@ -23,7 +23,7 @@ namespace PapaSenpai_Project_Software
         private ScheduleControl scheduleControl;
         private ProductControl productControl;
         private OrdersControl ordersControl;
-        public Home()
+        public Home(AdminControl a)
         {
             this.employeeControl = new EmployeeControl();
             this.adminControl = new Logic.AdminControl();
@@ -34,6 +34,7 @@ namespace PapaSenpai_Project_Software
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
             this.currentScheduleDate = DateTime.Now;
+            this.adminControl = a;
 
 
             this.employeeControl.retrieveAllEmployees();
@@ -46,11 +47,6 @@ namespace PapaSenpai_Project_Software
             this.renderDailySchedule();
             this.renderProductsTable();
             this.renderProductsForOrder();
-        }
-
-        public void setAdminControl(AdminControl control)
-        {
-            this.adminControl = control;
         }
 
 
@@ -1211,6 +1207,28 @@ namespace PapaSenpai_Project_Software
 
         private void tbPurchase_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void tbPurchase_Click_1(object sender, EventArgs e)
+        {
+                  }
+
+        private void tbPurchase_Click_2(object sender, EventArgs e)
+        {
+             Admin admin = this.adminControl.getloggedUser();
+
+            if (this.ordersControl.Products.Count() == 0 )
+            {
+                MessageBox.Show("Your basket is empty");
+                return;
+            }
+
+            string[] bindings = { admin.ID.ToString() };
+            this.ordersControl.Buy(bindings);
+            this.lbShoppingCart.Items.Clear();
+            this.renderProductsForOrder();
+            MessageBox.Show("You successfully made an order!");
 
         }
     }

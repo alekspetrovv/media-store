@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnViewEmployees = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnViewSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlMenu = new System.Windows.Forms.Panel();
@@ -891,9 +885,9 @@
             this.pnlViewSchedule.BackColor = System.Drawing.Color.Transparent;
             this.pnlViewSchedule.Controls.Add(this.materialLabel82);
             this.pnlViewSchedule.Controls.Add(this.materialLabel11);
-            this.pnlViewSchedule.Controls.Add(this.calendarSchedule);
             this.pnlViewSchedule.Controls.Add(this.materialLabel1);
             this.pnlViewSchedule.Controls.Add(this.materialLabel7);
+            this.pnlViewSchedule.Controls.Add(this.calendarSchedule);
             this.pnlViewSchedule.Location = new System.Drawing.Point(221, 65);
             this.pnlViewSchedule.Name = "pnlViewSchedule";
             this.pnlViewSchedule.Size = new System.Drawing.Size(815, 490);
@@ -2554,6 +2548,7 @@
             this.tbPurchase.TabIndex = 12;
             this.tbPurchase.Text = "Purchase Products";
             this.tbPurchase.UseVisualStyleBackColor = true;
+            this.tbPurchase.Click += new System.EventHandler(this.tbPurchase_Click_2);
             // 
             // tbAddToCart
             // 
@@ -3433,6 +3428,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 585);
             this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.pnlCart);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
@@ -3444,7 +3440,6 @@
             this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlViewEmployeeDetails);
             this.Controls.Add(this.pnlProductInformation);
-            this.Controls.Add(this.pnlCart);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
