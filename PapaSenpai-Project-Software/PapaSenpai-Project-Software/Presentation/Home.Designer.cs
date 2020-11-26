@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnViewEmployees = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnViewSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlMenu = new System.Windows.Forms.Panel();
@@ -314,9 +314,9 @@
             this.btnViewEmployees.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewEmployees.Name = "btnViewEmployees";
             this.btnViewEmployees.Primary = true;
-            this.btnViewEmployees.Size = new System.Drawing.Size(198, 41);
+            this.btnViewEmployees.Size = new System.Drawing.Size(198, 39);
             this.btnViewEmployees.TabIndex = 2;
-            this.btnViewEmployees.Text = "             View Employees";
+            this.btnViewEmployees.Text = "       View Employees";
             this.btnViewEmployees.UseVisualStyleBackColor = true;
             this.btnViewEmployees.Click += new System.EventHandler(this.btnViewStaff_Click);
             // 
@@ -327,9 +327,9 @@
             this.btnViewSchedule.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewSchedule.Name = "btnViewSchedule";
             this.btnViewSchedule.Primary = true;
-            this.btnViewSchedule.Size = new System.Drawing.Size(198, 40);
+            this.btnViewSchedule.Size = new System.Drawing.Size(198, 39);
             this.btnViewSchedule.TabIndex = 4;
-            this.btnViewSchedule.Text = "            View Schedules";
+            this.btnViewSchedule.Text = "        View Schedules";
             this.btnViewSchedule.UseVisualStyleBackColor = true;
             this.btnViewSchedule.Click += new System.EventHandler(this.btnViewSchedule_Click);
             // 
@@ -367,9 +367,10 @@
             this.iconPictureBox16.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox16.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox16.IconSize = 35;
-            this.iconPictureBox16.Location = new System.Drawing.Point(6, 445);
+            this.iconPictureBox16.Location = new System.Drawing.Point(6, 444);
             this.iconPictureBox16.Name = "iconPictureBox16";
-            this.iconPictureBox16.Size = new System.Drawing.Size(42, 35);
+            this.iconPictureBox16.Size = new System.Drawing.Size(35, 35);
+            this.iconPictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox16.TabIndex = 17;
             this.iconPictureBox16.TabStop = false;
             // 
@@ -380,9 +381,9 @@
             this.btnViewCart.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewCart.Name = "btnViewCart";
             this.btnViewCart.Primary = true;
-            this.btnViewCart.Size = new System.Drawing.Size(198, 40);
+            this.btnViewCart.Size = new System.Drawing.Size(198, 39);
             this.btnViewCart.TabIndex = 16;
-            this.btnViewCart.Text = "     VIEW Cart";
+            this.btnViewCart.Text = "VIEW Cart";
             this.btnViewCart.UseVisualStyleBackColor = true;
             this.btnViewCart.Click += new System.EventHandler(this.btnViewCart_Click);
             // 
@@ -394,9 +395,10 @@
             this.iconPictureBox8.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox8.IconSize = 35;
-            this.iconPictureBox8.Location = new System.Drawing.Point(7, 384);
+            this.iconPictureBox8.Location = new System.Drawing.Point(6, 383);
             this.iconPictureBox8.Name = "iconPictureBox8";
-            this.iconPictureBox8.Size = new System.Drawing.Size(42, 35);
+            this.iconPictureBox8.Size = new System.Drawing.Size(35, 35);
+            this.iconPictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox8.TabIndex = 15;
             this.iconPictureBox8.TabStop = false;
             // 
@@ -407,9 +409,9 @@
             this.btnViewProducts.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewProducts.Name = "btnViewProducts";
             this.btnViewProducts.Primary = true;
-            this.btnViewProducts.Size = new System.Drawing.Size(198, 40);
+            this.btnViewProducts.Size = new System.Drawing.Size(198, 39);
             this.btnViewProducts.TabIndex = 14;
-            this.btnViewProducts.Text = "         View Products";
+            this.btnViewProducts.Text = "      View Products";
             this.btnViewProducts.UseVisualStyleBackColor = true;
             this.btnViewProducts.Click += new System.EventHandler(this.btnViewProducts_Click);
             // 
@@ -445,9 +447,10 @@
             this.iconPictureBox11.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox11.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox11.IconSize = 35;
-            this.iconPictureBox11.Location = new System.Drawing.Point(7, 250);
+            this.iconPictureBox11.Location = new System.Drawing.Point(5, 251);
             this.iconPictureBox11.Name = "iconPictureBox11";
-            this.iconPictureBox11.Size = new System.Drawing.Size(41, 35);
+            this.iconPictureBox11.Size = new System.Drawing.Size(35, 35);
+            this.iconPictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox11.TabIndex = 12;
             this.iconPictureBox11.TabStop = false;
             // 
@@ -460,7 +463,7 @@
             this.btnViewUsers.Primary = true;
             this.btnViewUsers.Size = new System.Drawing.Size(198, 39);
             this.btnViewUsers.TabIndex = 3;
-            this.btnViewUsers.Text = "   View Admins";
+            this.btnViewUsers.Text = "  View Admins";
             this.btnViewUsers.UseVisualStyleBackColor = true;
             this.btnViewUsers.Click += new System.EventHandler(this.btnViewAdmins_Click);
             // 
@@ -481,7 +484,7 @@
             this.lblMenu.Depth = 0;
             this.lblMenu.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblMenu.Location = new System.Drawing.Point(72, 81);
+            this.lblMenu.Location = new System.Drawing.Point(75, 84);
             this.lblMenu.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(46, 19);
@@ -497,9 +500,10 @@
             this.iconPictureBox4.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox4.IconSize = 65;
-            this.iconPictureBox4.Location = new System.Drawing.Point(67, 11);
+            this.iconPictureBox4.Location = new System.Drawing.Point(67, 12);
             this.iconPictureBox4.Name = "iconPictureBox4";
-            this.iconPictureBox4.Size = new System.Drawing.Size(65, 67);
+            this.iconPictureBox4.Size = new System.Drawing.Size(65, 65);
+            this.iconPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox4.TabIndex = 7;
             this.iconPictureBox4.TabStop = false;
             // 
@@ -511,10 +515,11 @@
             this.iconPictureBox3.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox3.IconSize = 37;
-            this.iconPictureBox3.Location = new System.Drawing.Point(8, 316);
+            this.iconPictureBox3.Location = new System.Drawing.Point(5, 315);
             this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(41, 37);
+            this.iconPictureBox3.Size = new System.Drawing.Size(37, 37);
+            this.iconPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox3.TabIndex = 6;
             this.iconPictureBox3.TabStop = false;
             // 
@@ -525,9 +530,11 @@
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Users;
             this.iconPictureBox2.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox2.Location = new System.Drawing.Point(9, 189);
+            this.iconPictureBox2.IconSize = 35;
+            this.iconPictureBox2.Location = new System.Drawing.Point(6, 187);
             this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(40, 32);
+            this.iconPictureBox2.Size = new System.Drawing.Size(35, 35);
+            this.iconPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox2.TabIndex = 5;
             this.iconPictureBox2.TabStop = false;
             // 
@@ -541,23 +548,24 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Database;
             this.iconPictureBox1.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 40;
-            this.iconPictureBox1.Location = new System.Drawing.Point(9, 119);
+            this.iconPictureBox1.IconSize = 35;
+            this.iconPictureBox1.Location = new System.Drawing.Point(6, 120);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.iconPictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.iconPictureBox1.TabIndex = 4;
             this.iconPictureBox1.TabStop = false;
             // 
             // btnDashboard
             // 
             this.btnDashboard.Depth = 0;
-            this.btnDashboard.Location = new System.Drawing.Point(3, 117);
+            this.btnDashboard.Location = new System.Drawing.Point(3, 119);
             this.btnDashboard.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Primary = true;
-            this.btnDashboard.Size = new System.Drawing.Size(198, 46);
+            this.btnDashboard.Size = new System.Drawing.Size(198, 39);
             this.btnDashboard.TabIndex = 1;
-            this.btnDashboard.Text = "     Dashboard";
+            this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = true;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
@@ -656,23 +664,23 @@
             this.dtEmployees.AllowUserToDeleteRows = false;
             this.dtEmployees.AllowUserToResizeColumns = false;
             this.dtEmployees.AllowUserToResizeRows = false;
-            this.dtEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dtEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dtEmployees.ColumnHeadersHeight = 30;
+            this.dtEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtEmployees.GridColor = System.Drawing.Color.White;
             this.dtEmployees.Location = new System.Drawing.Point(11, 102);
             this.dtEmployees.MultiSelect = false;
             this.dtEmployees.Name = "dtEmployees";
             this.dtEmployees.RowHeadersVisible = false;
-            this.dtEmployees.RowHeadersWidth = 51;
+            this.dtEmployees.RowHeadersWidth = 50;
             this.dtEmployees.Size = new System.Drawing.Size(796, 290);
             this.dtEmployees.TabIndex = 12;
             // 
@@ -800,29 +808,31 @@
             this.dtTodaySchedule.AllowUserToResizeRows = false;
             this.dtTodaySchedule.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtTodaySchedule.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtTodaySchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dtTodaySchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtTodaySchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dtTodaySchedule.ColumnHeadersHeight = 30;
+            this.dtTodaySchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtTodaySchedule.GridColor = System.Drawing.Color.White;
             this.dtTodaySchedule.Location = new System.Drawing.Point(8, 146);
             this.dtTodaySchedule.MultiSelect = false;
             this.dtTodaySchedule.Name = "dtTodaySchedule";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtTodaySchedule.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtTodaySchedule.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dtTodaySchedule.RowHeadersVisible = false;
             this.dtTodaySchedule.RowHeadersWidth = 80;
+            this.dtTodaySchedule.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dtTodaySchedule.Size = new System.Drawing.Size(796, 290);
             this.dtTodaySchedule.TabIndex = 16;
             // 
@@ -935,7 +945,7 @@
             this.materialLabel11.Depth = 0;
             this.materialLabel11.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel11.Location = new System.Drawing.Point(255, 76);
+            this.materialLabel11.Location = new System.Drawing.Point(239, 72);
             this.materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel11.Name = "materialLabel11";
             this.materialLabel11.Size = new System.Drawing.Size(363, 19);
@@ -947,7 +957,7 @@
             // 
             this.calendarSchedule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
             this.calendarSchedule.CalendarDimensions = new System.Drawing.Size(3, 2);
-            this.calendarSchedule.Location = new System.Drawing.Point(69, 117);
+            this.calendarSchedule.Location = new System.Drawing.Point(69, 116);
             this.calendarSchedule.Name = "calendarSchedule";
             this.calendarSchedule.TabIndex = 11;
             this.calendarSchedule.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendarSchedule_DateSelected);
@@ -971,7 +981,7 @@
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(330, 12);
+            this.materialLabel7.Location = new System.Drawing.Point(327, 12);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(208, 19);
@@ -1021,7 +1031,6 @@
             this.pnlAddEditEmployee.Name = "pnlAddEditEmployee";
             this.pnlAddEditEmployee.Size = new System.Drawing.Size(818, 490);
             this.pnlAddEditEmployee.TabIndex = 18;
-            this.pnlAddEditEmployee.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAddEditEmployee_Paint);
             // 
             // materialLabel48
             // 
@@ -1345,7 +1354,7 @@
             this.lblAddEmployee.Depth = 0;
             this.lblAddEmployee.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblAddEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddEmployee.Location = new System.Drawing.Point(341, 11);
+            this.lblAddEmployee.Location = new System.Drawing.Point(356, 13);
             this.lblAddEmployee.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAddEmployee.Name = "lblAddEmployee";
             this.lblAddEmployee.Size = new System.Drawing.Size(163, 19);
@@ -1447,7 +1456,7 @@
             this.btnBackToUserPage.Primary = true;
             this.btnBackToUserPage.Size = new System.Drawing.Size(161, 33);
             this.btnBackToUserPage.TabIndex = 60;
-            this.btnBackToUserPage.Text = "Back to User Page";
+            this.btnBackToUserPage.Text = "Back to Admin Page";
             this.btnBackToUserPage.UseVisualStyleBackColor = true;
             this.btnBackToUserPage.Click += new System.EventHandler(this.btnBackToUserPage_Click);
             // 
@@ -1468,7 +1477,7 @@
             this.btnUpdateUser.Primary = true;
             this.btnUpdateUser.Size = new System.Drawing.Size(202, 33);
             this.btnUpdateUser.TabIndex = 58;
-            this.btnUpdateUser.Text = "Update User";
+            this.btnUpdateUser.Text = "Update Admin";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
             this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateAdmin_Click);
             // 
@@ -1541,7 +1550,7 @@
             this.btnAddUser.Primary = true;
             this.btnAddUser.Size = new System.Drawing.Size(202, 33);
             this.btnAddUser.TabIndex = 56;
-            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.Text = "Add Admin";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddAdmin_Click);
             // 
@@ -1636,9 +1645,9 @@
             this.lblAddEditUser.Location = new System.Drawing.Point(356, 18);
             this.lblAddEditUser.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAddEditUser.Name = "lblAddEditUser";
-            this.lblAddEditUser.Size = new System.Drawing.Size(128, 19);
+            this.lblAddEditUser.Size = new System.Drawing.Size(140, 19);
             this.lblAddEditUser.TabIndex = 33;
-            this.lblAddEditUser.Text = "Add and Edit User";
+            this.lblAddEditUser.Text = "Add and Edit Admin";
             this.lblAddEditUser.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pnlViewUser
@@ -1679,12 +1688,12 @@
             this.materialLabel35.Depth = 0;
             this.materialLabel35.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel35.Location = new System.Drawing.Point(220, 54);
+            this.materialLabel35.Location = new System.Drawing.Point(171, 56);
             this.materialLabel35.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel35.Name = "materialLabel35";
-            this.materialLabel35.Size = new System.Drawing.Size(472, 19);
+            this.materialLabel35.Size = new System.Drawing.Size(476, 19);
             this.materialLabel35.TabIndex = 29;
-            this.materialLabel35.Text = "Welcome to the Admins page.Here you can add,edit,delete,view users";
+            this.materialLabel35.Text = "Welcome to the Admins page.Here you can add,edit,delete,view admin";
             this.materialLabel35.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // materialLabel3
@@ -1705,7 +1714,7 @@
             this.lblViewUsers.Depth = 0;
             this.lblViewUsers.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblViewUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblViewUsers.Location = new System.Drawing.Point(371, 11);
+            this.lblViewUsers.Location = new System.Drawing.Point(370, 10);
             this.lblViewUsers.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblViewUsers.Name = "lblViewUsers";
             this.lblViewUsers.Size = new System.Drawing.Size(97, 19);
@@ -1722,7 +1731,7 @@
             this.iconPictureBox12.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox12.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox12.IconSize = 30;
-            this.iconPictureBox12.Location = new System.Drawing.Point(509, 440);
+            this.iconPictureBox12.Location = new System.Drawing.Point(527, 440);
             this.iconPictureBox12.Name = "iconPictureBox12";
             this.iconPictureBox12.Size = new System.Drawing.Size(30, 30);
             this.iconPictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1738,7 +1747,7 @@
             this.iconPictureBox13.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox13.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox13.IconSize = 30;
-            this.iconPictureBox13.Location = new System.Drawing.Point(302, 440);
+            this.iconPictureBox13.Location = new System.Drawing.Point(320, 440);
             this.iconPictureBox13.Name = "iconPictureBox13";
             this.iconPictureBox13.Size = new System.Drawing.Size(30, 30);
             this.iconPictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1754,7 +1763,7 @@
             this.iconPictureBox14.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox14.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox14.IconSize = 30;
-            this.iconPictureBox14.Location = new System.Drawing.Point(95, 440);
+            this.iconPictureBox14.Location = new System.Drawing.Point(113, 440);
             this.iconPictureBox14.Name = "iconPictureBox14";
             this.iconPictureBox14.Size = new System.Drawing.Size(30, 30);
             this.iconPictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1764,7 +1773,7 @@
             // btnDeleteAdmins
             // 
             this.btnDeleteAdmins.Depth = 0;
-            this.btnDeleteAdmins.Location = new System.Drawing.Point(501, 435);
+            this.btnDeleteAdmins.Location = new System.Drawing.Point(519, 435);
             this.btnDeleteAdmins.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDeleteAdmins.Name = "btnDeleteAdmins";
             this.btnDeleteAdmins.Primary = true;
@@ -1777,7 +1786,7 @@
             // btnEditAdmins
             // 
             this.btnEditAdmins.Depth = 0;
-            this.btnEditAdmins.Location = new System.Drawing.Point(295, 435);
+            this.btnEditAdmins.Location = new System.Drawing.Point(313, 435);
             this.btnEditAdmins.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEditAdmins.Name = "btnEditAdmins";
             this.btnEditAdmins.Primary = true;
@@ -1790,7 +1799,7 @@
             // btnAddAdmins
             // 
             this.btnAddAdmins.Depth = 0;
-            this.btnAddAdmins.Location = new System.Drawing.Point(87, 435);
+            this.btnAddAdmins.Location = new System.Drawing.Point(105, 435);
             this.btnAddAdmins.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAddAdmins.Name = "btnAddAdmins";
             this.btnAddAdmins.Primary = true;
@@ -1808,15 +1817,16 @@
             this.dtUsers.AllowUserToResizeRows = false;
             this.dtUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dtUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.dtUsers.ColumnHeadersHeight = 30;
+            this.dtUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtUsers.Location = new System.Drawing.Point(7, 89);
             this.dtUsers.MultiSelect = false;
             this.dtUsers.Name = "dtUsers";
@@ -1900,20 +1910,22 @@
             this.dtAssignShift.AllowUserToResizeRows = false;
             this.dtAssignShift.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtAssignShift.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtAssignShift.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dtAssignShift.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtAssignShift.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dtAssignShift.ColumnHeadersHeight = 30;
+            this.dtAssignShift.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtAssignShift.GridColor = System.Drawing.Color.Gray;
             this.dtAssignShift.Location = new System.Drawing.Point(15, 92);
             this.dtAssignShift.Name = "dtAssignShift";
             this.dtAssignShift.RowHeadersVisible = false;
-            this.dtAssignShift.RowHeadersWidth = 51;
+            this.dtAssignShift.RowHeadersWidth = 70;
+            this.dtAssignShift.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dtAssignShift.Size = new System.Drawing.Size(790, 282);
             this.dtAssignShift.TabIndex = 3;
             // 
@@ -1935,12 +1947,12 @@
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel8.Location = new System.Drawing.Point(389, 12);
+            this.materialLabel8.Location = new System.Drawing.Point(317, 12);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
-            this.materialLabel8.Size = new System.Drawing.Size(87, 19);
+            this.materialLabel8.Size = new System.Drawing.Size(212, 19);
             this.materialLabel8.TabIndex = 1;
-            this.materialLabel8.Text = "Employees ";
+            this.materialLabel8.Text = "Assign Employee To Schedule";
             this.materialLabel8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pnlProducts
@@ -2000,7 +2012,7 @@
             this.iconPictureBox17.IconColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox17.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox17.IconSize = 35;
-            this.iconPictureBox17.Location = new System.Drawing.Point(625, 423);
+            this.iconPictureBox17.Location = new System.Drawing.Point(624, 423);
             this.iconPictureBox17.Name = "iconPictureBox17";
             this.iconPictureBox17.Size = new System.Drawing.Size(35, 35);
             this.iconPictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -2040,16 +2052,17 @@
             this.dtProducts.AllowUserToResizeRows = false;
             this.dtProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtProducts.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.dtProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dtProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtProducts.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.dtProducts.ColumnHeadersHeight = 60;
+            this.dtProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtProducts.Location = new System.Drawing.Point(5, 88);
             this.dtProducts.MultiSelect = false;
             this.dtProducts.Name = "dtProducts";
@@ -2481,6 +2494,7 @@
             this.tbQuantity.Name = "tbQuantity";
             this.tbQuantity.Size = new System.Drawing.Size(108, 20);
             this.tbQuantity.TabIndex = 26;
+            this.tbQuantity.Text = "1";
             // 
             // materialLabel32
             // 
@@ -2545,7 +2559,6 @@
             this.materialLabel23.TabIndex = 20;
             this.materialLabel23.Text = "Store Products";
             this.materialLabel23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.materialLabel23.Click += new System.EventHandler(this.materialLabel23_Click);
             // 
             // lbStoreProducts
             // 
@@ -3398,7 +3411,6 @@
             this.tbeDepartment.Size = new System.Drawing.Size(15, 19);
             this.tbeDepartment.TabIndex = 51;
             this.tbeDepartment.Text = "*";
-            this.tbeDepartment.Click += new System.EventHandler(this.tbeDepartment_Click);
             // 
             // tbeGender
             // 
@@ -3471,7 +3483,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 585);
             this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlCart);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
@@ -3483,6 +3494,7 @@
             this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlViewEmployeeDetails);
             this.Controls.Add(this.pnlProductInformation);
+            this.Controls.Add(this.pnlCart);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
