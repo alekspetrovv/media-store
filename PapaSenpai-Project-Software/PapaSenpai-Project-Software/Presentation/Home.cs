@@ -23,6 +23,7 @@ namespace PapaSenpai_Project_Software
         private ScheduleControl scheduleControl;
         private ProductControl productControl;
         private OrdersControl ordersControl;
+        private RequestsControl requestControl;
         public Home(AdminControl a)
         {
             this.employeeControl = new EmployeeControl();
@@ -30,6 +31,7 @@ namespace PapaSenpai_Project_Software
             this.scheduleControl = new ScheduleControl();
             this.productControl = new ProductControl();
             this.ordersControl = new OrdersControl();
+            this.requestControl = new RequestsControl();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
@@ -48,6 +50,8 @@ namespace PapaSenpai_Project_Software
             this.scheduleControl.retrieveSchedules();
             this.adminControl.retrieveAllAdmins();
             this.productControl.retrieveAllProducts();
+            this.requestControl.retrieveAllRequests();
+            
             this.renderStaffTable();
             this.renderAdminTable();
             this.renderScheduleMembers();
@@ -1296,6 +1300,51 @@ namespace PapaSenpai_Project_Software
             this.renderProductsTable();
             MessageBox.Show("You successfully made an order!");
 
+        }
+
+        private void btnAddExtraQuantity_Click(object sender, EventArgs e)
+        {
+            this.SendProductRequest();
+        }
+
+
+        private void SendProductRequest()
+        {
+            if (MessageBox.Show("Do you want to send a request for this product?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                for (int i = 0; i < dtProducts.Rows.Count; ++i)
+                {
+                    DataGridViewRow dataRow = dtProducts.Rows[i];
+
+                    if (dataRow.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    bool selectedProduct = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                    if (selectedProduct)
+                    {
+                        try
+                        {
+                            string id = dataRow.Cells["ID"].Value.ToString();
+                            int quantity = Convert.ToInt32(this.tbQuantityRequest.Text);
+                            string[] requestbindings = {id, quantity.ToString() };
+                            this.requestControl.Insert(requestbindings);
+                            this.requestControl.retrieveAllRequests();
+                        }
+                        catch(Exception e)
+                        {
+                            MessageBox.Show("There's been an error: " + e.Message);
+                        }
+                      
+                    }
+                }
+            
+            }
+            else
+            {
+                MessageBox.Show("You pressed no!");
+            }
         }
 
     }

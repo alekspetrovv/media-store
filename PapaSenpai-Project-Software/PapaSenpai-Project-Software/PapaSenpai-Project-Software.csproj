@@ -67,6 +67,7 @@
     <Compile Include="Data\OrdersDAL.cs" />
     <Compile Include="Data\OrdersProductsDAL.cs" />
     <Compile Include="Data\ProductDAL.cs" />
+    <Compile Include="Data\RequestDAL.cs" />
     <Compile Include="Data\ScheduleDAL.cs" />
     <Compile Include="Data\ScheduleMemberDAL.cs" />
     <Compile Include="Logic\Admin.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Logic\OrdersControl.cs" />
     <Compile Include="Logic\Product.cs" />
     <Compile Include="Logic\ProductControl.cs" />
+    <Compile Include="Logic\Request.cs" />
+    <Compile Include="Logic\RequestControl.cs" />
     <Compile Include="Logic\ScheduleControl.cs" />
     <Compile Include="Presentation\Home.cs">
       <SubType>Form</SubType>

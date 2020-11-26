@@ -201,6 +201,7 @@
             this.tbPurchase = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tbAddToCart = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlProductInformation = new System.Windows.Forms.Panel();
+            this.tbRequestID = new System.Windows.Forms.TextBox();
             this.lblRevue = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel55 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel68 = new MaterialSkin.Controls.MaterialLabel();
@@ -218,7 +219,7 @@
             this.materialLabel45 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel44 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel43 = new MaterialSkin.Controls.MaterialLabel();
-            this.tbAddMoreQuantity = new System.Windows.Forms.TextBox();
+            this.tbQuantityRequest = new System.Windows.Forms.TextBox();
             this.materialLabel38 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel42 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel41 = new MaterialSkin.Controls.MaterialLabel();
@@ -227,7 +228,7 @@
             this.Title = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel36 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel37 = new MaterialSkin.Controls.MaterialLabel();
-            this.btnAddExtraQuantity = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnAddQuantity = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel67 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel66 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel65 = new MaterialSkin.Controls.MaterialLabel();
@@ -2580,6 +2581,7 @@
             // 
             this.pnlProductInformation.AutoSize = true;
             this.pnlProductInformation.BackColor = System.Drawing.Color.Transparent;
+            this.pnlProductInformation.Controls.Add(this.tbRequestID);
             this.pnlProductInformation.Controls.Add(this.lblRevue);
             this.pnlProductInformation.Controls.Add(this.materialLabel55);
             this.pnlProductInformation.Controls.Add(this.materialLabel68);
@@ -2597,7 +2599,7 @@
             this.pnlProductInformation.Controls.Add(this.materialLabel45);
             this.pnlProductInformation.Controls.Add(this.materialLabel44);
             this.pnlProductInformation.Controls.Add(this.materialLabel43);
-            this.pnlProductInformation.Controls.Add(this.tbAddMoreQuantity);
+            this.pnlProductInformation.Controls.Add(this.tbQuantityRequest);
             this.pnlProductInformation.Controls.Add(this.materialLabel38);
             this.pnlProductInformation.Controls.Add(this.materialLabel42);
             this.pnlProductInformation.Controls.Add(this.materialLabel41);
@@ -2606,11 +2608,19 @@
             this.pnlProductInformation.Controls.Add(this.Title);
             this.pnlProductInformation.Controls.Add(this.materialLabel36);
             this.pnlProductInformation.Controls.Add(this.materialLabel37);
-            this.pnlProductInformation.Controls.Add(this.btnAddExtraQuantity);
+            this.pnlProductInformation.Controls.Add(this.btnAddQuantity);
             this.pnlProductInformation.Location = new System.Drawing.Point(221, 65);
             this.pnlProductInformation.Name = "pnlProductInformation";
             this.pnlProductInformation.Size = new System.Drawing.Size(816, 490);
             this.pnlProductInformation.TabIndex = 39;
+            // 
+            // tbRequestID
+            // 
+            this.tbRequestID.Location = new System.Drawing.Point(514, 350);
+            this.tbRequestID.Name = "tbRequestID";
+            this.tbRequestID.Size = new System.Drawing.Size(29, 20);
+            this.tbRequestID.TabIndex = 58;
+            this.tbRequestID.Visible = false;
             // 
             // lblRevue
             // 
@@ -2830,12 +2840,12 @@
             this.materialLabel43.TabIndex = 25;
             this.materialLabel43.Text = "Make a request for more products";
             // 
-            // tbAddMoreQuantity
+            // tbQuantityRequest
             // 
-            this.tbAddMoreQuantity.Location = new System.Drawing.Point(577, 308);
-            this.tbAddMoreQuantity.Name = "tbAddMoreQuantity";
-            this.tbAddMoreQuantity.Size = new System.Drawing.Size(213, 20);
-            this.tbAddMoreQuantity.TabIndex = 24;
+            this.tbQuantityRequest.Location = new System.Drawing.Point(577, 308);
+            this.tbQuantityRequest.Name = "tbQuantityRequest";
+            this.tbQuantityRequest.Size = new System.Drawing.Size(213, 20);
+            this.tbQuantityRequest.TabIndex = 24;
             // 
             // materialLabel38
             // 
@@ -2941,17 +2951,18 @@
             this.materialLabel37.Text = "Product Details";
             this.materialLabel37.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnAddExtraQuantity
+            // btnAddQuantity
             // 
-            this.btnAddExtraQuantity.Depth = 0;
-            this.btnAddExtraQuantity.Location = new System.Drawing.Point(577, 343);
-            this.btnAddExtraQuantity.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAddExtraQuantity.Name = "btnAddExtraQuantity";
-            this.btnAddExtraQuantity.Primary = true;
-            this.btnAddExtraQuantity.Size = new System.Drawing.Size(213, 33);
-            this.btnAddExtraQuantity.TabIndex = 10;
-            this.btnAddExtraQuantity.Text = "Add More Products";
-            this.btnAddExtraQuantity.UseVisualStyleBackColor = true;
+            this.btnAddQuantity.Depth = 0;
+            this.btnAddQuantity.Location = new System.Drawing.Point(577, 343);
+            this.btnAddQuantity.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAddQuantity.Name = "btnAddQuantity";
+            this.btnAddQuantity.Primary = true;
+            this.btnAddQuantity.Size = new System.Drawing.Size(213, 33);
+            this.btnAddQuantity.TabIndex = 10;
+            this.btnAddQuantity.Text = "Add More Products";
+            this.btnAddQuantity.UseVisualStyleBackColor = true;
+            this.btnAddQuantity.Click += new System.EventHandler(this.btnAddExtraQuantity_Click);
             // 
             // materialLabel67
             // 
@@ -3863,10 +3874,10 @@
         private MaterialSkin.Controls.MaterialLabel Title;
         private MaterialSkin.Controls.MaterialLabel materialLabel36;
         private MaterialSkin.Controls.MaterialLabel materialLabel37;
-        private MaterialSkin.Controls.MaterialRaisedButton btnAddExtraQuantity;
+        private MaterialSkin.Controls.MaterialRaisedButton btnAddQuantity;
         private MaterialSkin.Controls.MaterialLabel materialLabel44;
         private MaterialSkin.Controls.MaterialLabel materialLabel43;
-        private System.Windows.Forms.TextBox tbAddMoreQuantity;
+        private System.Windows.Forms.TextBox tbQuantityRequest;
         private MaterialSkin.Controls.MaterialLabel lblProductDescription;
         private MaterialSkin.Controls.MaterialLabel lblProductQuantity;
         private MaterialSkin.Controls.MaterialLabel lblProductPlaceHolder;
@@ -3950,5 +3961,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel53;
         private MaterialSkin.Controls.MaterialLabel lblRevue;
         private MaterialSkin.Controls.MaterialLabel materialLabel55;
+        private System.Windows.Forms.TextBox tbRequestID;
     }
 }

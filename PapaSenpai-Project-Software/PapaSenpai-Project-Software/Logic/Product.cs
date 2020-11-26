@@ -20,7 +20,7 @@ namespace PapaSenpai_Project_Software.Logic
 
         public Product(int id, string title, string description, int quantity, int quantity_depo, double sellingPrice, double buyingPrice, int threshHold, int overall_price)
         {
-            this.id = id;
+            this.Id = id;
             this.title = title;
             this.description = description;
             this.quantity = quantity;
@@ -35,6 +35,8 @@ namespace PapaSenpai_Project_Software.Logic
         public int Id 
         {
             get { return this.id;  }
+            set { this.id = value; }
+            
         }
 
         public string Title
