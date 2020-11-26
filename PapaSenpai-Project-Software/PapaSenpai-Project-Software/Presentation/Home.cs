@@ -35,11 +35,17 @@ namespace PapaSenpai_Project_Software
             this.pnlDashBoard.BringToFront();
             this.currentScheduleDate = DateTime.Now;
 
+            Role role = this.adminControl.getloggedUser().Role;
+
+            if(role == Role.Manager)
+            {
+               
+            }
+
             this.employeeControl.retrieveAllEmployees();
             this.scheduleControl.retrieveSchedules();
             this.adminControl.retrieveAllAdmins();
             this.productControl.retrieveAllProducts();
-
             this.renderStaffTable();
             this.renderAdminTable();
             this.renderScheduleMembers();
@@ -1128,6 +1134,21 @@ namespace PapaSenpai_Project_Software
         {
             this.btnUpdateProductItem.Visible = false;
             button.Visible = true;
+        }
+
+
+        private void ManagerPermissions()
+        {
+            this.btnDashboard.Visible = false;
+            this.btnViewEmployees.Visible = true;
+            this.btnAddEmployee.Visible = false;
+            this.btnEditEmployee.Visible = false;
+            this.btnDeleteEmployee.Visible = false;
+            
+            this.btnViewUsers.Visible = false;
+            this.btnDashboard.Visible = false;
+            this.btnViewEmployees.Visible = false;
+
         }
 
         private void clearProductFields()

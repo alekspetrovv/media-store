@@ -11,7 +11,7 @@ namespace PapaSenpai_Project_Software.Logic
     public class AdminControl
     {
         private List<Admin> admins;
-        private User loggedUser;
+        private Admin loggedUser;
         private AdminDAL adminDAL;
         public AdminControl()
         {
@@ -20,14 +20,15 @@ namespace PapaSenpai_Project_Software.Logic
            loggedUser = null;
         }
 
-        public User getloggedUser()
+        public Admin getloggedUser()
         {
             return loggedUser;
         }
 
-        public void logUser(User user)
+        
+        public void logUser(Admin admin)
         {
-            loggedUser = user;
+            loggedUser = admin;
         }
 
         public void addAdmin(Admin admin)
