@@ -35,12 +35,6 @@ namespace PapaSenpai_Project_Software
             this.pnlDashBoard.BringToFront();
             this.currentScheduleDate = DateTime.Now;
 
-            Role role = this.adminControl.getloggedUser().Role;
-
-            if(role == Role.Manager)
-            {
-               
-            }
 
             this.employeeControl.retrieveAllEmployees();
             this.scheduleControl.retrieveSchedules();
