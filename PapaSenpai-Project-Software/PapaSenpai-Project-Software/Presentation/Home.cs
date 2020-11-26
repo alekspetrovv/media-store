@@ -770,15 +770,23 @@ namespace PapaSenpai_Project_Software
                 {
                     string member_id = (dataRow.Cells["ID"].Value.ToString());
                     string[] member_data = { id.ToString(), member_id.ToString(), from, to };
-                    scheduleControl.InsertMember(member_data);
-                    user_count++;
+                    DateTime test;
+
+                    //check if the datetime string is really a datetime and if yes safe the user to the db
+                    if (DateTime.TryParse(from, out test) && DateTime.TryParse(to, out test))
+                    {
+                         scheduleControl.InsertMember(member_data);
+                         user_count++;
+                    } else
+                    {
+                        MessageBox.Show("There was a problem with the timestamp given for user with ID: " + member_id);
+                    }
                 }
             }
 
             //delete schedule if working employees is equal 0
             if (user_count == 0)
             {
-                Console.WriteLine("vliza");
                 string[] delete_bindings = { id.ToString() };
                 scheduleControl.Delete(delete_bindings);
             }
@@ -855,8 +863,8 @@ namespace PapaSenpai_Project_Software
             {
                 foreach (ScheduleMember member in schedule.Members)
                 {
-
-//                    dtEmp.Rows.Add(member.EmployeeId, member.Employee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), member.Employee.Department);
+                    Employee foundEmployee = this.employeeControl.getEmployeeById(member.EmployeeId);
+                    dtEmp.Rows.Add(member.EmployeeId, foundEmployee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), foundEmployee.Department);
 
                 }
             }

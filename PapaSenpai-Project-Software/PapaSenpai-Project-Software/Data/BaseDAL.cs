@@ -22,8 +22,6 @@ namespace PapaSenpai_Project_Software.Data
         {
             MySqlConnection con = this.GetConnection();
             MySqlCommand cmd = con.CreateCommand();
-            try
-            {
                 con.Open();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = sql;
@@ -44,14 +42,7 @@ namespace PapaSenpai_Project_Software.Data
                         cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
                     }
                 }
-
-                return cmd;
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            return null;
+           return cmd;
         }
 
 

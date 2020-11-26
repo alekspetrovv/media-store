@@ -66,9 +66,14 @@ namespace PapaSenpai_Project_Software.Logic
                         while (employees_ids_q.Read())
                         {
                             int id = Convert.ToInt32(employees_ids_q["id"]);
+                            try  {
                             ScheduleMember member = new ScheduleMember(id, employees_ids_q["from_hour"].ToString(), employees_ids_q["to_hour"].ToString());
                             schedule.addScheduleMember(member);
-                        }
+                            } catch (Exception e)
+                            {
+                                //in case something is wrong with the dates again
+                            }
+                                                    }
                     }
                     this.addSchedule(schedule);
                 }
