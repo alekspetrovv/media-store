@@ -15,9 +15,10 @@ namespace PapaSenpai_Project_Software.Logic
         private int quantityDepo;
         private double selling_price;
         private double buying_price;
+        private double overall_price;
         private int threshold;
 
-        public Product(int id, string title, string description, int quantity, int quantity_depo, double sellingPrice, double buyingPrice, int threshHold)
+        public Product(int id, string title, string description, int quantity, int quantity_depo, double sellingPrice, double buyingPrice, int threshHold, int overall_price)
         {
             this.id = id;
             this.title = title;
@@ -26,6 +27,7 @@ namespace PapaSenpai_Project_Software.Logic
             this.quantityDepo = quantity_depo;
             this.selling_price = sellingPrice;
             this.buying_price = buyingPrice;
+            this.overall_price = overall_price;
             this.threshold = threshHold;
         }
 
@@ -64,6 +66,12 @@ namespace PapaSenpai_Project_Software.Logic
         {
             get { return this.buying_price; }
         }
+
+        public double OverallPrice 
+        {
+            get { return this.overall_price; }
+        }
+
 
         public int ThreshHold
         {

@@ -32,9 +32,12 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlDataReader Select()
         {
-                   return this.executeReader("SELECT employees.*, departments.title as department , contracts.title as contract FROM employees " +
+                   return this.executeReader("SELECT employees.*, departments.title as department , contracts.title as contract, COUNT(schedules_employees.id) as shifts_taken, SUM(schedules_employees.hours_worked) as hours_worked" +
+                       " FROM employees " +
                        "INNER JOIN departments ON departments.id = employees.department_id " +
-                       "INNER JOIN contracts ON contracts.id = employees.contract_id GROUP BY employees.id");
+                       "INNER JOIN contracts ON contracts.id = employees.contract_id " +
+                       "LEFT JOIN schedules_employees ON schedules_employees.employee_id = employees.id" +
+                       " GROUP BY employees.id");
         }
 
     }

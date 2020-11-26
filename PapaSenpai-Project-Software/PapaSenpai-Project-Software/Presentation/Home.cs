@@ -464,6 +464,7 @@ namespace PapaSenpai_Project_Software
                     this.lblProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
                     this.lblProductPlaceHolder.Text = Convert.ToString(product.ThreshHold);
                     this.lblProductID.Text = Convert.ToString(product.Id);
+                    this.lblRevue.Text = Convert.ToString(product.OverallPrice);
                     this.productControl.retrieveAllProducts();
                     this.renderProductsTable();
                     this.showPanel(pnlProductInformation);
@@ -716,15 +717,12 @@ namespace PapaSenpai_Project_Software
 
             if (!errors.Any())
             {
-                try
-                {
                     int department_id = this.cbEmployeeDepartment.SelectedIndex;
                     department_id++;
                     string increased_department_id = Convert.ToString(department_id);
                     int contract_id = this.cbEmployeeContract.SelectedIndex;
                     contract_id++;
                     string increased_contract_id = Convert.ToString(contract_id);
-                    Console.WriteLine(increased_contract_id);
                     string gender = Convert.ToString(this.cbEmployeeGender.Text);
                     string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
@@ -733,12 +731,6 @@ namespace PapaSenpai_Project_Software
                     this.renderScheduleMembers();
                     this.renderStaffTable();
                     this.showPanel(pnlEmployee);
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
 
             }
 
@@ -779,9 +771,9 @@ namespace PapaSenpai_Project_Software
                         this.tbEmployeeAdress.Text = employee.Adress;
                         this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
                         this.tbEmployeeCity.Text = employee.City;
-                        this.tbEmployeeId.Text = Convert.ToString(employee.ID);
+                        this.tbEmployeeWagePerHour.Text = Convert.ToString(employee.ID);
                         this.tbEmployeeCountry.Text = employee.Country;
-                        this.tbEmployeeWagePerHour.Text = employee.Wage;
+                        this.tbEmployeeId.Text = employee.Wage.ToString();
                         this.cbEmployeeDepartment.SelectedItem = Convert.ToString(employee.Department);
                         this.cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
                         this.cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
@@ -806,7 +798,7 @@ namespace PapaSenpai_Project_Software
         {
             try
             {
-                string employeeId = this.tbEmployeeId.Text;
+                string employeeId = this.tbEmployeeWagePerHour.Text;
                 string gender = Convert.ToString(this.cbEmployeeGender.SelectedItem);
                 int department_id = this.cbEmployeeDepartment.SelectedIndex;
                 department_id++;
@@ -817,7 +809,7 @@ namespace PapaSenpai_Project_Software
                 string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,
-                    this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
+                    this.tbEmployeeId.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
                 this.pnlEmployee.Visible = true;
                 employeeControl.UpdateEmployee(employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
@@ -964,13 +956,15 @@ namespace PapaSenpai_Project_Software
 
                 if (userChecked)
                 {
-                    string member_id = (dataRow.Cells["ID"].Value.ToString());
-                    string[] member_data = { id.ToString(), member_id.ToString(), from, to };
-                    DateTime test;
 
-                    //check if the datetime string is really a datetime and if yes safe the user to the db
-                    if (DateTime.TryParse(from, out test) && DateTime.TryParse(to, out test))
+                    DateTime from_date;
+                    DateTime to_date;
+                    string member_id = (dataRow.Cells["ID"].Value.ToString());
+                    if (DateTime.TryParse(from, out from_date) && DateTime.TryParse(to, out to_date))
                     {
+                        string[] member_data = { id.ToString(), member_id.ToString(), from, to , (to_date.Hour - from_date.Hour).ToString()};
+
+                        //check if the datetime string is really a datetime and if yes safe the user to the db
                          scheduleControl.InsertMember(member_data);
                          user_count++;
                     } else
@@ -1232,7 +1226,7 @@ namespace PapaSenpai_Project_Software
             this.tbEmployeeLastName.Clear();
             this.tbEmployeePassword.Clear();
             this.tbEmployeePhoneNumber.Clear();
-            this.tbEmployeeWagePerHour.Clear();
+            this.tbEmployeeId.Clear();
             this.tbEmployeeFirstName.Clear();
             this.tbEmployeeUserName.Clear();
         }
@@ -1303,5 +1297,6 @@ namespace PapaSenpai_Project_Software
             MessageBox.Show("You successfully made an order!");
 
         }
+
     }
 }

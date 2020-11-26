@@ -10,8 +10,8 @@ namespace PapaSenpai_Project_Software.Data
     {
         public void Insert(string[] schedule_bindings)
         {
-            this.executeNonQuery("INSERT INTO `schedules_employees`(`schedule_id`, `employee_id`, `from_hour`, `to_hour`)" +
-                         " VALUES (@schedule_id, @member_id, @from_hour, @to_hour)", schedule_bindings); 
+            this.executeNonQuery("INSERT INTO `schedules_employees`(`schedule_id`, `employee_id`, `from_hour`, `to_hour`, `hours_worked`)" +
+                         " VALUES (@schedule_id, @member_id, @from_hour, @to_hour, @hours_worked)", schedule_bindings); 
         }
 
         public void Delete(string[] schedule_bindings)

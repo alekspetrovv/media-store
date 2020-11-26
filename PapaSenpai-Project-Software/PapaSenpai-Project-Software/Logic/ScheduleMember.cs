@@ -11,6 +11,7 @@ namespace PapaSenpai_Project_Software
         private DateTime startTime;
         private DateTime endTime;
         private int employee_id;
+        private int hours;
 
         public ScheduleMember(int employee_id, string startDate, string endDate)
         {
@@ -18,6 +19,7 @@ namespace PapaSenpai_Project_Software
             //this.startTime = DateTime.ParseExact(date, "MM-dd-yyyy", null);
             this.endTime = DateTime.Parse(endDate);
             this.startTime = DateTime.Parse(startDate);
+            this.hours = this.endTime.Hour - this.startTime.Hour;
         }
 
         public int EmployeeId
@@ -34,5 +36,11 @@ namespace PapaSenpai_Project_Software
         {
             get { return this.endTime; }
         }
+
+        public int Hours
+        {
+            get { return this.hours; }
+        }
+
     }
 }
