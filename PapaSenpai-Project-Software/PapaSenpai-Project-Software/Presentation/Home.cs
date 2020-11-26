@@ -771,9 +771,9 @@ namespace PapaSenpai_Project_Software
                         this.tbEmployeeAdress.Text = employee.Adress;
                         this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
                         this.tbEmployeeCity.Text = employee.City;
-                        this.tbEmployeeWagePerHour.Text = Convert.ToString(employee.ID);
+                        this.tbEmployeeId.Text = Convert.ToString(employee.ID);
                         this.tbEmployeeCountry.Text = employee.Country;
-                        this.tbEmployeeId.Text = employee.Wage.ToString();
+                        this.tbEmployeeWagePerHour.Text = employee.Wage.ToString();
                         this.cbEmployeeDepartment.SelectedItem = Convert.ToString(employee.Department);
                         this.cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
                         this.cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
@@ -798,7 +798,7 @@ namespace PapaSenpai_Project_Software
         {
             try
             {
-                string employeeId = this.tbEmployeeWagePerHour.Text;
+                string employeeId = this.tbEmployeeId.Text;
                 string gender = Convert.ToString(this.cbEmployeeGender.SelectedItem);
                 int department_id = this.cbEmployeeDepartment.SelectedIndex;
                 department_id++;
@@ -809,7 +809,7 @@ namespace PapaSenpai_Project_Software
                 string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
                     this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,
-                    this.tbEmployeeId.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
+                    this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
                 this.pnlEmployee.Visible = true;
                 employeeControl.UpdateEmployee(employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
