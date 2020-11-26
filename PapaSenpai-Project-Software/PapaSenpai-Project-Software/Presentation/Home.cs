@@ -62,6 +62,11 @@ namespace PapaSenpai_Project_Software
             this.showPanel(pnlEmployee);
         }
 
+        private void btnBackToEmployeePageFromDetails_Click_1(object sender, EventArgs e)
+        {
+            this.showPanel(pnlEmployee);
+        }
+
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
@@ -1138,5 +1143,19 @@ namespace PapaSenpai_Project_Software
             this.tbAdminPassword.Clear();
         }
 
+        private void tbeDepartment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlAddEditEmployee_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
