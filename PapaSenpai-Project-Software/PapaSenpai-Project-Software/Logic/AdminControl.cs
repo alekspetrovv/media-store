@@ -24,7 +24,11 @@ namespace PapaSenpai_Project_Software.Logic
         {
             return loggedUser;
         }
-
+        
+        public Admin getloggedUserByRole(Role r)
+        {
+            return this.loggedUser;
+        }
         
         public void logUser(Admin admin)
         {

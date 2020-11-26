@@ -10,8 +10,6 @@ namespace PapaSenpai_Project_Software
     {
         Admin = 1,
         Manager,
-        StoreWorker,
-        InvetoryWorker,
-        StoreManager
+        StoreManager,
     }
 }

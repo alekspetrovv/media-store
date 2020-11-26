@@ -35,8 +35,15 @@ namespace PapaSenpai_Project_Software
             this.pnlDashBoard.BringToFront();
             this.currentScheduleDate = DateTime.Now;
             this.adminControl = a;
-
-
+            Role r = this.adminControl.getloggedUser().Role;
+            if (r == Role.Manager)
+            {
+                this.ManagerPermissions();
+            }
+            if(r == Role.StoreManager)
+            {
+                this.StoreManagerPermissions();
+            }
             this.employeeControl.retrieveAllEmployees();
             this.scheduleControl.retrieveSchedules();
             this.adminControl.retrieveAllAdmins();
@@ -185,7 +192,10 @@ namespace PapaSenpai_Project_Software
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlAddEditProduct);
-            this.showButton(this.btnAddProductItem);
+
+            // to do
+
+            //this.btnAddProductItem.Visible.;
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
@@ -210,7 +220,7 @@ namespace PapaSenpai_Project_Software
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlCart);
+            this.showPanel(pnlCart);    
         }
 
         private void btnViewEmployeeDetails_Click(object sender, EventArgs e)
@@ -1122,31 +1132,86 @@ namespace PapaSenpai_Project_Software
             this.pnlCart.Visible = false;
             this.pnlProductInformation.Visible = false;
             this.pnlViewEmployeeDetails.Visible = false;
+            this.pnlRestocking.Visible = false;
             panel.Visible = true;
 
         }
 
-        private void showButton(Button button)
+
+
+        private void hideButton(Button button)
         {
-            this.btnUpdateProductItem.Visible = false;
-            button.Visible = true;
+            button.Visible = false;
         }
 
+        private void hidePicture(PictureBox p)
+        {
+            p.Visible = false;
+        }
 
         private void ManagerPermissions()
         {
-            this.btnDashboard.Visible = false;
-            this.btnViewEmployees.Visible = true;
-            this.btnAddEmployee.Visible = false;
-            this.btnEditEmployee.Visible = false;
-            this.btnDeleteEmployee.Visible = false;
-            
-            this.btnViewUsers.Visible = false;
-            this.btnDashboard.Visible = false;
-            this.btnViewEmployees.Visible = false;
 
+            MessageBox.Show("Welcome " + adminControl.getloggedUser().getFullName() + "!");
+            this.hideButton(btnViewSchedule);
+            this.hideButton(btnViewAllSchedules);
+            this.hideButton(btnAddEmployee);
+            this.hideButton(btnEditEmployee);
+            this.hideButton(btnDeleteEmployee);
+            this.hideButton(btnAddProduct);
+            this.hideButton(btnEditProduct);
+            this.hideButton(btnDeleteProduct);
+            this.hideButton(btnViewUsers);
+            this.hideButton(btnViewCart);
+
+            this.hidePicture(iconPictureBox15);
+            this.hidePicture(iconPictureBox10);
+            this.hidePicture(iconPictureBox9);
+            this.hidePicture(iconPictureBox5);
+            this.hidePicture(iconPictureBox6);
+            this.hidePicture(iconPictureBox7);
+            this.hidePicture(iconPictureBox18);
+            this.hidePicture(iconPictureBox11);
+            this.hidePicture(iconPictureBox3);
+            this.hidePicture(iconPictureBox16);
         }
 
+        private void StoreManagerPermissions()
+        {
+
+            MessageBox.Show("Welcome " + adminControl.getloggedUser().getFullName() + "!");
+            this.lblNameWorker.Text = (adminControl.getloggedUser().getFullName());
+            this.hideButton(btnViewSchedule);
+            this.hideButton(btnViewAllSchedules);
+            this.hideButton(btnAddEmployee);
+            this.hideButton(btnEditEmployee);
+            this.hideButton(btnDeleteEmployee);
+            this.hideButton(btnAddProduct);
+            this.hideButton(btnEditProduct);
+            this.hideButton(btnDeleteProduct);
+            this.hideButton(btnViewUsers);
+            this.hideButton(btnViewCart);
+            this.hideButton(btnDashboard);
+            this.hideButton(btnViewEmployees);
+            this.hideButton(btnViewProducts);
+            this.showPanel(pnlRestocking);
+
+            this.pnlMenu.Visible = false;
+            this.hidePicture(iconPictureBox16);
+            this.hidePicture(iconPictureBox8);
+            this.hidePicture(iconPictureBox2);
+            this.hidePicture(iconPictureBox1);
+            this.hidePicture(iconPictureBox15);
+            this.hidePicture(iconPictureBox10);
+            this.hidePicture(iconPictureBox9);
+            this.hidePicture(iconPictureBox5);
+            this.hidePicture(iconPictureBox6);
+            this.hidePicture(iconPictureBox7);
+            this.hidePicture(iconPictureBox18);
+            this.hidePicture(iconPictureBox11);
+            this.hidePicture(iconPictureBox3);
+            this.hidePicture(iconPictureBox16);
+        }
         private void clearProductFields()
         {
             this.tbProductTitle.Clear();
