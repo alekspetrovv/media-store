@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PapaSenpai_Project_Software.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,10 @@ namespace PapaSenpai_Project_Software
         private string password;
         Gender gender;
         Department department;
+        Contract contract;
 
         public Employee(int id,string first_name, string last_name, string email, string adress, string city, string country,
-         string phone_number, string gender, string department, string wage, string username, string password) : base(id,
+         string phone_number, string gender, string department,string contract,string wage, string username, string password) : base(id,
              first_name, last_name, email)
         {
             this.adress = adress;
@@ -30,6 +32,7 @@ namespace PapaSenpai_Project_Software
             this.wage = wage;
             Enum.TryParse(gender, out this.gender);
             Enum.TryParse(department, out this.department);
+            Enum.TryParse(contract, out this.contract);
             this.username = username;
             this.password = password;
         }
@@ -84,5 +87,10 @@ namespace PapaSenpai_Project_Software
             get { return department; }
         }
 
+
+        public Enum Contract
+        {
+            get { return this.contract; }
+        }
     }
 }

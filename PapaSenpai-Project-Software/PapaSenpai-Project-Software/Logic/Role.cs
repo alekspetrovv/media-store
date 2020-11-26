@@ -8,7 +8,7 @@ namespace PapaSenpai_Project_Software
 {
     public enum Role
     {
-        Admin,
+        Admin = 1,
         Manager,
         StoreWorker,
         InvetoryWorker,
