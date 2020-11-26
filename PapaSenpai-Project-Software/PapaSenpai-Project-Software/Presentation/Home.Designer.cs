@@ -201,6 +201,9 @@
             this.tbPurchase = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tbAddToCart = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlProductInformation = new System.Windows.Forms.Panel();
+            this.tbRequestID = new System.Windows.Forms.TextBox();
+            this.lblRevue = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel55 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel68 = new MaterialSkin.Controls.MaterialLabel();
             this.lblProductQuantityDepo = new MaterialSkin.Controls.MaterialLabel();
             this.lblProductSellingPrice = new MaterialSkin.Controls.MaterialLabel();
@@ -216,7 +219,7 @@
             this.materialLabel45 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel44 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel43 = new MaterialSkin.Controls.MaterialLabel();
-            this.tbAddMoreQuantity = new System.Windows.Forms.TextBox();
+            this.tbQuantityRequest = new System.Windows.Forms.TextBox();
             this.materialLabel38 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel42 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel41 = new MaterialSkin.Controls.MaterialLabel();
@@ -225,7 +228,7 @@
             this.Title = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel36 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel37 = new MaterialSkin.Controls.MaterialLabel();
-            this.btnAddExtraQuantity = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnAddQuantity = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel67 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel66 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel65 = new MaterialSkin.Controls.MaterialLabel();
@@ -264,19 +267,17 @@
             this.materialLabel69 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel59 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlRestocking = new System.Windows.Forms.Panel();
+            this.materialLabel53 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel51 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel52 = new MaterialSkin.Controls.MaterialLabel();
+            this.lblNameWorker = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel49 = new MaterialSkin.Controls.MaterialLabel();
+            this.lbRestocking = new System.Windows.Forms.ListBox();
             this.materialLabel88 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel90 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel100 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel101 = new MaterialSkin.Controls.MaterialLabel();
             this.btnRestockProducts = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.lbRestocking = new System.Windows.Forms.ListBox();
-            this.materialLabel49 = new MaterialSkin.Controls.MaterialLabel();
-            this.lblNameWorker = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel52 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel51 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel53 = new MaterialSkin.Controls.MaterialLabel();
-            this.lblRevue = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel55 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
@@ -1108,9 +1109,9 @@
             // 
             // tbEmployeeId
             // 
-            this.tbEmployeeId.Location = new System.Drawing.Point(154, 284);
+            this.tbEmployeeId.Location = new System.Drawing.Point(800, 413);
             this.tbEmployeeId.Name = "tbEmployeeId";
-            this.tbEmployeeId.Size = new System.Drawing.Size(239, 20);
+            this.tbEmployeeId.Size = new System.Drawing.Size(10, 20);
             this.tbEmployeeId.TabIndex = 33;
             // 
             // btnUpdateEmployee
@@ -1253,9 +1254,9 @@
             // 
             // tbEmployeeWagePerHour
             // 
-            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(797, 406);
+            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(151, 284);
             this.tbEmployeeWagePerHour.Name = "tbEmployeeWagePerHour";
-            this.tbEmployeeWagePerHour.Size = new System.Drawing.Size(15, 20);
+            this.tbEmployeeWagePerHour.Size = new System.Drawing.Size(244, 20);
             this.tbEmployeeWagePerHour.TabIndex = 29;
             this.tbEmployeeWagePerHour.Visible = false;
             // 
@@ -2580,6 +2581,7 @@
             // 
             this.pnlProductInformation.AutoSize = true;
             this.pnlProductInformation.BackColor = System.Drawing.Color.Transparent;
+            this.pnlProductInformation.Controls.Add(this.tbRequestID);
             this.pnlProductInformation.Controls.Add(this.lblRevue);
             this.pnlProductInformation.Controls.Add(this.materialLabel55);
             this.pnlProductInformation.Controls.Add(this.materialLabel68);
@@ -2597,7 +2599,7 @@
             this.pnlProductInformation.Controls.Add(this.materialLabel45);
             this.pnlProductInformation.Controls.Add(this.materialLabel44);
             this.pnlProductInformation.Controls.Add(this.materialLabel43);
-            this.pnlProductInformation.Controls.Add(this.tbAddMoreQuantity);
+            this.pnlProductInformation.Controls.Add(this.tbQuantityRequest);
             this.pnlProductInformation.Controls.Add(this.materialLabel38);
             this.pnlProductInformation.Controls.Add(this.materialLabel42);
             this.pnlProductInformation.Controls.Add(this.materialLabel41);
@@ -2606,11 +2608,45 @@
             this.pnlProductInformation.Controls.Add(this.Title);
             this.pnlProductInformation.Controls.Add(this.materialLabel36);
             this.pnlProductInformation.Controls.Add(this.materialLabel37);
-            this.pnlProductInformation.Controls.Add(this.btnAddExtraQuantity);
+            this.pnlProductInformation.Controls.Add(this.btnAddQuantity);
             this.pnlProductInformation.Location = new System.Drawing.Point(221, 65);
             this.pnlProductInformation.Name = "pnlProductInformation";
             this.pnlProductInformation.Size = new System.Drawing.Size(816, 490);
             this.pnlProductInformation.TabIndex = 39;
+            // 
+            // tbRequestID
+            // 
+            this.tbRequestID.Location = new System.Drawing.Point(514, 350);
+            this.tbRequestID.Name = "tbRequestID";
+            this.tbRequestID.Size = new System.Drawing.Size(29, 20);
+            this.tbRequestID.TabIndex = 58;
+            this.tbRequestID.Visible = false;
+            // 
+            // lblRevue
+            // 
+            this.lblRevue.AutoSize = true;
+            this.lblRevue.Depth = 0;
+            this.lblRevue.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblRevue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblRevue.Location = new System.Drawing.Point(703, 150);
+            this.lblRevue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblRevue.Name = "lblRevue";
+            this.lblRevue.Size = new System.Drawing.Size(15, 19);
+            this.lblRevue.TabIndex = 57;
+            this.lblRevue.Text = "*";
+            // 
+            // materialLabel55
+            // 
+            this.materialLabel55.AutoSize = true;
+            this.materialLabel55.Depth = 0;
+            this.materialLabel55.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel55.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel55.Location = new System.Drawing.Point(564, 150);
+            this.materialLabel55.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel55.Name = "materialLabel55";
+            this.materialLabel55.Size = new System.Drawing.Size(129, 19);
+            this.materialLabel55.TabIndex = 56;
+            this.materialLabel55.Text = "Generated Revue :";
             // 
             // materialLabel68
             // 
@@ -2804,12 +2840,12 @@
             this.materialLabel43.TabIndex = 25;
             this.materialLabel43.Text = "Make a request for more products";
             // 
-            // tbAddMoreQuantity
+            // tbQuantityRequest
             // 
-            this.tbAddMoreQuantity.Location = new System.Drawing.Point(577, 308);
-            this.tbAddMoreQuantity.Name = "tbAddMoreQuantity";
-            this.tbAddMoreQuantity.Size = new System.Drawing.Size(213, 20);
-            this.tbAddMoreQuantity.TabIndex = 24;
+            this.tbQuantityRequest.Location = new System.Drawing.Point(577, 308);
+            this.tbQuantityRequest.Name = "tbQuantityRequest";
+            this.tbQuantityRequest.Size = new System.Drawing.Size(213, 20);
+            this.tbQuantityRequest.TabIndex = 24;
             // 
             // materialLabel38
             // 
@@ -2915,17 +2951,18 @@
             this.materialLabel37.Text = "Product Details";
             this.materialLabel37.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnAddExtraQuantity
+            // btnAddQuantity
             // 
-            this.btnAddExtraQuantity.Depth = 0;
-            this.btnAddExtraQuantity.Location = new System.Drawing.Point(577, 343);
-            this.btnAddExtraQuantity.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAddExtraQuantity.Name = "btnAddExtraQuantity";
-            this.btnAddExtraQuantity.Primary = true;
-            this.btnAddExtraQuantity.Size = new System.Drawing.Size(213, 33);
-            this.btnAddExtraQuantity.TabIndex = 10;
-            this.btnAddExtraQuantity.Text = "Add More Products";
-            this.btnAddExtraQuantity.UseVisualStyleBackColor = true;
+            this.btnAddQuantity.Depth = 0;
+            this.btnAddQuantity.Location = new System.Drawing.Point(577, 343);
+            this.btnAddQuantity.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAddQuantity.Name = "btnAddQuantity";
+            this.btnAddQuantity.Primary = true;
+            this.btnAddQuantity.Size = new System.Drawing.Size(213, 33);
+            this.btnAddQuantity.TabIndex = 10;
+            this.btnAddQuantity.Text = "Add More Products";
+            this.btnAddQuantity.UseVisualStyleBackColor = true;
+            this.btnAddQuantity.Click += new System.EventHandler(this.btnAddExtraQuantity_Click);
             // 
             // materialLabel67
             // 
@@ -3457,6 +3494,82 @@
             this.pnlRestocking.Size = new System.Drawing.Size(816, 490);
             this.pnlRestocking.TabIndex = 56;
             // 
+            // materialLabel53
+            // 
+            this.materialLabel53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
+            this.materialLabel53.Depth = 0;
+            this.materialLabel53.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel53.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel53.Location = new System.Drawing.Point(3, 455);
+            this.materialLabel53.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel53.Name = "materialLabel53";
+            this.materialLabel53.Size = new System.Drawing.Size(810, 1);
+            this.materialLabel53.TabIndex = 61;
+            // 
+            // materialLabel51
+            // 
+            this.materialLabel51.AutoSize = true;
+            this.materialLabel51.Depth = 0;
+            this.materialLabel51.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel51.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel51.Location = new System.Drawing.Point(10, 458);
+            this.materialLabel51.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel51.Name = "materialLabel51";
+            this.materialLabel51.Size = new System.Drawing.Size(355, 19);
+            this.materialLabel51.TabIndex = 60;
+            this.materialLabel51.Text = "This page can only be accessed by Store Managers!";
+            this.materialLabel51.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel52
+            // 
+            this.materialLabel52.AutoSize = true;
+            this.materialLabel52.Depth = 0;
+            this.materialLabel52.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel52.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel52.Location = new System.Drawing.Point(275, 111);
+            this.materialLabel52.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel52.Name = "materialLabel52";
+            this.materialLabel52.Size = new System.Drawing.Size(272, 19);
+            this.materialLabel52.TabIndex = 59;
+            this.materialLabel52.Text = "You are in the Product Restocking page";
+            this.materialLabel52.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblNameWorker
+            // 
+            this.lblNameWorker.AutoSize = true;
+            this.lblNameWorker.Depth = 0;
+            this.lblNameWorker.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblNameWorker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblNameWorker.Location = new System.Drawing.Point(217, 66);
+            this.lblNameWorker.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblNameWorker.Name = "lblNameWorker";
+            this.lblNameWorker.Size = new System.Drawing.Size(15, 19);
+            this.lblNameWorker.TabIndex = 58;
+            this.lblNameWorker.Text = "*";
+            this.lblNameWorker.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel49
+            // 
+            this.materialLabel49.AutoSize = true;
+            this.materialLabel49.Depth = 0;
+            this.materialLabel49.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel49.Location = new System.Drawing.Point(12, 66);
+            this.materialLabel49.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel49.Name = "materialLabel49";
+            this.materialLabel49.Size = new System.Drawing.Size(192, 19);
+            this.materialLabel49.TabIndex = 57;
+            this.materialLabel49.Text = "Welcome to our Software : ";
+            this.materialLabel49.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbRestocking
+            // 
+            this.lbRestocking.FormattingEnabled = true;
+            this.lbRestocking.Location = new System.Drawing.Point(222, 149);
+            this.lbRestocking.Name = "lbRestocking";
+            this.lbRestocking.Size = new System.Drawing.Size(385, 238);
+            this.lbRestocking.TabIndex = 56;
+            // 
             // materialLabel88
             // 
             this.materialLabel88.AutoSize = true;
@@ -3497,12 +3610,12 @@
             // 
             this.materialLabel101.AutoSize = true;
             this.materialLabel101.Depth = 0;
-            this.materialLabel101.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabel101.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel101.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel101.Location = new System.Drawing.Point(353, 18);
             this.materialLabel101.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel101.Name = "materialLabel101";
-            this.materialLabel101.Size = new System.Drawing.Size(139, 18);
+            this.materialLabel101.Size = new System.Drawing.Size(140, 19);
             this.materialLabel101.TabIndex = 2;
             this.materialLabel101.Text = "Product Restocking";
             this.materialLabel101.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -3519,114 +3632,18 @@
             this.btnRestockProducts.Text = "Restock  products";
             this.btnRestockProducts.UseVisualStyleBackColor = true;
             // 
-            // lbRestocking
-            // 
-            this.lbRestocking.FormattingEnabled = true;
-            this.lbRestocking.Location = new System.Drawing.Point(222, 149);
-            this.lbRestocking.Name = "lbRestocking";
-            this.lbRestocking.Size = new System.Drawing.Size(385, 238);
-            this.lbRestocking.TabIndex = 56;
-            // 
-            // materialLabel49
-            // 
-            this.materialLabel49.AutoSize = true;
-            this.materialLabel49.Depth = 0;
-            this.materialLabel49.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel49.Location = new System.Drawing.Point(12, 66);
-            this.materialLabel49.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel49.Name = "materialLabel49";
-            this.materialLabel49.Size = new System.Drawing.Size(192, 19);
-            this.materialLabel49.TabIndex = 57;
-            this.materialLabel49.Text = "Welcome to our Software : ";
-            this.materialLabel49.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblNameWorker
-            // 
-            this.lblNameWorker.AutoSize = true;
-            this.lblNameWorker.Depth = 0;
-            this.lblNameWorker.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblNameWorker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNameWorker.Location = new System.Drawing.Point(217, 66);
-            this.lblNameWorker.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblNameWorker.Name = "lblNameWorker";
-            this.lblNameWorker.Size = new System.Drawing.Size(15, 19);
-            this.lblNameWorker.TabIndex = 58;
-            this.lblNameWorker.Text = "*";
-            this.lblNameWorker.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // materialLabel52
-            // 
-            this.materialLabel52.AutoSize = true;
-            this.materialLabel52.Depth = 0;
-            this.materialLabel52.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel52.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel52.Location = new System.Drawing.Point(275, 111);
-            this.materialLabel52.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel52.Name = "materialLabel52";
-            this.materialLabel52.Size = new System.Drawing.Size(272, 19);
-            this.materialLabel52.TabIndex = 59;
-            this.materialLabel52.Text = "You are in the Product Restocking page";
-            this.materialLabel52.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // materialLabel51
-            // 
-            this.materialLabel51.AutoSize = true;
-            this.materialLabel51.Depth = 0;
-            this.materialLabel51.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel51.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel51.Location = new System.Drawing.Point(10, 458);
-            this.materialLabel51.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel51.Name = "materialLabel51";
-            this.materialLabel51.Size = new System.Drawing.Size(355, 19);
-            this.materialLabel51.TabIndex = 60;
-            this.materialLabel51.Text = "This page can only be accessed by Store Managers!";
-            this.materialLabel51.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // materialLabel53
-            // 
-            this.materialLabel53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(199)))), ((int)(((byte)(132)))));
-            this.materialLabel53.Depth = 0;
-            this.materialLabel53.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel53.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel53.Location = new System.Drawing.Point(3, 455);
-            this.materialLabel53.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel53.Name = "materialLabel53";
-            this.materialLabel53.Size = new System.Drawing.Size(810, 1);
-            this.materialLabel53.TabIndex = 61;
-            // 
-            // lblRevue
-            // 
-            this.lblRevue.AutoSize = true;
-            this.lblRevue.Depth = 0;
-            this.lblRevue.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblRevue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRevue.Location = new System.Drawing.Point(703, 150);
-            this.lblRevue.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblRevue.Name = "lblRevue";
-            this.lblRevue.Size = new System.Drawing.Size(15, 19);
-            this.lblRevue.TabIndex = 57;
-            this.lblRevue.Text = "*";
-            // 
-            // materialLabel55
-            // 
-            this.materialLabel55.AutoSize = true;
-            this.materialLabel55.Depth = 0;
-            this.materialLabel55.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel55.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel55.Location = new System.Drawing.Point(564, 150);
-            this.materialLabel55.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel55.Name = "materialLabel55";
-            this.materialLabel55.Size = new System.Drawing.Size(129, 19);
-            this.materialLabel55.TabIndex = 56;
-            this.materialLabel55.Text = "Generated Revue :";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 622);
             this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.pnlAddEditEmployee);
+            this.Controls.Add(this.pnlAddEditAdmin);
+            this.Controls.Add(this.pnlViewSchedule);
+            this.Controls.Add(this.pnlScheduleEmployees);
+            this.Controls.Add(this.pnlProducts);
+            this.Controls.Add(this.pnlViewEmployeeDetails);
             this.Controls.Add(this.pnlProductInformation);
             this.Controls.Add(this.pnlRestocking);
             this.Controls.Add(this.pnlCart);
@@ -3634,12 +3651,6 @@
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
             this.Controls.Add(this.pnlAddEditProduct);
-            this.Controls.Add(this.pnlAddEditEmployee);
-            this.Controls.Add(this.pnlAddEditAdmin);
-            this.Controls.Add(this.pnlViewSchedule);
-            this.Controls.Add(this.pnlScheduleEmployees);
-            this.Controls.Add(this.pnlProducts);
-            this.Controls.Add(this.pnlViewEmployeeDetails);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
@@ -3863,10 +3874,10 @@
         private MaterialSkin.Controls.MaterialLabel Title;
         private MaterialSkin.Controls.MaterialLabel materialLabel36;
         private MaterialSkin.Controls.MaterialLabel materialLabel37;
-        private MaterialSkin.Controls.MaterialRaisedButton btnAddExtraQuantity;
+        private MaterialSkin.Controls.MaterialRaisedButton btnAddQuantity;
         private MaterialSkin.Controls.MaterialLabel materialLabel44;
         private MaterialSkin.Controls.MaterialLabel materialLabel43;
-        private System.Windows.Forms.TextBox tbAddMoreQuantity;
+        private System.Windows.Forms.TextBox tbQuantityRequest;
         private MaterialSkin.Controls.MaterialLabel lblProductDescription;
         private MaterialSkin.Controls.MaterialLabel lblProductQuantity;
         private MaterialSkin.Controls.MaterialLabel lblProductPlaceHolder;
@@ -3950,5 +3961,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel53;
         private MaterialSkin.Controls.MaterialLabel lblRevue;
         private MaterialSkin.Controls.MaterialLabel materialLabel55;
+        private System.Windows.Forms.TextBox tbRequestID;
     }
 }
