@@ -17,7 +17,7 @@ namespace PapaSenpai_Project_Software.Logic
         private double buying_price;
         private int threshold;
 
-        public Product(int id, string title, string description, int quantity,int quantity_depo, double sellingPrice, double buyingPrice,int threshHold)
+        public Product(int id, string title, string description, int quantity, int quantity_depo, double sellingPrice, double buyingPrice, int threshHold)
         {
             this.id = id;
             this.title = title;
@@ -69,5 +69,11 @@ namespace PapaSenpai_Project_Software.Logic
         {
             get { return this.threshold; }
         }
+
+        public override string ToString()
+        {
+            return $"{this.Title}, Quanity - {this.Quantity}";
+        }
+
     }
 }

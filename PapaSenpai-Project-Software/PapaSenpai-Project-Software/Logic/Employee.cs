@@ -30,7 +30,6 @@ namespace PapaSenpai_Project_Software
             this.country = country;
             this.phone_number = phone_number;
             this.wage = wage;
-            Console.WriteLine(department);
             Enum.TryParse(gender, out this.gender);
             Enum.TryParse(department, out this.department);
             Enum.TryParse(contract, out this.contract);
