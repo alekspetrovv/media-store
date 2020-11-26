@@ -248,6 +248,7 @@ namespace PapaSenpai_Project_Software
 
         private void renderProductsForOrder()
         {
+            lbStoreProducts.Items.Clear();
             foreach (Product p in productControl.GetProducts())
             {
                 if (p.Quantity > 0)
@@ -271,12 +272,17 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("QuantityDepo", typeof(string));
             dtPrd.Columns.Add("Selling Price", typeof(string));
             dtPrd.Columns.Add("Buying Price", typeof(string));
+            dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
 
 
             foreach (Product p in productControl.GetProducts())
             {
-                dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, p.ThreshHold);
+                string refill = "No";
+                if (p.Quantity <= p.ThreshHold) {
+                    refill = "Yes";
+                }
+                dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, refill, p.ThreshHold);
             }
 
             dtProducts.DataSource = dtPrd;
@@ -1202,7 +1208,6 @@ namespace PapaSenpai_Project_Software
 
             this.ordersControl.addProduct(product, quantity);
             this.lbShoppingCart.Items.Add($"{product.Title} - {quantity}");
-            this.lbStoreProducts.Items.Remove(product);
         }
 
         private void tbPurchase_Click(object sender, EventArgs e)
@@ -1227,7 +1232,9 @@ namespace PapaSenpai_Project_Software
             string[] bindings = { admin.ID.ToString() };
             this.ordersControl.Buy(bindings);
             this.lbShoppingCart.Items.Clear();
+            this.productControl.retrieveAllProducts();
             this.renderProductsForOrder();
+            this.renderProductsTable();
             MessageBox.Show("You successfully made an order!");
 
         }

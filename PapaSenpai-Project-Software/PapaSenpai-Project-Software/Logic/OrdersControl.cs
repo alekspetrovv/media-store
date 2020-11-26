@@ -12,12 +12,14 @@ namespace PapaSenpai_Project_Software.Logic
         private List<OrderProduct> products;
         private  OrdersDAL ordersDAL;
         private  OrdersProductsDAL ordersProductsDAL;
+        private  ProductDAL productDAL;
 
         public OrdersControl()
         {
             this.products = new List<OrderProduct>();
             this.ordersDAL = new OrdersDAL();
             this.ordersProductsDAL = new OrdersProductsDAL();
+            this.productDAL = new ProductDAL();
         }
 
         public List<OrderProduct> Products
@@ -39,7 +41,9 @@ namespace PapaSenpai_Project_Software.Logic
             {
 
                 string[] product_bind = { order_id.ToString(), product.Product.Id.ToString(), product.Product.SellingPrice.ToString() };
+                string[] product_bind_quantity = { (product.Product.Quantity - product.Quantity).ToString(), product.Product.Id.ToString() };
                 this.ordersProductsDAL.Insert(product_bind);
+                this.productDAL.UpdateQuantity(product_bind_quantity);
             }
 
             this.products.Clear();

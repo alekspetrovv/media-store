@@ -23,5 +23,10 @@ namespace PapaSenpai_Project_Software.Logic
         {
             get { return this.product; }
         }
+        public int Quantity 
+        {
+            get { return this.quanity; }
+        }
+
     }
 }

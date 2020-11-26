@@ -24,6 +24,12 @@ namespace PapaSenpai_Project_Software.Data
                 "`buying_price`= @buying_price,`threshold`= @threshold WHERE `id` = @id", products_bindings);
         }
 
+        public void UpdateQuantity(string[] products_bindings)
+        {
+            this.executeNonQuery("UPDATE `products` SET `quantity`= @quantity WHERE `id` = @id", products_bindings);
+        }
+
+
         public void Delete(string[] products_bindings)
         {
             this.executeNonQuery("DELETE FROM `products` WHERE `id` = @id", products_bindings); 
