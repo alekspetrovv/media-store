@@ -18,7 +18,6 @@ namespace PapaSenpai_Project_Software
     public partial class Home : MaterialSkin.Controls.MaterialForm
     {
         private DateTime currentScheduleDate;
-        Contract contract;
         private EmployeeControl employeeControl;
         private AdminControl adminControl;
         private ScheduleControl scheduleControl;
@@ -41,13 +40,11 @@ namespace PapaSenpai_Project_Software
             this.adminControl = a;
 
             Role r = this.adminControl.getloggedUser().Role;
-            if(r == Role.Admin)
-            {
-                this.HideRequestInformationForAdmin();
-            }
+     
             if (r == Role.Manager)
             {
                 this.ManagerPermissions();
+                this.HideRequestInformationForManager();
             }
             if (r == Role.StoreManager)
             {
@@ -1385,7 +1382,7 @@ namespace PapaSenpai_Project_Software
             }
         }
 
-        private void HideRequestInformationForAdmin()
+        private void HideRequestInformationForManager()
         {
             this.hideButton(this.btnAddQuantity);
             this.tbQuantityRequest.Visible = false;
