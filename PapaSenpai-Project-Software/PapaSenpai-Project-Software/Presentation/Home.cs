@@ -903,6 +903,8 @@ namespace PapaSenpai_Project_Software
                         this.tbeAddress.Text = employee.Adress;
                         this.tbeCity.Text = employee.City;
                         this.tbePhoneNumber.Text = employee.PhoneNumber;
+                        this.tbeTotalHours.Text = employee.HoursWorked.ToString();
+                        this.tbeSalary.Text = employee.Wage.ToString();
                         //this.tbeSalary.Text = // to do;
                         //this.tbeTotalHours.Text = // to do;
                         this.tbeGender.Text = Convert.ToString(employee.Gender);
