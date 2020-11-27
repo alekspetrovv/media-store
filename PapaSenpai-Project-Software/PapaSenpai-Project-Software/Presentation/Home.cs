@@ -32,26 +32,31 @@ namespace PapaSenpai_Project_Software
             this.productControl = new ProductControl();
             this.ordersControl = new OrdersControl();
             this.requestControl = new RequestsControl();
+
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             this.pnlDashBoard.BringToFront();
             this.currentScheduleDate = DateTime.Now;
             this.adminControl = a;
+
             Role r = this.adminControl.getloggedUser().Role;
             if (r == Role.Manager)
             {
                 this.ManagerPermissions();
             }
-            if(r == Role.StoreManager)
+            if (r == Role.StoreManager)
             {
                 this.StoreManagerPermissions();
             }
+
+
             this.employeeControl.retrieveAllEmployees();
             this.scheduleControl.retrieveSchedules();
             this.adminControl.retrieveAllAdmins();
             this.productControl.retrieveAllProducts();
             this.requestControl.retrieveAllRequests();
-            
+
+            this.renderRequestTable();
             this.renderStaffTable();
             this.renderAdminTable();
             this.renderScheduleMembers();
@@ -196,10 +201,8 @@ namespace PapaSenpai_Project_Software
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlAddEditProduct);
-
-            // to do
-
-            //this.btnAddProductItem.Visible.;
+            this.btnAddProductItem.Visible = true;
+            this.hideButton(btnUpdateProductItem);
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
@@ -224,7 +227,7 @@ namespace PapaSenpai_Project_Software
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlCart);    
+            this.showPanel(pnlCart);
         }
 
         private void btnViewEmployeeDetails_Click(object sender, EventArgs e)
@@ -239,20 +242,23 @@ namespace PapaSenpai_Project_Software
         private void btnBackToUserPage_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlViewUser);
+            this.clearAdminFields();
         }
         private void btnBackToEmployeePage_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlEmployee);
+            this.clearEmployeeFields();
         }
         private void btnBackToProductPageFromAddEdit_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlProducts);
-            this.clearEmployeeFields();
+            this.clearProductFields();
         }
 
         private void btnBackToProductPage_Click(object sender, EventArgs e)
         {
             this.showPanel(this.pnlProducts);
+            this.clearProductFields();
         }
 
         private void btnBackToEmployeePageFromDetails_Click(object sender, EventArgs e)
@@ -267,7 +273,7 @@ namespace PapaSenpai_Project_Software
             {
                 if (p.Quantity > 0)
                 {
-                lbStoreProducts.Items.Add(p);
+                    lbStoreProducts.Items.Add(p);
                 }
             }
 
@@ -293,7 +299,8 @@ namespace PapaSenpai_Project_Software
             foreach (Product p in productControl.GetProducts())
             {
                 string refill = "No";
-                if (p.Quantity <= p.ThreshHold) {
+                if (p.Quantity <= p.ThreshHold)
+                {
                     refill = "Yes";
                 }
                 dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, refill, p.ThreshHold);
@@ -360,6 +367,7 @@ namespace PapaSenpai_Project_Software
                     bool selectedProduct = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                     if (selectedProduct)
                     {
+                        Console.WriteLine(selectedProduct);
                         string id = dataRow.Cells["ID"].Value.ToString();
                         Product product = productControl.GetProductById(Convert.ToInt32(id));
                         this.tbProductTitle.Text = product.Title;
@@ -587,7 +595,7 @@ namespace PapaSenpai_Project_Software
                 this.renderAdminTable();
                 this.showPanel(this.pnlViewUser);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -693,8 +701,8 @@ namespace PapaSenpai_Project_Software
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName,
-                    employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City, 
-                    employee.Adress, employee.Email, employee.Department,employee.Contract,employee.Wage, "10");
+                    employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City,
+                    employee.Adress, employee.Email, employee.Department, employee.Contract, employee.Wage, "10");
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -789,7 +797,7 @@ namespace PapaSenpai_Project_Software
                         this.cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
                         this.cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         MessageBox.Show("There's been an exception: " + e.Message);
                     }
@@ -827,7 +835,7 @@ namespace PapaSenpai_Project_Software
                 this.showPanel(this.pnlEmployee);
                 this.renderStaffTable();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -875,7 +883,7 @@ namespace PapaSenpai_Project_Software
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show("There's been an exception!" + e.Message);
             }
@@ -909,14 +917,17 @@ namespace PapaSenpai_Project_Software
                         this.tbePassword.Text = employee.Password;
                         this.tbeAddress.Text = employee.Adress;
                         this.tbeCity.Text = employee.City;
+                        this.tbeCountry.Text = employee.Country;
                         this.tbePhoneNumber.Text = employee.PhoneNumber;
+                        this.tbeWage.Text = employee.Wage;
                         //this.tbeSalary.Text = // to do;
                         //this.tbeTotalHours.Text = // to do;
+                        this.tbeContract.Text = Convert.ToString(employee.Contract);
                         this.tbeGender.Text = Convert.ToString(employee.Gender);
                         this.tbeDepartment.Text = Convert.ToString(employee.Department);
                         this.tbeId.Text = Convert.ToString(employee.ID);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
@@ -974,9 +985,10 @@ namespace PapaSenpai_Project_Software
                     //check if the datetime string is really a datetime and if yes safe the user to the db
                     if (DateTime.TryParse(from, out test) && DateTime.TryParse(to, out test))
                     {
-                         scheduleControl.InsertMember(member_data);
-                         user_count++;
-                    } else
+                        scheduleControl.InsertMember(member_data);
+                        user_count++;
+                    }
+                    else
                     {
                         MessageBox.Show("There was a problem with the timestamp given for user with ID: " + member_id);
                     }
@@ -1021,15 +1033,15 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("From", typeof(string));
             dtEmp.Columns.Add("To", typeof(string));
             dtEmp.Columns.Add("Department", typeof(string));
-            
-            
+
+
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 ScheduleMember foundMember = null;
                 if (schedule != null)
                 {
                     foundMember = schedule.findEmployeeMemberById(employee.ID);
-               }
+                }
 
                 if (foundMember != null)
                 {
@@ -1076,7 +1088,7 @@ namespace PapaSenpai_Project_Software
         private bool valuesAreEmptyProduct()
         {
             if (this.tbProductDescription.Text == "" || this.tbProductDescription.Text == "" || this.tbProductTitle.Text == "" ||
-                this.tbProductQuantity.Text == "" || this.tbProductSellingPrice.Text == "" || this.tbProductBuyingPrice.Text == "" || this.tbProductThreshHold.Text == "") 
+                this.tbProductQuantity.Text == "" || this.tbProductSellingPrice.Text == "" || this.tbProductBuyingPrice.Text == "" || this.tbProductThreshHold.Text == "")
             {
                 return false;
             }
@@ -1266,7 +1278,7 @@ namespace PapaSenpai_Project_Software
 
         private void tbAddToCart_Click(object sender, EventArgs e)
         {
-            Product product = (Product) lbStoreProducts.SelectedItem;
+            Product product = (Product)lbStoreProducts.SelectedItem;
             int quantity = Convert.ToInt32(this.tbQuantity.Text);
             if (product.Quantity < quantity || quantity <= 0)
             {
@@ -1285,13 +1297,13 @@ namespace PapaSenpai_Project_Software
 
         private void tbPurchase_Click_1(object sender, EventArgs e)
         {
-                  }
+        }
 
         private void tbPurchase_Click_2(object sender, EventArgs e)
         {
-             Admin admin = this.adminControl.getloggedUser();
+            Admin admin = this.adminControl.getloggedUser();
 
-            if (this.ordersControl.Products.Count() == 0 )
+            if (this.ordersControl.Products.Count() == 0)
             {
                 MessageBox.Show("Your basket is empty");
                 return;
@@ -1312,44 +1324,52 @@ namespace PapaSenpai_Project_Software
             this.SendProductRequest();
         }
 
+        private void renderRequestTable()
+        {
+            this.lbRestocking.Items.Clear();
+            foreach (Request request in this.requestControl.GetRequests())
+            {
+                this.lbRestocking.Items.Add(request.ToString());
+            }
+        }
+
 
         private void SendProductRequest()
         {
             if (MessageBox.Show("Do you want to send a request for this product?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                for (int i = 0; i < dtProducts.Rows.Count; ++i)
+                try
                 {
-                    DataGridViewRow dataRow = dtProducts.Rows[i];
+                    string id = this.lblProductID.Text;
+                    string quantity = this.tbQuantityRequest.Text;
 
-                    if (dataRow.IsNewRow)
-                    {
-                        continue;
-                    }
+                    string[] requestBindings = {id,quantity};
 
-                    bool selectedProduct = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                    if (selectedProduct)
-                    {
-                        try
-                        {
-                            string id = dataRow.Cells["ID"].Value.ToString();
-                            int quantity = Convert.ToInt32(this.tbQuantityRequest.Text);
-                            string[] requestbindings = {id, quantity.ToString() };
-                            this.requestControl.Insert(requestbindings);
-                            this.requestControl.retrieveAllRequests();
-                        }
-                        catch(Exception e)
-                        {
-                            MessageBox.Show("There's been an error: " + e.Message);
-                        }
-                      
-                    }
+
+                    this.requestControl.Insert(requestBindings);
+                    this.requestControl.retrieveAllRequests();
+                    this.renderRequestTable();
+                    this.showPanel(pnlRestocking);
                 }
-            
+                catch (Exception e)
+                {
+                    MessageBox.Show("There's been an exception: " + e.Message);
+                }
             }
             else
             {
                 MessageBox.Show("You pressed no!");
             }
+        }
+
+        private void pnlViewEmployeeDetails_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlViewSchedule_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
