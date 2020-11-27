@@ -340,6 +340,7 @@ namespace PapaSenpai_Project_Software
                 this.productControl.AddProduct(product_bindings);
                 MessageBox.Show("you have successfully created a product!");
                 this.renderProductsTable();
+                this.productControl.retrieveAllProducts();
                 this.showPanel(pnlProducts);
                 return;
             }

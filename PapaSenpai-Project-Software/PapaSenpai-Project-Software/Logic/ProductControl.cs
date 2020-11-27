@@ -53,11 +53,20 @@ namespace PapaSenpai_Project_Software.Logic
             {
                 while (products.Read())
                 {
+                    int overall = 0;
+
+                    
+                    if(products["overall_price"] != System.DBNull.Value)
+                    {
+                       overall = Convert.ToInt32(products["overall_price"]);
+                    }
+                    
                     Product product = new Product(Convert.ToInt32(products["id"]), products["title"].ToString(),
                     products["description"].ToString(),(Convert.ToInt32(products["quantity"])), (Convert.ToInt32(products["quantitydepo"])), (Convert.ToDouble(products["selling_price"])),
-                    (Convert.ToDouble(products["buying_price"])),(Convert.ToInt32(products["threshold"])), Convert.ToInt32(products["overall_price"]));
+                    (Convert.ToDouble(products["buying_price"])),(Convert.ToInt32(products["threshold"])), overall);
 
                     this.products.Add(product);
+
                 }
             }
         }

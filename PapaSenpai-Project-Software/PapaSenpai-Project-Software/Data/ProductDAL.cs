@@ -37,7 +37,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlDataReader Select()
         {
-            return this.executeReader("SELECT products.*, SUM(orders_products.price) as overall_price FROM `products` INNER JOIN orders_products ON orders_products.product_id = products.id" +
+            return this.executeReader("SELECT products.*, SUM(orders_products.price) as overall_price FROM `products` LEFT JOIN orders_products ON orders_products.product_id = products.id" +
                 " GROUP BY products.id");
         }
     }
