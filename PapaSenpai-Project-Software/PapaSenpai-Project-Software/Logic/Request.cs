@@ -10,19 +10,14 @@ namespace PapaSenpai_Project_Software.Logic
     {
         private int id;
         private string quantity;
-        private int productId;
-        public Request(int id,int product_id,string quantity)
+        private string productID;
+        public Request(int id,string products_id,string quantity)
         {
             this.id = id;
-            this.productId = product_id;
+            this.productID = products_id;
             this.quantity = quantity;
         }
 
-
-        public int ProductID
-        {
-            get { return this.productId; }
-        }
 
         public int Id
         {
@@ -33,6 +28,11 @@ namespace PapaSenpai_Project_Software.Logic
         public string Quantity
         {
             get { return this.quantity; }
+        }
+
+        public override string ToString()
+        {
+            return $"Request with id: '{this.id}', Requested Quantity: '{this.quantity}' , For Product with id: '{this.productID}'";
         }
     }
 }

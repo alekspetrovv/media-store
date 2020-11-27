@@ -23,8 +23,6 @@ namespace PapaSenpai_Project_Software.Logic
 
 
 
-
-
         public void retrieveAllRequests()
         {
             MySqlDataReader request = requestDAL.Select();
@@ -33,7 +31,7 @@ namespace PapaSenpai_Project_Software.Logic
             {
                 while (request.Read())
                 {
-                    Request r = new Request(Convert.ToInt32(request["id"]),Convert.ToInt32(request["products_id"].ToString()),request["quantity"].ToString());
+                    Request r = new Request(Convert.ToInt32(request["id"]), (request["products_id"]).ToString(), request["quantity"].ToString());
                        
                     this.requests.Add(r);
                 }
