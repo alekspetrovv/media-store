@@ -3683,6 +3683,7 @@
             this.btnRestockProducts.TabIndex = 10;
             this.btnRestockProducts.Text = "Restock  products";
             this.btnRestockProducts.UseVisualStyleBackColor = true;
+            this.btnRestockProducts.Click += new System.EventHandler(this.btnRestockProducts_Click);
             // 
             // Home
             // 
@@ -3690,11 +3691,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 565);
             this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlViewSchedule);
-            this.Controls.Add(this.pnlScheduleEmployees);
-            this.Controls.Add(this.pnlProducts);
-            this.Controls.Add(this.pnlViewEmployeeDetails);
-            this.Controls.Add(this.pnlProductInformation);
             this.Controls.Add(this.pnlRestocking);
             this.Controls.Add(this.pnlCart);
             this.Controls.Add(this.pnlEmployee);
@@ -3703,6 +3699,11 @@
             this.Controls.Add(this.pnlAddEditProduct);
             this.Controls.Add(this.pnlAddEditEmployee);
             this.Controls.Add(this.pnlAddEditAdmin);
+            this.Controls.Add(this.pnlViewSchedule);
+            this.Controls.Add(this.pnlScheduleEmployees);
+            this.Controls.Add(this.pnlProducts);
+            this.Controls.Add(this.pnlViewEmployeeDetails);
+            this.Controls.Add(this.pnlProductInformation);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";

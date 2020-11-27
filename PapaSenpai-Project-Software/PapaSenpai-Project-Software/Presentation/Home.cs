@@ -1350,7 +1350,7 @@ namespace PapaSenpai_Project_Software
             this.lbRestocking.Items.Clear();
             foreach (Request request in this.requestControl.GetRequests())
             {
-                this.lbRestocking.Items.Add(request.ToString());
+                this.lbRestocking.Items.Add(request);
             }
         }
 
@@ -1404,5 +1404,17 @@ namespace PapaSenpai_Project_Software
 
         }
 
+        private void btnRestockProducts_Click(object sender, EventArgs e)
+        {
+            Request request = (Request) lbRestocking.SelectedItem;
+            Product product = this.productControl.GetProductById(Convert.ToInt32(request.ProductId));
+            string[] product_bindings = {  (Convert.ToInt32(request.Quantity) + Convert.ToInt32(product.Quantity)).ToString(),request.ProductId };
+            string[] deleteBindings = { request.Id.ToString() };
+            this.requestControl.Approve(product_bindings);
+            this.requestControl.Delete(deleteBindings);
+            this.requestControl.retrieveAllRequests();
+            this.renderRequestTable();
+            MessageBox.Show("Request sucessfully approved");
+        }
     }
 }

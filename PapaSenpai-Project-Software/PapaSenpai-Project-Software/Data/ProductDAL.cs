@@ -29,6 +29,11 @@ namespace PapaSenpai_Project_Software.Data
             this.executeNonQuery("UPDATE `products` SET `quantity`= @quantity WHERE `id` = @id", products_bindings);
         }
 
+        public void UpdateDepoQuantity(string[] products_bindings)
+        {
+            this.executeNonQuery("UPDATE `products` SET `quantitydepo`= @quantitydepo WHERE `id` = @id", products_bindings);
+        }
+
 
         public void Delete(string[] products_bindings)
         {
