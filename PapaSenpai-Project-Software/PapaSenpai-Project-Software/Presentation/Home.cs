@@ -18,6 +18,7 @@ namespace PapaSenpai_Project_Software
     public partial class Home : MaterialSkin.Controls.MaterialForm
     {
         private DateTime currentScheduleDate;
+        Contract contract;
         private EmployeeControl employeeControl;
         private AdminControl adminControl;
         private ScheduleControl scheduleControl;
@@ -40,6 +41,10 @@ namespace PapaSenpai_Project_Software
             this.adminControl = a;
 
             Role r = this.adminControl.getloggedUser().Role;
+            if(r == Role.Admin)
+            {
+                this.HideRequestInformationForAdmin();
+            }
             if (r == Role.Manager)
             {
                 this.ManagerPermissions();
@@ -55,6 +60,8 @@ namespace PapaSenpai_Project_Software
             this.adminControl.retrieveAllAdmins();
             this.productControl.retrieveAllProducts();
             this.requestControl.retrieveAllRequests();
+
+           
 
             this.renderRequestTable();
             this.renderStaffTable();
@@ -1363,7 +1370,6 @@ namespace PapaSenpai_Project_Software
                     this.requestControl.Insert(requestBindings);
                     this.requestControl.retrieveAllRequests();
                     this.renderRequestTable();
-                    this.showPanel(pnlRestocking);
                 }
                 catch (Exception e)
                 {
@@ -1374,6 +1380,18 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("You pressed no!");
             }
+        }
+
+        private void HideRequestInformationForAdmin()
+        {
+            this.hideButton(this.btnAddQuantity);
+            this.tbQuantityRequest.Visible = false;
+            this.hideLabel(this.materialLabel43);
+        }
+
+        private void hideLabel(Label l)
+        {
+            l.Visible = false;
         }
 
         private void pnlViewEmployeeDetails_Paint(object sender, PaintEventArgs e)

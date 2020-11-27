@@ -1113,9 +1113,9 @@
             // 
             // tbEmployeeWagePerHour
             // 
-            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(0, 0);
+            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(153, 283);
             this.tbEmployeeWagePerHour.Name = "tbEmployeeWagePerHour";
-            this.tbEmployeeWagePerHour.Size = new System.Drawing.Size(100, 20);
+            this.tbEmployeeWagePerHour.Size = new System.Drawing.Size(242, 20);
             this.tbEmployeeWagePerHour.TabIndex = 49;
             // 
             // btnUpdateEmployee
@@ -3688,7 +3688,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 622);
+            this.ClientSize = new System.Drawing.Size(1047, 565);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlAddEditEmployee);
             this.Controls.Add(this.pnlAddEditAdmin);
