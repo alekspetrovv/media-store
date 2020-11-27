@@ -922,7 +922,7 @@ namespace PapaSenpai_Project_Software
                         this.tbeTotalHours.Text = employee.HoursWorked.ToString();
                         this.tbeSalary.Text = employee.Wage.ToString();
                         this.tbeShiftsTaken.Text = employee.ShiftsTaken.ToString();
-                        this.tbEmployeeWagePerHour.Text = employee.Wage.ToString();
+                        this.tbeWage.Text = employee.Wage.ToString();
                         double salary = 0;
                         if ((Contract) employee.Contract == Contract.FullTime)
                         {
@@ -1041,7 +1041,10 @@ namespace PapaSenpai_Project_Software
 
             foreach (Schedule found_schedule in scheduleControl.getSchedules())
             {
+                if (found_schedule.Members.Count() >= 5)
+                {
                 coloredDates.Add(found_schedule.Date);
+                }
             }
 
             calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
