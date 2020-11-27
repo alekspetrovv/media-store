@@ -250,6 +250,8 @@
             this.tbeCity = new MaterialSkin.Controls.MaterialLabel();
             this.tbeAddress = new MaterialSkin.Controls.MaterialLabel();
             this.pnlViewEmployeeDetails = new System.Windows.Forms.Panel();
+            this.tbeShiftsTaken = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel54 = new MaterialSkin.Controls.MaterialLabel();
             this.tbeWage = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel72 = new MaterialSkin.Controls.MaterialLabel();
             this.tbeContract = new MaterialSkin.Controls.MaterialLabel();
@@ -279,8 +281,6 @@
             this.materialLabel100 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel101 = new MaterialSkin.Controls.MaterialLabel();
             this.btnRestockProducts = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialLabel54 = new MaterialSkin.Controls.MaterialLabel();
-            this.tbeShiftsTaken = new MaterialSkin.Controls.MaterialLabel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
@@ -1113,11 +1113,10 @@
             // 
             // tbEmployeeWagePerHour
             // 
-            this.tbEmployeeId.Location = new System.Drawing.Point(800, 413);
-            this.tbEmployeeId.Name = "tbEmployeeId";
-            this.tbEmployeeId.Size = new System.Drawing.Size(10, 20);
-            this.tbEmployeeId.TabIndex = 33;
-            this.tbEmployeeId.Visible = false;
+            this.tbEmployeeWagePerHour.Location = new System.Drawing.Point(153, 283);
+            this.tbEmployeeWagePerHour.Name = "tbEmployeeWagePerHour";
+            this.tbEmployeeWagePerHour.Size = new System.Drawing.Size(242, 20);
+            this.tbEmployeeWagePerHour.TabIndex = 49;
             // 
             // btnUpdateEmployee
             // 
@@ -3281,6 +3280,32 @@
             this.pnlViewEmployeeDetails.TabIndex = 40;
             this.pnlViewEmployeeDetails.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlViewEmployeeDetails_Paint);
             // 
+            // tbeShiftsTaken
+            // 
+            this.tbeShiftsTaken.AutoSize = true;
+            this.tbeShiftsTaken.Depth = 0;
+            this.tbeShiftsTaken.Font = new System.Drawing.Font("Roboto", 11F);
+            this.tbeShiftsTaken.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tbeShiftsTaken.Location = new System.Drawing.Point(329, 396);
+            this.tbeShiftsTaken.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tbeShiftsTaken.Name = "tbeShiftsTaken";
+            this.tbeShiftsTaken.Size = new System.Drawing.Size(15, 19);
+            this.tbeShiftsTaken.TabIndex = 64;
+            this.tbeShiftsTaken.Text = "*";
+            // 
+            // materialLabel54
+            // 
+            this.materialLabel54.AutoSize = true;
+            this.materialLabel54.Depth = 0;
+            this.materialLabel54.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel54.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel54.Location = new System.Drawing.Point(220, 396);
+            this.materialLabel54.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel54.Name = "materialLabel54";
+            this.materialLabel54.Size = new System.Drawing.Size(105, 19);
+            this.materialLabel54.TabIndex = 63;
+            this.materialLabel54.Text = "Shifts Taken : ";
+            // 
             // tbeWage
             // 
             this.tbeWage.AutoSize = true;
@@ -3659,38 +3684,17 @@
             this.btnRestockProducts.Text = "Restock  products";
             this.btnRestockProducts.UseVisualStyleBackColor = true;
             // 
-            // materialLabel54
-            // 
-            this.materialLabel54.AutoSize = true;
-            this.materialLabel54.Depth = 0;
-            this.materialLabel54.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel54.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel54.Location = new System.Drawing.Point(220, 396);
-            this.materialLabel54.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel54.Name = "materialLabel54";
-            this.materialLabel54.Size = new System.Drawing.Size(105, 19);
-            this.materialLabel54.TabIndex = 63;
-            this.materialLabel54.Text = "Shifts Taken : ";
-            // 
-            // tbeShiftsTaken
-            // 
-            this.tbeShiftsTaken.AutoSize = true;
-            this.tbeShiftsTaken.Depth = 0;
-            this.tbeShiftsTaken.Font = new System.Drawing.Font("Roboto", 11F);
-            this.tbeShiftsTaken.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeShiftsTaken.Location = new System.Drawing.Point(329, 396);
-            this.tbeShiftsTaken.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tbeShiftsTaken.Name = "tbeShiftsTaken";
-            this.tbeShiftsTaken.Size = new System.Drawing.Size(15, 19);
-            this.tbeShiftsTaken.TabIndex = 64;
-            this.tbeShiftsTaken.Text = "*";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 622);
+            this.ClientSize = new System.Drawing.Size(1047, 565);
             this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.pnlAddEditEmployee);
+            this.Controls.Add(this.pnlAddEditAdmin);
+            this.Controls.Add(this.pnlViewSchedule);
+            this.Controls.Add(this.pnlScheduleEmployees);
+            this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlViewEmployeeDetails);
             this.Controls.Add(this.pnlProductInformation);
             this.Controls.Add(this.pnlRestocking);
@@ -3699,11 +3703,6 @@
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
             this.Controls.Add(this.pnlAddEditProduct);
-            this.Controls.Add(this.pnlAddEditEmployee);
-            this.Controls.Add(this.pnlAddEditAdmin);
-            this.Controls.Add(this.pnlViewSchedule);
-            this.Controls.Add(this.pnlScheduleEmployees);
-            this.Controls.Add(this.pnlProducts);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
