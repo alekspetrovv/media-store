@@ -914,7 +914,6 @@ namespace PapaSenpai_Project_Software
                         this.tbePhoneNumber.Text = employee.PhoneNumber;
                         this.tbeTotalHours.Text = employee.HoursWorked.ToString();
                         this.tbeSalary.Text = employee.Wage.ToString();
-                        this.tbeWage.Text = employee.Wage;
                         //this.tbeSalary.Text = // to do;
                         //this.tbeTotalHours.Text = // to do;
                         this.tbeContract.Text = Convert.ToString(employee.Contract);
