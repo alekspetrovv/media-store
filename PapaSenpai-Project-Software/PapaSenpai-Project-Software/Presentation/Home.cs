@@ -914,8 +914,26 @@ namespace PapaSenpai_Project_Software
                         this.tbePhoneNumber.Text = employee.PhoneNumber;
                         this.tbeTotalHours.Text = employee.HoursWorked.ToString();
                         this.tbeSalary.Text = employee.Wage.ToString();
-                        //this.tbeSalary.Text = // to do;
-                        //this.tbeTotalHours.Text = // to do;
+                        this.tbeShiftsTaken.Text = employee.ShiftsTaken.ToString();
+                        this.tbEmployeeWagePerHour.Text = employee.Wage.ToString();
+                        double salary = 0;
+                        if ((Contract) employee.Contract == Contract.FullTime)
+                        {
+                            salary = employee.Wage * employee.ShiftsTaken * 8;
+                        }
+
+                        if ((Contract) employee.Contract == Contract.PartTime)
+                        {
+                            salary = employee.Wage * employee.ShiftsTaken * 4;
+                        }
+
+                        if ((Contract) employee.Contract == Contract.Hourly)
+                        {
+                            salary = employee.Wage * employee.HoursWorked;
+                        }
+
+
+                        this.tbeSalary.Text = salary.ToString();
                         this.tbeContract.Text = Convert.ToString(employee.Contract);
                         this.tbeGender.Text = Convert.ToString(employee.Gender);
                         this.tbeDepartment.Text = Convert.ToString(employee.Department);
@@ -998,6 +1016,7 @@ namespace PapaSenpai_Project_Software
             }
 
             scheduleControl.retrieveSchedules();
+            employeeControl.retrieveAllEmployees();
             this.renderScheduleMembers();
             this.renderDailySchedule();
 
