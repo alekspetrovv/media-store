@@ -340,6 +340,7 @@ namespace PapaSenpai_Project_Software
                 this.productControl.AddProduct(product_bindings);
                 MessageBox.Show("you have successfully created a product!");
                 this.renderProductsTable();
+                this.productControl.retrieveAllProducts();
                 this.showPanel(pnlProducts);
                 return;
             }
@@ -911,7 +912,6 @@ namespace PapaSenpai_Project_Software
                         this.tbeFirstName.Text = employee.FirstName;
                         this.tbeLastName.Text = employee.LastName;
                         this.tbeEmail.Text = employee.Email;
-                        this.tbePassword.Text = employee.Password;
                         this.tbeAddress.Text = employee.Adress;
                         this.tbeCity.Text = employee.City;
                         this.tbeCountry.Text = employee.Country;
@@ -1282,20 +1282,6 @@ namespace PapaSenpai_Project_Software
             this.tbAdminPassword.Clear();
         }
 
-        private void tbeDepartment_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel23_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlAddEditEmployee_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void tbAddToCart_Click(object sender, EventArgs e)
         {
@@ -1309,15 +1295,6 @@ namespace PapaSenpai_Project_Software
 
             this.ordersControl.addProduct(product, quantity);
             this.lbShoppingCart.Items.Add($"{product.Title} - {quantity}");
-        }
-
-        private void tbPurchase_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbPurchase_Click_1(object sender, EventArgs e)
-        {
         }
 
         private void tbPurchase_Click_2(object sender, EventArgs e)
@@ -1394,12 +1371,12 @@ namespace PapaSenpai_Project_Software
             l.Visible = false;
         }
 
-        private void pnlViewEmployeeDetails_Paint(object sender, PaintEventArgs e)
+        private void lblRevue_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pnlViewSchedule_Paint(object sender, PaintEventArgs e)
+        private void materialLabel44_Click(object sender, EventArgs e)
         {
 
         }

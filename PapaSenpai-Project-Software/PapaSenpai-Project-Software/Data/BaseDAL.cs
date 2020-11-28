@@ -14,7 +14,7 @@ namespace PapaSenpai_Project_Software.Data
     {
         public MySqlConnection GetConnection()
         {
-            MySqlConnection con = new MySqlConnection(@"Server=localhost;Uid=root;Database=papasenpai;Pwd=123456;");
+            MySqlConnection con = new MySqlConnection(@"Server=bubrek.com;Uid=dev;Database=papasenpai;Pwd=KlasikaVJanra11;");
             return con;
         }
 

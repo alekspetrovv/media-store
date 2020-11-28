@@ -15,7 +15,7 @@ namespace PapaSenpai_Project_Software.Logic
         private int quantityDepo;
         private double selling_price;
         private double buying_price;
-        private double overall_price;
+        private double overall_price = 0;
         private int threshold;
 
         public Product(int id, string title, string description, int quantity, int quantity_depo, double sellingPrice, double buyingPrice, int threshHold, int overall_price)
