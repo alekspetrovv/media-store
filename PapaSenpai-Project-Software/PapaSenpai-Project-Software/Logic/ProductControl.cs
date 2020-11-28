@@ -94,6 +94,12 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
+        public int GetProductsCount()
+        {
+            return this.products.Count;
+        }
+
+
         public List<Product> GetProducts()
         {
             return this.products;

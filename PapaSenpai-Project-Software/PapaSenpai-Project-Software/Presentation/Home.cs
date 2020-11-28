@@ -298,6 +298,8 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
 
+            this.tbpCount.Text = this.productControl.GetProductsCount().ToString();
+
             foreach (Product p in productControl.GetProducts())
             {
                 string refill = "No";
@@ -701,6 +703,10 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Contract", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
             dtEmp.Columns.Add("Salary for the shift", typeof(string));
+                
+            this.tbeStaffCount.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
+
+            
 
             foreach (Employee employee in employeeControl.getEmployees())
             {
@@ -1384,14 +1390,21 @@ namespace PapaSenpai_Project_Software
             MessageBox.Show("Request sucessfully approved");
         }
 
-        private void materialLabel94_Click(object sender, EventArgs e)
+        private void dtProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
+            foreach (DataGridViewRow Myrow in dtProducts.Rows)
+            {           
+                string status = Convert.ToString(Myrow.Cells[8].Value);
+                if (status == "Yes")
+                {
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
+                }
+            }
         }
 
-        private void materialLabel95_Click(object sender, EventArgs e)
+        private void dtProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            dtProducts.DefaultCellStyle.SelectionBackColor = Color.Red;
         }
     }
 }
