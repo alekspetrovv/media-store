@@ -59,7 +59,6 @@ namespace PapaSenpai_Project_Software
             this.requestControl.retrieveAllRequests();
 
            
-
             this.renderRequestTable();
             this.renderStaffTable();
             this.renderAdminTable();
@@ -298,7 +297,6 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Buying Price", typeof(string));
             dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
-
 
             foreach (Product p in productControl.GetProducts())
             {
@@ -1004,8 +1002,10 @@ namespace PapaSenpai_Project_Software
 
                         //check if the datetime string is really a datetime and if yes safe the user to the db
                          scheduleControl.InsertMember(member_data);
+                         MessageBox.Show("You have succesfully assigned an employee to a schedule!");
                          user_count++;
-                    } else
+                    } 
+                    else
                     {
                         MessageBox.Show("There was a problem with the timestamp given for user with ID: " + member_id);
                     }
@@ -1343,7 +1343,7 @@ namespace PapaSenpai_Project_Software
 
                     string[] requestBindings = {id,quantity};
 
-
+                    this.showPanel(this.pnlProducts);
                     this.requestControl.Insert(requestBindings);
                     this.requestControl.retrieveAllRequests();
                     this.renderRequestTable();
@@ -1371,16 +1371,6 @@ namespace PapaSenpai_Project_Software
             l.Visible = false;
         }
 
-        private void lblRevue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel44_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRestockProducts_Click(object sender, EventArgs e)
         {
             Request request = (Request) lbRestocking.SelectedItem;
@@ -1392,6 +1382,16 @@ namespace PapaSenpai_Project_Software
             this.requestControl.retrieveAllRequests();
             this.renderRequestTable();
             MessageBox.Show("Request sucessfully approved");
+        }
+
+        private void materialLabel94_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel95_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

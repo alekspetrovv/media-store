@@ -51,7 +51,6 @@ namespace PapaSenpai_Project_Software.Logic
                         employees["password"].ToString(), employees["shifts_taken"].ToString(), employees["hours_worked"].ToString());
 
                     Console.WriteLine(employee.HoursWorked);
-
                     this.employees.Add(employee);
                 }
             }
@@ -91,6 +90,10 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
+        public int GetEmployeesCount()
+        {
+            return this.employees.Count;
+        }
 
         public List<Employee> getEmployees()
         {
