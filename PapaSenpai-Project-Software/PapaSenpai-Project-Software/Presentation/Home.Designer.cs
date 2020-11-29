@@ -136,7 +136,6 @@
             this.lblAddEditUser = new MaterialSkin.Controls.MaterialLabel();
             this.pnlViewUser = new System.Windows.Forms.Panel();
             this.materialLabel84 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel35 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.lblViewUsers = new MaterialSkin.Controls.MaterialLabel();
             this.iconPictureBox12 = new FontAwesome.Sharp.IconPictureBox();
@@ -146,6 +145,7 @@
             this.btnEditAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddAdmins = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dtUsers = new System.Windows.Forms.DataGridView();
+            this.materialLabel35 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlScheduleEmployees = new System.Windows.Forms.Panel();
             this.materialLabel83 = new MaterialSkin.Controls.MaterialLabel();
             this.btnGoBackToSchedule = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -155,6 +155,8 @@
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlProducts = new System.Windows.Forms.Panel();
+            this.tbpCount = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel86 = new MaterialSkin.Controls.MaterialLabel();
             this.lblpMostPopular = new MaterialSkin.Controls.MaterialLabel();
             this.lblpTotalRevenue = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel92 = new MaterialSkin.Controls.MaterialLabel();
@@ -1724,7 +1726,6 @@
             this.pnlViewUser.AutoSize = true;
             this.pnlViewUser.BackColor = System.Drawing.Color.Transparent;
             this.pnlViewUser.Controls.Add(this.materialLabel84);
-            this.pnlViewUser.Controls.Add(this.materialLabel35);
             this.pnlViewUser.Controls.Add(this.materialLabel3);
             this.pnlViewUser.Controls.Add(this.lblViewUsers);
             this.pnlViewUser.Controls.Add(this.iconPictureBox12);
@@ -1734,6 +1735,7 @@
             this.pnlViewUser.Controls.Add(this.btnEditAdmins);
             this.pnlViewUser.Controls.Add(this.btnAddAdmins);
             this.pnlViewUser.Controls.Add(this.dtUsers);
+            this.pnlViewUser.Controls.Add(this.materialLabel35);
             this.pnlViewUser.Location = new System.Drawing.Point(221, 65);
             this.pnlViewUser.Name = "pnlViewUser";
             this.pnlViewUser.Size = new System.Drawing.Size(815, 490);
@@ -1750,20 +1752,6 @@
             this.materialLabel84.Name = "materialLabel84";
             this.materialLabel84.Size = new System.Drawing.Size(810, 1);
             this.materialLabel84.TabIndex = 32;
-            // 
-            // materialLabel35
-            // 
-            this.materialLabel35.AutoSize = true;
-            this.materialLabel35.Depth = 0;
-            this.materialLabel35.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel35.Location = new System.Drawing.Point(172, 57);
-            this.materialLabel35.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel35.Name = "materialLabel35";
-            this.materialLabel35.Size = new System.Drawing.Size(476, 19);
-            this.materialLabel35.TabIndex = 29;
-            this.materialLabel35.Text = "Welcome to the Admins page.Here you can add,edit,delete,view admin";
-            this.materialLabel35.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // materialLabel3
             // 
@@ -1896,6 +1884,20 @@
             this.dtUsers.Size = new System.Drawing.Size(801, 301);
             this.dtUsers.TabIndex = 12;
             // 
+            // materialLabel35
+            // 
+            this.materialLabel35.AutoSize = true;
+            this.materialLabel35.Depth = 0;
+            this.materialLabel35.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel35.Location = new System.Drawing.Point(172, 57);
+            this.materialLabel35.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel35.Name = "materialLabel35";
+            this.materialLabel35.Size = new System.Drawing.Size(476, 19);
+            this.materialLabel35.TabIndex = 29;
+            this.materialLabel35.Text = "Welcome to the Admins page.Here you can add,edit,delete,view admin";
+            this.materialLabel35.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // pnlScheduleEmployees
             // 
             this.pnlScheduleEmployees.BackColor = System.Drawing.Color.Transparent;
@@ -2012,6 +2014,8 @@
             // 
             this.pnlProducts.AutoSize = true;
             this.pnlProducts.BackColor = System.Drawing.Color.Transparent;
+            this.pnlProducts.Controls.Add(this.tbpCount);
+            this.pnlProducts.Controls.Add(this.materialLabel86);
             this.pnlProducts.Controls.Add(this.lblpMostPopular);
             this.pnlProducts.Controls.Add(this.lblpTotalRevenue);
             this.pnlProducts.Controls.Add(this.materialLabel92);
@@ -2034,6 +2038,34 @@
             this.pnlProducts.Name = "pnlProducts";
             this.pnlProducts.Size = new System.Drawing.Size(815, 490);
             this.pnlProducts.TabIndex = 38;
+            // 
+            // tbpCount
+            // 
+            this.tbpCount.AutoSize = true;
+            this.tbpCount.Depth = 0;
+            this.tbpCount.Font = new System.Drawing.Font("Roboto", 11F);
+            this.tbpCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tbpCount.Location = new System.Drawing.Point(338, 58);
+            this.tbpCount.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tbpCount.Name = "tbpCount";
+            this.tbpCount.Size = new System.Drawing.Size(15, 19);
+            this.tbpCount.TabIndex = 44;
+            this.tbpCount.Text = "*";
+            this.tbpCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // materialLabel86
+            // 
+            this.materialLabel86.AutoSize = true;
+            this.materialLabel86.Depth = 0;
+            this.materialLabel86.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel86.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel86.Location = new System.Drawing.Point(209, 56);
+            this.materialLabel86.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel86.Name = "materialLabel86";
+            this.materialLabel86.Size = new System.Drawing.Size(133, 19);
+            this.materialLabel86.TabIndex = 43;
+            this.materialLabel86.Text = "Current products : ";
+            this.materialLabel86.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblpMostPopular
             // 
@@ -2083,14 +2115,13 @@
             this.lblpMostRevenue.Depth = 0;
             this.lblpMostRevenue.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblpMostRevenue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblpMostRevenue.Location = new System.Drawing.Point(459, 56);
+            this.lblpMostRevenue.Location = new System.Drawing.Point(553, 56);
             this.lblpMostRevenue.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblpMostRevenue.Name = "lblpMostRevenue";
             this.lblpMostRevenue.Size = new System.Drawing.Size(15, 19);
             this.lblpMostRevenue.TabIndex = 39;
             this.lblpMostRevenue.Text = "*";
             this.lblpMostRevenue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblpMostRevenue.Click += new System.EventHandler(this.materialLabel94_Click);
             // 
             // materialLabel95
             // 
@@ -2098,14 +2129,13 @@
             this.materialLabel95.Depth = 0;
             this.materialLabel95.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel95.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel95.Location = new System.Drawing.Point(343, 55);
+            this.materialLabel95.Location = new System.Drawing.Point(437, 55);
             this.materialLabel95.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel95.Name = "materialLabel95";
             this.materialLabel95.Size = new System.Drawing.Size(112, 19);
             this.materialLabel95.TabIndex = 38;
             this.materialLabel95.Text = "Most revenue : ";
             this.materialLabel95.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.materialLabel95.Click += new System.EventHandler(this.materialLabel95_Click);
             // 
             // materialLabel96
             // 
@@ -2192,6 +2222,7 @@
             this.dtProducts.RowHeadersWidth = 40;
             this.dtProducts.Size = new System.Drawing.Size(804, 289);
             this.dtProducts.TabIndex = 12;
+            this.dtProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtProducts_CellFormatting);
             // 
             // lblProductPage
             // 
@@ -2784,7 +2815,7 @@
             this.lblRevue.Depth = 0;
             this.lblRevue.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblRevue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRevue.Location = new System.Drawing.Point(657, 178);
+            this.lblRevue.Location = new System.Drawing.Point(679, 243);
             this.lblRevue.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblRevue.Name = "lblRevue";
             this.lblRevue.Size = new System.Drawing.Size(15, 19);
@@ -2926,7 +2957,7 @@
             this.lblProductPlaceHolder.Depth = 0;
             this.lblProductPlaceHolder.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblProductPlaceHolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblProductPlaceHolder.Location = new System.Drawing.Point(678, 244);
+            this.lblProductPlaceHolder.Location = new System.Drawing.Point(654, 176);
             this.lblProductPlaceHolder.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblProductPlaceHolder.Name = "lblProductPlaceHolder";
             this.lblProductPlaceHolder.Size = new System.Drawing.Size(15, 19);
@@ -4188,5 +4219,7 @@
         private MaterialSkin.Controls.MaterialLabel lblpMostRevenue;
         private MaterialSkin.Controls.MaterialLabel materialLabel95;
         private MaterialSkin.Controls.MaterialLabel materialLabel96;
+        private MaterialSkin.Controls.MaterialLabel tbpCount;
+        private MaterialSkin.Controls.MaterialLabel materialLabel86;
     }
 }
