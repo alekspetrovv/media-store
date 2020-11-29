@@ -49,8 +49,6 @@ namespace PapaSenpai_Project_Software.Logic
                         employees["department"].ToString(),employees["contract"].ToString(),
                         employees["wage_per_hour"].ToString(), employees["username"].ToString(), 
                         employees["password"].ToString(), employees["shifts_taken"].ToString(), employees["hours_worked"].ToString());
-
-                    Console.WriteLine(employee.HoursWorked);
                     this.employees.Add(employee);
                 }
             }

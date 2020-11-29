@@ -1,17 +1,10 @@
-﻿using MySql.Data.MySqlClient;
-using MySql.Data.Types;
-using PapaSenpai_Project_Software.Logic;
+﻿using PapaSenpai_Project_Software.Logic;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using PapaSenpai_Project_Software;
 
 namespace PapaSenpai_Project_Software
 {
@@ -308,6 +301,17 @@ namespace PapaSenpai_Project_Software
                     refill = "Yes";
                 }
                 dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, refill, p.ThreshHold);
+
+                // total revenue
+                double totalRevenue = this.productControl.GetProducts().Sum(item => item.OverallPrice);
+                this.lblpTotalRevenue.Text = totalRevenue.ToString();
+
+                // max revenue
+                double mostRevenue = this.productControl.GetProducts().Max(item => item.OverallPrice);
+                this.lblpMostRevenue.Text = mostRevenue.ToString();
+
+                // most popular - to do
+
             }
 
             dtProducts.DataSource = dtPrd;
@@ -651,37 +655,6 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void ShowAdminDetails()
-        {
-
-            for (int i = 0; i < dtUsers.Rows.Count; ++i)
-            {
-                DataGridViewRow dataRow = dtUsers.Rows[i];
-
-                if (dataRow.IsNewRow)
-                {
-                    continue;
-                }
-
-                bool selectedAdmins = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                if (selectedAdmins)
-                {
-                    string id = dataRow.Cells["ID"].Value.ToString();
-                    Admin admin = adminControl.getAdminById(Convert.ToInt32(id));
-                    this.tbAdminUserName.Text = admin.Username;
-                    this.tbAdminFirstName.Text = admin.FirstName;
-                    this.tbAdminLastName.Text = admin.LastName;
-                    this.tbAdminEmail.Text = admin.Email;
-                    this.tbAdminPassword.Text = admin.Password;
-                    this.cbAdminRole.SelectedItem = admin.Role;
-                    this.tbAdminId.Text = Convert.ToString(admin.ID);
-                    adminControl.retrieveAllAdmins();
-                    this.renderAdminTable();
-                    this.showPanel(pnlAddEditAdmin);
-                }
-            }
-        }
-
 
 
         private void renderStaffTable()
@@ -704,15 +677,23 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Wage per hour", typeof(string));
             dtEmp.Columns.Add("Salary for the shift", typeof(string));
                 
+
+
+            // total employees 
             this.tbeStaffCount.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
 
-            
+
+            // total hours of working 
+            double total = this.employeeControl.getEmployees().Sum(item => item.HoursWorked);
+            this.tbeTotalHoursWorked.Text = total.ToString();
+
 
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName,
                     employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City,
                     employee.Adress, employee.Email, employee.Department, employee.Contract, employee.Wage, "10");
+
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -924,6 +905,7 @@ namespace PapaSenpai_Project_Software
                         this.tbeSalary.Text = employee.Wage.ToString();
                         this.tbeShiftsTaken.Text = employee.ShiftsTaken.ToString();
                         this.tbeWage.Text = employee.Wage.ToString();
+
                         double salary = 0;
                         if ((Contract) employee.Contract == Contract.FullTime)
                         {
@@ -939,7 +921,6 @@ namespace PapaSenpai_Project_Software
                         {
                             salary = employee.Wage * employee.HoursWorked;
                         }
-
 
                         this.tbeSalary.Text = salary.ToString();
                         this.tbeContract.Text = Convert.ToString(employee.Contract);
@@ -1022,6 +1003,7 @@ namespace PapaSenpai_Project_Software
             if (user_count == 0)
             {
                 string[] delete_bindings = { id.ToString() };
+                MessageBox.Show("You have succesfully deleted an employee of that day!");
                 scheduleControl.Delete(delete_bindings);
             }
 
@@ -1392,19 +1374,15 @@ namespace PapaSenpai_Project_Software
 
         private void dtProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow Myrow in dtProducts.Rows)
-            {           
-                string status = Convert.ToString(Myrow.Cells[8].Value);
-                if (status == "Yes")
+            foreach (DataGridViewRow row in this.dtProducts.Rows)
+            {
+                string status = row.Cells[8].Value.ToString();
+
+                if(status == "Yes")
                 {
-                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(220, 20, 60);
                 }
             }
-        }
-
-        private void dtProducts_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            dtProducts.DefaultCellStyle.SelectionBackColor = Color.Red;
         }
     }
 }

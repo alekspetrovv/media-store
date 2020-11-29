@@ -2222,7 +2222,6 @@
             this.dtProducts.RowHeadersWidth = 40;
             this.dtProducts.Size = new System.Drawing.Size(804, 289);
             this.dtProducts.TabIndex = 12;
-            this.dtProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtProducts_CellClick);
             this.dtProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtProducts_CellFormatting);
             // 
             // lblProductPage
@@ -2816,7 +2815,7 @@
             this.lblRevue.Depth = 0;
             this.lblRevue.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblRevue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRevue.Location = new System.Drawing.Point(657, 178);
+            this.lblRevue.Location = new System.Drawing.Point(679, 243);
             this.lblRevue.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblRevue.Name = "lblRevue";
             this.lblRevue.Size = new System.Drawing.Size(15, 19);
@@ -2958,7 +2957,7 @@
             this.lblProductPlaceHolder.Depth = 0;
             this.lblProductPlaceHolder.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblProductPlaceHolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblProductPlaceHolder.Location = new System.Drawing.Point(678, 244);
+            this.lblProductPlaceHolder.Location = new System.Drawing.Point(654, 176);
             this.lblProductPlaceHolder.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblProductPlaceHolder.Name = "lblProductPlaceHolder";
             this.lblProductPlaceHolder.Size = new System.Drawing.Size(15, 19);
@@ -3882,12 +3881,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 565);
-            this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlViewEmployeeDetails);
-            this.Controls.Add(this.pnlProductInformation);
-            this.Controls.Add(this.pnlRestocking);
-            this.Controls.Add(this.pnlCart);
             this.Controls.Add(this.pnlEmployee);
             this.Controls.Add(this.pnlDashBoard);
             this.Controls.Add(this.pnlViewUser);
@@ -3896,6 +3890,11 @@
             this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlViewSchedule);
             this.Controls.Add(this.pnlScheduleEmployees);
+            this.Controls.Add(this.pnlProducts);
+            this.Controls.Add(this.pnlViewEmployeeDetails);
+            this.Controls.Add(this.pnlProductInformation);
+            this.Controls.Add(this.pnlRestocking);
+            this.Controls.Add(this.pnlCart);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";
