@@ -23,8 +23,8 @@ namespace PapaSenpai_Project_Software
         Department department;
         Contract contract;
 
-        public Employee(int id,string first_name, string last_name, string email, string adress, string city, string country,
-         string phone_number, string gender, string department,string contract,string wage, string username, string password, string shifts_taken, string hours_worked = null) : base(id,
+        public Employee(int id, string first_name, string last_name, string email, string adress, string city, string country,
+         string phone_number, string gender, string department, string contract, string wage, string username, string password, string shifts_taken, string hours_worked = null) : base(id,
              first_name, last_name, email)
         {
             this.adress = adress;
@@ -88,12 +88,12 @@ namespace PapaSenpai_Project_Software
             get { return this.wage; }
         }
 
-        public int HoursWorked 
+        public int HoursWorked
         {
             get { return this.hours_worked; }
         }
 
-        public int ShiftsTaken 
+        public int ShiftsTaken
         {
             get { return this.shifts_taken; }
         }
@@ -109,6 +109,29 @@ namespace PapaSenpai_Project_Software
         public Enum Department
         {
             get { return department; }
+        }
+
+        public double getSalary()
+        {
+            double salary = 0;
+            
+            if ((Contract)this.Contract == Logic.Contract.FullTime)
+            {
+                salary = this.Wage * this.ShiftsTaken * 8;
+            }
+
+            if ((Contract)this.Contract == Logic.Contract.PartTime)
+            {
+                salary = this.Wage * this.ShiftsTaken * 4;
+            }
+
+            if ((Contract)this.Contract == Logic.Contract.Hourly)
+            {
+                salary = this.Wage * this.HoursWorked;
+            }
+
+            return salary;
+
         }
 
 

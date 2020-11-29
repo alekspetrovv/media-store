@@ -34,11 +34,11 @@ namespace PapaSenpai_Project_Software
 
             foreach (Employee employee in employeeControl.getEmployees())
             {
-              this.tbeStaffCount.Text = this.employeeControl.GetEmployeesCount().ToString();
+                this.tbeStaffCount.Text = this.employeeControl.GetEmployeesCount().ToString();
             }
 
             Role r = this.adminControl.getloggedUser().Role;
-     
+
             if (r == Role.Manager)
             {
                 this.ManagerPermissions();
@@ -56,7 +56,7 @@ namespace PapaSenpai_Project_Software
             this.productControl.retrieveAllProducts();
             this.requestControl.retrieveAllRequests();
 
-           
+
             this.renderRequestTable();
             this.renderStaffTable();
             this.renderAdminTable();
@@ -295,8 +295,19 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Buying Price", typeof(string));
             dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
+            dtPrd.Columns.Add("Revenue", typeof(string));
 
             this.tbpCount.Text = this.productControl.GetProductsCount().ToString();
+
+            // total revenue
+            double totalRevenue = this.productControl.GetProducts().Sum(item => item.OverallPrice);
+            this.lblpTotalRevenue.Text = totalRevenue.ToString();
+
+            // max revenue
+            double mostRevenue = this.productControl.GetProducts().Max(item => item.OverallPrice);
+            this.lblpMostRevenue.Text = mostRevenue.ToString();
+
+
 
             foreach (Product p in productControl.GetProducts())
             {
@@ -305,17 +316,7 @@ namespace PapaSenpai_Project_Software
                 {
                     refill = "Yes";
                 }
-                dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, refill, p.ThreshHold);
-
-                // total revenue
-                double totalRevenue = this.productControl.GetProducts().Sum(item => item.OverallPrice);
-                this.lblpTotalRevenue.Text = totalRevenue.ToString();
-
-                // max revenue
-                double mostRevenue = this.productControl.GetProducts().Max(item => item.OverallPrice);
-                this.lblpMostRevenue.Text = mostRevenue.ToString();
-
-                // most popular - to do
+                dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, refill, p.ThreshHold, p.OverallPrice);
 
             }
 
@@ -681,7 +682,7 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Contract", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
             dtEmp.Columns.Add("Salary for the shift", typeof(string));
-                
+
 
 
             // total employees 
@@ -690,7 +691,9 @@ namespace PapaSenpai_Project_Software
 
             // total hours of working 
             double total = this.employeeControl.getEmployees().Sum(item => item.HoursWorked);
+            double salaryToBePaid = this.employeeControl.getEmployees().Sum(item => item.getSalary());
             this.tbeTotalHoursWorked.Text = total.ToString();
+            this.tbeSalaryToPay.Text = salaryToBePaid.ToString();
 
 
             foreach (Employee employee in employeeControl.getEmployees())
@@ -724,20 +727,20 @@ namespace PapaSenpai_Project_Software
 
             if (!errors.Any())
             {
-                    int department_id = this.cbEmployeeDepartment.SelectedIndex;
-                    department_id++;
-                    string increased_department_id = Convert.ToString(department_id);
-                    int contract_id = this.cbEmployeeContract.SelectedIndex;
-                    contract_id++;
-                    string increased_contract_id = Convert.ToString(contract_id);
-                    string gender = Convert.ToString(this.cbEmployeeGender.Text);
-                    string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
+                int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                department_id++;
+                string increased_department_id = Convert.ToString(department_id);
+                int contract_id = this.cbEmployeeContract.SelectedIndex;
+                contract_id++;
+                string increased_contract_id = Convert.ToString(contract_id);
+                string gender = Convert.ToString(this.cbEmployeeGender.Text);
+                string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
                     this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
                     gender, this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
-                    employeeControl.AddEmployee(employee_bindings);
-                    this.renderScheduleMembers();
-                    this.renderStaffTable();
-                    this.showPanel(pnlEmployee);
+                employeeControl.AddEmployee(employee_bindings);
+                this.renderScheduleMembers();
+                this.renderStaffTable();
+                this.showPanel(pnlEmployee);
 
             }
 
@@ -911,23 +914,7 @@ namespace PapaSenpai_Project_Software
                         this.tbeShiftsTaken.Text = employee.ShiftsTaken.ToString();
                         this.tbeWage.Text = employee.Wage.ToString();
 
-                        double salary = 0;
-                        if ((Contract) employee.Contract == Contract.FullTime)
-                        {
-                            salary = employee.Wage * employee.ShiftsTaken * 8;
-                        }
-
-                        if ((Contract) employee.Contract == Contract.PartTime)
-                        {
-                            salary = employee.Wage * employee.ShiftsTaken * 4;
-                        }
-
-                        if ((Contract) employee.Contract == Contract.Hourly)
-                        {
-                            salary = employee.Wage * employee.HoursWorked;
-                        }
-
-                        this.tbeSalary.Text = salary.ToString();
+                        this.tbeSalary.Text = employee.getSalary().ToString();
                         this.tbeContract.Text = Convert.ToString(employee.Contract);
                         this.tbeGender.Text = Convert.ToString(employee.Gender);
                         this.tbeDepartment.Text = Convert.ToString(employee.Department);
@@ -990,13 +977,12 @@ namespace PapaSenpai_Project_Software
                     string member_id = (dataRow.Cells["ID"].Value.ToString());
                     if (DateTime.TryParse(from, out from_date) && DateTime.TryParse(to, out to_date))
                     {
-                        string[] member_data = { id.ToString(), member_id.ToString(), from, to , (to_date.Hour - from_date.Hour).ToString()};
+                        string[] member_data = { id.ToString(), member_id.ToString(), from, to, (to_date.Hour - from_date.Hour).ToString() };
 
                         //check if the datetime string is really a datetime and if yes safe the user to the db
-                         scheduleControl.InsertMember(member_data);
-                         MessageBox.Show("You have succesfully assigned an employee to a schedule!");
-                         user_count++;
-                    } 
+                        scheduleControl.InsertMember(member_data);
+                        user_count++;
+                    }
                     else
                     {
                         MessageBox.Show("There was a problem with the timestamp given for user with ID: " + member_id);
@@ -1004,11 +990,11 @@ namespace PapaSenpai_Project_Software
                 }
             }
 
+
             //delete schedule if working employees is equal 0
             if (user_count == 0)
             {
                 string[] delete_bindings = { id.ToString() };
-                MessageBox.Show("You have succesfully deleted an employee of that day!");
                 scheduleControl.Delete(delete_bindings);
             }
 
@@ -1016,6 +1002,9 @@ namespace PapaSenpai_Project_Software
             employeeControl.retrieveAllEmployees();
             this.renderScheduleMembers();
             this.renderDailySchedule();
+            this.renderStaffTable();
+
+            MessageBox.Show("You successfully updated the schedule");
 
             calendarSchedule.SelectionRange.End = this.currentScheduleDate;
 
@@ -1033,7 +1022,7 @@ namespace PapaSenpai_Project_Software
             {
                 if (found_schedule.Members.Count() >= 5)
                 {
-                coloredDates.Add(found_schedule.Date);
+                    coloredDates.Add(found_schedule.Date);
                 }
             }
 
@@ -1334,7 +1323,7 @@ namespace PapaSenpai_Project_Software
                     string id = this.lblProductID.Text;
                     string quantity = this.tbQuantityRequest.Text;
 
-                    string[] requestBindings = {id,quantity};
+                    string[] requestBindings = { id, quantity };
 
                     this.showPanel(this.pnlProducts);
                     this.requestControl.Insert(requestBindings);
@@ -1366,9 +1355,9 @@ namespace PapaSenpai_Project_Software
 
         private void btnRestockProducts_Click(object sender, EventArgs e)
         {
-            Request request = (Request) lbRestocking.SelectedItem;
+            Request request = (Request)lbRestocking.SelectedItem;
             Product product = this.productControl.GetProductById(Convert.ToInt32(request.ProductId));
-            string[] product_bindings = {  (Convert.ToInt32(request.Quantity) + Convert.ToInt32(product.Quantity)).ToString(),request.ProductId };
+            string[] product_bindings = { (Convert.ToInt32(request.Quantity) + Convert.ToInt32(product.Quantity)).ToString(), request.ProductId };
             string[] deleteBindings = { request.Id.ToString() };
             this.requestControl.Approve(product_bindings);
             this.requestControl.Delete(deleteBindings);
@@ -1383,9 +1372,9 @@ namespace PapaSenpai_Project_Software
             {
                 string status = row.Cells[8].Value.ToString();
 
-                if(status == "Yes")
+                if (status == "Yes")
                 {
-                    row.DefaultCellStyle.BackColor = Color.FromArgb(220, 20, 60);
+                       row.DefaultCellStyle.BackColor = Color.FromArgb(220, 20, 60);
                 }
             }
         }

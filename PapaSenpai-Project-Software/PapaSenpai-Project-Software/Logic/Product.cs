@@ -73,8 +73,7 @@ namespace PapaSenpai_Project_Software.Logic
         {
             get { return this.overall_price; }
         }
-
-
+       
         public int ThreshHold
         {
             get { return this.threshold; }
