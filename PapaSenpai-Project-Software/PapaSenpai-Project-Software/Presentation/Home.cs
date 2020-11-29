@@ -39,6 +39,11 @@ namespace PapaSenpai_Project_Software
             this.currentScheduleDate = DateTime.Now;
             this.adminControl = a;
 
+            foreach (Employee employee in employeeControl.getEmployees())
+            {
+              this.tbeStaffCount.Text = this.employeeControl.GetEmployeesCount().ToString();
+            }
+
             Role r = this.adminControl.getloggedUser().Role;
      
             if (r == Role.Manager)
