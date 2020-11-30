@@ -1378,5 +1378,20 @@ namespace PapaSenpai_Project_Software
                 }
             }
         }
+
+        private void lblpTotalRevenue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel92_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbeWage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
