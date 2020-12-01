@@ -17,9 +17,9 @@ namespace PapaSenpai_Project_Software.Logic
 
         public RequestsControl()
         {
-            this.requestDAL = new RequestDAL();
-            this.productsDAL = new ProductDAL();
-            this.requests = new List<Request>();
+            requestDAL = new RequestDAL();
+            productsDAL = new ProductDAL();
+            requests = new List<Request>();
         }
 
 

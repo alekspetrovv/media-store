@@ -24,11 +24,11 @@ namespace PapaSenpai_Project_Software.Logic
             this.title = title;
             this.description = description;
             this.quantity = quantity;
-            this.quantityDepo = quantity_depo;
-            this.selling_price = sellingPrice;
-            this.buying_price = buyingPrice;
+            quantityDepo = quantity_depo;
+            selling_price = sellingPrice;
+            buying_price = buyingPrice;
             this.overall_price = overall_price;
-            this.threshold = threshHold;
+            threshold = threshHold;
         }
 
 

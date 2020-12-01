@@ -99,7 +99,6 @@ namespace PapaSenpai_Project_Software
         }
 
 
-
         public Enum Gender
         {
             get { return this.gender; }

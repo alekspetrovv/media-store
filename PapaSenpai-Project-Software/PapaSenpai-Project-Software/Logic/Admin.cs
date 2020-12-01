@@ -22,17 +22,17 @@ namespace PapaSenpai_Project_Software
 
         public Role Role
         {
-            get;
+            get { return this.role; }
         }
 
         public string Username
         {
-            get;
+            get { return this.username; }
         }
 
         public string Password
         {
-            get;
+            get { return this.password; }
         }
     }
 }

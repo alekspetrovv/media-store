@@ -32,11 +32,6 @@ namespace PapaSenpai_Project_Software
             this.currentScheduleDate = DateTime.Now;
             this.adminControl = a;
 
-            foreach (Employee employee in employeeControl.getEmployees())
-            {
-                this.tbeStaffCount.Text = this.employeeControl.GetEmployeesCount().ToString();
-            }
-
             Role r = this.adminControl.getloggedUser().Role;
 
             if (r == Role.Manager)
@@ -1377,21 +1372,6 @@ namespace PapaSenpai_Project_Software
                        row.DefaultCellStyle.BackColor = Color.FromArgb(220, 20, 60);
                 }
             }
-        }
-
-        private void lblpTotalRevenue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel92_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbeWage_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -14,8 +14,8 @@ namespace PapaSenpai_Project_Software.Logic
         private ProductDAL productDAL;
         public ProductControl()
         {
-            this.products = new List<Product>();
-            this.productDAL = new ProductDAL();
+           products = new List<Product>();
+           productDAL = new ProductDAL();
         }
 
 

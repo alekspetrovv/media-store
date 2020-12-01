@@ -17,9 +17,9 @@ namespace PapaSenpai_Project_Software
         {
             this.employee_id = employee_id;
             //this.startTime = DateTime.ParseExact(date, "MM-dd-yyyy", null);
-            this.endTime = DateTime.Parse(endDate);
-            this.startTime = DateTime.Parse(startDate);
-            this.hours = this.endTime.Hour - this.startTime.Hour;
+            endTime = DateTime.Parse(endDate);
+            startTime = DateTime.Parse(startDate);
+            hours = this.endTime.Hour - this.startTime.Hour;
         }
 
         public int EmployeeId

@@ -10,7 +10,7 @@ namespace PapaSenpai_Project_Software.Data
     {
         public Object Insert(string[] bindings)
         {
-            return this.executeScalar("INSERT INTO `orders`(`user_id`)  VALUES (@user_id); SELECT LAST_INSERT_ID()", bindings);
+            return executeScalar("INSERT INTO `orders`(`user_id`)  VALUES (@user_id); SELECT LAST_INSERT_ID()", bindings);
         }
 
        

@@ -59,11 +59,11 @@
             this.btnEditEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAddEmployee = new MaterialSkin.Controls.MaterialRaisedButton();
             this.dtEmployees = new System.Windows.Forms.DataGridView();
-            this.tbeTotalHoursWorked = new MaterialSkin.Controls.MaterialLabel();
             this.tbeStaffCount = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel93 = new MaterialSkin.Controls.MaterialLabel();
             this.tbeSalaryToPay = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel74 = new MaterialSkin.Controls.MaterialLabel();
+            this.tbeTotalHoursWorked = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel34 = new MaterialSkin.Controls.MaterialLabel();
             this.pnlDashBoard = new System.Windows.Forms.Panel();
             this.dtTodaySchedule = new System.Windows.Forms.DataGridView();
@@ -787,20 +787,6 @@
             this.dtEmployees.Size = new System.Drawing.Size(796, 287);
             this.dtEmployees.TabIndex = 12;
             // 
-            // tbeTotalHoursWorked
-            // 
-            this.tbeTotalHoursWorked.AutoSize = true;
-            this.tbeTotalHoursWorked.Depth = 0;
-            this.tbeTotalHoursWorked.Font = new System.Drawing.Font("Roboto", 11F);
-            this.tbeTotalHoursWorked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeTotalHoursWorked.Location = new System.Drawing.Point(280, 80);
-            this.tbeTotalHoursWorked.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tbeTotalHoursWorked.Name = "tbeTotalHoursWorked";
-            this.tbeTotalHoursWorked.Size = new System.Drawing.Size(15, 19);
-            this.tbeTotalHoursWorked.TabIndex = 36;
-            this.tbeTotalHoursWorked.Text = "*";
-            this.tbeTotalHoursWorked.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // tbeStaffCount
             // 
             this.tbeStaffCount.AutoSize = true;
@@ -856,6 +842,20 @@
             this.materialLabel74.TabIndex = 32;
             this.materialLabel74.Text = "Salary to be paid :";
             this.materialLabel74.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbeTotalHoursWorked
+            // 
+            this.tbeTotalHoursWorked.AutoSize = true;
+            this.tbeTotalHoursWorked.Depth = 0;
+            this.tbeTotalHoursWorked.Font = new System.Drawing.Font("Roboto", 11F);
+            this.tbeTotalHoursWorked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tbeTotalHoursWorked.Location = new System.Drawing.Point(280, 80);
+            this.tbeTotalHoursWorked.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tbeTotalHoursWorked.Name = "tbeTotalHoursWorked";
+            this.tbeTotalHoursWorked.Size = new System.Drawing.Size(15, 19);
+            this.tbeTotalHoursWorked.TabIndex = 36;
+            this.tbeTotalHoursWorked.Text = "*";
+            this.tbeTotalHoursWorked.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // materialLabel34
             // 
@@ -2076,7 +2076,6 @@
             this.lblpTotalRevenue.TabIndex = 41;
             this.lblpTotalRevenue.Text = "*";
             this.lblpTotalRevenue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblpTotalRevenue.Click += new System.EventHandler(this.lblpTotalRevenue_Click);
             // 
             // materialLabel92
             // 
@@ -2091,7 +2090,6 @@
             this.materialLabel92.TabIndex = 40;
             this.materialLabel92.Text = "Total Revenue : ";
             this.materialLabel92.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.materialLabel92.Click += new System.EventHandler(this.materialLabel92_Click);
             // 
             // lblpMostRevenue
             // 
@@ -2485,7 +2483,7 @@
             // 
             // tbProductId
             // 
-            this.tbProductId.Location = new System.Drawing.Point(679, 398);
+            this.tbProductId.Location = new System.Drawing.Point(799, 465);
             this.tbProductId.Name = "tbProductId";
             this.tbProductId.Size = new System.Drawing.Size(15, 20);
             this.tbProductId.TabIndex = 29;
@@ -2576,10 +2574,10 @@
             this.pnlCart.Controls.Add(this.materialLabel26);
             this.pnlCart.Controls.Add(this.materialLabel23);
             this.pnlCart.Controls.Add(this.lbStoreProducts);
-            this.pnlCart.Controls.Add(this.materialLabel16);
             this.pnlCart.Controls.Add(this.materialLabel22);
             this.pnlCart.Controls.Add(this.tbPurchase);
             this.pnlCart.Controls.Add(this.tbAddToCart);
+            this.pnlCart.Controls.Add(this.materialLabel16);
             this.pnlCart.Location = new System.Drawing.Point(221, 65);
             this.pnlCart.Name = "pnlCart";
             this.pnlCart.Size = new System.Drawing.Size(815, 490);
@@ -2752,7 +2750,6 @@
             this.pnlProductInformation.Controls.Add(this.materialLabel68);
             this.pnlProductInformation.Controls.Add(this.lblProductQuantityDepo);
             this.pnlProductInformation.Controls.Add(this.lblProductSellingPrice);
-            this.pnlProductInformation.Controls.Add(this.lblProductID);
             this.pnlProductInformation.Controls.Add(this.materialLabel47);
             this.pnlProductInformation.Controls.Add(this.btnBackToProductPage);
             this.pnlProductInformation.Controls.Add(this.lblProductTitle);
@@ -2774,6 +2771,7 @@
             this.pnlProductInformation.Controls.Add(this.materialLabel36);
             this.pnlProductInformation.Controls.Add(this.materialLabel37);
             this.pnlProductInformation.Controls.Add(this.btnAddQuantity);
+            this.pnlProductInformation.Controls.Add(this.lblProductID);
             this.pnlProductInformation.Location = new System.Drawing.Point(221, 65);
             this.pnlProductInformation.Name = "pnlProductInformation";
             this.pnlProductInformation.Size = new System.Drawing.Size(816, 490);
@@ -3153,7 +3151,7 @@
             this.materialLabel65.Depth = 0;
             this.materialLabel65.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel65.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel65.Location = new System.Drawing.Point(352, 115);
+            this.materialLabel65.Location = new System.Drawing.Point(346, 130);
             this.materialLabel65.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel65.Name = "materialLabel65";
             this.materialLabel65.Size = new System.Drawing.Size(91, 19);
@@ -3166,7 +3164,7 @@
             this.materialLabel64.Depth = 0;
             this.materialLabel64.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel64.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel64.Location = new System.Drawing.Point(615, 116);
+            this.materialLabel64.Location = new System.Drawing.Point(609, 131);
             this.materialLabel64.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel64.Name = "materialLabel64";
             this.materialLabel64.Size = new System.Drawing.Size(90, 19);
@@ -3179,7 +3177,7 @@
             this.materialLabel63.Depth = 0;
             this.materialLabel63.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel63.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel63.Location = new System.Drawing.Point(93, 210);
+            this.materialLabel63.Location = new System.Drawing.Point(87, 225);
             this.materialLabel63.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel63.Name = "materialLabel63";
             this.materialLabel63.Size = new System.Drawing.Size(55, 19);
@@ -3192,7 +3190,7 @@
             this.materialLabel62.Depth = 0;
             this.materialLabel62.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel62.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel62.Location = new System.Drawing.Point(77, 159);
+            this.materialLabel62.Location = new System.Drawing.Point(71, 174);
             this.materialLabel62.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel62.Name = "materialLabel62";
             this.materialLabel62.Size = new System.Drawing.Size(72, 19);
@@ -3205,7 +3203,7 @@
             this.materialLabel61.Depth = 0;
             this.materialLabel61.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel61.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel61.Location = new System.Drawing.Point(400, 159);
+            this.materialLabel61.Location = new System.Drawing.Point(394, 174);
             this.materialLabel61.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel61.Name = "materialLabel61";
             this.materialLabel61.Size = new System.Drawing.Size(47, 19);
@@ -3218,7 +3216,7 @@
             this.materialLabel60.Depth = 0;
             this.materialLabel60.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel60.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel60.Location = new System.Drawing.Point(633, 160);
+            this.materialLabel60.Location = new System.Drawing.Point(627, 175);
             this.materialLabel60.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel60.Name = "materialLabel60";
             this.materialLabel60.Size = new System.Drawing.Size(77, 19);
@@ -3231,7 +3229,7 @@
             this.materialLabel58.Depth = 0;
             this.materialLabel58.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel58.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel58.Location = new System.Drawing.Point(27, 261);
+            this.materialLabel58.Location = new System.Drawing.Point(21, 276);
             this.materialLabel58.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel58.Name = "materialLabel58";
             this.materialLabel58.Size = new System.Drawing.Size(120, 19);
@@ -3268,7 +3266,7 @@
             this.tbeCountry.Depth = 0;
             this.tbeCountry.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeCountry.Location = new System.Drawing.Point(716, 160);
+            this.tbeCountry.Location = new System.Drawing.Point(710, 175);
             this.tbeCountry.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeCountry.Name = "tbeCountry";
             this.tbeCountry.Size = new System.Drawing.Size(15, 19);
@@ -3281,7 +3279,7 @@
             this.tbePhoneNumber.Depth = 0;
             this.tbePhoneNumber.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbePhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbePhoneNumber.Location = new System.Drawing.Point(155, 264);
+            this.tbePhoneNumber.Location = new System.Drawing.Point(149, 279);
             this.tbePhoneNumber.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbePhoneNumber.Name = "tbePhoneNumber";
             this.tbePhoneNumber.Size = new System.Drawing.Size(15, 19);
@@ -3294,7 +3292,7 @@
             this.tbeEmail.Depth = 0;
             this.tbeEmail.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeEmail.Location = new System.Drawing.Point(156, 211);
+            this.tbeEmail.Location = new System.Drawing.Point(150, 226);
             this.tbeEmail.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeEmail.Name = "tbeEmail";
             this.tbeEmail.Size = new System.Drawing.Size(15, 19);
@@ -3307,7 +3305,7 @@
             this.tbeLastName.Depth = 0;
             this.tbeLastName.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeLastName.Location = new System.Drawing.Point(715, 117);
+            this.tbeLastName.Location = new System.Drawing.Point(709, 132);
             this.tbeLastName.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeLastName.Name = "tbeLastName";
             this.tbeLastName.Size = new System.Drawing.Size(15, 19);
@@ -3320,7 +3318,7 @@
             this.tbeFirstName.Depth = 0;
             this.tbeFirstName.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeFirstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeFirstName.Location = new System.Drawing.Point(455, 117);
+            this.tbeFirstName.Location = new System.Drawing.Point(449, 132);
             this.tbeFirstName.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeFirstName.Name = "tbeFirstName";
             this.tbeFirstName.Size = new System.Drawing.Size(15, 19);
@@ -3346,7 +3344,7 @@
             this.materialLabel50.Depth = 0;
             this.materialLabel50.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel50.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel50.Location = new System.Drawing.Point(118, 115);
+            this.materialLabel50.Location = new System.Drawing.Point(112, 130);
             this.materialLabel50.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel50.Name = "materialLabel50";
             this.materialLabel50.Size = new System.Drawing.Size(31, 19);
@@ -3359,7 +3357,7 @@
             this.tbeId.Depth = 0;
             this.tbeId.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeId.Location = new System.Drawing.Point(158, 117);
+            this.tbeId.Location = new System.Drawing.Point(152, 132);
             this.tbeId.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeId.Name = "tbeId";
             this.tbeId.Size = new System.Drawing.Size(15, 19);
@@ -3372,7 +3370,7 @@
             this.tbeCity.Depth = 0;
             this.tbeCity.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeCity.Location = new System.Drawing.Point(455, 161);
+            this.tbeCity.Location = new System.Drawing.Point(449, 176);
             this.tbeCity.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeCity.Name = "tbeCity";
             this.tbeCity.Size = new System.Drawing.Size(15, 19);
@@ -3385,7 +3383,7 @@
             this.tbeAddress.Depth = 0;
             this.tbeAddress.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeAddress.Location = new System.Drawing.Point(157, 161);
+            this.tbeAddress.Location = new System.Drawing.Point(151, 176);
             this.tbeAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeAddress.Name = "tbeAddress";
             this.tbeAddress.Size = new System.Drawing.Size(15, 19);
@@ -3473,7 +3471,7 @@
             this.tbeShiftsTaken.Depth = 0;
             this.tbeShiftsTaken.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeShiftsTaken.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeShiftsTaken.Location = new System.Drawing.Point(153, 313);
+            this.tbeShiftsTaken.Location = new System.Drawing.Point(149, 331);
             this.tbeShiftsTaken.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeShiftsTaken.Name = "tbeShiftsTaken";
             this.tbeShiftsTaken.Size = new System.Drawing.Size(15, 19);
@@ -3486,7 +3484,7 @@
             this.materialLabel54.Depth = 0;
             this.materialLabel54.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel54.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel54.Location = new System.Drawing.Point(44, 312);
+            this.materialLabel54.Location = new System.Drawing.Point(40, 330);
             this.materialLabel54.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel54.Name = "materialLabel54";
             this.materialLabel54.Size = new System.Drawing.Size(105, 19);
@@ -3499,13 +3497,12 @@
             this.tbeWage.Depth = 0;
             this.tbeWage.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeWage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeWage.Location = new System.Drawing.Point(718, 314);
+            this.tbeWage.Location = new System.Drawing.Point(714, 332);
             this.tbeWage.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeWage.Name = "tbeWage";
             this.tbeWage.Size = new System.Drawing.Size(15, 19);
             this.tbeWage.TabIndex = 62;
             this.tbeWage.Text = "*";
-            this.tbeWage.Click += new System.EventHandler(this.tbeWage_Click);
             // 
             // materialLabel72
             // 
@@ -3513,7 +3510,7 @@
             this.materialLabel72.Depth = 0;
             this.materialLabel72.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel72.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel72.Location = new System.Drawing.Point(594, 313);
+            this.materialLabel72.Location = new System.Drawing.Point(590, 331);
             this.materialLabel72.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel72.Name = "materialLabel72";
             this.materialLabel72.Size = new System.Drawing.Size(113, 19);
@@ -3526,7 +3523,7 @@
             this.tbeContract.Depth = 0;
             this.tbeContract.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeContract.Location = new System.Drawing.Point(717, 265);
+            this.tbeContract.Location = new System.Drawing.Point(713, 283);
             this.tbeContract.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeContract.Name = "tbeContract";
             this.tbeContract.Size = new System.Drawing.Size(15, 19);
@@ -3539,7 +3536,7 @@
             this.materialLabel46.Depth = 0;
             this.materialLabel46.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel46.Location = new System.Drawing.Point(628, 265);
+            this.materialLabel46.Location = new System.Drawing.Point(622, 280);
             this.materialLabel46.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel46.Name = "materialLabel46";
             this.materialLabel46.Size = new System.Drawing.Size(79, 19);
@@ -3552,7 +3549,7 @@
             this.tbeSalary.Depth = 0;
             this.tbeSalary.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeSalary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeSalary.Location = new System.Drawing.Point(457, 368);
+            this.tbeSalary.Location = new System.Drawing.Point(453, 386);
             this.tbeSalary.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeSalary.Name = "tbeSalary";
             this.tbeSalary.Size = new System.Drawing.Size(15, 19);
@@ -3565,7 +3562,7 @@
             this.materialLabel91.Depth = 0;
             this.materialLabel91.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel91.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel91.Location = new System.Drawing.Point(348, 367);
+            this.materialLabel91.Location = new System.Drawing.Point(344, 385);
             this.materialLabel91.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel91.Name = "materialLabel91";
             this.materialLabel91.Size = new System.Drawing.Size(97, 19);
@@ -3578,7 +3575,7 @@
             this.tbeTotalHours.Depth = 0;
             this.tbeTotalHours.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeTotalHours.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeTotalHours.Location = new System.Drawing.Point(455, 313);
+            this.tbeTotalHours.Location = new System.Drawing.Point(451, 331);
             this.tbeTotalHours.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeTotalHours.Name = "tbeTotalHours";
             this.tbeTotalHours.Size = new System.Drawing.Size(15, 19);
@@ -3591,7 +3588,7 @@
             this.materialLabel89.Depth = 0;
             this.materialLabel89.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel89.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel89.Location = new System.Drawing.Point(348, 312);
+            this.materialLabel89.Location = new System.Drawing.Point(344, 330);
             this.materialLabel89.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel89.Name = "materialLabel89";
             this.materialLabel89.Size = new System.Drawing.Size(97, 19);
@@ -3616,7 +3613,7 @@
             this.tbeUserName.Depth = 0;
             this.tbeUserName.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeUserName.Location = new System.Drawing.Point(456, 263);
+            this.tbeUserName.Location = new System.Drawing.Point(450, 278);
             this.tbeUserName.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeUserName.Name = "tbeUserName";
             this.tbeUserName.Size = new System.Drawing.Size(15, 19);
@@ -3629,7 +3626,7 @@
             this.tbeDepartment.Depth = 0;
             this.tbeDepartment.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeDepartment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeDepartment.Location = new System.Drawing.Point(716, 211);
+            this.tbeDepartment.Location = new System.Drawing.Point(710, 226);
             this.tbeDepartment.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeDepartment.Name = "tbeDepartment";
             this.tbeDepartment.Size = new System.Drawing.Size(15, 19);
@@ -3642,7 +3639,7 @@
             this.tbeGender.Depth = 0;
             this.tbeGender.Font = new System.Drawing.Font("Roboto", 11F);
             this.tbeGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbeGender.Location = new System.Drawing.Point(456, 210);
+            this.tbeGender.Location = new System.Drawing.Point(450, 225);
             this.tbeGender.MouseState = MaterialSkin.MouseState.HOVER;
             this.tbeGender.Name = "tbeGender";
             this.tbeGender.Size = new System.Drawing.Size(15, 19);
@@ -3655,7 +3652,7 @@
             this.materialLabel71.Depth = 0;
             this.materialLabel71.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel71.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel71.Location = new System.Drawing.Point(353, 262);
+            this.materialLabel71.Location = new System.Drawing.Point(347, 277);
             this.materialLabel71.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel71.Name = "materialLabel71";
             this.materialLabel71.Size = new System.Drawing.Size(92, 19);
@@ -3668,7 +3665,7 @@
             this.materialLabel70.Depth = 0;
             this.materialLabel70.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel70.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel70.Location = new System.Drawing.Point(612, 211);
+            this.materialLabel70.Location = new System.Drawing.Point(606, 226);
             this.materialLabel70.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel70.Name = "materialLabel70";
             this.materialLabel70.Size = new System.Drawing.Size(99, 19);
@@ -3681,7 +3678,7 @@
             this.materialLabel69.Depth = 0;
             this.materialLabel69.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel69.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel69.Location = new System.Drawing.Point(381, 209);
+            this.materialLabel69.Location = new System.Drawing.Point(375, 224);
             this.materialLabel69.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel69.Name = "materialLabel69";
             this.materialLabel69.Size = new System.Drawing.Size(68, 19);
@@ -3853,6 +3850,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 565);
             this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.pnlScheduleEmployees);
+            this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.pnlViewEmployeeDetails);
             this.Controls.Add(this.pnlProductInformation);
             this.Controls.Add(this.pnlRestocking);
@@ -3864,8 +3863,6 @@
             this.Controls.Add(this.pnlAddEditEmployee);
             this.Controls.Add(this.pnlAddEditAdmin);
             this.Controls.Add(this.pnlViewSchedule);
-            this.Controls.Add(this.pnlScheduleEmployees);
-            this.Controls.Add(this.pnlProducts);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home Page";

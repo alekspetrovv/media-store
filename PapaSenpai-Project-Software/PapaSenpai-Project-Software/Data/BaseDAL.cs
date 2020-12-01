@@ -20,7 +20,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
         {
-            MySqlConnection con = this.GetConnection();
+            MySqlConnection con = GetConnection();
             MySqlCommand cmd = con.CreateCommand();
                 con.Open();
                 cmd.CommandType = CommandType.Text;
@@ -48,18 +48,18 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlDataReader executeReader(string sql, string[] bindings = null)
         {
-            return this.defaultDatabaseConnection(sql, bindings).ExecuteReader();
+            return defaultDatabaseConnection(sql, bindings).ExecuteReader();
 
         }
 
         public Object executeScalar(string sql, string[] bindings = null)
         {
-            return this.defaultDatabaseConnection(sql, bindings).ExecuteScalar();
+            return defaultDatabaseConnection(sql, bindings).ExecuteScalar();
         }
 
         public Object executeNonQuery(string sql, string[] bindings = null)
         {
-           return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+           return defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
         }
 
 
