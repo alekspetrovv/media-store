@@ -73,10 +73,12 @@
             this.iconPictureBox2.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Key;
             this.iconPictureBox2.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox2.IconSize = 23;
             this.iconPictureBox2.Location = new System.Drawing.Point(333, 276);
             this.iconPictureBox2.Name = "iconPictureBox2";
             this.iconPictureBox2.Size = new System.Drawing.Size(29, 23);
+            this.iconPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.iconPictureBox2.TabIndex = 15;
             this.iconPictureBox2.TabStop = false;
             // 
@@ -86,10 +88,12 @@
             this.iconPictureBox1.ForeColor = System.Drawing.Color.SeaGreen;
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
             this.iconPictureBox1.IconColor = System.Drawing.Color.SeaGreen;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 23;
             this.iconPictureBox1.Location = new System.Drawing.Point(333, 235);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(29, 23);
+            this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.iconPictureBox1.TabIndex = 14;
             this.iconPictureBox1.TabStop = false;
             // 

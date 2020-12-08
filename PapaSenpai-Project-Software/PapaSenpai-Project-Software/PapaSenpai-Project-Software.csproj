@@ -63,17 +63,21 @@
   <ItemGroup>
     <Compile Include="Data\AdminDAL.cs" />
     <Compile Include="Data\BaseDAL.cs" />
+    <Compile Include="Data\DepartmentsDAL.cs" />
     <Compile Include="Data\EmployeeDAL.cs" />
     <Compile Include="Data\OrdersDAL.cs" />
     <Compile Include="Data\OrdersProductsDAL.cs" />
     <Compile Include="Data\ProductDAL.cs" />
     <Compile Include="Data\RequestDAL.cs" />
+    <Compile Include="Data\RolesDAL.cs" />
     <Compile Include="Data\ScheduleDAL.cs" />
     <Compile Include="Data\ScheduleMemberDAL.cs" />
     <Compile Include="Logic\Admin.cs" />
     <Compile Include="Logic\AdminControl.cs" />
     <Compile Include="Logic\Contract.cs" />
     <Compile Include="Logic\Department.cs" />
+    <Compile Include="Logic\DepartmentControl.cs" />
+    <Compile Include="Logic\Departments.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\EmployeeControl.cs" />
     <Compile Include="Logic\Gender.cs" />
@@ -83,6 +87,8 @@
     <Compile Include="Logic\ProductControl.cs" />
     <Compile Include="Logic\Request.cs" />
     <Compile Include="Logic\RequestControl.cs" />
+    <Compile Include="Logic\RoleControl.cs" />
+    <Compile Include="Logic\Roles.cs" />
     <Compile Include="Logic\ScheduleControl.cs" />
     <Compile Include="Presentation\Home.cs">
       <SubType>Form</SubType>

@@ -20,13 +20,15 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
         {
-            MySqlConnection con = GetConnection();
-            MySqlCommand cmd = con.CreateCommand();
+            try
+            {
+                MySqlConnection con = GetConnection();
+                MySqlCommand cmd = con.CreateCommand();
                 con.Open();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = sql;
 
-                
+
                 List<string> fields = new List<string>();
                 MatchCollection mcol = Regex.Matches(sql, @"@\b\S+?\b");
 
@@ -42,7 +44,14 @@ namespace PapaSenpai_Project_Software.Data
                         cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
                     }
                 }
-           return cmd;
+                return cmd;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an problem with the connection:  " + e.Message);
+            }
+            return null;
+           
         }
 
 
@@ -59,7 +68,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public Object executeNonQuery(string sql, string[] bindings = null)
         {
-           return defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+            return defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
         }
 
 

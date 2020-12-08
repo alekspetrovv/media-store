@@ -17,6 +17,9 @@ namespace PapaSenpai_Project_Software
         private ProductControl productControl;
         private OrdersControl ordersControl;
         private RequestsControl requestControl;
+        private DepartmentControl departmentControl;
+        private RoleControl roleControl;
+
         public Home(AdminControl a)
         {
             this.employeeControl = new EmployeeControl();
@@ -25,6 +28,8 @@ namespace PapaSenpai_Project_Software
             this.productControl = new ProductControl();
             this.ordersControl = new OrdersControl();
             this.requestControl = new RequestsControl();
+            this.departmentControl = new DepartmentControl();
+            this.roleControl = new RoleControl();
 
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
@@ -50,12 +55,15 @@ namespace PapaSenpai_Project_Software
             this.adminControl.retrieveAllAdmins();
             this.productControl.retrieveAllProducts();
             this.requestControl.retrieveAllRequests();
-
+            this.departmentControl.retrieveAllDepartments();
+            this.roleControl.retrieveAllRoles();
 
             this.renderRequestTable();
             this.renderStaffTable();
             this.renderAdminTable();
             this.renderScheduleMembers();
+            this.renderDepartmentsTable();
+            this.renderRolesTable();
             this.renderDailySchedule();
             this.renderProductsTable();
             this.renderProductsForOrder();
@@ -64,53 +72,46 @@ namespace PapaSenpai_Project_Software
 
         private void Home_Load(object sender, EventArgs e)
         {
-            ChangeLoginStyle();
+            ChangeHomeStyle();
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlDashBoard);
+            showPanel(pnlDashBoard);
         }
 
 
         private void btnViewStaff_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlEmployee);
+            showPanel(pnlEmployee);
         }
 
         private void btnBackToEmployeePageFromDetails_Click_1(object sender, EventArgs e)
         {
-            this.showPanel(pnlEmployee);
+            showPanel(pnlEmployee);
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlViewSchedule);
+            showPanel(pnlViewSchedule);
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlAddEditEmployee);
-            this.btnAssignEmployee.Visible = true;
-            this.btnUpdateEmployee.Visible = false;
-            this.valuesAreEmptyEmployee();
+            showPanel(pnlAddEditEmployee);
+            hideButton(btnUpdateEmployee);
+            showButton(btnAssignEmployee);
+            TraverseControlsAndSetTextEmpty(this);
         }
-
-
-        private void btnViewAdmins_Click(object sender, EventArgs e)
-        {
-            this.showPanel(pnlViewUser);
-            this.btnUpdateUser.Visible = false;
-        }
-
 
         private void btnAddAdmins_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlAddEditAdmin);
-            this.btnAddUser.Visible = true;
-            this.btnUpdateUser.Visible = false;
-            this.clearAdminFields();
+            showPanel(pnlAddEditAdmin);
+            showButton(btnAddUser);
+            hideButton(btnUpdateUser);
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -129,7 +130,6 @@ namespace PapaSenpai_Project_Software
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
             DeleteEmployee();
-
         }
 
 
@@ -163,72 +163,72 @@ namespace PapaSenpai_Project_Software
 
         private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
         {
-            this.showPanel(pnlScheduleEmployees);
-            this.currentScheduleDate = e.End;
-            this.renderScheduleMembers();
+            showPanel(pnlScheduleEmployees);
+            currentScheduleDate = e.End;
+            renderScheduleMembers();
         }
 
         private void btnViewSchedule_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlViewSchedule);
+            showPanel(pnlViewSchedule);
         }
 
         private void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
             updateSchedule();
-            this.showPanel(pnlViewSchedule);
+            showPanel(pnlViewSchedule);
         }
 
         private void btnGoBack_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlViewSchedule);
+            showPanel(pnlViewSchedule);
         }
 
         private void btnViewAllSchedules_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlViewSchedule);
+            showPanel(pnlViewSchedule);
         }
 
         private void btnViewProducts_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlProducts);
+            showPanel(pnlProducts);
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlAddEditProduct);
-            this.btnAddProductItem.Visible = true;
-            this.hideButton(btnUpdateProductItem);
+            showPanel(this.pnlAddEditProduct);
+            btnAddProductItem.Visible = true;
+            hideButton(btnUpdateProductItem);
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
-            this.EditProduct();
+            EditProduct();
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            this.DeleteProduct();
+            DeleteProduct();
         }
 
         private void btnAddProductItem_Click(object sender, EventArgs e)
         {
-            this.AddProduct();
+            AddProduct();
         }
 
         private void btnUpdateProductItem_Click(object sender, EventArgs e)
         {
-            this.UpdateProduct();
+            UpdateProduct();
         }
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
-            this.showPanel(pnlCart);
+            showPanel(pnlCart);
         }
 
         private void btnViewEmployeeDetails_Click(object sender, EventArgs e)
         {
-            this.ShowEmployeeDetails();
+            ShowEmployeeDetails();
         }
 
         private void btnViewProduct_Click(object sender, EventArgs e)
@@ -237,29 +237,30 @@ namespace PapaSenpai_Project_Software
         }
         private void btnBackToUserPage_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlViewUser);
-            this.clearAdminFields();
+            showPanel(pnlAdmins);
+            TraverseControlsAndSetTextEmpty(this);
         }
         private void btnBackToEmployeePage_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlEmployee);
-            this.clearEmployeeFields();
+            showPanel(pnlEmployee);
+            TraverseControlsAndSetTextEmpty(this);
         }
         private void btnBackToProductPageFromAddEdit_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlProducts);
-            this.clearProductFields();
+            showPanel(pnlProducts);
+            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnBackToProductPage_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlProducts);
-            this.clearProductFields();
+            showPanel(pnlProducts);
+            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnBackToEmployeePageFromDetails_Click(object sender, EventArgs e)
         {
-            this.showPanel(this.pnlEmployee);
+            showPanel(pnlEmployee);
+            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void renderProductsForOrder()
@@ -292,16 +293,16 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Threshold", typeof(string));
             dtPrd.Columns.Add("Revenue", typeof(string));
 
-            this.tbpCount.Text = this.productControl.GetProductsCount().ToString();
+            // product count
+            tbpCount.Text = productControl.GetProductsCount().ToString();
 
             // total revenue
-            double totalRevenue = this.productControl.GetProducts().Sum(item => item.OverallPrice);
-            this.lblpTotalRevenue.Text = totalRevenue.ToString();
+            double totalRevenue = productControl.GetProducts().Sum(item => item.OverallPrice);
+            lblpTotalRevenue.Text = totalRevenue.ToString();
 
             // max revenue
-            double mostRevenue = this.productControl.GetProducts().Max(item => item.OverallPrice);
-            this.lblpMostRevenue.Text = mostRevenue.ToString();
-
+            double mostRevenue = productControl.GetProducts().Max(item => item.OverallPrice);
+            lblpMostRevenue.Text = mostRevenue.ToString();
 
 
             foreach (Product p in productControl.GetProducts())
@@ -312,9 +313,7 @@ namespace PapaSenpai_Project_Software
                     refill = "Yes";
                 }
                 dtPrd.Rows.Add(false, p.Id, p.Title, p.Description, p.Quantity, p.QuantityDepo, p.SellingPrice, p.BuyingPrice, refill, p.ThreshHold, p.OverallPrice);
-
             }
-
             dtProducts.DataSource = dtPrd;
         }
 
@@ -322,47 +321,42 @@ namespace PapaSenpai_Project_Software
         private void AddProduct()
         {
             List<String> errors = new List<string>();
-
             if (!valuesAreEmptyProduct())
             {
                 errors.Add("You can't create a product without entering all the fields");
             }
-
             if (this.productControl.GetProductByTitle(this.tbProductTitle.Text) != null)
             {
                 errors.Add("You can't add a product with the same title");
             }
-
             if (!errors.Any())
             {
-                int quantity = Convert.ToInt32(this.tbProductQuantity.Text);
-                int quantitydepo = Convert.ToInt32(this.tbProductQuantityDepo.Text);
-                double selling_price = Convert.ToDouble(this.tbProductSellingPrice.Text);
-                double buying_price = Convert.ToDouble(this.tbProductBuyingPrice.Text);
-                int threshold = Convert.ToInt32(this.tbProductThreshHold.Text);
-                string[] product_bindings = { this.tbProductTitle.Text, this.tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
+                int quantity = Convert.ToInt32(tbProductQuantity.Text);
+                int quantitydepo = Convert.ToInt32(tbProductQuantityDepo.Text);
+                double selling_price = Convert.ToDouble(tbProductSellingPrice.Text);
+                double buying_price = Convert.ToDouble(tbProductBuyingPrice.Text);
+                int threshold = Convert.ToInt32(tbProductThreshHold.Text);
+                string[] product_bindings = { tbProductTitle.Text, tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
                 selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
-                this.productControl.AddProduct(product_bindings);
+                productControl.AddProduct(product_bindings);
                 MessageBox.Show("you have successfully created a product!");
                 this.renderProductsTable();
                 this.productControl.retrieveAllProducts();
                 this.showPanel(pnlProducts);
                 return;
             }
-
             foreach (string message in errors)
             {
                 MessageBox.Show(message);
             }
-
-
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
         private void EditProduct()
         {
-            this.btnAddProductItem.Visible = false;
-            this.btnUpdateProductItem.Visible = true;
+            btnAddProductItem.Visible = false;
+            btnUpdateProductItem.Visible = true;
             try
             {
                 for (int i = 0; i < dtProducts.Rows.Count; ++i)
@@ -380,15 +374,15 @@ namespace PapaSenpai_Project_Software
                         Console.WriteLine(selectedProduct);
                         string id = dataRow.Cells["ID"].Value.ToString();
                         Product product = productControl.GetProductById(Convert.ToInt32(id));
-                        this.tbProductTitle.Text = product.Title;
-                        this.tbProductDescription.Text = product.Description;
-                        this.tbProductQuantity.Text = Convert.ToString(product.Quantity);
-                        this.tbProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
-                        this.tbProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
-                        this.tbProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
-                        this.tbProductThreshHold.Text = Convert.ToString(product.ThreshHold);
-                        this.tbProductId.Text = Convert.ToString(product.Id);
-                        this.productControl.retrieveAllProducts();
+                        tbProductTitle.Text = product.Title;
+                        tbProductDescription.Text = product.Description;
+                        tbProductQuantity.Text = Convert.ToString(product.Quantity);
+                        tbProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
+                        tbProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
+                        tbProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
+                        tbProductThreshHold.Text = Convert.ToString(product.ThreshHold);
+                        tbProductId.Text = Convert.ToString(product.Id);
+                        productControl.retrieveAllProducts();
                         this.renderProductsTable();
                         this.showPanel(pnlAddEditProduct);
                     }
@@ -406,10 +400,10 @@ namespace PapaSenpai_Project_Software
             try
             {
 
-                string productID = this.tbProductId.Text;
-                string[] productData = { this.tbProductTitle.Text,this.tbProductDescription.Text,this.tbProductQuantity.Text,this.tbProductQuantityDepo.Text,
-                this.tbProductSellingPrice.Text,this.tbProductBuyingPrice.Text,this.tbProductThreshHold.Text, productID };
-                this.productControl.UpdateProduct(productData);
+                string productID = tbProductId.Text;
+                string[] productData = { tbProductTitle.Text,tbProductDescription.Text,tbProductQuantity.Text,tbProductQuantityDepo.Text,
+                tbProductSellingPrice.Text,tbProductBuyingPrice.Text,tbProductThreshHold.Text, productID };
+                productControl.UpdateProduct(productData);
                 MessageBox.Show("You have succesfully updated information for that product!");
                 this.renderProductsTable();
                 this.showPanel(this.pnlProducts);
@@ -418,7 +412,7 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show(e.Message);
             }
-            this.clearProductFields();
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -440,12 +434,12 @@ namespace PapaSenpai_Project_Software
                         }
                         string productId = (dataRow.Cells["ID"].Value.ToString());
                         string[] product = { productId };
-                        this.productControl.DeleteProduct(product);
+                        productControl.DeleteProduct(product);
                         found = true;
                     }
 
-                    this.productControl.retrieveAllProducts();
-                    this.renderProductsTable();
+                    productControl.retrieveAllProducts();
+                    renderProductsTable();
 
 
                     if (!found)
@@ -478,18 +472,18 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = dataRow.Cells["ID"].Value.ToString();
                     Product product = productControl.GetProductById(Convert.ToInt32(id));
-                    this.lblProductTitle.Text = product.Title;
-                    this.lblProductDescription.Text = product.Description;
-                    this.lblProductQuantity.Text = Convert.ToString(product.Quantity);
-                    this.lblProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
-                    this.lblProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
-                    this.lblProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
-                    this.lblProductPlaceHolder.Text = Convert.ToString(product.ThreshHold);
-                    this.lblProductID.Text = Convert.ToString(product.Id);
-                    this.lblRevue.Text = Convert.ToString(product.OverallPrice);
-                    this.productControl.retrieveAllProducts();
-                    this.renderProductsTable();
-                    this.showPanel(pnlProductInformation);
+                    lblProductTitle.Text = product.Title;
+                    lblProductDescription.Text = product.Description;
+                    lblProductQuantity.Text = Convert.ToString(product.Quantity);
+                    lblProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
+                    lblProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
+                    lblProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
+                    lblProductPlaceHolder.Text = Convert.ToString(product.ThreshHold);
+                    lblProductID.Text = Convert.ToString(product.Id);
+                    lblRevue.Text = Convert.ToString(product.OverallPrice);
+                    productControl.retrieveAllProducts();
+                    renderProductsTable();
+                    showPanel(pnlProductInformation);
                 }
             }
         }
@@ -513,7 +507,7 @@ namespace PapaSenpai_Project_Software
                 dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.Role, admin.Email);
             }
 
-            dtUsers.DataSource = dtEmp;
+            dtAdmins.DataSource = dtEmp;
 
         }
 
@@ -537,12 +531,12 @@ namespace PapaSenpai_Project_Software
                 int role_id = this.cbAdminRole.SelectedIndex;
                 role_id++;
                 string increased_role_id = Convert.ToString(role_id);
-                string[] admin_bindings = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text,
+                string[] admin_bindings = { tbAdminUserName.Text, tbAdminPassword.Text, tbAdminFirstName.Text, tbAdminLastName.Text, tbAdminEmail.Text,
                     increased_role_id };
                 adminControl.Add(admin_bindings);
                 MessageBox.Show("You have created a user!");
-                this.renderAdminTable();
-                this.showPanel(pnlViewUser);
+                renderAdminTable();
+                showPanel(pnlAdmins);
                 return;
             }
 
@@ -551,18 +545,18 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show(message);
             }
 
-
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
 
         private void EditAdmin()
         {
-            this.btnAddUser.Visible = false;
-            this.btnUpdateUser.Visible = true;
-            for (int i = 0; i < dtUsers.Rows.Count; ++i)
+            btnAddUser.Visible = false;
+            btnUpdateUser.Visible = true;
+            for (int i = 0; i < dtAdmins.Rows.Count; ++i)
             {
-                DataGridViewRow dataRow = dtUsers.Rows[i];
+                DataGridViewRow dataRow = dtAdmins.Rows[i];
 
                 if (dataRow.IsNewRow)
                 {
@@ -574,16 +568,16 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = dataRow.Cells["ID"].Value.ToString();
                     Admin admin = adminControl.getAdminById(Convert.ToInt32(id));
-                    this.tbAdminUserName.Text = admin.Username;
-                    this.tbAdminFirstName.Text = admin.FirstName;
-                    this.tbAdminLastName.Text = admin.LastName;
-                    this.tbAdminEmail.Text = admin.Email;
-                    this.tbAdminPassword.Text = admin.Password;
-                    this.cbAdminRole.SelectedItem = Convert.ToString(admin.Role);
-                    this.tbAdminId.Text = Convert.ToString(admin.ID);
+                    tbAdminUserName.Text = admin.Username;
+                    tbAdminFirstName.Text = admin.FirstName;
+                    tbAdminLastName.Text = admin.LastName;
+                    tbAdminEmail.Text = admin.Email;
+                    tbAdminPassword.Text = admin.Password;
+                    cbAdminRole.SelectedItem = Convert.ToString(admin.Role);
+                    tbAdminId.Text = Convert.ToString(admin.ID);
                     adminControl.retrieveAllAdmins();
-                    this.renderAdminTable();
-                    this.showPanel(pnlAddEditAdmin);
+                    renderAdminTable();
+                    showPanel(pnlAddEditAdmin);
                 }
             }
 
@@ -599,17 +593,18 @@ namespace PapaSenpai_Project_Software
                 int roleIndex = this.cbAdminRole.SelectedIndex;
                 roleIndex++;
                 string roleID = Convert.ToString(roleIndex);
-                string[] adminData = { this.tbAdminUserName.Text, this.tbAdminPassword.Text, this.tbAdminFirstName.Text, this.tbAdminLastName.Text, this.tbAdminEmail.Text, roleID, adminId };
+                string[] adminData = { tbAdminUserName.Text, tbAdminPassword.Text, tbAdminFirstName.Text, tbAdminLastName.Text, tbAdminEmail.Text, roleID, adminId };
                 adminControl.Update(adminData);
-                this.pnlViewUser.Visible = true;
+                pnlAdmins.Visible = true;
                 MessageBox.Show("You have succesfully update information for that user!");
-                this.renderAdminTable();
-                this.showPanel(this.pnlViewUser);
+                renderAdminTable();
+                showPanel(pnlAdmins);
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -622,9 +617,9 @@ namespace PapaSenpai_Project_Software
                 if (MessageBox.Show("Do you want to delete this user?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     bool found = false;
-                    for (int i = 0; i < dtUsers.Rows.Count; ++i)
+                    for (int i = 0; i < dtAdmins.Rows.Count; ++i)
                     {
-                        DataGridViewRow dataRow = dtUsers.Rows[i];
+                        DataGridViewRow dataRow = dtAdmins.Rows[i];
 
                         bool selectedAdmin = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                         if (dataRow.IsNewRow || !selectedAdmin)
@@ -633,12 +628,13 @@ namespace PapaSenpai_Project_Software
                         }
                         string adminId = (dataRow.Cells["ID"].Value.ToString());
                         string[] adminID = { adminId };
+                        MessageBox.Show("Admin have been succesfully deleted");
                         adminControl.Delete(adminID);
                         found = true;
                     }
 
                     adminControl.retrieveAllAdmins();
-                    this.renderAdminTable();
+                    renderAdminTable();
 
 
                     if (!found)
@@ -652,7 +648,7 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show("Can't delete that");
             }
 
-
+            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -668,35 +664,29 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("First Name", typeof(string));
             dtEmp.Columns.Add("Last Name", typeof(string));
             dtEmp.Columns.Add("Gender", typeof(string));
-            dtEmp.Columns.Add("Phone", typeof(string));
             dtEmp.Columns.Add("Country", typeof(string));
-            dtEmp.Columns.Add("City", typeof(string));
-            dtEmp.Columns.Add("Adress", typeof(string));
             dtEmp.Columns.Add("Email", typeof(string));
-            dtEmp.Columns.Add("Deparment", typeof(string));
+            dtEmp.Columns.Add("Department", typeof(string));
             dtEmp.Columns.Add("Contract", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
             dtEmp.Columns.Add("Salary for the shift", typeof(string));
 
-
-
             // total employees 
             this.tbeStaffCount.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
 
-
             // total hours of working 
             double total = this.employeeControl.getEmployees().Sum(item => item.HoursWorked);
-            double salaryToBePaid = this.employeeControl.getEmployees().Sum(item => item.getSalary());
             this.tbeTotalHoursWorked.Text = total.ToString();
+
+            // salary to be paid
+            double salaryToBePaid = this.employeeControl.getEmployees().Sum(item => item.getSalary());
             this.tbeSalaryToPay.Text = salaryToBePaid.ToString();
 
 
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName,
-                    employee.LastName, employee.Gender, employee.PhoneNumber, employee.Country, employee.City,
-                    employee.Adress, employee.Email, employee.Department, employee.Contract, employee.Wage, "10");
-
+                    employee.LastName, employee.Gender,employee.Country, employee.Email, employee.Department, employee.Contract, employee.Wage, "10");
             }
 
             dtEmployees.DataSource = dtEmp;
@@ -707,36 +697,43 @@ namespace PapaSenpai_Project_Software
 
         private void AddEmployee()
         {
-            this.btnAssignEmployee.Visible = true;
-            this.btnUpdateEmployee.Visible = false;
+            showButton(btnAssignEmployee);
+            hideButton(btnUpdateEmployee);
             List<String> errors = new List<string>();
-
             if (!valuesAreEmptyEmployee())
             {
                 errors.Add("You can't create a user without entering all the fields");
             }
-            if (employeeControl.GetEmployeeByEmail(this.tbEmployeeEmail.Text) != null)
+            if (employeeControl.GetEmployeeByEmail(tbEmployeeEmail.Text) != null)
             {
                 errors.Add("You can't add an user with the same email");
             }
 
             if (!errors.Any())
             {
-                int department_id = this.cbEmployeeDepartment.SelectedIndex;
-                department_id++;
-                string increased_department_id = Convert.ToString(department_id);
-                int contract_id = this.cbEmployeeContract.SelectedIndex;
-                contract_id++;
-                string increased_contract_id = Convert.ToString(contract_id);
-                string gender = Convert.ToString(this.cbEmployeeGender.Text);
-                string[] employee_bindings = { this.tbEmployeeFirstName.Text, this.tbEmployeeLastName.Text, this.tbEmployeeAdress.Text,
-                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text, this.tbEmployeeWagePerHour.Text, this.tbEmployeePhoneNumber.Text,
-                    gender, this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text};
-                employeeControl.AddEmployee(employee_bindings);
-                this.renderScheduleMembers();
-                this.renderStaffTable();
-                this.showPanel(pnlEmployee);
-
+                try
+                {
+                    int department_id = cbEmployeeDepartment.SelectedIndex;
+                    department_id++;
+                    string increased_department_id = Convert.ToString(department_id);
+                    int contract_id = cbEmployeeContract.SelectedIndex;
+                    contract_id++;
+                    string increased_contract_id = Convert.ToString(contract_id);
+                    string gender = Convert.ToString(cbEmployeeGender.Text);
+                    string[] employee_bindings = { tbEmployeeFirstName.Text, tbEmployeeLastName.Text, tbEmployeeAdress.Text,
+                    tbEmployeeCity.Text, tbEmployeeCountry.Text, tbEmployeeWagePerHour.Text, tbEmployeePhoneNumber.Text,
+                    gender, tbEmployeeEmail.Text,increased_department_id,increased_contract_id,tbEmployeeUserName.Text,tbEmployeePassword.Text};
+                    employeeControl.AddEmployee(employee_bindings);
+                    MessageBox.Show("You have succesfully created an employee!");
+                    this.renderScheduleMembers();
+                    this.renderStaffTable();
+                    this.showPanel(pnlEmployee);
+                    return;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("There's been an exception: " + e.Message);
+                }
             }
 
             foreach (string message in errors)
@@ -764,33 +761,26 @@ namespace PapaSenpai_Project_Software
                 bool selectedEmployee = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
                 if (selectedEmployee)
                 {
-                    try
-                    {
-                        string employeeId = (dataRow.Cells["ID"].Value.ToString());
-                        Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(employeeId));
-                        this.tbEmployeeUserName.Text = employee.UserName;
-                        this.tbEmployeePassword.Text = employee.Password;
-                        this.tbEmployeeFirstName.Text = employee.FirstName;
-                        this.tbEmployeeLastName.Text = employee.LastName;
-                        this.tbEmployeeEmail.Text = employee.Email;
-                        this.tbEmployeeAdress.Text = employee.Adress;
-                        this.tbEmployeePhoneNumber.Text = employee.PhoneNumber;
-                        this.tbEmployeeCity.Text = employee.City;
-                        this.tbEmployeeId.Text = Convert.ToString(employee.ID);
-                        this.tbEmployeeCountry.Text = employee.Country;
-                        this.tbEmployeeWagePerHour.Text = employee.Wage.ToString();
-                        this.cbEmployeeDepartment.SelectedItem = Convert.ToString(employee.Department);
-                        this.cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
-                        this.cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("There's been an exception: " + e.Message);
-                    }
-                    this.showPanel(this.pnlAddEditEmployee);
+                    string employeeId = (dataRow.Cells["ID"].Value.ToString());
+                    Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(employeeId));
+                    tbEmployeeUserName.Text = employee.UserName;
+                    tbEmployeePassword.Text = employee.Password;
+                    tbEmployeeFirstName.Text = employee.FirstName;
+                    tbEmployeeLastName.Text = employee.LastName;
+                    tbEmployeeEmail.Text = employee.Email;
+                    tbEmployeeAdress.Text = employee.Adress;
+                    tbEmployeePhoneNumber.Text = employee.PhoneNumber;
+                    tbEmployeeCity.Text = employee.City;
+                    tbEmployeeId.Text = Convert.ToString(employee.ID);
+                    tbEmployeeCountry.Text = employee.Country;
+                    tbEmployeeWagePerHour.Text = employee.Wage.ToString();
+                    cbEmployeeDepartment.SelectedItem = Convert.ToString(employee.Department);
+                    cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
+                    cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
+                    showPanel(pnlAddEditEmployee);
                     employeeControl.retrieveAllEmployees();
-                    this.renderStaffTable();
-                    this.renderScheduleMembers();
+                    renderStaffTable();
+                    renderScheduleMembers();
                 }
             }
 
@@ -801,29 +791,35 @@ namespace PapaSenpai_Project_Software
 
         private void UpdateEmployee()
         {
+
+            if (!valuesAreEmptyEmployee())
+            {
+                MessageBox.Show("Please enter all fields for updating employee!");
+                return;
+            }
             try
             {
-                string employeeId = this.tbEmployeeId.Text;
+                string employeeId = tbEmployeeId.Text;
                 string gender = Convert.ToString(this.cbEmployeeGender.SelectedItem);
-                int department_id = this.cbEmployeeDepartment.SelectedIndex;
+                int department_id = cbEmployeeDepartment.SelectedIndex;
                 department_id++;
                 string increased_department_id = Convert.ToString(department_id);
-                int contract_id = this.cbEmployeeContract.SelectedIndex;
+                int contract_id = cbEmployeeContract.SelectedIndex;
                 contract_id++;
                 string increased_contract_id = Convert.ToString(contract_id);
-                string[] employeeData = {this.tbEmployeeFirstName.Text,this.tbEmployeeLastName.Text,this.tbEmployeeAdress.Text,
-                    this.tbEmployeeCity.Text, this.tbEmployeeCountry.Text,
-                    this.tbEmployeePhoneNumber.Text,gender,this.tbEmployeeEmail.Text,increased_department_id,increased_contract_id,
-                    this.tbEmployeeWagePerHour.Text,this.tbEmployeeUserName.Text,this.tbEmployeePassword.Text,employeeId};
-                this.pnlEmployee.Visible = true;
+                string[] employeeData = {tbEmployeeFirstName.Text,tbEmployeeLastName.Text,tbEmployeeAdress.Text,
+                    tbEmployeeCity.Text, tbEmployeeCountry.Text,
+                    tbEmployeePhoneNumber.Text,gender,tbEmployeeEmail.Text,increased_department_id,increased_contract_id,
+                    tbEmployeeWagePerHour.Text,tbEmployeeUserName.Text,tbEmployeePassword.Text,employeeId};
+                showPanel(pnlEmployee);
                 employeeControl.UpdateEmployee(employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
-                this.showPanel(this.pnlEmployee);
-                this.renderStaffTable();
+                renderStaffTable();
+                renderScheduleMembers();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -855,17 +851,16 @@ namespace PapaSenpai_Project_Software
 
                     if (found)
                     {
-                        MessageBox.Show("Employee/s have been succesfully deleted");
+                        MessageBox.Show("Employee have been succesfully deleted");
                     }
 
                     employeeControl.retrieveAllEmployees();
-                    this.renderStaffTable();
-                    this.renderScheduleMembers();
-
+                    renderStaffTable();
+                    renderScheduleMembers();
 
                     if (!found)
                     {
-                        MessageBox.Show("You need to tick the selected box to delete a employee");
+                        MessageBox.Show("You need to tick the selected box to delete an employee");
                     }
                 }
             }
@@ -896,32 +891,31 @@ namespace PapaSenpai_Project_Software
                     {
                         string id = dataRow.Cells["ID"].Value.ToString();
                         Employee employee = employeeControl.getEmployeeById(Convert.ToInt32(id));
-                        this.tbeUserName.Text = employee.UserName;
-                        this.tbeFirstName.Text = employee.FirstName;
-                        this.tbeLastName.Text = employee.LastName;
-                        this.tbeEmail.Text = employee.Email;
-                        this.tbeAddress.Text = employee.Adress;
-                        this.tbeCity.Text = employee.City;
-                        this.tbeCountry.Text = employee.Country;
-                        this.tbePhoneNumber.Text = employee.PhoneNumber;
-                        this.tbeTotalHours.Text = employee.HoursWorked.ToString();
-                        this.tbeSalary.Text = employee.Wage.ToString();
-                        this.tbeShiftsTaken.Text = employee.ShiftsTaken.ToString();
-                        this.tbeWage.Text = employee.Wage.ToString();
-
-                        this.tbeSalary.Text = employee.getSalary().ToString();
-                        this.tbeContract.Text = Convert.ToString(employee.Contract);
-                        this.tbeGender.Text = Convert.ToString(employee.Gender);
-                        this.tbeDepartment.Text = Convert.ToString(employee.Department);
-                        this.tbeId.Text = Convert.ToString(employee.ID);
+                        tbeUserName.Text = employee.UserName;
+                        tbeFirstName.Text = employee.FirstName;
+                        tbeLastName.Text = employee.LastName;
+                        tbeEmail.Text = employee.Email;
+                        tbeAddress.Text = employee.Adress;
+                        tbeCity.Text = employee.City;
+                        tbeCountry.Text = employee.Country;
+                        tbePhoneNumber.Text = employee.PhoneNumber;
+                        tbeTotalHours.Text = employee.HoursWorked.ToString();
+                        tbeSalary.Text = employee.Wage.ToString();
+                        tbeShiftsTaken.Text = employee.ShiftsTaken.ToString();
+                        tbeWage.Text = employee.Wage.ToString();
+                        tbeSalary.Text = employee.getSalary().ToString();
+                        tbeContract.Text = Convert.ToString(employee.Contract);
+                        tbeGender.Text = Convert.ToString(employee.Gender);
+                        tbeDepartment.Text = Convert.ToString(employee.Department);
+                        tbeId.Text = Convert.ToString(employee.ID);
+                        employeeControl.retrieveAllEmployees();
+                        renderStaffTable();
+                        showPanel(this.pnlViewEmployeeDetails);
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
-                    adminControl.retrieveAllAdmins();
-                    this.renderAdminTable();
-                    this.showPanel(this.pnlViewEmployeeDetails);
                 }
             }
         }
@@ -934,7 +928,7 @@ namespace PapaSenpai_Project_Software
             //add the new ones
             //if not create schedule in db with the employees in related table
 
-            Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
+            Schedule schedule = scheduleControl.getScheduleByDate(currentScheduleDate);
 
             if (schedule != null)
             {
@@ -943,7 +937,7 @@ namespace PapaSenpai_Project_Software
                 scheduleControl.Delete(delete_bindings);
             }
 
-            string[] bindings = { "", this.currentScheduleDate.ToString("MM-dd-yyyy") };
+            string[] bindings = { "", currentScheduleDate.ToString("MM-dd-yyyy") };
             int id = Convert.ToInt32(scheduleControl.Insert(bindings));
 
 
@@ -961,8 +955,8 @@ namespace PapaSenpai_Project_Software
                 }
 
                 bool userChecked = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
-                string from = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["From"].Value.ToString();
-                string to = this.currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["To"].Value.ToString();
+                string from = currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["From"].Value.ToString();
+                string to = currentScheduleDate.ToString("MM-dd-yyyy") + " " + dataRow.Cells["To"].Value.ToString();
 
                 if (userChecked)
                 {
@@ -995,13 +989,13 @@ namespace PapaSenpai_Project_Software
 
             scheduleControl.retrieveSchedules();
             employeeControl.retrieveAllEmployees();
-            this.renderScheduleMembers();
-            this.renderDailySchedule();
-            this.renderStaffTable();
+            renderScheduleMembers();
+            renderDailySchedule();
+            renderStaffTable();
 
             MessageBox.Show("You successfully updated the schedule");
 
-            calendarSchedule.SelectionRange.End = this.currentScheduleDate;
+            calendarSchedule.SelectionRange.End = currentScheduleDate;
 
         }
 
@@ -1009,7 +1003,7 @@ namespace PapaSenpai_Project_Software
         private void renderScheduleMembers()
         {
 
-            Schedule schedule = scheduleControl.getScheduleByDate(this.currentScheduleDate);
+            Schedule schedule = scheduleControl.getScheduleByDate(currentScheduleDate);
             calendarSchedule.AnnuallyBoldedDates = null;
             List<DateTime> coloredDates = new List<DateTime>();
 
@@ -1085,8 +1079,8 @@ namespace PapaSenpai_Project_Software
 
         private bool valuesAreEmptyProduct()
         {
-            if (this.tbProductDescription.Text == "" || this.tbProductDescription.Text == "" || this.tbProductTitle.Text == "" ||
-                this.tbProductQuantity.Text == "" || this.tbProductSellingPrice.Text == "" || this.tbProductBuyingPrice.Text == "" || this.tbProductThreshHold.Text == "")
+            if (tbProductDescription.Text == "" || tbProductDescription.Text == "" || tbProductTitle.Text == "" ||
+                tbProductQuantity.Text == "" || tbProductSellingPrice.Text == "" || tbProductBuyingPrice.Text == "" || tbProductThreshHold.Text == "")
             {
                 return false;
             }
@@ -1096,10 +1090,10 @@ namespace PapaSenpai_Project_Software
 
         private bool valuesAreEmptyEmployee()
         {
-            if (this.tbEmployeeFirstName.Text == "" || this.tbEmployeeLastName.Text == "" ||
-                this.tbEmployeeAdress.Text == "" || this.tbEmployeeCity.Text == "" ||
-                this.tbEmployeeCountry.Text == "" || this.tbEmployeeEmail.Text == "" || this.cbEmployeeContract == null ||
-                this.cbEmployeeGender.SelectedItem == null || this.tbEmployeePhoneNumber == null)
+            if (tbEmployeeFirstName.Text == "" || tbEmployeeLastName.Text == "" ||
+                tbEmployeeAdress.Text == "" || tbEmployeeCity.Text == "" ||
+                tbEmployeeCountry.Text == "" || tbEmployeeEmail.Text == "" || cbEmployeeContract == null ||
+                cbEmployeeGender.SelectedItem == null || tbEmployeePhoneNumber == null)
             {
                 return false;
             }
@@ -1109,9 +1103,9 @@ namespace PapaSenpai_Project_Software
 
         private bool valuesAreEmptyAdmin()
         {
-            if (this.tbAdminUserName.Text == "" || this.tbAdminFirstName.Text == "" ||
-                this.tbAdminLastName.Text == "" || this.tbAdminPassword.Text == "" ||
-                this.tbAdminEmail.Text == "")
+            if (tbAdminUserName.Text == "" || tbAdminFirstName.Text == "" ||
+                tbAdminLastName.Text == "" || tbAdminPassword.Text == "" ||
+                tbAdminEmail.Text == "")
             {
                 return false;
             }
@@ -1119,7 +1113,7 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void ChangeLoginStyle()
+        private void ChangeHomeStyle()
         {
             MaterialSkin.MaterialSkinManager skinManager = MaterialSkin.MaterialSkinManager.Instance;
             skinManager.AddFormToManage(this);
@@ -1137,7 +1131,7 @@ namespace PapaSenpai_Project_Software
             this.pnlEmployee.Visible = false;
             this.pnlAddEditEmployee.Visible = false;
             this.pnlViewSchedule.Visible = false;
-            this.pnlViewUser.Visible = false;
+            this.pnlAdmins.Visible = false;
             this.pnlAddEditAdmin.Visible = false;
             this.pnlScheduleEmployees.Visible = false;
             this.pnlProducts.Visible = false;
@@ -1146,15 +1140,24 @@ namespace PapaSenpai_Project_Software
             this.pnlProductInformation.Visible = false;
             this.pnlViewEmployeeDetails.Visible = false;
             this.pnlRestocking.Visible = false;
+            this.pnlDepartments.Visible = false;
+            this.pnlAddEditDepartment.Visible = false;
+            this.pnlDepartmentStats.Visible = false;
+            this.pnlRoles.Visible = false;
+            this.pnlAddEditRole.Visible = false;
+            this.pnlRolesStats.Visible = false;
             panel.Visible = true;
 
         }
 
-
-
         private void hideButton(Button button)
         {
             button.Visible = false;
+        }
+
+        private void showButton(Button button)
+        {
+            button.Visible = true;
         }
 
         private void hidePicture(PictureBox p)
@@ -1164,18 +1167,17 @@ namespace PapaSenpai_Project_Software
 
         private void ManagerPermissions()
         {
-
             MessageBox.Show("Welcome " + adminControl.getloggedUser().getFullName() + "!");
-            this.hideButton(btnViewSchedule);
+            this.hideButton(btnSchedulesPage);
             this.hideButton(btnViewAllSchedules);
             this.hideButton(btnAddEmployee);
             this.hideButton(btnEditEmployee);
             this.hideButton(btnDeleteEmployee);
-            this.hideButton(btnAddProduct);
-            this.hideButton(btnEditProduct);
+            this.hideButton(btnAddProductPage);
+            this.hideButton(btnEditProductPage);
             this.hideButton(btnDeleteProduct);
-            this.hideButton(btnViewUsers);
-            this.hideButton(btnViewCart);
+            this.hideButton(btnUsersPage);
+            this.hideButton(btnCartPage);
 
             this.hidePicture(iconPictureBox15);
             this.hidePicture(iconPictureBox10);
@@ -1194,19 +1196,19 @@ namespace PapaSenpai_Project_Software
 
             MessageBox.Show("Welcome " + adminControl.getloggedUser().getFullName() + "!");
             this.lblNameWorker.Text = (adminControl.getloggedUser().getFullName());
-            this.hideButton(btnViewSchedule);
+            this.hideButton(btnSchedulesPage);
             this.hideButton(btnViewAllSchedules);
             this.hideButton(btnAddEmployee);
             this.hideButton(btnEditEmployee);
             this.hideButton(btnDeleteEmployee);
-            this.hideButton(btnAddProduct);
-            this.hideButton(btnEditProduct);
+            this.hideButton(btnAddProductPage);
+            this.hideButton(btnEditProductPage);
             this.hideButton(btnDeleteProduct);
-            this.hideButton(btnViewUsers);
-            this.hideButton(btnViewCart);
-            this.hideButton(btnDashboard);
-            this.hideButton(btnViewEmployees);
-            this.hideButton(btnViewProducts);
+            this.hideButton(btnUsersPage);
+            this.hideButton(btnCartPage);
+            this.hideButton(btnDashboardPage);
+            this.hideButton(btnEmployeesPage);
+            this.hideButton(btnProductsPage);
             this.showPanel(pnlRestocking);
 
             this.pnlMenu.Visible = false;
@@ -1225,71 +1227,38 @@ namespace PapaSenpai_Project_Software
             this.hidePicture(iconPictureBox3);
             this.hidePicture(iconPictureBox16);
         }
-        private void clearProductFields()
-        {
-            this.tbProductTitle.Clear();
-            this.tbProductDescription.Clear();
-            this.tbProductQuantity.Clear();
-            this.tbProductQuantityDepo.Clear();
-            this.tbProductSellingPrice.Clear();
-            this.tbProductThreshHold.Clear();
-            this.tbProductBuyingPrice.Clear();
-        }
-
-        private void clearEmployeeFields()
-        {
-            this.tbEmployeeAdress.Clear();
-            this.tbEmployeeCountry.Clear();
-            this.tbEmployeeCity.Clear();
-            this.tbEmployeeEmail.Clear();
-            this.tbEmployeeLastName.Clear();
-            this.tbEmployeePassword.Clear();
-            this.tbEmployeePhoneNumber.Clear();
-            this.tbEmployeeId.Clear();
-            this.tbEmployeeFirstName.Clear();
-            this.tbEmployeeUserName.Clear();
-        }
-
-        private void clearAdminFields()
-        {
-            this.tbAdminEmail.Clear();
-            this.tbAdminFirstName.Clear();
-            this.tbAdminLastName.Clear();
-            this.tbAdminUserName.Clear();
-            this.tbAdminPassword.Clear();
-        }
 
 
         private void tbAddToCart_Click(object sender, EventArgs e)
         {
             Product product = (Product)lbStoreProducts.SelectedItem;
-            int quantity = Convert.ToInt32(this.tbQuantity.Text);
+            int quantity = Convert.ToInt32(tbQuantity.Text);
             if (product.Quantity < quantity || quantity <= 0)
             {
                 MessageBox.Show("The desired quanity of the product is not in stock");
                 return;
             }
 
-            this.ordersControl.addProduct(product, quantity);
-            this.lbShoppingCart.Items.Add($"{product.Title} - {quantity}");
+            ordersControl.addProduct(product, quantity);
+            lbShoppingCart.Items.Add($"{product.Title} - {quantity}");
         }
 
         private void tbPurchase_Click_2(object sender, EventArgs e)
         {
-            Admin admin = this.adminControl.getloggedUser();
+            Admin admin = adminControl.getloggedUser();
 
-            if (this.ordersControl.Products.Count() == 0)
+            if (ordersControl.Products.Count() == 0)
             {
                 MessageBox.Show("Your basket is empty");
                 return;
             }
 
             string[] bindings = { admin.ID.ToString() };
-            this.ordersControl.Buy(bindings);
-            this.lbShoppingCart.Items.Clear();
-            this.productControl.retrieveAllProducts();
-            this.renderProductsForOrder();
-            this.renderProductsTable();
+            ordersControl.Buy(bindings);
+            lbShoppingCart.Items.Clear();
+            productControl.retrieveAllProducts();
+            renderProductsForOrder();
+            renderProductsTable();
             MessageBox.Show("You successfully made an order!");
 
         }
@@ -1301,10 +1270,10 @@ namespace PapaSenpai_Project_Software
 
         private void renderRequestTable()
         {
-            this.lbRestocking.Items.Clear();
-            foreach (Request request in this.requestControl.GetRequests())
+            lbRestocking.Items.Clear();
+            foreach (Request request in requestControl.GetRequests())
             {
-                this.lbRestocking.Items.Add(request);
+                lbRestocking.Items.Add(request);
             }
         }
 
@@ -1315,15 +1284,15 @@ namespace PapaSenpai_Project_Software
             {
                 try
                 {
-                    string id = this.lblProductID.Text;
-                    string quantity = this.tbQuantityRequest.Text;
+                    string id = lblProductID.Text;
+                    string quantity = tbQuantityRequest.Text;
 
                     string[] requestBindings = { id, quantity };
 
-                    this.showPanel(this.pnlProducts);
-                    this.requestControl.Insert(requestBindings);
-                    this.requestControl.retrieveAllRequests();
-                    this.renderRequestTable();
+                    showPanel(pnlProducts);
+                    requestControl.Insert(requestBindings);
+                    requestControl.retrieveAllRequests();
+                    renderRequestTable();
                 }
                 catch (Exception e)
                 {
@@ -1351,13 +1320,13 @@ namespace PapaSenpai_Project_Software
         private void btnRestockProducts_Click(object sender, EventArgs e)
         {
             Request request = (Request)lbRestocking.SelectedItem;
-            Product product = this.productControl.GetProductById(Convert.ToInt32(request.ProductId));
+            Product product = productControl.GetProductById(Convert.ToInt32(request.ProductId));
             string[] product_bindings = { (Convert.ToInt32(request.Quantity) + Convert.ToInt32(product.Quantity)).ToString(), request.ProductId };
             string[] deleteBindings = { request.Id.ToString() };
-            this.requestControl.Approve(product_bindings);
-            this.requestControl.Delete(deleteBindings);
-            this.requestControl.retrieveAllRequests();
-            this.renderRequestTable();
+            requestControl.Approve(product_bindings);
+            requestControl.Delete(deleteBindings);
+            requestControl.retrieveAllRequests();
+            renderRequestTable();
             MessageBox.Show("Request sucessfully approved");
         }
 
@@ -1369,9 +1338,497 @@ namespace PapaSenpai_Project_Software
 
                 if (status == "Yes")
                 {
-                       row.DefaultCellStyle.BackColor = Color.FromArgb(220, 20, 60);
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(220, 20, 60);
                 }
             }
+        }
+
+        private void btnDepartmentPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlDepartments);
+        }
+
+        private void btnAddDepartmentPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditDepartment);
+            btnAddDepartment.Visible = true;
+            hideButton(btnUpdateDepartment);
+        }
+
+        public void AddDepartment()
+        {
+            hideButton(btnUpdateDepartment);
+
+            Departments d = departmentControl.GetDepartmentsByTitle(tbDepartmentTitle.Text);
+
+            if (d != null)
+            {
+                MessageBox.Show("Department with title: " + tbDepartmentTitle.Text + " Already exist!");
+                return;
+            }
+
+            if (tbDepartmentTitle.Text == "")
+            {
+                MessageBox.Show("You cant leave the title of department empty!");
+                return;
+            }
+
+            try
+            {
+                string title = tbDepartmentTitle.Text;
+                string[] department_bindings = { title };
+                departmentControl.Insert(department_bindings);
+                departmentControl.retrieveAllDepartments();
+                showPanel(pnlDepartments);
+                renderDepartmentsTable();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an exception: " + e.Message);
+            }
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        public void EditDepartment()
+        {
+            hideButton(btnAddDepartment);
+            showButton(btnUpdateDepartment);
+            for (int i = 0; i < dtDepartments.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtDepartments.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedDepartment = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedDepartment)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Departments department = departmentControl.GetDepartmentsByID(Convert.ToInt32(id));
+                    tbDepartmentTitle.Text = department.Title;
+                    tbDepartmentId.Text = Convert.ToString(department.Id);
+                    departmentControl.retrieveAllDepartments();
+                    renderDepartmentsTable();
+                    showPanel(pnlAddEditDepartment);
+                }
+            }
+        }
+
+        public void UpdateDepartment()
+        {
+            hideButton(btnAddDepartment);
+
+            Departments d = departmentControl.GetDepartmentsByTitle(tbDepartmentTitle.Text);
+
+            if (d != null)
+            {
+                MessageBox.Show("Department with title: " + tbDepartmentTitle.Text + " Already exist!");
+                return;
+            }
+
+            if (tbDepartmentTitle.Text == "")
+            {
+                MessageBox.Show("You cant leave the title of department empty!");
+                return;
+            }
+
+
+            try
+            {
+                string title = tbDepartmentTitle.Text;
+                string[] department_bindings = { title, tbDepartmentId.Text };
+                departmentControl.Update(department_bindings);
+                departmentControl.retrieveAllDepartments();
+                showPanel(pnlDepartments);
+                MessageBox.Show("You have succesfully updated the department!");
+                renderDepartmentsTable();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an exception: " + e.Message);
+            }
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        private void DeleteDepartment()
+        {
+            try
+            {
+                if (MessageBox.Show("Do you want to delete this department?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    bool found = false;
+                    for (int i = 0; i < dtDepartments.Rows.Count; ++i)
+                    {
+
+                        DataGridViewRow dataRow = dtDepartments.Rows[i];
+                        bool selectedDepartment = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+
+                        if (dataRow.IsNewRow || !selectedDepartment)
+                        {
+                            continue;
+                        }
+
+                        string id = (dataRow.Cells["ID"].Value.ToString());
+                        string[] getID = { id };
+                        departmentControl.Delete(getID);
+                        found = true;
+                    }
+
+                    if (found)
+                    {
+                        MessageBox.Show("Department have been succesfully deleted");
+                    }
+
+                    productControl.retrieveAllProducts();
+                    renderDepartmentsTable();
+
+                    if (!found)
+                    {
+                        MessageBox.Show("You need to tick the selected box to delete a department");
+                        return;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an exception!" + e.Message);
+            }
+        }
+
+
+        private void ShowDepartmentDetails()
+        {
+            for (int i = 0; i < dtDepartments.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtDepartments.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedDepartment = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedDepartment)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Departments d = departmentControl.GetDepartmentsByID(Convert.ToInt32(id));
+                    tbStatisticsTitle.Text = d.Title;
+                    tbStatisticsDepId.Text = Convert.ToString(d.Id);
+                    Console.WriteLine(id);
+                    departmentControl.retrieveAllDepartments();
+                    renderDepartmentsTable();
+                    showPanel(pnlDepartmentStats);
+                }
+            }
+
+        }
+
+
+        private void renderDepartmentsTable()
+        {
+            DataTable dtDep = new DataTable();
+            dtDep.Columns.Add("Selected", typeof(bool));
+            dtDep.Columns.Add("ID", typeof(int));
+            dtDep.Columns.Add("Title", typeof(string));
+
+            foreach (Departments d in departmentControl.GetDepartments())
+            {
+                dtDep.Rows.Add(false, d.Id, d.Title);
+            }
+
+            dtDepartments.DataSource = dtDep;
+        }
+
+        private void btnAddDepartment_Click(object sender, EventArgs e)
+        {
+            AddDepartment();
+        }
+
+        private void btnBackToDepartmentPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlDepartments);
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        private void btnBackToDepartmentPageFromStatistics_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlDepartments);
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        private void btnUpdateDepartment_Click(object sender, EventArgs e)
+        {
+            UpdateDepartment();
+        }
+
+        private void btnEditDepartmentPage_Click(object sender, EventArgs e)
+        {
+            EditDepartment();
+        }
+
+        private void TraverseControlsAndSetTextEmpty(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                var box = c as TextBox;
+                if (box != null)
+                {
+                    box.Text = string.Empty;
+                }
+
+                this.TraverseControlsAndSetTextEmpty(c);
+            }
+        }
+
+        private void btnDeleteDepartment_Click(object sender, EventArgs e)
+        {
+            DeleteDepartment();
+        }
+
+        private void btnViewDepartment_Click(object sender, EventArgs e)
+        {
+            ShowDepartmentDetails();
+        }
+
+        private void btnRolesPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlRoles);
+        }
+
+        private void btnAddRolePage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditRole);
+            hideButton(btnUpdateRole);
+            showButton(btnAddRole);
+        }
+
+        private void btnViewRolePage_Click(object sender, EventArgs e)
+        {
+            ShowRoleDetails();
+        }
+
+        private void btnEditRolePage_Click(object sender, EventArgs e)
+        {
+            EditRole();
+        }
+
+        private void renderRolesTable()
+        {
+            DataTable dtRole = new DataTable();
+            dtRole.Columns.Add("Selected", typeof(bool));
+            dtRole.Columns.Add("ID", typeof(int));
+            dtRole.Columns.Add("Title", typeof(string));
+
+            foreach (Roles role in roleControl.GetRoles())
+            {
+                dtRole.Rows.Add(false, role.Id, role.Title);
+            }
+
+            dtRoles.DataSource = dtRole;
+        }
+
+        public void AddRole()
+        {
+            hideButton(btnUpdateRole);
+            showButton(btnAddRole);
+            Roles r = roleControl.GetRoleByTitle(tbRoleTitle.Text);
+
+
+            if (r != null)
+            {
+                MessageBox.Show("Role with title: " + tbRoleTitle.Text + " Already exist!");
+                return;
+            }
+
+            if (tbRoleTitle.Text == "")
+            {
+                MessageBox.Show("You cant leave the title of role empty!");
+                return;
+            }
+
+            try
+            {
+                string title = tbRoleTitle.Text;
+                string[] role_bindings = { title };
+                roleControl.Insert(role_bindings);
+                roleControl.retrieveAllRoles();
+                showPanel(pnlRoles);
+                renderRolesTable();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an exception: " + e.Message);
+            }
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        public void EditRole()
+        {
+            hideButton(btnAddRole);
+            showButton(btnUpdateRole);
+            for (int i = 0; i < dtRoles.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtRoles.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedRole = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedRole)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Roles role = roleControl.GetRoleById(Convert.ToInt32(id));
+                    tbRoleTitle.Text = role.Title;
+                    tbRoleId.Text = Convert.ToString(role.Id);
+                    roleControl.retrieveAllRoles();
+                    renderRolesTable();
+                    showPanel(pnlAddEditRole);
+                }
+            }
+        }
+
+        public void UpdateRole()
+        {
+            hideButton(btnAddRole);
+            showButton(btnUpdateRole);
+
+            Roles r = roleControl.GetRoleByTitle(tbRoleTitle.Text);
+
+
+            if (r != null)
+            {
+                MessageBox.Show("Role with title: " + tbRoleTitle.Text + " Already exist!");
+                return;
+            }
+
+            if (tbRoleTitle.Text == "")
+            {
+                MessageBox.Show("You cant leave the title of role empty!");
+                return;
+            }
+
+
+            try
+            {
+                string title = tbRoleTitle.Text;
+                string[] role_bindings = { title, tbRoleId.Text };
+                roleControl.Update(role_bindings);
+                roleControl.retrieveAllRoles();
+                showPanel(pnlRoles);
+                MessageBox.Show("You have succesfully updated the role!");
+                renderRolesTable();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an exception: " + e.Message);
+            }
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        private void DeleteRole()
+        {
+            try
+            {
+                if (MessageBox.Show("Do you want to delete this role?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    bool found = false;
+                    for (int i = 0; i < dtRoles.Rows.Count; ++i)
+                    {
+
+                        DataGridViewRow dataRow = dtRoles.Rows[i];
+                        bool selectedRole = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+
+                        if (dataRow.IsNewRow || !selectedRole)
+                        {
+                            continue;
+                        }
+
+                        string id = (dataRow.Cells["ID"].Value.ToString());
+                        string[] getID = { id };
+                        roleControl.Delete(getID);
+                        found = true;
+                    }
+
+                    if (found)
+                    {
+                        MessageBox.Show("Role have been succesfully deleted");
+                    }
+
+                    roleControl.retrieveAllRoles();
+                    renderRolesTable();
+                    if (!found)
+                    {
+                        MessageBox.Show("You need to tick the selected box to delete a role");
+                        return;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an exception!" + e.Message);
+            }
+        }
+
+        private void ShowRoleDetails()
+        {
+            for (int i = 0; i < dtRoles.Rows.Count; ++i)
+            {
+                DataGridViewRow dataRow = dtRoles.Rows[i];
+
+                if (dataRow.IsNewRow)
+                {
+                    continue;
+                }
+
+                bool selectedRole = Convert.ToBoolean(dataRow.Cells["Selected"].Value.ToString());
+                if (selectedRole)
+                {
+                    string id = dataRow.Cells["ID"].Value.ToString();
+                    Roles role = roleControl.GetRoleById(Convert.ToInt32(id));
+                    tbViewTitle.Text = role.Title;
+                    tbViewId.Text = Convert.ToString(role.Id);
+                    roleControl.retrieveAllRoles();
+                    renderRolesTable();
+                    showPanel(pnlRolesStats);
+                }
+            }
+
+        }
+
+
+        private void btnAddRole_Click(object sender, EventArgs e)
+        {
+            AddRole();
+        }
+
+        private void btnBackToRolePage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlRoles);
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+        private void btnUpdateRole_Click(object sender, EventArgs e)
+        {
+            UpdateRole();
+        }
+
+        private void btnDeleteRole_Click(object sender, EventArgs e)
+        {
+            DeleteRole();
+        }
+
+        private void btnBackToRolePageFromView_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlRoles);
+        }
+
+        private void btnUsersPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAdmins);
         }
     }
 }
