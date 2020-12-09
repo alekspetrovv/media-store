@@ -53,6 +53,13 @@ namespace PapaSenpai_Project_Software.Logic
                 while (role.Read())
                 {
                     Roles newRole = new Roles(Convert.ToInt32(role["id"]), role["title"].ToString());
+
+                    if (role["department_id"].ToString() != "" && role["department_title"].ToString() != "" )
+                    {
+                        //we have a deparment for that role
+                        Departments department = new Departments(Convert.ToInt32(role["department_id"]), role["department_title"].ToString());
+                        newRole.Department = department;
+                    }
                     roles.Add(newRole);
                 }
             }

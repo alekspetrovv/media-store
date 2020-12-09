@@ -683,6 +683,10 @@ namespace PapaSenpai_Project_Software
             this.tbeSalaryToPay.Text = salaryToBePaid.ToString();
 
 
+            //vij s koi akaunt si se lognal
+            Admin admin = this.adminControl.getloggedUser();
+            //vij kakvq rolq ima i ako e shef na department vzemi id-tp
+            
             foreach (Employee employee in employeeControl.getEmployees())
             {
                 dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.Password, employee.FirstName,
@@ -1618,12 +1622,12 @@ namespace PapaSenpai_Project_Software
         {
             DataTable dtRole = new DataTable();
             dtRole.Columns.Add("Selected", typeof(bool));
-            dtRole.Columns.Add("ID", typeof(int));
             dtRole.Columns.Add("Title", typeof(string));
+            dtRole.Columns.Add("Department", typeof(string));
 
             foreach (Roles role in roleControl.GetRoles())
             {
-                dtRole.Rows.Add(false, role.Id, role.Title);
+                dtRole.Rows.Add(false,  role.Title, role.getDepartmentName());
             }
 
             dtRoles.DataSource = dtRole;

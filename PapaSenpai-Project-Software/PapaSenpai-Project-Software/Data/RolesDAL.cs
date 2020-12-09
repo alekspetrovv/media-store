@@ -26,7 +26,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlDataReader Select()
         {
-            return executeReader("SELECT * FROM `roles`");
+            return executeReader("SELECT roles.*, departments.title as department_title FROM `roles` LEFT JOIN departments ON roles.department_id = departments.id");
         }
 
     }

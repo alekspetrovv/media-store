@@ -93,8 +93,13 @@ namespace PapaSenpai_Project_Software.Logic
             return this.employees.Count;
         }
 
-        public List<Employee> getEmployees()
+        public List<Employee> getEmployees(Departments department = null)
         {
+            //filter all of the employees by department if set
+            //create list from employees
+            //foreach this.employees
+            //if critieria is met add to the list
+            //return the new list
             return this.employees;
         }
     }
