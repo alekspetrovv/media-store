@@ -40,7 +40,7 @@ namespace PapaSenpai_Project_Software
 
         public string getFullName()
         {
-            return this.first_name + " " + this.last_name;
+            return $"{this.first_name} {this.last_name}";
         }
     }
 }

@@ -14,7 +14,7 @@ namespace PapaSenpai_Project_Software.Logic
         public Request(int id,string products_id,string quantity)
         {
             this.id = id;
-            this.productID = products_id;
+            productID = products_id;
             this.quantity = quantity;
         }
 
@@ -29,6 +29,12 @@ namespace PapaSenpai_Project_Software.Logic
         {
             get { return this.quantity; }
         }
+
+        public string ProductId 
+        {
+            get { return this.productID; }
+        }
+
 
         public override string ToString()
         {

@@ -11,13 +11,15 @@ namespace PapaSenpai_Project_Software.Logic
     public class RequestsControl
     {
         private RequestDAL requestDAL;
+        private ProductDAL productsDAL;
         private List<Request> requests;
 
 
         public RequestsControl()
         {
-            this.requestDAL = new RequestDAL();
-            this.requests = new List<Request>();
+            requestDAL = new RequestDAL();
+            productsDAL = new ProductDAL();
+            requests = new List<Request>();
         }
 
 
@@ -36,6 +38,11 @@ namespace PapaSenpai_Project_Software.Logic
                     this.requests.Add(r);
                 }
             }
+        }
+
+        public void Approve(string[] bindings)
+        {
+            this.productsDAL.UpdateQuantity(bindings);
         }
 
 

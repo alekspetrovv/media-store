@@ -14,19 +14,21 @@ namespace PapaSenpai_Project_Software.Data
     {
         public MySqlConnection GetConnection()
         {
-            MySqlConnection con = new MySqlConnection(@"Server=studmysql01.fhict.local;Uid=dbi444915;Database=dbi444915;Pwd=123456;");
+            MySqlConnection con = new MySqlConnection(@"Server=bubrek.com;Uid=dev;Database=papasenpai;Pwd=KlasikaVJanra11;");
             return con;
         }
 
         public MySqlCommand defaultDatabaseConnection(string sql, string[] bindings = null)
         {
-            MySqlConnection con = this.GetConnection();
-            MySqlCommand cmd = con.CreateCommand();
+            try
+            {
+                MySqlConnection con = GetConnection();
+                MySqlCommand cmd = con.CreateCommand();
                 con.Open();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = sql;
 
-                
+
                 List<string> fields = new List<string>();
                 MatchCollection mcol = Regex.Matches(sql, @"@\b\S+?\b");
 
@@ -42,24 +44,31 @@ namespace PapaSenpai_Project_Software.Data
                         cmd.Parameters.Add(fields[i], MySqlDbType.VarChar).Value = bindings[i];
                     }
                 }
-           return cmd;
+                return cmd;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There's been an problem with the connection:  " + e.Message);
+            }
+            return null;
+           
         }
 
 
         public MySqlDataReader executeReader(string sql, string[] bindings = null)
         {
-            return this.defaultDatabaseConnection(sql, bindings).ExecuteReader();
+            return defaultDatabaseConnection(sql, bindings).ExecuteReader();
 
         }
 
         public Object executeScalar(string sql, string[] bindings = null)
         {
-            return this.defaultDatabaseConnection(sql, bindings).ExecuteScalar();
+            return defaultDatabaseConnection(sql, bindings).ExecuteScalar();
         }
 
         public Object executeNonQuery(string sql, string[] bindings = null)
         {
-           return this.defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
+            return defaultDatabaseConnection(sql, bindings).ExecuteNonQuery();
         }
 
 

@@ -14,8 +14,8 @@ namespace PapaSenpai_Project_Software.Logic
         private ProductDAL productDAL;
         public ProductControl()
         {
-            this.products = new List<Product>();
-            this.productDAL = new ProductDAL();
+            products = new List<Product>();
+            productDAL = new ProductDAL();
         }
 
 
@@ -23,7 +23,7 @@ namespace PapaSenpai_Project_Software.Logic
         {
             foreach (Product product in this.GetProducts())
             {
-                if(product.Id == id)
+                if (product.Id == id)
                 {
                     return product;
                 }
@@ -55,18 +55,21 @@ namespace PapaSenpai_Project_Software.Logic
                 {
                     int overall = 0;
 
-                    
-                    if(products["overall_price"] != System.DBNull.Value)
+                    if (products["overall_price"] != System.DBNull.Value)
                     {
-                       overall = Convert.ToInt32(products["overall_price"]);
+                        overall = Convert.ToInt32(products["overall_price"]);
                     }
-                    
-                    Product product = new Product(Convert.ToInt32(products["id"]), products["title"].ToString(),
-                    products["description"].ToString(),(Convert.ToInt32(products["quantity"])), (Convert.ToInt32(products["quantitydepo"])), (Convert.ToDouble(products["selling_price"])),
-                    (Convert.ToDouble(products["buying_price"])),(Convert.ToInt32(products["threshold"])), overall);
 
+                    Product product = new Product(Convert.ToInt32(products["id"]), products["title"].ToString(),
+                    products["description"].ToString(), (Convert.ToInt32(products["quantity"])), (Convert.ToInt32(products["quantitydepo"])), (Convert.ToDouble(products["selling_price"])),
+                    (Convert.ToDouble(products["buying_price"])), (Convert.ToInt32(products["threshold"])), overall);
                     this.products.Add(product);
 
+                    if (products["department_id"].ToString() != "" && products["department_title"].ToString() != "")
+                    {
+                        Department department = new Department(Convert.ToInt32(products["department_id"]), products["department_title"].ToString());
+                        product.Department = department;
+                    }
                 }
             }
         }
@@ -91,6 +94,12 @@ namespace PapaSenpai_Project_Software.Logic
         private void EmptyProducts()
         {
             this.products.Clear();
+        }
+
+
+        public int GetProductsCount()
+        {
+            return this.products.Count;
         }
 
 

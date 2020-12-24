@@ -9,7 +9,7 @@ namespace PapaSenpai_Project_Software.Logic
 {
     class OrdersControl
     {
-        private List<OrderProduct> products;
+        private  List<OrderProduct> products;
         private  OrdersDAL ordersDAL;
         private  OrdersProductsDAL ordersProductsDAL;
         private  ProductDAL productDAL;

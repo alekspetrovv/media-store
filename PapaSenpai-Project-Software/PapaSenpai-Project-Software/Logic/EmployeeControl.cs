@@ -43,15 +43,17 @@ namespace PapaSenpai_Project_Software.Logic
                 while (employees.Read())
                 {
                     Employee employee = new Employee(Convert.ToInt32(employees["id"]), employees["first_name"].ToString(),
-                        employees["last_name"].ToString(), employees["email"].ToString(), employees["address"].ToString(), 
+                        employees["last_name"].ToString(), employees["email"].ToString(), employees["address"].ToString(),
                         employees["city"].ToString(), employees["country"].ToString(),
-                        employees["phone_number"].ToString(),employees["gender"].ToString(), 
-                        employees["department"].ToString(),employees["contract"].ToString(),
-                        employees["wage_per_hour"].ToString(), employees["username"].ToString(), 
+                        employees["phone_number"].ToString(), employees["gender"].ToString(), employees["contract"].ToString(),
+                        employees["wage_per_hour"].ToString(), employees["username"].ToString(),
                         employees["password"].ToString(), employees["shifts_taken"].ToString(), employees["hours_worked"].ToString());
 
-                    Console.WriteLine(employee.HoursWorked);
-
+                    if (employees["department_id"].ToString() != "" && employees["department_title"].ToString() != "")
+                    {
+                        Department department = new Department(Convert.ToInt32(employees["department_id"]), employees["department_title"].ToString());
+                        employee.Department = department;
+                    }
                     this.employees.Add(employee);
                 }
             }
@@ -65,6 +67,11 @@ namespace PapaSenpai_Project_Software.Logic
         public void UpdateEmployee(string[] employee_bindings)
         {
             employeeDAL.Update(employee_bindings);
+            this.retrieveAllEmployees();
+        }
+        public void Filter(string[] employee_bindings)
+        {
+            employeeDAL.Filter(employee_bindings);
             this.retrieveAllEmployees();
         }
         public void DeleteEmployee(string[] employee_bindings)
@@ -91,10 +98,25 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-
-        public List<Employee> getEmployees()
+        public int GetEmployeesCount()
         {
-            return this.employees;
+            return this.employees.Count;
+        }
+
+        public List<Employee> getEmployees(Department department = null)
+        {
+            List<Employee> employeesdep = this.employees;
+            if(department != null)
+            {
+                foreach (Employee employee in employeesdep)
+                {
+                    if (employee.Department != department)
+                    {
+                        employeesdep.Remove(employee);
+                    }
+                }
+            }
+            return employeesdep;
         }
     }
 }

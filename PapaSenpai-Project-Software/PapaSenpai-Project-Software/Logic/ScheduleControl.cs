@@ -73,7 +73,7 @@ namespace PapaSenpai_Project_Software.Logic
                             {
                                 //in case something is wrong with the dates again
                             }
-                                                    }
+                        }
                     }
                     this.addSchedule(schedule);
                 }

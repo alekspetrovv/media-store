@@ -12,7 +12,7 @@ namespace PapaSenpai_Project_Software.Data
 
         public void Insert(string[] request_bindings)
         {
-            this.executeNonQuery("INSERT INTO `requests`(`products_id`,`quantity`) " +
+            executeNonQuery("INSERT INTO `requests`(`products_id`,`quantity`) " +
                 "VALUES (@productid,@quantity)", request_bindings);
         }
 
@@ -20,13 +20,13 @@ namespace PapaSenpai_Project_Software.Data
 
         public void Delete(string[] request_bindings)
         {
-            this.executeNonQuery("DELETE FROM `requests` WHERE `id` = @id", request_bindings);
+            executeNonQuery("DELETE FROM `requests` WHERE `id` = @id", request_bindings);
         }
 
 
         public MySqlDataReader Select()
         {
-            return this.executeReader("SELECT * FROM `requests`");
+            return executeReader("SELECT * FROM `requests`");
         }
     }
 }
