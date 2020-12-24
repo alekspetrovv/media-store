@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PapaSenpai_Project_Software
+namespace PapaSenpai_Project_Software.Logic
 {
-    public enum Department
+    public class Department
     {
-        Programmer = 1,
-        Cleaner,
-        Salesman, 
+        public Department(int id, string title)
+        {
+            Id = id;
+            Title = title;
+        }
+
+        public string Title { get; }
+        public int Id { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title}";
+        }
     }
 }

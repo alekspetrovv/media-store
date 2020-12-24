@@ -10,18 +10,18 @@ namespace PapaSenpai_Project_Software.Logic
 {
     public class DepartmentControl
     {
-        private List<Departments> departments;
+        private List<Department> departments;
         private DepartmentsDAL departmentsDAL;
         public DepartmentControl()
         {
-            departments = new List<Departments>();
+            departments = new List<Department>();
             departmentsDAL = new DepartmentsDAL();
         }
 
 
-        public Departments GetDepartmentsByID(int id)
+        public Department GetDepartmentsByID(int id)
         {
-            foreach (Departments departments in GetDepartments())
+            foreach (Department departments in GetDepartments())
             {
                 if (departments.Id == id)
                 {
@@ -32,9 +32,9 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-        public Departments GetDepartmentsByTitle(string title)
+        public Department GetDepartmentsByTitle(string title)
         {
-            foreach (Departments departments in GetDepartments())
+            foreach (Department departments in GetDepartments())
             {
                 if(departments.Title == title)
                 {
@@ -52,7 +52,7 @@ namespace PapaSenpai_Project_Software.Logic
             {
                 while (department.Read())
                 {
-                    Departments newDepartment = new Departments(Convert.ToInt32(department["id"]), department["title"].ToString());
+                    Department newDepartment = new Department(Convert.ToInt32(department["id"]), department["title"].ToString());
                     departments.Add(newDepartment);
                 }
             }
@@ -84,7 +84,7 @@ namespace PapaSenpai_Project_Software.Logic
             departments.Clear();
         }
 
-        public List<Departments> GetDepartments()
+        public List<Department> GetDepartments()
         {
             return departments;
         }

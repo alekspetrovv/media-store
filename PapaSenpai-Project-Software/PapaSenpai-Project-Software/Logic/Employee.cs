@@ -24,7 +24,7 @@ namespace PapaSenpai_Project_Software
         Contract contract;
 
         public Employee(int id, string first_name, string last_name, string email, string adress, string city, string country,
-         string phone_number, string gender, string department, string contract, string wage, string username, string password, string shifts_taken, string hours_worked = null) : base(id,
+         string phone_number, string gender,string contract, string wage, string username, string password, string shifts_taken, string hours_worked = null) : base(id,
              first_name, last_name, email)
         {
             this.adress = adress;
@@ -43,7 +43,6 @@ namespace PapaSenpai_Project_Software
             }
             this.wage = Convert.ToInt32(wage);
             Enum.TryParse(gender, out this.gender);
-            Enum.TryParse(department, out this.department);
             Enum.TryParse(contract, out this.contract);
             this.username = username;
             this.password = password;
@@ -105,9 +104,19 @@ namespace PapaSenpai_Project_Software
 
         }
 
-        public Enum Department
+        public string getDepartmentName()
+        {
+            if (Department != null)
+            {
+                return Department.Title;
+            }
+            return "Empty";
+        }
+
+        public Department Department
         {
             get { return department; }
+            set { department = value; }
         }
 
         public double getSalary()

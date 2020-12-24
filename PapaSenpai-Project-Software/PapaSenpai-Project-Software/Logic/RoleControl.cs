@@ -10,18 +10,17 @@ namespace PapaSenpai_Project_Software.Logic
 {
     public class RoleControl
     {
-        private List<Roles> roles;
+        private List<Role> roles;
         private RolesDAL rolesDal;
-
         public RoleControl()
         {
-            roles = new List<Roles>();
+            roles = new List<Role>();
             rolesDal = new RolesDAL();
         }
 
-        public Roles GetRoleById(int id)
+        public Role GetRoleById(int id)
         {
-            foreach (Roles r in roles)
+            foreach (Role r in roles)
             {
                 if (r.Id == id)
                 {
@@ -31,9 +30,9 @@ namespace PapaSenpai_Project_Software.Logic
             return null;
         }
 
-        public Roles GetRoleByTitle(string title)
+        public Role GetRoleByTitle(string title)
         {
-            foreach (Roles r in roles)
+            foreach (Role r in roles)
             {
                 if (r.Title == title)
                 {
@@ -52,12 +51,11 @@ namespace PapaSenpai_Project_Software.Logic
             {
                 while (role.Read())
                 {
-                    Roles newRole = new Roles(Convert.ToInt32(role["id"]), role["title"].ToString());
+                    Role newRole = new Role(Convert.ToInt32(role["id"]), role["title"].ToString());
 
                     if (role["department_id"].ToString() != "" && role["department_title"].ToString() != "" )
                     {
-                        //we have a deparment for that role
-                        Departments department = new Departments(Convert.ToInt32(role["department_id"]), role["department_title"].ToString());
+                        Department department = new Department(Convert.ToInt32(role["department_id"]), role["department_title"].ToString());
                         newRole.Department = department;
                     }
                     roles.Add(newRole);
@@ -92,10 +90,11 @@ namespace PapaSenpai_Project_Software.Logic
             roles.Clear();
         }
 
-        public List<Roles> GetRoles()
+        public List<Role> GetRoles()
         {
             return roles;
         }
+
 
     }
 }

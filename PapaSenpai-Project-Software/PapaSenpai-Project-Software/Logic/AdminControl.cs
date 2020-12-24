@@ -15,16 +15,16 @@ namespace PapaSenpai_Project_Software.Logic
         private AdminDAL adminDAL;
         public AdminControl()
         {
-           admins = new List<Admin>();
-           adminDAL = new AdminDAL();
-           loggedUser = null;
+            admins = new List<Admin>();
+            adminDAL = new AdminDAL();
+            loggedUser = null;
         }
 
         public Admin getloggedUser()
         {
             return loggedUser;
         }
-        
+
         public void logUser(Admin admin)
         {
             loggedUser = admin;
@@ -55,7 +55,7 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-        public void Add(string[] admin_bindings)
+        public void Insert(string[] admin_bindings)
         {
             adminDAL.Insert(admin_bindings);
             this.retrieveAllAdmins();
@@ -81,10 +81,16 @@ namespace PapaSenpai_Project_Software.Logic
                 while (admins.Read())
                 {
                     Admin admin = new Admin(Convert.ToInt32(admins["id"]), admins["username"].ToString(),
-                        admins["role_title"].ToString(), admins["first_name"].ToString()
+                       admins["first_name"].ToString()
                         , admins["last_name"].ToString(), admins["email"].ToString(), admins["password"].ToString());
 
-                   this.addAdmin(admin);
+                    if (admins["role_id"].ToString() != "" && admins["role_title"].ToString() != "")
+                    {
+                        Role role = new Role(Convert.ToInt32(admins["role_id"]), admins["role_title"].ToString());
+                        admin.Role = role;
+                    }
+
+                    this.addAdmin(admin);
                 }
             }
         }

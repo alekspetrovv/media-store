@@ -11,13 +11,14 @@ namespace PapaSenpai_Project_Software.Data
     {
         public void Insert(string[] department_bindings)
         {
-            executeNonQuery("INSERT INTO `departments`(`title`) VALUES(@title)",department_bindings);
+            executeNonQuery("INSERT INTO `departments`(`title`) VALUES(@title)", department_bindings);
         }
 
         public void Update(string[] department_bindings)
         {
             executeNonQuery("UPDATE `departments` SET `title` = @title WHERE `id` = @id", department_bindings);
         }
+
 
         public void Delete(string[] delete_bindings)
         {

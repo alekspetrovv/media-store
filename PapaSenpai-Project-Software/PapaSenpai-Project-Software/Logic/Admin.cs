@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PapaSenpai_Project_Software.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,26 @@ namespace PapaSenpai_Project_Software
         private Role role;
         private string username;
         private string password;
-        public Admin(int id, string username, string role, string first_name, string last_name, string email, string password) : base(id, first_name, last_name, email)
+
+        public Admin(int id, string username, string first_name, string last_name, string email, string password) : base(id, first_name, last_name, email)
         {
             this.password = password;
             this.username = username;
-            Enum.TryParse(role, out this.role);
         }
 
+        public string getRoleName()
+        {
+            if (Role != null)
+            {
+                return this.Role.Title;
+            }
+            return "Empty";
+        }
 
         public Role Role
         {
-            get { return this.role; }
+            get { return role; }
+            set { role = value; }
         }
 
         public string Username
@@ -34,5 +44,6 @@ namespace PapaSenpai_Project_Software
         {
             get { return this.password; }
         }
+
     }
 }

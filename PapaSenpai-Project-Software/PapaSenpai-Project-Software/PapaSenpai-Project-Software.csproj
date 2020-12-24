@@ -75,9 +75,8 @@
     <Compile Include="Logic\Admin.cs" />
     <Compile Include="Logic\AdminControl.cs" />
     <Compile Include="Logic\Contract.cs" />
-    <Compile Include="Logic\Department.cs" />
     <Compile Include="Logic\DepartmentControl.cs" />
-    <Compile Include="Logic\Departments.cs" />
+    <Compile Include="Logic\Department.cs" />
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\EmployeeControl.cs" />
     <Compile Include="Logic\Gender.cs" />
@@ -88,7 +87,7 @@
     <Compile Include="Logic\Request.cs" />
     <Compile Include="Logic\RequestControl.cs" />
     <Compile Include="Logic\RoleControl.cs" />
-    <Compile Include="Logic\Roles.cs" />
+    <Compile Include="Logic\Role.cs" />
     <Compile Include="Logic\ScheduleControl.cs" />
     <Compile Include="Presentation\Home.cs">
       <SubType>Form</SubType>
@@ -104,7 +103,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logic\Role.cs" />
     <Compile Include="Logic\Schedule.cs" />
     <Compile Include="Logic\ScheduleMember.cs" />
     <Compile Include="Logic\Status.cs" />

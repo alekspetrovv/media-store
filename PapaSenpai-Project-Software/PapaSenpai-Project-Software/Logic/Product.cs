@@ -17,6 +17,7 @@ namespace PapaSenpai_Project_Software.Logic
         private double buying_price;
         private double overall_price = 0;
         private int threshold;
+        private Department department;
 
         public Product(int id, string title, string description, int quantity, int quantity_depo, double sellingPrice, double buyingPrice, int threshHold, int overall_price)
         {
@@ -37,6 +38,21 @@ namespace PapaSenpai_Project_Software.Logic
             get { return this.id;  }
             set { this.id = value; }
             
+        }
+
+        public string getDepartmentName()
+        {
+            if (Department != null)
+            {
+                return Department.Title;
+            }
+            return "Empty";
+        }
+
+        public Department Department
+        {
+            get { return department; }
+            set { department = value; }
         }
 
         public string Title
