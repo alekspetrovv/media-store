@@ -1039,7 +1039,10 @@ namespace PapaSenpai_Project_Software
 
             foreach (Schedule found_schedule in scheduleControl.getSchedules())
             {
-                coloredDates.Add(found_schedule.Date);
+                if (found_schedule.Members.Count() >= 5)
+                {
+                    coloredDates.Add(found_schedule.Date);
+                }
             }
 
             calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
