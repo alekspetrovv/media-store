@@ -14,11 +14,23 @@ namespace PapaSenpai_Project_Software.Data
             executeNonQuery("INSERT INTO `roles`(`title`,`department_id`) VALUES(@title,@department)", roles_bindings);
         }
 
+        public void InsertWithoutDepartment(string[] roles_bindings)
+        {
+            executeNonQuery("INSERT INTO `roles`(`title`) VALUES(@title)", roles_bindings);
+        }
+
+
         public void Update(string[] roles_bindings)
         {
             executeNonQuery("UPDATE `roles` SET `title` = @title,`department_id` = @department WHERE `id` = @id", roles_bindings);
         }
 
+
+        public void UpdateWithoutDepartment(string[] roles_bindings)
+        {
+            executeNonQuery("UPDATE `roles` SET `title` = @title WHERE `id` = @id", roles_bindings);
+        }
+        
         public void Delete(string[] delete_bindings)
         {
             executeNonQuery("DELETE FROM `roles` WHERE `id` = @id", delete_bindings);

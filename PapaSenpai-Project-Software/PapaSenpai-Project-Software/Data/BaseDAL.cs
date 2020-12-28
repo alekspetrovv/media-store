@@ -28,7 +28,6 @@ namespace PapaSenpai_Project_Software.Data
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = sql;
 
-                Console.WriteLine(con);
                 List<string> fields = new List<string>();
                 MatchCollection mcol = Regex.Matches(sql, @"@\b\S+?\b");
 

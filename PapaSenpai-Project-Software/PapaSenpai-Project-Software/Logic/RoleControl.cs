@@ -30,6 +30,18 @@ namespace PapaSenpai_Project_Software.Logic
             return null;
         }
 
+        public Role GetRoleByDeparment(Department d)
+        {
+            foreach (Role role in roles)
+            {
+               if(role.Department.Id == d.Id)
+               {
+                    return role;
+               }
+            }
+            return null;
+        }
+
         public Role GetRoleByTitle(string title)
         {
             foreach (Role r in roles)
@@ -53,7 +65,7 @@ namespace PapaSenpai_Project_Software.Logic
                 {
                     Role newRole = new Role(Convert.ToInt32(role["id"]), role["title"].ToString());
 
-                    if (role["department_id"].ToString() != "" && role["department_title"].ToString() != "" )
+                    if (role["department_id"].ToString() != "" && role["department_title"].ToString() != "")
                     {
                         Department department = new Department(Convert.ToInt32(role["department_id"]), role["department_title"].ToString());
                         newRole.Department = department;
@@ -69,6 +81,11 @@ namespace PapaSenpai_Project_Software.Logic
             retrieveAllRoles();
         }
 
+        public void InsertWithoutDepartment(string[] roles_bindings)
+        {
+            rolesDal.InsertWithoutDepartment(roles_bindings);
+            retrieveAllRoles();
+        }
 
         public void Update(string[] role_bindings)
         {
@@ -76,7 +93,11 @@ namespace PapaSenpai_Project_Software.Logic
             retrieveAllRoles();
         }
 
-
+        public void UpdateWithoutDepartment(string[] role_bindings)
+        {
+            rolesDal.UpdateWithoutDepartment(role_bindings);
+            retrieveAllRoles();
+        }
 
         public void Delete(string[] role_bindings)
         {

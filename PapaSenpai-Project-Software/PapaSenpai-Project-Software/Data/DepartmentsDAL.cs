@@ -27,7 +27,17 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlDataReader Select()
         {
-            return executeReader("SELECT * FROM `departments`");
+            return executeReader("SELECT *,(SELECT COUNT(employees.id) " +
+                " FROM employees " +
+                " WHERE employees.department_id = departments.id) as employees_count , " +
+                " (SELECT COUNT(products.id) " +
+                " FROM products " +
+                " WHERE products.department_id = departments.id) as products_count , " +
+                " (SELECT SUM(orders_products.price) " +
+                 "FROM orders_products " +
+                " INNER JOIN products ON products.id = orders_products.product_id" +
+                " WHERE products.department_id = departments.id) as overall_price" +
+                " FROM departments ");
         }
     }
 }

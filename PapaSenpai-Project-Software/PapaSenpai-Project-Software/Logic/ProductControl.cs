@@ -103,9 +103,20 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-        public List<Product> GetProducts()
+        public List<Product> GetProducts(Department department = null)
         {
-            return this.products;
+            List<Product> productdep = new List<Product>(this.products);
+            if (department != null)
+            {
+                foreach (Product product in this.products)
+                {
+                    if (product.Department.Title != department.Title)
+                    {
+                        productdep.Remove(product);
+                    }
+                }
+            }
+            return productdep;
         }
     }
 }

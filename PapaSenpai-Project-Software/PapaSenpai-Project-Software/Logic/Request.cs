@@ -38,7 +38,7 @@ namespace PapaSenpai_Project_Software.Logic
 
         public override string ToString()
         {
-            return $"Request with id: '{this.id}', Requested Quantity: '{this.quantity}' , For Product with id: '{this.productID}'";
+            return $"Request with id: {this.id} , Product with id: {this.productID} , Requested Quantity: {this.quantity}";
         }
     }
 }

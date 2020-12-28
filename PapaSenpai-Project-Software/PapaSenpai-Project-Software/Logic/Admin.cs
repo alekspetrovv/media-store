@@ -45,5 +45,13 @@ namespace PapaSenpai_Project_Software
             get { return this.password; }
         }
 
+        public string ShowDepartmentInfo()
+        {
+            return $"Hello: " + getFullName() + "!" + " You are currently seeing all the information about department: " + Role.Department + ".";
+        }
+        public string ShowWorkerInfo()
+        {
+            return $"Hello: " + getFullName() + "!";
+        }
     }
 }

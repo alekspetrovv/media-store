@@ -48,6 +48,11 @@ namespace PapaSenpai_Project_Software
 
             // permissions
             Admin admin = adminControl.getloggedUser();
+            if (admin.Role.Title == "Admin")
+            {
+                hideLabel(lblWelcomeToEmployeesPage);
+                hideLabel(lblWelcomeToProductPage);
+            }
 
             if (admin.Role.Title == "Manager")
             {
@@ -59,12 +64,14 @@ namespace PapaSenpai_Project_Software
                 StoreManagerPermissions();
             }
 
-            if (admin.Role.Title == "IT Manager" || admin.Role.Title == "Marketing Manager" || admin.Role.Title == "Finance Manager")
+            if (admin.Role.Title == "IT Manager" || admin.Role.Title == "Marketing Manager" || admin.Role.Title == "Financial Manager")
             {
-                DepartmentPermissions();
+                DepartmentManagerPermissions();
             }
 
             // render
+            GetDepartments();
+            GetRoles();
             this.renderRequestTable();
             this.renderStaffTable();
             this.renderAdminTable();
@@ -82,61 +89,143 @@ namespace PapaSenpai_Project_Software
             ChangeHomeStyle();
         }
 
+        // buttons
+        private void btnRestockProducts_Click(object sender, EventArgs e)
+        {
+            Request request = (Request)lbRestocking.SelectedItem;
+            Product product = productControl.GetProductById(Convert.ToInt32(request.ProductId));
+            string[] product_bindings = { (Convert.ToInt32(request.Quantity) + Convert.ToInt32(product.Quantity)).ToString(), request.ProductId };
+            string[] deleteBindings = { request.Id.ToString() };
+            requestControl.Approve(product_bindings);
+            requestControl.Delete(deleteBindings);
+            requestControl.retrieveAllRequests();
+            renderRequestTable();
+            MessageBox.Show("Request/s has been sucessfully approved");
+        }
+
+
+        // dashboard buttons
         private void BtnDashboard_Click(object sender, EventArgs e)
         {
             showPanel(pnlDashBoard);
         }
 
 
-        private void BtnViewStaff_Click(object sender, EventArgs e)
+
+        // role buttons
+        private void btnAddRole_Click(object sender, EventArgs e)
         {
-            showPanel(pnlEmployee);
+            AddRole();
         }
 
-        private void BtnBackToEmployeePageFromDetails_Click_1(object sender, EventArgs e)
+        private void btnBackToRolePage_Click(object sender, EventArgs e)
         {
-            showPanel(pnlEmployee);
+            showPanel(pnlRoles);
             TraverseControlsAndSetTextEmpty(this);
         }
 
-
-        private void BtnAddSchedule_Click(object sender, EventArgs e)
+        private void btnUpdateRole_Click(object sender, EventArgs e)
         {
-            showPanel(pnlViewSchedule);
+            UpdateRole();
         }
 
-        private void BtnAddStaff_Click(object sender, EventArgs e)
+        private void btnDeleteRole_Click(object sender, EventArgs e)
         {
-            showPanel(pnlAddEditEmployee);
-            hideButton(btnUpdateEmployee);
-            showButton(btnAssignEmployee);
+            DeleteRole();
+        }
+
+        private void btnBackToRolePageFromView_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlRoles);
+        }
+
+
+
+
+        // product buttons
+        private void btnShowProductDetails_Click(object sender, EventArgs e)
+        {
+            ShowProductDetails();
+        }
+
+        private void btnAddProductPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditProduct);
+            showButton(btnAddProductItem);
+            hideButton(btnUpdateProductItem);
+        }
+
+        private void btnEditProductPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditProduct);
+            hideButton(btnAddProductItem);
+            showButton(btnUpdateProductItem);
+        }
+
+        private void btnShowProducts_Click(object sender, EventArgs e)
+        {
+            renderProductsTable();
+        }
+
+        private void btnViewProducts_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlProducts);
+        }
+
+        private void btnViewProduct_Click(object sender, EventArgs e)
+        {
+            ShowProductDetails();
+        }
+
+        private void btnBackToProductPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlProducts);
             TraverseControlsAndSetTextEmpty(this);
         }
 
-        private void BtnAddAdmins_Click(object sender, EventArgs e)
+        private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            showPanel(pnlAddEditAdmin);
-            showButton(btnAddUser);
-            hideButton(btnUpdateUser);
+            showPanel(this.pnlAddEditProduct);
+            btnAddProductItem.Visible = true;
+            hideButton(btnUpdateProductItem);
+        }
+
+        private void btnEditProduct_Click(object sender, EventArgs e)
+        {
+            EditProduct();
+        }
+
+        private void btnAddProductItem_Click(object sender, EventArgs e)
+        {
+            AddProduct();
+        }
+
+        private void btnUpdateProductItem_Click(object sender, EventArgs e)
+        {
+            UpdateProduct();
+        }
+
+        private void btnBackToProductPageFromAddEdit_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlProducts);
             TraverseControlsAndSetTextEmpty(this);
         }
 
-
-        private void BtnDeleteAdmins_Click(object sender, EventArgs e)
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            DeleteAdmin();
+            DeleteProduct();
         }
 
 
+        // admin buttons
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             AddEmployee();
         }
 
-
-        private void btnDeleteEmployee_Click(object sender, EventArgs e)
+        private void btnUsersPage_Click(object sender, EventArgs e)
         {
-            DeleteEmployee();
+            showPanel(pnlAdmins);
         }
 
 
@@ -152,28 +241,36 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void btnEditEmployee_Click(object sender, EventArgs e)
-        {
-            EditEmployee();
-        }
-
-        private void btnUpdateEmployee_Click(object sender, EventArgs e)
-        {
-            UpdateEmployee();
-        }
-
-
         private void btnUpdateAdmin_Click(object sender, EventArgs e)
         {
             UpdateAdmin();
         }
 
-        private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
+
+        private void BtnAddAdmins_Click(object sender, EventArgs e)
         {
-            showPanel(pnlScheduleEmployees);
-            currentScheduleDate = e.End;
-            renderScheduleMembers();
+            showPanel(pnlAddEditAdmin);
+            showButton(btnAddUser);
+            hideButton(btnUpdateUser);
+            TraverseControlsAndSetTextEmpty(this);
         }
+
+
+        private void BtnDeleteAdmins_Click(object sender, EventArgs e)
+        {
+            DeleteAdmin();
+        }
+
+        private void btnBackToUserPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAdmins);
+            TraverseControlsAndSetTextEmpty(this);
+        }
+
+
+
+
+        // schedule buttons
 
         private void btnViewSchedule_Click(object sender, EventArgs e)
         {
@@ -196,41 +293,58 @@ namespace PapaSenpai_Project_Software
             showPanel(pnlViewSchedule);
         }
 
-        private void btnViewProducts_Click(object sender, EventArgs e)
+        private void BtnAddSchedule_Click(object sender, EventArgs e)
         {
-            showPanel(pnlProducts);
+            showPanel(pnlViewSchedule);
         }
 
-        private void btnAddProduct_Click(object sender, EventArgs e)
+        private void btnBackToSchedulesPage_Click(object sender, EventArgs e)
         {
-            showPanel(this.pnlAddEditProduct);
-            btnAddProductItem.Visible = true;
-            hideButton(btnUpdateProductItem);
+            showPanel(pnlViewSchedule);
         }
 
-        private void btnEditProduct_Click(object sender, EventArgs e)
+        private void btnGoToAutomaticSchedulePage_Click(object sender, EventArgs e)
         {
-            EditProduct();
+            showPanel(pnlAutomaticSchedule);
         }
 
-        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        private void btnCreateSchedule_Click(object sender, EventArgs e)
         {
-            DeleteProduct();
+
         }
 
-        private void btnAddProductItem_Click(object sender, EventArgs e)
-        {
-            AddProduct();
-        }
-
-        private void btnUpdateProductItem_Click(object sender, EventArgs e)
-        {
-            UpdateProduct();
-        }
+        // cart buttons
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
             showPanel(pnlCart);
+        }
+
+        private void tbAddToCart_Click(object sender, EventArgs e)
+        {
+            AddProductsToCart();
+        }
+
+        private void tbPurchase_Click(object sender, EventArgs e)
+        {
+            PurchaseProducts();
+        }
+
+
+
+        // restock buttons 
+
+        private void btnAddExtraQuantity_Click(object sender, EventArgs e)
+        {
+            SendProductRequest();
+        }
+
+
+        // employee buttons
+        private void btnBackToEmployeePage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlEmployee);
+            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnViewEmployeeDetails_Click(object sender, EventArgs e)
@@ -238,32 +352,37 @@ namespace PapaSenpai_Project_Software
             ShowEmployeeDetails();
         }
 
-        private void btnViewProduct_Click(object sender, EventArgs e)
+        private void btnShowEmployees_Click(object sender, EventArgs e)
         {
-            ShowProductDetails();
+            renderStaffTable();
         }
 
-        private void btnBackToUserPage_Click(object sender, EventArgs e)
+        private void btnEditEmployee_Click(object sender, EventArgs e)
         {
-            showPanel(pnlAdmins);
+            EditEmployee();
+        }
+
+        private void btnDeleteEmployee_Click(object sender, EventArgs e)
+        {
+            DeleteEmployee();
+        }
+
+        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        {
+            UpdateEmployee();
+        }
+
+        private void BtnAddStaff_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditEmployee);
+            hideButton(btnUpdateEmployee);
+            showButton(btnAssignEmployee);
             TraverseControlsAndSetTextEmpty(this);
         }
 
-        private void btnBackToEmployeePage_Click(object sender, EventArgs e)
+        private void BtnViewStaff_Click(object sender, EventArgs e)
         {
             showPanel(pnlEmployee);
-            TraverseControlsAndSetTextEmpty(this);
-        }
-        private void btnBackToProductPageFromAddEdit_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlProducts);
-            TraverseControlsAndSetTextEmpty(this);
-        }
-
-        private void btnBackToProductPage_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlProducts);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnBackToEmployeePageFromDetails_Click(object sender, EventArgs e)
@@ -272,9 +391,96 @@ namespace PapaSenpai_Project_Software
             TraverseControlsAndSetTextEmpty(this);
         }
 
+
+
+
+
+        // department buttons
+        private void btnDepartmentPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlDepartments);
+        }
+
+        private void btnAddDepartmentPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditDepartment);
+            btnAddDepartment.Visible = true;
+            hideButton(btnUpdateDepartment);
+        }
+
+        private void BtnAddDepartment_Click(object sender, EventArgs e)
+        {
+            AddDepartment();
+        }
+
+        private void BtnBackToDepartmentPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlDepartments);
+        }
+
+        private void btnBackToDepartmentPageFromStatistics_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlDepartments);
+        }
+
+        private void btnUpdateDepartment_Click(object sender, EventArgs e)
+        {
+            UpdateDepartment();
+        }
+
+        private void btnEditDepartmentPage_Click(object sender, EventArgs e)
+        {
+            EditDepartment();
+        }
+
+        private void btnDeleteDepartment_Click(object sender, EventArgs e)
+        {
+            DeleteDepartment();
+        }
+
+        private void btnViewDepartment_Click(object sender, EventArgs e)
+        {
+            ShowDepartmentDetails();
+        }
+
+        private void btnShowDepartments_Click(object sender, EventArgs e)
+        {
+            renderDepartmentsTable();
+        }
+
+
+        // role buttons
+        private void btnRolesPage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlRoles);
+        }
+
+        private void btnAddRolePage_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlAddEditRole);
+            hideButton(btnUpdateRole);
+            showButton(btnAddRole);
+        }
+
+        private void btnViewRolePage_Click(object sender, EventArgs e)
+        {
+            ShowRoleDetails();
+        }
+
+        private void btnEditRolePage_Click(object sender, EventArgs e)
+        {
+            EditRole();
+        }
+
+
+        // Functions
+
+        // Tables
         private void renderProductsForOrder()
         {
             lbStoreProducts.Items.Clear();
+            lbStoreProducts.Items.Add("                           Current items in store:");
+            lbStoreProducts.Items.Add("----------------------------------------------------------------------------");
             foreach (Product p in productControl.GetProducts())
             {
                 if (p.Quantity > 0)
@@ -284,7 +490,6 @@ namespace PapaSenpai_Project_Software
             }
 
         }
-
 
         private void renderProductsTable()
         {
@@ -301,7 +506,6 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
             dtPrd.Columns.Add("Revenue", typeof(string));
-            GetDepartments();
 
             // product count
             tbTotalProducts.Text = productControl.GetProductsCount().ToString();
@@ -310,11 +514,7 @@ namespace PapaSenpai_Project_Software
             double totalRevenue = productControl.GetProducts().Sum(item => item.OverallPrice);
             tbTotalRevenue.Text = totalRevenue.ToString();
 
-            // max revenue
-            double mostRevenue = productControl.GetProducts().Max(item => item.OverallPrice);
-            tbMostRevenue.Text = mostRevenue.ToString();
-
-            foreach (Product p in productControl.GetProducts())
+            foreach (Product p in productControl.GetProducts(GetProductDepartment()))
             {
                 string refill = "No";
                 if (p.Quantity <= p.ThreshHold)
@@ -326,41 +526,245 @@ namespace PapaSenpai_Project_Software
             dtProducts.DataSource = dtPrd;
         }
 
-        private bool ViewSelectedDepartmentOfProduct()
+        private void renderAdminTable()
         {
-            Department d = (Department)cbSelectedDepartmentProducts.SelectedItem;
-            Admin admin = adminControl.getloggedUser();
-            if (admin.Role.Title == "IT Manager")
+            DataTable dtEmp = new DataTable();
+            // add column to datatable  
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("Username", typeof(string));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Role", typeof(string));
+            GetRoles();
+            foreach (Admin admin in adminControl.getAdmins())
             {
-                if (d.Id == 2 || d.Id == 3)
-                {
-                    MessageBox.Show("You don't have permission to view this department!");
-                    return false;
-                }
-                return true;
+                dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.getRoleName());
             }
-            if (admin.Role.Title == "Marketing Manager")
+
+            dtAdmins.DataSource = dtEmp;
+
+        }
+
+        private void renderStaffTable()
+        {
+            DataTable dtEmp = new DataTable();
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(int));
+            dtEmp.Columns.Add("Username", typeof(string));
+            dtEmp.Columns.Add("First Name", typeof(string));
+            dtEmp.Columns.Add("Last Name", typeof(string));
+            dtEmp.Columns.Add("Department", typeof(string));
+            dtEmp.Columns.Add("Contract", typeof(string));
+            dtEmp.Columns.Add("Wage per hour", typeof(string));
+
+            // total employees 
+            this.tbeTotalEmployees.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
+
+            // show employees filtered by department
+            foreach (Employee employee in employeeControl.getEmployees(GetEmployeeDepartment()))
             {
-                if (d.Id == 1 || d.Id == 3)
-                {
-                    MessageBox.Show("You don't have permission to view this department!");
-                    return false;
-                }
-                return true;
+                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.FirstName, employee.LastName, employee.getDepartmentName(), employee.Contract, employee.Wage);
             }
-            if (admin.Role.Title == "Finance Manager")
+            dtEmployees.DataSource = dtEmp;
+        }
+
+        private void renderDailySchedule()
+        {
+
+            Schedule schedule = scheduleControl.getScheduleByDate(DateTime.Now);
+
+            DataTable dtEmp = new DataTable();
+
+            dtEmp.Columns.Add("ID", typeof(string));
+            dtEmp.Columns.Add("Name", typeof(string));
+            dtEmp.Columns.Add("From", typeof(string));
+            dtEmp.Columns.Add("To", typeof(string));
+            dtEmp.Columns.Add("Department", typeof(string));
+
+            if (schedule != null)
             {
-                if (d.Id == 1 || d.Id == 2)
+                foreach (ScheduleMember member in schedule.Members)
                 {
-                    MessageBox.Show("You don't have permission to view this department!");
-                    return false;
+                    Employee foundEmployee = this.employeeControl.getEmployeeById(member.EmployeeId);
+                    dtEmp.Rows.Add(member.EmployeeId, foundEmployee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), foundEmployee.Department);
+
                 }
-                return true;
             }
-            return true;
+
+
+            dtTodaySchedule.DataSource = dtEmp;
+        }
+
+        private void renderScheduleMembers()
+        {
+
+            Schedule schedule = scheduleControl.getScheduleByDate(currentScheduleDate);
+            calendarSchedule.AnnuallyBoldedDates = null;
+            List<DateTime> coloredDates = new List<DateTime>();
+
+            foreach (Schedule found_schedule in scheduleControl.getSchedules())
+            {
+                if (found_schedule.Members.Count() >= 5)
+                {
+                    coloredDates.Add(found_schedule.Date);
+                }
+            }
+
+            calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
+
+            DataTable dtEmp = new DataTable();
+
+            dtEmp.Columns.Add("Selected", typeof(bool));
+            dtEmp.Columns.Add("ID", typeof(string));
+            dtEmp.Columns.Add("Name", typeof(string));
+            dtEmp.Columns.Add("From", typeof(string));
+            dtEmp.Columns.Add("To", typeof(string));
+            dtEmp.Columns.Add("Department", typeof(string));
+
+
+            foreach (Employee employee in employeeControl.getEmployees())
+            {
+                ScheduleMember foundMember = null;
+                if (schedule != null)
+                {
+                    foundMember = schedule.findEmployeeMemberById(employee.ID);
+                }
+
+                if (foundMember != null)
+                {
+                    dtEmp.Rows.Add(true, employee.ID, employee.getFullName(), foundMember.StartTime.ToString("HH:mm"), foundMember.EndTime.ToString("HH:mm"), employee.Department);
+                }
+                else
+                {
+                    dtEmp.Rows.Add(false, employee.ID, employee.getFullName(), "9:00", "17:00", employee.Department);
+                }
+            }
+
+            dtAssignShift.DataSource = dtEmp;
+        }
+
+        private void renderRequestTable()
+        {
+            lbRestocking.Items.Clear();
+            lbRestocking.Items.Add("                                                  Request/s to be approved:");
+            lbRestocking.Items.Add("------------------------------------------------------------" +
+                "-----------------------------------------------------------------------");
+            foreach (Request request in requestControl.GetRequests())
+            {
+                lbRestocking.Items.Add(request);
+            }
+        }
+
+        private void renderDepartmentsTable()
+        {
+            DataTable dtDep = new DataTable();
+            dtDep.Columns.Add("Selected", typeof(bool));
+            dtDep.Columns.Add("ID", typeof(int));
+            dtDep.Columns.Add("Title", typeof(string));
+            foreach (Department d in departmentControl.GetDepartments(GetDepartment()))
+            {
+                dtDep.Rows.Add(false, d.Id, d.Title);
+            }
+
+            dtDepartments.DataSource = dtDep;
+        }
+
+        private void RenderRolesTable()
+        {
+            DataTable dtRole = new DataTable();
+            dtRole.Columns.Add("Selected", typeof(bool));
+            dtRole.Columns.Add("ID", typeof(string));
+            dtRole.Columns.Add("Role", typeof(string));
+            dtRole.Columns.Add("Department", typeof(string));
+
+            foreach (Role role in roleControl.GetRoles())
+            {
+                dtRole.Rows.Add(false, role.Id, role.Title, role.getDepartmentName());
+            }
+
+            dtRoles.DataSource = dtRole;
         }
 
 
+        // Get Departments and Roles
+        private Department GetProductDepartment()
+        {
+            Admin admin = adminControl.getloggedUser();
+            if (admin.Role.Department != null)
+            {
+                lblWelcomeToProductPage.Text = admin.ShowDepartmentInfo();
+                return admin.Role.Department;
+            }
+            Department product = (Department)cbSelectedProductDepartment.SelectedItem;
+            if (product != null)
+            {
+                return product;
+            }
+            return null;
+        }
+
+        private Department GetEmployeeDepartment()
+        {
+            Admin admin = adminControl.getloggedUser();
+            if (admin.Role.Department != null)
+            {
+                lblWelcomeToEmployeesPage.Text = admin.ShowDepartmentInfo();
+                return admin.Role.Department;
+            }
+            Department demployee = (Department)cbSelectDepartment.SelectedItem;
+            if (demployee != null)
+            {
+                return demployee;
+            }
+            return null;
+        }
+
+        private Department GetDepartment()
+        {
+            Admin admin = adminControl.getloggedUser();
+            if (admin.Role.Department != null)
+            {
+                return admin.Role.Department;
+            }
+            Department department = (Department)cbDepartments.SelectedItem;
+            if (department != null)
+            {
+                return department;
+            }
+            return null;
+        }
+
+        private void GetRoles()
+        {
+            cbAdminRole.Items.Clear();
+            foreach (Role roles in roleControl.GetRoles())
+            {
+                cbAdminRole.Items.Add(roles);
+            }
+        }
+
+        private void GetDepartments()
+        {
+            cbEmployeeDepartment.Items.Clear();
+            cbProductDepartment.Items.Clear();
+            cbRoleDepartment.Items.Clear();
+            cbSelectDepartment.Items.Clear();
+            cbSelectedProductDepartment.Items.Clear();
+            cbDepartments.Items.Clear();
+            foreach (Department department in departmentControl.GetDepartments())
+            {
+                cbEmployeeDepartment.Items.Add(department);
+                cbProductDepartment.Items.Add(department);
+                cbRoleDepartment.Items.Add(department);
+                cbSelectDepartment.Items.Add(department);
+                cbSelectedProductDepartment.Items.Add(department);
+                cbDepartments.Items.Add(department);
+            }
+        }
+
+
+        // CRUD Product
         private void AddProduct()
         {
             List<String> errors = new List<string>();
@@ -374,20 +778,27 @@ namespace PapaSenpai_Project_Software
             }
             if (!errors.Any())
             {
-                int quantity = Convert.ToInt32(tbProductQuantity.Text);
-                int quantitydepo = Convert.ToInt32(tbProductQuantityDepo.Text);
-                double selling_price = Convert.ToDouble(tbProductSellingPrice.Text);
-                double buying_price = Convert.ToDouble(tbProductBuyingPrice.Text);
-                int threshold = Convert.ToInt32(tbProductThreshHold.Text);
-                Department department = (Department)cbProductDepartment.SelectedItem;
-                string[] product_bindings = {department.Id.ToString(), tbProductTitle.Text, tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
-                selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
-                productControl.AddProduct(product_bindings);
-                MessageBox.Show("you have successfully created a product!");
-                this.renderProductsTable();
-                this.productControl.retrieveAllProducts();
-                this.showPanel(pnlProducts);
-                return;
+                try
+                {
+                    int quantity = Convert.ToInt32(tbProductQuantity.Text);
+                    int quantitydepo = Convert.ToInt32(tbProductQuantityDepo.Text);
+                    double selling_price = Convert.ToDouble(tbProductSellingPrice.Text);
+                    double buying_price = Convert.ToDouble(tbProductBuyingPrice.Text);
+                    int threshold = Convert.ToInt32(tbProductThreshHold.Text);
+                    Department department = (Department)cbProductDepartment.SelectedItem;
+                    string[] product_bindings = {department.Id.ToString(), tbProductTitle.Text, tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
+                 selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
+                    productControl.AddProduct(product_bindings);
+                    MessageBox.Show("you have successfully created a product!");
+                    this.renderProductsTable();
+                    this.productControl.retrieveAllProducts();
+                    this.showPanel(pnlProducts);
+                    return;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("There's been an exception: " + e.Message);
+                }
             }
             foreach (string message in errors)
             {
@@ -395,7 +806,6 @@ namespace PapaSenpai_Project_Software
             }
             TraverseControlsAndSetTextEmpty(this);
         }
-
 
         private void EditProduct()
         {
@@ -438,7 +848,6 @@ namespace PapaSenpai_Project_Software
             }
         }
 
-
         private void UpdateProduct()
         {
             try
@@ -460,7 +869,6 @@ namespace PapaSenpai_Project_Software
             }
             TraverseControlsAndSetTextEmpty(this);
         }
-
 
         private void DeleteProduct()
         {
@@ -501,7 +909,6 @@ namespace PapaSenpai_Project_Software
 
         }
 
-
         private void ShowProductDetails()
         {
             for (int i = 0; i < dtProducts.Rows.Count; ++i)
@@ -518,15 +925,15 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = dataRow.Cells["ID"].Value.ToString();
                     Product product = productControl.GetProductById(Convert.ToInt32(id));
-                    lblProductTitle.Text = product.Title;
-                    lblProductDescription.Text = product.Description;
-                    lblProductQuantity.Text = Convert.ToString(product.Quantity);
-                    lblProductQuantityDepo.Text = Convert.ToString(product.QuantityDepo);
-                    lblProductSellingPrice.Text = Convert.ToString(product.SellingPrice);
-                    lblProductBuyingPrice.Text = Convert.ToString(product.BuyingPrice);
-                    lblProductPlaceHolder.Text = Convert.ToString(product.ThreshHold);
-                    lblProductID.Text = Convert.ToString(product.Id);
-                    lblRevue.Text = Convert.ToString(product.OverallPrice);
+                    tbProductTitleInfo.Text = product.Title;
+                    tbProductDescriptionInfo.Text = product.Description;
+                    tbProductQuantityInfo.Text = Convert.ToString(product.Quantity);
+                    tbProductQuantityDepoInfo.Text = Convert.ToString(product.QuantityDepo);
+                    tbProductSellingPriceInfo.Text = Convert.ToString(product.SellingPrice);
+                    tbProductBuyingPriceInfo.Text = Convert.ToString(product.BuyingPrice);
+                    tbProductPlaceHolderInfo.Text = Convert.ToString(product.ThreshHold);
+                    tbProductIDInfo.Text = Convert.ToString(product.Id);
+                    tbRevenueInfo.Text = Convert.ToString(product.OverallPrice);
                     productControl.retrieveAllProducts();
                     renderProductsTable();
                     showPanel(pnlProductInformation);
@@ -534,28 +941,34 @@ namespace PapaSenpai_Project_Software
             }
         }
 
-
-        private void renderAdminTable()
+        private void SendProductRequest()
         {
-            DataTable dtEmp = new DataTable();
-            // add column to datatable  
-            dtEmp.Columns.Add("Selected", typeof(bool));
-            dtEmp.Columns.Add("ID", typeof(int));
-            dtEmp.Columns.Add("Username", typeof(string));
-            dtEmp.Columns.Add("First Name", typeof(string));
-            dtEmp.Columns.Add("Last Name", typeof(string));
-            dtEmp.Columns.Add("Role", typeof(string));
-            GetRoles();
-            foreach (Admin admin in adminControl.getAdmins())
+            if (MessageBox.Show("Do you want to send a request for this product?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.getRoleName());
+                try
+                {
+                    string id = tbProductIDInfo.Text;
+                    string quantity = tbQuantityRequest.Text;
+                    string[] requestBindings = { id, quantity };
+                    MessageBox.Show("You request has been sent to the Store Manager!");
+                    showPanel(pnlProducts);
+                    requestControl.Insert(requestBindings);
+                    requestControl.retrieveAllRequests();
+                    renderRequestTable();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("There's been an exception: " + e.Message);
+                }
             }
-
-            dtAdmins.DataSource = dtEmp;
-
+            else
+            {
+                MessageBox.Show("You pressed no!");
+            }
         }
 
 
+        // CRUD Admin
         private void AddAdmin()
         {
             List<String> errors = new List<string>();
@@ -575,6 +988,11 @@ namespace PapaSenpai_Project_Software
                 try
                 {
                     Role role = (Role)cbAdminRole.SelectedItem;
+                    if (role == null)
+                    {
+                        MessageBox.Show("Please select a role in order to add an admin!");
+                        return;
+                    }
                     string[] admin_bindings = { tbAdminUserName.Text, tbAdminPassword.Text, tbAdminFirstName.Text, tbAdminLastName.Text, tbAdminEmail.Text, role.Id.ToString() };
                     adminControl.Insert(admin_bindings);
                     MessageBox.Show("You have created a user!");
@@ -596,8 +1014,6 @@ namespace PapaSenpai_Project_Software
 
             TraverseControlsAndSetTextEmpty(this);
         }
-
-
 
         private void EditAdmin()
         {
@@ -622,7 +1038,6 @@ namespace PapaSenpai_Project_Software
                     tbAdminLastName.Text = admin.LastName;
                     tbAdminEmail.Text = admin.Email;
                     tbAdminPassword.Text = admin.Password;
-                    cbAdminRole.SelectedItem = admin.Role;
                     tbAdminId.Text = Convert.ToString(admin.ID);
                     adminControl.retrieveAllAdmins();
                     renderAdminTable();
@@ -632,14 +1047,17 @@ namespace PapaSenpai_Project_Software
 
         }
 
-
-
         private void UpdateAdmin()
         {
             try
             {
                 string adminId = this.tbAdminId.Text;
                 Role role = (Role)cbAdminRole.SelectedItem;
+                if (role == null)
+                {
+                    MessageBox.Show("Please select a role in order to update an admin!");
+                    return;
+                }
                 string[] adminData = { tbAdminUserName.Text, tbAdminPassword.Text, tbAdminFirstName.Text, tbAdminLastName.Text, tbAdminEmail.Text, role.Id.ToString(), adminId };
                 adminControl.Update(adminData);
                 pnlAdmins.Visible = true;
@@ -653,8 +1071,6 @@ namespace PapaSenpai_Project_Software
             }
             TraverseControlsAndSetTextEmpty(this);
         }
-
-
 
         private void DeleteAdmin()
         {
@@ -699,97 +1115,50 @@ namespace PapaSenpai_Project_Software
 
 
 
-
-        private void renderStaffTable()
+        // Cart 
+        private void AddProductsToCart()
         {
-            DataTable dtEmp = new DataTable();
-            dtEmp.Columns.Add("Selected", typeof(bool));
-            dtEmp.Columns.Add("ID", typeof(int));
-            dtEmp.Columns.Add("Username", typeof(string));
-            dtEmp.Columns.Add("First Name", typeof(string));
-            dtEmp.Columns.Add("Last Name", typeof(string));
-            dtEmp.Columns.Add("Department", typeof(string));
-            dtEmp.Columns.Add("Contract", typeof(string));
-            dtEmp.Columns.Add("Wage per hour", typeof(string));
-            GetDepartments();
 
-            // total employees 
-            this.tbeTotalEmployees.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
+            Product product = (Product)lbStoreProducts.SelectedItem;
+            int quantity = Convert.ToInt32(tbQuantity.Text);
 
-            // total hours of working 
-            double total = this.employeeControl.getEmployees().Sum(item => item.HoursWorked);
-            this.tbeHoursWorkedEmployee.Text = total.ToString();
-
-            // salary to be paid
-            double salaryToBePaid = this.employeeControl.getEmployees().Sum(item => item.getSalary());
-            this.tbeSalaryToBePaidEmployee.Text = salaryToBePaid.ToString();
-
-
-            // show employees filtered by department
-            foreach (Employee employee in employeeControl.getEmployees(FilterByDepartment()))
+            if (product == null)
             {
-                Console.WriteLine(FilterByDepartment());
-                dtEmp.Rows.Add(false, employee.ID, employee.UserName, employee.FirstName, employee.LastName, employee.getDepartmentName(), employee.Contract, employee.Wage);
+                MessageBox.Show("You need to select a product first before you add it to the cart!");
+                return;
             }
-            dtEmployees.DataSource = dtEmp;
+
+            if (product.Quantity < quantity || quantity <= 0)
+            {
+                MessageBox.Show("The desired quanity of the product is not in stock/or the quantity you have entered is incorrect!");
+                return;
+            }
+            ordersControl.addProduct(product, quantity);
+            lbShoppingCart.Items.Add($"Product:  {product.Title}, Quantity:  {quantity}");
         }
 
-        private Department FilterByDepartment()
+        private void PurchaseProducts()
         {
-            Department d = (Department)cbSelectDepartment.SelectedItem;
-            if (d != null)
-            {
-                if (ViewSelectedDepartment())
-                {
-                    string[] filterDepartment = { d.Id.ToString() };
-                    employeeControl.Filter(filterDepartment);
-                }
-                return d;
-            }
-            return null;
-        }
-
-
-        private bool ViewSelectedDepartment()
-        {
-            Department d = (Department)cbSelectDepartment.SelectedItem;
             Admin admin = adminControl.getloggedUser();
-            if (admin.Role.Title == "IT Manager")
-            {
-                if (d.Id == 2 || d.Id == 3)
-                {
-                    MessageBox.Show("You don't have permission to view this department!");
-                    return false;
-                }
-                return true;
-            }
-            if (admin.Role.Title == "Marketing Manager")
-            {
-                if (d.Id == 1 || d.Id == 3)
-                {
-                    MessageBox.Show("You don't have permission to view this department!");
-                    return false;
-                }
-                return true;
-            }
-            if (admin.Role.Title == "Finance Manager")
-            {
-                if (d.Id == 1 || d.Id == 2)
-                {
-                    MessageBox.Show("You don't have permission to view this department!");
-                    return false;
-                }
-                return true;
-            }
-            return true;
-        }
 
-        private void btnShowEmployees_Click(object sender, EventArgs e)
-        {
-            FilterByDepartment();
+            if (ordersControl.Products.Count() == 0)
+            {
+                MessageBox.Show("Your basket is empty");
+                return;
+            }
+            string[] bindings = { admin.ID.ToString() };
+            ordersControl.Buy(bindings);
+            lbShoppingCart.Items.Clear();
+            lbShoppingCart.Items.Add("                     Current items in shopping cart:");
+            lbShoppingCart.Items.Add("----------------------------------------------------------------------------");
+            productControl.retrieveAllProducts();
+            renderProductsForOrder();
+            renderProductsTable();
+            MessageBox.Show("You successfully made an order!");
         }
 
 
+        // CRUD Employee
         private void AddEmployee()
         {
             showButton(btnAssignEmployee);
@@ -836,7 +1205,6 @@ namespace PapaSenpai_Project_Software
 
         }
 
-
         private void EditEmployee()
         {
             this.btnUpdateEmployee.Visible = true;
@@ -879,7 +1247,6 @@ namespace PapaSenpai_Project_Software
 
         }
 
-
         private void UpdateEmployee()
         {
 
@@ -893,6 +1260,11 @@ namespace PapaSenpai_Project_Software
                 string employeeId = tbEmployeeId.Text;
                 string gender = Convert.ToString(this.cbEmployeeGender.SelectedItem);
                 Department department = (Department)cbEmployeeDepartment.SelectedItem;
+                if (department == null)
+                {
+                    MessageBox.Show("Please enter a department");
+                    return;
+                }
                 int contract_id = cbEmployeeContract.SelectedIndex;
                 contract_id++;
                 string increased_contract_id = Convert.ToString(contract_id);
@@ -911,7 +1283,6 @@ namespace PapaSenpai_Project_Software
                 MessageBox.Show(ex.Message);
             }
         }
-
 
         private void DeleteEmployee()
         {
@@ -958,7 +1329,6 @@ namespace PapaSenpai_Project_Software
             }
 
         }
-
 
         private void ShowEmployeeDetails()
         {
@@ -1007,6 +1377,45 @@ namespace PapaSenpai_Project_Software
             }
         }
 
+
+        // Validation
+        private bool valuesAreEmptyProduct()
+        {
+            if (tbProductDescription.Text == "" || tbProductDescription.Text == "" || tbProductTitle.Text == "" ||
+                tbProductQuantity.Text == "" || tbProductSellingPrice.Text == "" || tbProductBuyingPrice.Text == "" || tbProductThreshHold.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        private bool valuesAreEmptyEmployee()
+        {
+            if (tbEmployeeFirstName.Text == "" || tbEmployeeLastName.Text == "" ||
+                tbEmployeeAdress.Text == "" || tbEmployeeCity.Text == "" ||
+                tbEmployeeCountry.Text == "" || tbEmployeeEmail.Text == "" || cbEmployeeContract == null ||
+                cbEmployeeGender.SelectedItem == null || tbEmployeePhoneNumber == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        private bool valuesAreEmptyAdmin()
+        {
+            if (tbAdminUserName.Text == "" || tbAdminFirstName.Text == "" ||
+                tbAdminLastName.Text == "" || tbAdminPassword.Text == "" ||
+                tbAdminEmail.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        // Schedule
         private void updateSchedule()
         {
             //get if there is a schedule about this date
@@ -1086,120 +1495,16 @@ namespace PapaSenpai_Project_Software
 
         }
 
-
-        private void renderScheduleMembers()
+        private void calendarSchedule_DateSelected(object sender, DateRangeEventArgs e)
         {
-
-            Schedule schedule = scheduleControl.getScheduleByDate(currentScheduleDate);
-            calendarSchedule.AnnuallyBoldedDates = null;
-            List<DateTime> coloredDates = new List<DateTime>();
-
-            foreach (Schedule found_schedule in scheduleControl.getSchedules())
-            {
-                if (found_schedule.Members.Count() >= 5)
-                {
-                    coloredDates.Add(found_schedule.Date);
-                }
-            }
-
-            calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
-
-            DataTable dtEmp = new DataTable();
-
-            dtEmp.Columns.Add("Selected", typeof(bool));
-            dtEmp.Columns.Add("ID", typeof(string));
-            dtEmp.Columns.Add("Name", typeof(string));
-            dtEmp.Columns.Add("From", typeof(string));
-            dtEmp.Columns.Add("To", typeof(string));
-            dtEmp.Columns.Add("Department", typeof(string));
-
-
-            foreach (Employee employee in employeeControl.getEmployees())
-            {
-                ScheduleMember foundMember = null;
-                if (schedule != null)
-                {
-                    foundMember = schedule.findEmployeeMemberById(employee.ID);
-                }
-
-                if (foundMember != null)
-                {
-                    dtEmp.Rows.Add(true, employee.ID, employee.getFullName(), foundMember.StartTime.ToString("HH:mm"), foundMember.EndTime.ToString("HH:mm"), employee.Department);
-                }
-                else
-                {
-                    dtEmp.Rows.Add(false, employee.ID, employee.getFullName(), "9:00", "17:00", employee.Department);
-                }
-            }
-
-            dtAssignShift.DataSource = dtEmp;
+            showPanel(pnlScheduleEmployees);
+            currentScheduleDate = e.End;
+            renderScheduleMembers();
         }
 
 
-        private void renderDailySchedule()
-        {
 
-            Schedule schedule = scheduleControl.getScheduleByDate(DateTime.Now);
-
-            DataTable dtEmp = new DataTable();
-
-            dtEmp.Columns.Add("ID", typeof(string));
-            dtEmp.Columns.Add("Name", typeof(string));
-            dtEmp.Columns.Add("From", typeof(string));
-            dtEmp.Columns.Add("To", typeof(string));
-            dtEmp.Columns.Add("Department", typeof(string));
-
-            if (schedule != null)
-            {
-                foreach (ScheduleMember member in schedule.Members)
-                {
-                    Employee foundEmployee = this.employeeControl.getEmployeeById(member.EmployeeId);
-                    dtEmp.Rows.Add(member.EmployeeId, foundEmployee.getFullName(), member.StartTime.ToString("HH:mm"), member.EndTime.ToString("HH:mm"), foundEmployee.Department);
-
-                }
-            }
-
-
-            dtTodaySchedule.DataSource = dtEmp;
-        }
-
-
-        private bool valuesAreEmptyProduct()
-        {
-            if (tbProductDescription.Text == "" || tbProductDescription.Text == "" || tbProductTitle.Text == "" ||
-                tbProductQuantity.Text == "" || tbProductSellingPrice.Text == "" || tbProductBuyingPrice.Text == "" || tbProductThreshHold.Text == "")
-            {
-                return false;
-            }
-            return true;
-        }
-
-
-        private bool valuesAreEmptyEmployee()
-        {
-            if (tbEmployeeFirstName.Text == "" || tbEmployeeLastName.Text == "" ||
-                tbEmployeeAdress.Text == "" || tbEmployeeCity.Text == "" ||
-                tbEmployeeCountry.Text == "" || tbEmployeeEmail.Text == "" || cbEmployeeContract == null ||
-                cbEmployeeGender.SelectedItem == null || tbEmployeePhoneNumber == null)
-            {
-                return false;
-            }
-            return true;
-        }
-
-
-        private bool valuesAreEmptyAdmin()
-        {
-            if (tbAdminUserName.Text == "" || tbAdminFirstName.Text == "" ||
-                tbAdminLastName.Text == "" || tbAdminPassword.Text == "" ||
-                tbAdminEmail.Text == "")
-            {
-                return false;
-            }
-            return true;
-        }
-
-
+        // Home controls
         private void ChangeHomeStyle()
         {
             MaterialSkin.MaterialSkinManager skinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -1233,6 +1538,7 @@ namespace PapaSenpai_Project_Software
             this.pnlRoles.Visible = false;
             this.pnlAddEditRole.Visible = false;
             this.pnlRolesStats.Visible = false;
+            this.pnlAutomaticSchedule.Visible = false;
             panel.Visible = true;
 
         }
@@ -1252,202 +1558,22 @@ namespace PapaSenpai_Project_Software
             p.Visible = false;
         }
 
-        private void ManagerPermissions()
-        {
-            this.hideButton(btnSchedulesPage);
-            this.hideButton(btnViewAllSchedules);
-            this.hideButton(btnAddEmployee);
-            this.hideButton(btnEditEmployee);
-            this.hideButton(btnDeleteEmployee);
-            this.hideButton(btnAddProductPage);
-            this.hideButton(btnEditProductPage);
-            this.hideButton(btnDeleteProduct);
-            this.hideButton(btnUsersPage);
-            this.hideButton(btnCartPage);
-            this.hideButton(btnRolesPage);
-            this.hideButton(btnDepartmentPage);
-
-            this.hideButton(this.btnAddQuantity);
-            this.tbQuantityRequest.Visible = false;
-            this.hideLabel(this.materialLabel43);
-            this.hideLabel(this.materialLabel75);
-            this.hidePicture(iconPictureBox19);
-            this.hidePicture(iconPictureBox20);
-            this.hidePicture(iconPictureBox15);
-            this.hidePicture(iconPictureBox10);
-            this.hidePicture(iconPictureBox9);
-            this.hidePicture(iconPictureBox5);
-            this.hidePicture(iconPictureBox6);
-            this.hidePicture(iconPictureBox7);
-            this.hidePicture(iconPictureBox18);
-            this.hidePicture(iconPictureBox11);
-            this.hidePicture(iconPictureBox3);
-            this.hidePicture(iconPictureBox16);
-        }
-
-        private void DepartmentPermissions()
-        {
-            this.hideButton(btnSchedulesPage);
-            this.hideButton(btnViewAllSchedules);
-            this.hideButton(btnAddEmployee);
-            this.hideButton(btnEditEmployee);
-            this.hideButton(btnDeleteEmployee);
-            this.hideButton(btnAddProductPage);
-            this.hideButton(btnEditProductPage);
-            this.hideButton(btnDeleteProduct);
-            this.hideButton(btnUsersPage);
-            this.hideButton(btnCartPage);
-            this.hideButton(btnRolesPage);
-            this.hideButton(btnDepartmentPage);
-            this.hideButton(btnDashboardPage);
-
-            this.hidePicture(iconPictureBox19);
-            this.hidePicture(iconPictureBox20);
-            this.hidePicture(iconPictureBox15);
-            this.hidePicture(iconPictureBox10);
-            this.hidePicture(iconPictureBox9);
-            this.hidePicture(iconPictureBox5);
-            this.hidePicture(iconPictureBox6);
-            this.hidePicture(iconPictureBox7);
-            this.hidePicture(iconPictureBox18);
-            this.hidePicture(iconPictureBox11);
-            this.hidePicture(iconPictureBox3);
-            this.hidePicture(iconPictureBox16);
-            this.hidePicture(iconPictureBox1);
-        }
-
-        private void StoreManagerPermissions()
-        {
-
-            this.hideButton(btnSchedulesPage);
-            this.hideButton(btnViewAllSchedules);
-            this.hideButton(btnAddEmployee);
-            this.hideButton(btnEditEmployee);
-            this.hideButton(btnDeleteEmployee);
-            this.hideButton(btnAddProductPage);
-            this.hideButton(btnEditProductPage);
-            this.hideButton(btnDeleteProduct);
-            this.hideButton(btnUsersPage);
-            this.hideButton(btnCartPage);
-            this.hideButton(btnDashboardPage);
-            this.hideButton(btnEmployeesPage);
-            this.hideButton(btnProductsPage);
-            this.showPanel(pnlRestocking);
-
-            gpRequestProduct.Visible = false;
-            this.hideButton(btnRolesPage);
-            this.hideButton(btnDepartmentPage);
-
-            this.hidePicture(iconPictureBox19);
-            this.hidePicture(iconPictureBox20);
-
-            this.hidePicture(iconPictureBox16);
-            this.hidePicture(iconPictureBox8);
-            this.hidePicture(iconPictureBox2);
-            this.hidePicture(iconPictureBox1);
-            this.hidePicture(iconPictureBox15);
-            this.hidePicture(iconPictureBox10);
-            this.hidePicture(iconPictureBox9);
-            this.hidePicture(iconPictureBox5);
-            this.hidePicture(iconPictureBox6);
-            this.hidePicture(iconPictureBox7);
-            this.hidePicture(iconPictureBox18);
-            this.hidePicture(iconPictureBox11);
-            this.hidePicture(iconPictureBox3);
-            this.hidePicture(iconPictureBox16);
-        }
-
-        private void tbAddToCart_Click(object sender, EventArgs e)
-        {
-            Product product = (Product)lbStoreProducts.SelectedItem;
-            int quantity = Convert.ToInt32(tbQuantity.Text);
-            if (product.Quantity < quantity || quantity <= 0)
-            {
-                MessageBox.Show("The desired quanity of the product is not in stock");
-                return;
-            }
-
-            ordersControl.addProduct(product, quantity);
-            lbShoppingCart.Items.Add($"{product.Title} - {quantity}");
-        }
-
-        private void tbPurchase_Click_2(object sender, EventArgs e)
-        {
-            Admin admin = adminControl.getloggedUser();
-
-            if (ordersControl.Products.Count() == 0)
-            {
-                MessageBox.Show("Your basket is empty");
-                return;
-            }
-
-            string[] bindings = { admin.ID.ToString() };
-            ordersControl.Buy(bindings);
-            lbShoppingCart.Items.Clear();
-            productControl.retrieveAllProducts();
-            renderProductsForOrder();
-            renderProductsTable();
-            MessageBox.Show("You successfully made an order!");
-
-        }
-
-        private void btnAddExtraQuantity_Click(object sender, EventArgs e)
-        {
-            this.SendProductRequest();
-        }
-
-        private void renderRequestTable()
-        {
-            lbRestocking.Items.Clear();
-            foreach (Request request in requestControl.GetRequests())
-            {
-                lbRestocking.Items.Add(request);
-            }
-        }
-
-        private void SendProductRequest()
-        {
-            if (MessageBox.Show("Do you want to send a request for this product?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                try
-                {
-                    string id = lblProductID.Text;
-                    string quantity = tbQuantityRequest.Text;
-
-                    string[] requestBindings = { id, quantity };
-
-                    showPanel(pnlProducts);
-                    requestControl.Insert(requestBindings);
-                    requestControl.retrieveAllRequests();
-                    renderRequestTable();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("There's been an exception: " + e.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show("You pressed no!");
-            }
-        }
-
         private void hideLabel(Label l)
         {
             l.Visible = false;
         }
 
-        private void btnRestockProducts_Click(object sender, EventArgs e)
+        private void TraverseControlsAndSetTextEmpty(Control control)
         {
-            Request request = (Request)lbRestocking.SelectedItem;
-            Product product = productControl.GetProductById(Convert.ToInt32(request.ProductId));
-            string[] product_bindings = { (Convert.ToInt32(request.Quantity) + Convert.ToInt32(product.Quantity)).ToString(), request.ProductId };
-            string[] deleteBindings = { request.Id.ToString() };
-            requestControl.Approve(product_bindings);
-            requestControl.Delete(deleteBindings);
-            requestControl.retrieveAllRequests();
-            renderRequestTable();
-            MessageBox.Show("Request sucessfully approved");
+            foreach (Control c in control.Controls)
+            {
+                var box = c as TextBox;
+                if (box != null)
+                {
+                    box.Text = string.Empty;
+                }
+                this.TraverseControlsAndSetTextEmpty(c);
+            }
         }
 
         private void dtProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -1463,19 +1589,144 @@ namespace PapaSenpai_Project_Software
             }
         }
 
-        private void btnDepartmentPage_Click(object sender, EventArgs e)
+
+        // Permissions
+        private void ManagerPermissions()
         {
-            showPanel(pnlDepartments);
+            this.hideButton(btnSchedulesPage);
+            this.hideButton(btnViewAllSchedules);
+            this.hideButton(btnAddEmployee);
+            this.hideButton(btnEditEmployee);
+            this.hideButton(btnDeleteEmployee);
+            this.hideButton(btnAddProductPage);
+            this.hideButton(btnEditProductPage);
+            this.hideButton(btnDeleteProduct);
+            this.hideButton(btnUsersPage);
+            this.hideButton(btnCartPage);
+            this.hideButton(btnRolesPage);
+            this.hideButton(btnAddDepartmentPage);
+            this.hideButton(btnEditDepartmentPage);
+            this.hideButton(btnDeleteDepartment);
+
+            hideLabel(lblWelcomeToProductPage);
+            this.hideButton(this.btnAddQuantity);
+            this.tbQuantityRequest.Visible = false;
+            this.hideLabel(this.materialLabel43);
+            this.hideLabel(lblWelcomeToEmployeesPage);
+            this.hideLabel(this.materialLabel75);
+            this.hidePicture(iconPictureBox20);
+            this.hidePicture(iconPictureBox23);
+            this.hidePicture(iconPictureBox22);
+            this.hidePicture(iconPictureBox24);
+            this.hidePicture(iconPictureBox15);
+            this.hidePicture(iconPictureBox10);
+            this.hidePicture(iconPictureBox5);
+            this.hidePicture(iconPictureBox6);
+            this.hidePicture(iconPictureBox7);
+            this.hidePicture(iconPictureBox11);
+            this.hidePicture(iconPictureBox3);
+            this.hidePicture(iconPictureBox16);
+            this.hidePicture(iconPictureBox17);
         }
 
-        private void btnAddDepartmentPage_Click(object sender, EventArgs e)
+        private void DepartmentManagerPermissions()
         {
-            showPanel(pnlAddEditDepartment);
-            btnAddDepartment.Visible = true;
-            hideButton(btnUpdateDepartment);
+
+            this.hideButton(btnSchedulesPage);
+            this.hideButton(btnViewAllSchedules);
+            this.hideButton(btnAddEmployee);
+            this.hideButton(btnEditEmployee);
+            this.hideButton(btnDeleteEmployee);
+            this.hideButton(btnAddProductPage);
+            this.hideButton(btnEditProductPage);
+            this.hideButton(btnDeleteProduct);
+            this.hideButton(btnUsersPage);
+            this.hideButton(btnCartPage);
+            this.hideButton(btnRolesPage);
+            this.hideButton(btnDashboardPage);
+            this.hideButton(btnShowEmployees);
+            this.hideButton(btnShowProducts);
+            this.hideButton(btnAddQuantity);
+            this.hideButton(btnShowDepartments);
+            this.hideButton(btnAddDepartmentPage);
+            this.hideButton(btnEditDepartmentPage);
+            this.hideButton(btnDeleteDepartment);
+            this.showPanel(pnlEmployee);
+
+
+            tbeTotalEmployees.Visible = false;
+            tbTotalRevenue.Visible = false;
+            tbTotalProducts.Visible = false;
+            cbSelectDepartment.Visible = false;
+            cbDepartments.Visible = false;
+            cbSelectedProductDepartment.Visible = false;
+            this.tbQuantityRequest.Visible = false;
+
+            this.hideLabel(materialLabel53);
+            this.hideLabel(materialLabel86);
+            this.hideLabel(materialLabel92);
+            this.hideLabel(materialLabel93);
+            this.hideLabel(materialLabel122);
+            this.hideLabel(materialLabel85);
+            this.hideLabel(materialLabel99);
+            this.hideLabel(this.materialLabel43);
+            this.hidePicture(iconPictureBox17);
+            this.hidePicture(iconPictureBox20);
+            this.hidePicture(iconPictureBox23);
+            this.hidePicture(iconPictureBox22);
+            this.hidePicture(iconPictureBox24);
+            this.hidePicture(iconPictureBox15);
+            this.hidePicture(iconPictureBox10);
+            this.hidePicture(iconPictureBox5);
+            this.hidePicture(iconPictureBox6);
+            this.hidePicture(iconPictureBox7);
+            this.hidePicture(iconPictureBox11);
+            this.hidePicture(iconPictureBox3);
+            this.hidePicture(iconPictureBox16);
+            this.hidePicture(iconPictureBox1);
+        }
+
+        private void StoreManagerPermissions()
+        {
+            Admin admin = adminControl.getloggedUser();
+            lblWelcomeWorker.Text = admin.ShowWorkerInfo();
+            if (requestControl.GetRequests().Count == 0)
+            {
+                lblRequestStatus.Text = $"There are currently no request to be approved!";
+            }
+            else
+            {
+                lblRequestStatus.Text = $" Current Requests: " + requestControl.GetRequests().Count();
+            }
+            this.hideButton(btnSchedulesPage);
+            this.hideButton(btnUsersPage);
+            this.hideButton(btnCartPage);
+            this.hideButton(btnDashboardPage);
+            this.hideButton(btnEmployeesPage);
+            this.hideButton(btnProductsPage);
+            this.hideButton(btnRolesPage);
+            this.hideButton(btnDepartmentPage);
+            this.showPanel(pnlRestocking);
+            this.hidePicture(iconPictureBox19);
+            this.hidePicture(iconPictureBox20);
+            this.hidePicture(iconPictureBox16);
+            this.hidePicture(iconPictureBox8);
+            this.hidePicture(iconPictureBox2);
+            this.hidePicture(iconPictureBox1);
+            this.hidePicture(iconPictureBox15);
+            this.hidePicture(iconPictureBox10);
+            this.hidePicture(iconPictureBox5);
+            this.hidePicture(iconPictureBox6);
+            this.hidePicture(iconPictureBox7);
+            this.hidePicture(iconPictureBox18);
+            this.hidePicture(iconPictureBox11);
+            this.hidePicture(iconPictureBox3);
+            this.hidePicture(iconPictureBox16);
         }
 
 
+
+        // CRUD Department
         public void AddDepartment()
         {
             hideButton(btnUpdateDepartment);
@@ -1499,6 +1750,7 @@ namespace PapaSenpai_Project_Software
                 string title = tbDepartmentTitle.Text;
                 string[] department_bindings = { title };
                 departmentControl.Insert(department_bindings);
+                MessageBox.Show("You have succesfully added a new department!");
                 departmentControl.retrieveAllDepartments();
                 renderDepartmentsTable();
                 showPanel(pnlDepartments);
@@ -1508,7 +1760,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("There's been an exception: " + e.Message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -1558,7 +1809,6 @@ namespace PapaSenpai_Project_Software
                 return;
             }
 
-
             try
             {
                 string title = tbDepartmentTitle.Text;
@@ -1574,7 +1824,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("There's been an exception: " + e.Message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -1641,6 +1890,9 @@ namespace PapaSenpai_Project_Software
                 {
                     string id = dataRow.Cells["ID"].Value.ToString();
                     Department d = departmentControl.GetDepartmentsByID(Convert.ToInt32(id));
+                    tbTotalEmployeesDepartment.Text = d.EmployeesCount.ToString();
+                    tbTotalProductsDepartment.Text = d.ProductsCount.ToString();
+                    tbTotalRevenueDepartment.Text = d.TotalProductsRevenue.ToString();
                     tbStatisticsTitle.Text = d.Title;
                     tbStatisticsDepId.Text = Convert.ToString(d.Id);
                     departmentControl.retrieveAllDepartments();
@@ -1652,141 +1904,12 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void renderDepartmentsTable()
-        {
-            DataTable dtDep = new DataTable();
-            dtDep.Columns.Add("Selected", typeof(bool));
-            dtDep.Columns.Add("ID", typeof(int));
-            dtDep.Columns.Add("Title", typeof(string));
-            foreach (Department d in departmentControl.GetDepartments())
-            {
-                dtDep.Rows.Add(false, d.Id, d.Title);
-            }
-
-            dtDepartments.DataSource = dtDep;
-        }
-
-        private void BtnAddDepartment_Click(object sender, EventArgs e)
-        {
-            AddDepartment();
-        }
-
-        private void BtnBackToDepartmentPage_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlDepartments);
-            TraverseControlsAndSetTextEmpty(this);
-        }
-
-        private void btnBackToDepartmentPageFromStatistics_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlDepartments);
-            TraverseControlsAndSetTextEmpty(this);
-        }
-
-        private void btnUpdateDepartment_Click(object sender, EventArgs e)
-        {
-            UpdateDepartment();
-        }
-
-        private void btnEditDepartmentPage_Click(object sender, EventArgs e)
-        {
-            EditDepartment();
-        }
-
-        private void TraverseControlsAndSetTextEmpty(Control control)
-        {
-            foreach (Control c in control.Controls)
-            {
-                var box = c as TextBox;
-                if (box != null)
-                {
-                    box.Text = string.Empty;
-                }
-
-                this.TraverseControlsAndSetTextEmpty(c);
-            }
-        }
-
-        private void btnDeleteDepartment_Click(object sender, EventArgs e)
-        {
-            DeleteDepartment();
-        }
-
-        private void btnViewDepartment_Click(object sender, EventArgs e)
-        {
-            ShowDepartmentDetails();
-        }
-
-        private void btnRolesPage_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlRoles);
-        }
-
-        private void btnAddRolePage_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlAddEditRole);
-            hideButton(btnUpdateRole);
-            showButton(btnAddRole);
-        }
-
-        private void btnViewRolePage_Click(object sender, EventArgs e)
-        {
-            ShowRoleDetails();
-        }
-
-        private void btnEditRolePage_Click(object sender, EventArgs e)
-        {
-            EditRole();
-        }
-
-        private void RenderRolesTable()
-        {
-            DataTable dtRole = new DataTable();
-            dtRole.Columns.Add("Selected", typeof(bool));
-            dtRole.Columns.Add("ID", typeof(string));
-            dtRole.Columns.Add("Role", typeof(string));
-            dtRole.Columns.Add("Department", typeof(string));
-            GetDepartments();
-            foreach (Role role in roleControl.GetRoles())
-            {
-                dtRole.Rows.Add(false, role.Id, role.Title, role.getDepartmentName());
-            }
-
-            dtRoles.DataSource = dtRole;
-        }
-
-        private void GetRoles()
-        {
-            cbAdminRole.Items.Clear();
-            foreach (Role roles in roleControl.GetRoles())
-            {
-                cbAdminRole.Items.Add(roles);
-            }
-        }
-
-        private void GetDepartments()
-        {
-            cbEmployeeDepartment.Items.Clear();
-            cbProductDepartment.Items.Clear();
-            cbRoleDepartment.Items.Clear();
-            cbSelectDepartment.Items.Clear();
-            cbSelectedDepartmentProducts.Items.Clear();
-            foreach (Department department in departmentControl.GetDepartments())
-            {
-                cbEmployeeDepartment.Items.Add(department);
-                cbProductDepartment.Items.Add(department);
-                cbRoleDepartment.Items.Add(department);
-                cbSelectDepartment.Items.Add(department);
-                cbSelectedDepartmentProducts.Items.Add(department);
-            }
-        }
-
+        // CRUD Role
         public void AddRole()
         {
             hideButton(btnUpdateRole);
             showButton(btnAddRole);
             Role r = roleControl.GetRoleByTitle(tbRoleTitle.Text);
-
 
             if (r != null)
             {
@@ -1804,9 +1927,17 @@ namespace PapaSenpai_Project_Software
             {
                 string title = tbRoleTitle.Text;
                 Department department = (Department)cbRoleDepartment.SelectedItem;
-                string[] role_bindings = { title, department.Id.ToString() };
+                if (department == null)
+                {
+                    string[] empty_role = { title };
+                    roleControl.InsertWithoutDepartment(empty_role);
+                }
+                else
+                {
+                    string[] role_bindings = { title, department.Id.ToString() };
+                    roleControl.Insert(role_bindings);
+                }
                 MessageBox.Show("You have succesfully added a role!");
-                roleControl.Insert(role_bindings);
                 roleControl.retrieveAllRoles();
                 GetRoles();
                 showPanel(pnlRoles);
@@ -1844,21 +1975,24 @@ namespace PapaSenpai_Project_Software
                     showPanel(pnlAddEditRole);
                 }
             }
+
         }
 
         public void UpdateRole()
         {
             hideButton(btnAddRole);
             showButton(btnUpdateRole);
+            Department department = (Department)cbRoleDepartment.SelectedItem;
 
-            Role r = roleControl.GetRoleByTitle(tbRoleTitle.Text);
+            Role role = roleControl.GetRoleByDeparment(department);
 
 
-            if (r != null)
+            if(role != null)
             {
-                MessageBox.Show("Role with title: " + tbRoleTitle.Text + " Already exist!");
-                return;
+                MessageBox.Show($"Role with department: " + department.Title + " Already exist." + " Please select a different department!");
+                return; 
             }
+
 
             if (tbRoleTitle.Text == "")
             {
@@ -1870,14 +2004,21 @@ namespace PapaSenpai_Project_Software
             try
             {
                 string title = tbRoleTitle.Text;
-                Department department = (Department)cbRoleDepartment.SelectedItem;
-                string[] role_bindings = { title, department.Id.ToString(), tbRoleId.Text };
-                roleControl.Update(role_bindings);
+                if (department == null)
+                {
+                    string[] role_bindings = { title, tbRoleId.Text };
+                    roleControl.UpdateWithoutDepartment(role_bindings);
+                }
+                else
+                {
+                    string[] role_bindings = { title, department.Id.ToString(), tbRoleId.Text };
+                    roleControl.Update(role_bindings);
+                }
+                MessageBox.Show("You have succesfully updated the role!");
                 roleControl.retrieveAllRoles();
                 RenderRolesTable();
                 showPanel(pnlRoles);
                 GetRoles();
-                MessageBox.Show("You have succesfully updated the role!");
             }
             catch (Exception e)
             {
@@ -1954,6 +2095,7 @@ namespace PapaSenpai_Project_Software
                     string id = dataRow.Cells["ID"].Value.ToString();
                     Role role = roleControl.GetRoleById(Convert.ToInt32(id));
                     tbViewTitle.Text = role.Title;
+                    tbDepartmentRole.Text = role.Department.Title;
                     tbViewId.Text = Convert.ToString(role.Id);
                     roleControl.retrieveAllRoles();
                     RenderRolesTable();
@@ -1961,37 +2103,6 @@ namespace PapaSenpai_Project_Software
                 }
             }
 
-        }
-
-        private void btnAddRole_Click(object sender, EventArgs e)
-        {
-            AddRole();
-        }
-
-        private void btnBackToRolePage_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlRoles);
-            TraverseControlsAndSetTextEmpty(this);
-        }
-
-        private void btnUpdateRole_Click(object sender, EventArgs e)
-        {
-            UpdateRole();
-        }
-
-        private void btnDeleteRole_Click(object sender, EventArgs e)
-        {
-            DeleteRole();
-        }
-
-        private void btnBackToRolePageFromView_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlRoles);
-        }
-
-        private void btnUsersPage_Click(object sender, EventArgs e)
-        {
-            showPanel(pnlAdmins);
         }
 
         

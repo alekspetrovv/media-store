@@ -30,14 +30,17 @@ namespace PapaSenpai_Project_Software.Data
 
         public MySqlDataReader Select()
         {
-            return executeReader("SELECT admins.*, roles.title as role_title,roles.id as role_id FROM `admins` " +
-                 "INNER JOIN roles ON roles.id = admins.role_id GROUP by admins.id");
+            return executeReader("SELECT admins.*, roles.title as role_title,roles.id as role_id, departments.title as department_title , departments.id as department_id FROM `admins` " +
+                 "INNER JOIN roles ON roles.id = admins.role_id " +
+                   " LEFT JOIN departments ON roles.department_id = departments.id " +
+                   " GROUP by admins.id ");
         }
 
         public MySqlDataReader Login(string[] admin_bindings)
         {
-            return executeReader("SELECT admins.*, roles.title as role_title,roles.id as role_id FROM `admins` " +
+            return executeReader("SELECT admins.*, roles.title as role_title,roles.id as role_id, departments.title as department_title , departments.id as department_id FROM `admins` " +
                "INNER JOIN roles ON roles.id = admins.role_id " +
+                " LEFT JOIN departments ON roles.department_id = departments.id " +
                "WHERE `username` = @usn AND `password` = @pass", admin_bindings
                );
         }

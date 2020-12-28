@@ -62,15 +62,21 @@ namespace PapaSenpai_Project_Software
             //check if user exist if yes show the home page else don't show error message
             if (user.HasRows)
             {
-                Admin admin = new Admin(Convert.ToInt32(user["id"]),user["username"].ToString(),
+                Admin admin = new Admin(Convert.ToInt32(user["id"]), user["username"].ToString(),
                    user["first_name"].ToString(), user["last_name"].ToString(),
                     user["email"].ToString(), user["password"].ToString());
 
                 if (user["role_id"].ToString() != "" && user["role_title"].ToString() != "")
                 {
                     Role role = new Role(Convert.ToInt32(user["role_id"]), user["role_title"].ToString());
+                    if (user["department_id"].ToString() != "" && user["department_title"].ToString() != "")
+                    {
+                        Department department = new Department(Convert.ToInt32(user["department_id"]), user["department_title"].ToString());
+                        role.Department = department;
+                    }
                     admin.Role = role;
                 }
+
                 MessageBox.Show($"Welcome: " + admin.getFullName() + "!");
                 a.logUser(admin);
                 this.Hide();

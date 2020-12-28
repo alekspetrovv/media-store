@@ -23,11 +23,6 @@ namespace PapaSenpai_Project_Software.Data
                  "`department_id`= @departmentid,`contract_id` = @contractid,`wage_per_hour` = @wage,`username`= @username,`password`= @password WHERE id = @id", employee_bindings);
         }
 
-        public void Filter(string[] employee_bindings)
-        {
-            executeNonQuery("SELECT * FROM `employees` WHERE `department_id` = @id", employee_bindings);
-        }
-
         public void Delete(string[] employee_bindings)
         {
             executeNonQuery("DELETE FROM `employees` WHERE `id` = @id", employee_bindings);

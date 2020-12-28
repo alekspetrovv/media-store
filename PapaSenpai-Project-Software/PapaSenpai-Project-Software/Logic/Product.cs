@@ -97,7 +97,7 @@ namespace PapaSenpai_Project_Software.Logic
 
         public override string ToString()
         {
-            return $"{this.Title}, Quanity - {this.Quantity}";
+            return $"ID: {Id}, Product: {this.Title}, Quantity: {this.Quantity}";
         }
 
     }

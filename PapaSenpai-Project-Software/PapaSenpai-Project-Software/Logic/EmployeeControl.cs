@@ -69,11 +69,6 @@ namespace PapaSenpai_Project_Software.Logic
             employeeDAL.Update(employee_bindings);
             this.retrieveAllEmployees();
         }
-        public void Filter(string[] employee_bindings)
-        {
-            employeeDAL.Filter(employee_bindings);
-            this.retrieveAllEmployees();
-        }
         public void DeleteEmployee(string[] employee_bindings)
         {
             employeeDAL.Delete(employee_bindings);
@@ -105,12 +100,12 @@ namespace PapaSenpai_Project_Software.Logic
 
         public List<Employee> getEmployees(Department department = null)
         {
-            List<Employee> employeesdep = this.employees;
-            if(department != null)
+            List<Employee> employeesdep = new List<Employee>(this.employees);
+            if (department != null)
             {
-                foreach (Employee employee in employeesdep)
+                foreach (Employee employee in this.employees)
                 {
-                    if (employee.Department != department)
+                    if (employee.Department.Title != department.Title)
                     {
                         employeesdep.Remove(employee);
                     }

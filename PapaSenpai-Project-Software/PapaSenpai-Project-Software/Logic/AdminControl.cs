@@ -87,9 +87,14 @@ namespace PapaSenpai_Project_Software.Logic
                     if (admins["role_id"].ToString() != "" && admins["role_title"].ToString() != "")
                     {
                         Role role = new Role(Convert.ToInt32(admins["role_id"]), admins["role_title"].ToString());
+                        if (admins["department_id"].ToString() != "" && admins["department_title"].ToString() != "")
+                        {
+                            Department department = new Department(Convert.ToInt32(admins["department_id"]), admins["department_title"].ToString());
+                            role.Department = department;
+                        }
                         admin.Role = role;
                     }
-
+                    
                     this.addAdmin(admin);
                 }
             }

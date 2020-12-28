@@ -19,6 +19,7 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
+
         public Department GetDepartmentsByID(int id)
         {
             foreach (Department departments in GetDepartments())
@@ -36,7 +37,7 @@ namespace PapaSenpai_Project_Software.Logic
         {
             foreach (Department departments in GetDepartments())
             {
-                if(departments.Title == title)
+                if (departments.Title == title)
                 {
                     return departments;
                 }
@@ -52,8 +53,20 @@ namespace PapaSenpai_Project_Software.Logic
             {
                 while (department.Read())
                 {
-                    Department newDepartment = new Department(Convert.ToInt32(department["id"]), department["title"].ToString());
-                    departments.Add(newDepartment);
+                 
+
+                    if (department["id"].ToString() != "" && department["title"].ToString() != "")
+                    {
+                        Department newDepartment = new Department(Convert.ToInt32(department["id"]), department["title"].ToString());
+                        departments.Add(newDepartment);
+                        newDepartment.EmployeesCount = Convert.ToInt32(department["employees_count"]);
+                        newDepartment.ProductsCount = Convert.ToInt32(department["products_count"]);
+                        if (department["overall_price"] != DBNull.Value)
+                        {
+                          newDepartment.TotalProductsRevenue = Convert.ToInt32(department["overall_price"]);
+                        }
+                        
+                    }
                 }
             }
         }
@@ -84,9 +97,20 @@ namespace PapaSenpai_Project_Software.Logic
             departments.Clear();
         }
 
-        public List<Department> GetDepartments()
+        public List<Department> GetDepartments(Department department = null)
         {
-            return departments;
+            List<Department> newdep = new List<Department>(departments);
+            if (department != null)
+            {
+                foreach (Department d in departments)
+                {
+                    if (d.Title != department.Title)
+                    {
+                        newdep.Remove(d);
+                    }
+                }
+            }
+            return newdep;
         }
 
     }

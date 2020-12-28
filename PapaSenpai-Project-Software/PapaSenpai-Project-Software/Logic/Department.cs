@@ -14,9 +14,11 @@ namespace PapaSenpai_Project_Software.Logic
             Title = title;
         }
 
-        public string Title { get; }
+        public string Title { get; set; }
         public int Id { get; set; }
-
+        public int EmployeesCount { get; set; }
+        public int ProductsCount { get; set; }
+        public int TotalProductsRevenue { get; set; }
         public override string ToString()
         {
             return $"{Title}";
