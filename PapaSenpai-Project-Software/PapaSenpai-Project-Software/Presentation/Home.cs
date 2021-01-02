@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -308,9 +309,31 @@ namespace PapaSenpai_Project_Software
             showPanel(pnlAutomaticSchedule);
         }
 
-        private void btnCreateSchedule_Click(object sender, EventArgs e)
+        private DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
         {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
 
+            // Use first Thursday in January to get first week of the year as
+            // it will never be in Week 52/53
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            // As we're adding days to a date in Week 1,
+            // we need to subtract 1 in order to get the right date for week #1
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+
+            // Using the first Thursday as starting week ensures that we are starting in the right year
+            // then we add number of weeks multiplied with days
+            var result = firstThursday.AddDays(weekNum * 7);
+
+            // Subtract 3 days from Thursday to get Monday, which is the first weekday in ISO8601
+            return result.AddDays(-3);
         }
 
         // cart buttons
@@ -2105,6 +2128,105 @@ namespace PapaSenpai_Project_Software
 
         }
 
-        
+
+        private void btnAutomate_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("dsa");
+            int employeeCount = Convert.ToInt32(tbEmployeesCount.Text);
+            int week = Convert.ToInt32(cbSelectWeek.SelectedItem);
+
+            DateTime date = this.FirstDateOfWeekISO8601(2020, week);
+
+            for (int i = 1; i <= 5; i++)
+            {
+                Schedule exists = this.scheduleControl.getScheduleByDate(date);
+                if (exists != null)
+                {
+                    //schedule exists
+                    continue;
+                }
+
+                List<Employee> employees = new List<Employee>();
+
+                foreach (Employee employee in this.employeeControl.getEmployees())
+                {
+                    Boolean shouldAdd = false;
+                    switch (date.DayOfWeek.ToString()) {
+                        case "Monday":
+                            if (employee.Monday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Tuesday":
+                            if (employee.Tuesday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Wednesday":
+                            if (employee.Wednesday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Thursday":
+                            if (employee.Thursday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Friday":
+                            if (employee.Friday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                    }
+
+                    if (shouldAdd == true)
+                    {
+                        employees.Add(employee);
+                    }
+                }
+
+                if (employees.Count() < employeeCount)
+                {
+                    foreach (Employee employee in this.employeeControl.getEmployees().OrderBy(a => Guid.NewGuid()).ToList())
+                    {
+
+                        if (employees.Count() > employeeCount)
+                        {
+                            break;
+                        }
+                        employees.Add(employee);
+                    }
+                }
+
+                string[] bindings = { "", date.ToString("MM-dd-yyyy") };
+                int id = Convert.ToInt32(scheduleControl.Insert(bindings));
+
+                foreach (Employee addingEmployee in employees)
+                {
+
+                   string from = date.ToString("MM-dd-yyyy") + " " + "9:00";
+                   string to = date.ToString("MM-dd-yyyy") + " " + "17:00";
+                   string[] member_data = { id.ToString(), addingEmployee.ID.ToString(), from, to, "8" };
+
+                   //check if the datetime string is really a datetime and if yes safe the user to the db
+                   scheduleControl.InsertMember(member_data);
+                }
+
+
+                //create schedule
+                //add the employees
+                date = date.AddDays(1);
+            }
+
+            MessageBox.Show("You successfully created the schedules");
+
+            //get all days from monday to friday in that week where there is no schedule already
+            //at least one working from each department
+        }
     }
 }

@@ -47,7 +47,9 @@ namespace PapaSenpai_Project_Software.Logic
                         employees["city"].ToString(), employees["country"].ToString(),
                         employees["phone_number"].ToString(), employees["gender"].ToString(), employees["contract"].ToString(),
                         employees["wage_per_hour"].ToString(), employees["username"].ToString(),
-                        employees["password"].ToString(), employees["shifts_taken"].ToString(), employees["hours_worked"].ToString());
+                        employees["password"].ToString(), employees["shifts_taken"].ToString(),
+                        Convert.ToInt32(employees["monday"]), Convert.ToInt32(employees["tuesday"]), Convert.ToInt32(employees["wednesday"]),
+                        Convert.ToInt32(employees["thursday"]), Convert.ToInt32(employees["friday"]), employees["hours_worked"].ToString());
 
                     if (employees["department_id"].ToString() != "" && employees["department_title"].ToString() != "")
                     {
