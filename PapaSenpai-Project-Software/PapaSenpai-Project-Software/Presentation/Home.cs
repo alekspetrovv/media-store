@@ -48,27 +48,10 @@ namespace PapaSenpai_Project_Software
             this.roleControl.retrieveAllRoles();
 
             // permissions
-            Admin admin = adminControl.getloggedUser();
-            if (admin.Role.Title == "Admin")
-            {
-                hideLabel(lblWelcomeToEmployeesPage);
-                hideLabel(lblWelcomeToProductPage);
-            }
+            Permissions();
 
-            if (admin.Role.Title == "Manager")
-            {
-                ManagerPermissions();
-            }
-
-            if (admin.Role.Title == "Store Manager")
-            {
-                StoreManagerPermissions();
-            }
-
-            if (admin.Role.Title == "IT Manager" || admin.Role.Title == "Marketing Manager" || admin.Role.Title == "Financial Manager")
-            {
-                DepartmentManagerPermissions();
-            }
+            // statistics
+            DepartmentStatistics();
 
             // render
             GetDepartments();
@@ -122,7 +105,6 @@ namespace PapaSenpai_Project_Software
         private void btnBackToRolePage_Click(object sender, EventArgs e)
         {
             showPanel(pnlRoles);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnUpdateRole_Click(object sender, EventArgs e)
@@ -181,7 +163,6 @@ namespace PapaSenpai_Project_Software
         private void btnBackToProductPage_Click(object sender, EventArgs e)
         {
             showPanel(pnlProducts);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
@@ -209,7 +190,6 @@ namespace PapaSenpai_Project_Software
         private void btnBackToProductPageFromAddEdit_Click(object sender, EventArgs e)
         {
             showPanel(pnlProducts);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
@@ -253,7 +233,6 @@ namespace PapaSenpai_Project_Software
             showPanel(pnlAddEditAdmin);
             showButton(btnAddUser);
             hideButton(btnUpdateUser);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -265,7 +244,6 @@ namespace PapaSenpai_Project_Software
         private void btnBackToUserPage_Click(object sender, EventArgs e)
         {
             showPanel(pnlAdmins);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -309,32 +287,12 @@ namespace PapaSenpai_Project_Software
             showPanel(pnlAutomaticSchedule);
         }
 
-        private DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
+        private void btnAutomate_Click(object sender, EventArgs e)
         {
-            DateTime jan1 = new DateTime(year, 1, 1);
-            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
-
-            // Use first Thursday in January to get first week of the year as
-            // it will never be in Week 52/53
-            DateTime firstThursday = jan1.AddDays(daysOffset);
-            var cal = CultureInfo.CurrentCulture.Calendar;
-            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-
-            var weekNum = weekOfYear;
-            // As we're adding days to a date in Week 1,
-            // we need to subtract 1 in order to get the right date for week #1
-            if (firstWeek == 1)
-            {
-                weekNum -= 1;
-            }
-
-            // Using the first Thursday as starting week ensures that we are starting in the right year
-            // then we add number of weeks multiplied with days
-            var result = firstThursday.AddDays(weekNum * 7);
-
-            // Subtract 3 days from Thursday to get Monday, which is the first weekday in ISO8601
-            return result.AddDays(-3);
+            AutomateSchedule();
         }
+
+
 
         // cart buttons
 
@@ -367,7 +325,6 @@ namespace PapaSenpai_Project_Software
         private void btnBackToEmployeePage_Click(object sender, EventArgs e)
         {
             showPanel(pnlEmployee);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void btnViewEmployeeDetails_Click(object sender, EventArgs e)
@@ -400,7 +357,6 @@ namespace PapaSenpai_Project_Software
             showPanel(pnlAddEditEmployee);
             hideButton(btnUpdateEmployee);
             showButton(btnAssignEmployee);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void BtnViewStaff_Click(object sender, EventArgs e)
@@ -411,7 +367,6 @@ namespace PapaSenpai_Project_Software
         private void btnBackToEmployeePageFromDetails_Click(object sender, EventArgs e)
         {
             showPanel(pnlEmployee);
-            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -529,14 +484,7 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
             dtPrd.Columns.Add("Revenue", typeof(string));
-
-            // product count
-            tbTotalProducts.Text = productControl.GetProductsCount().ToString();
-
-            // total revenue
-            double totalRevenue = productControl.GetProducts().Sum(item => item.OverallPrice);
-            tbTotalRevenue.Text = totalRevenue.ToString();
-
+            DepartmentStatistics();
             foreach (Product p in productControl.GetProducts(GetProductDepartment()))
             {
                 string refill = "No";
@@ -559,7 +507,7 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("First Name", typeof(string));
             dtEmp.Columns.Add("Last Name", typeof(string));
             dtEmp.Columns.Add("Role", typeof(string));
-            GetRoles();
+            DepartmentStatistics();
             foreach (Admin admin in adminControl.getAdmins())
             {
                 dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.getRoleName());
@@ -581,8 +529,7 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Contract", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
 
-            // total employees 
-            this.tbeTotalEmployees.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
+            DepartmentStatistics();
 
             // show employees filtered by department
             foreach (Employee employee in employeeControl.getEmployees(GetEmployeeDepartment()))
@@ -813,8 +760,10 @@ namespace PapaSenpai_Project_Software
                  selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
                     productControl.AddProduct(product_bindings);
                     MessageBox.Show("you have successfully created a product!");
+                    TraverseControlsAndSetTextEmpty(this);
                     this.renderProductsTable();
                     this.productControl.retrieveAllProducts();
+                    ShowDepartmentDetails();
                     this.showPanel(pnlProducts);
                     return;
                 }
@@ -827,7 +776,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show(message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void EditProduct()
@@ -881,6 +829,7 @@ namespace PapaSenpai_Project_Software
                 string[] productData = {department.Id.ToString(), tbProductTitle.Text,tbProductDescription.Text,tbProductQuantity.Text,tbProductQuantityDepo.Text,
                 tbProductSellingPrice.Text,tbProductBuyingPrice.Text,tbProductThreshHold.Text, productID };
                 MessageBox.Show("You have succesfully updated information for that product!");
+                TraverseControlsAndSetTextEmpty(this);
                 productControl.UpdateProduct(productData);
                 this.renderProductsTable();
                 productControl.retrieveAllProducts();
@@ -890,7 +839,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show(e.Message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void DeleteProduct()
@@ -1019,6 +967,7 @@ namespace PapaSenpai_Project_Software
                     string[] admin_bindings = { tbAdminUserName.Text, tbAdminPassword.Text, tbAdminFirstName.Text, tbAdminLastName.Text, tbAdminEmail.Text, role.Id.ToString() };
                     adminControl.Insert(admin_bindings);
                     MessageBox.Show("You have created a user!");
+                    TraverseControlsAndSetTextEmpty(this);
                     renderAdminTable();
                     showPanel(pnlAdmins);
                     return;
@@ -1034,8 +983,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show(message);
             }
-
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void EditAdmin()
@@ -1085,6 +1032,7 @@ namespace PapaSenpai_Project_Software
                 adminControl.Update(adminData);
                 pnlAdmins.Visible = true;
                 MessageBox.Show("You have succesfully update information for that admin!");
+                TraverseControlsAndSetTextEmpty(this);
                 renderAdminTable();
                 showPanel(pnlAdmins);
             }
@@ -1092,7 +1040,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show(e.Message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         private void DeleteAdmin()
@@ -1132,8 +1079,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("Can't delete that");
             }
-
-            TraverseControlsAndSetTextEmpty(this);
         }
 
 
@@ -1201,6 +1146,11 @@ namespace PapaSenpai_Project_Software
                 try
                 {
                     Department department = (Department)cbEmployeeDepartment.SelectedItem;
+                    if (department == null)
+                    {
+                        MessageBox.Show("Please enter a department!");
+                        return;
+                    }
                     int contract_id = cbEmployeeContract.SelectedIndex;
                     contract_id++;
                     string increased_contract_id = Convert.ToString(contract_id);
@@ -1210,6 +1160,7 @@ namespace PapaSenpai_Project_Software
                     gender, tbEmployeeEmail.Text,department.Id.ToString(),increased_contract_id,tbEmployeeUserName.Text,tbEmployeePassword.Text};
                     employeeControl.AddEmployee(employee_bindings);
                     MessageBox.Show("You have succesfully created an employee!");
+                    TraverseControlsAndSetTextEmpty(this);
                     this.renderScheduleMembers();
                     this.renderStaffTable();
                     this.showPanel(pnlEmployee);
@@ -1225,7 +1176,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show(message);
             }
-
         }
 
         private void EditEmployee()
@@ -1257,8 +1207,6 @@ namespace PapaSenpai_Project_Software
                     tbEmployeeId.Text = Convert.ToString(employee.ID);
                     tbEmployeeCountry.Text = employee.Country;
                     tbEmployeeWagePerHour.Text = employee.Wage.ToString();
-                    cbEmployeeDepartment.SelectedItem = employee.Department.Title;
-                    cbEmployeeContract.SelectedItem = Convert.ToString(employee.Contract);
                     cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
                     showPanel(pnlAddEditEmployee);
                     employeeControl.retrieveAllEmployees();
@@ -1298,6 +1246,7 @@ namespace PapaSenpai_Project_Software
                 showPanel(pnlEmployee);
                 employeeControl.UpdateEmployee(employeeData);
                 MessageBox.Show("You have succesfully update information for that employee!");
+                TraverseControlsAndSetTextEmpty(this);
                 renderStaffTable();
                 renderScheduleMembers();
             }
@@ -1417,8 +1366,8 @@ namespace PapaSenpai_Project_Software
         {
             if (tbEmployeeFirstName.Text == "" || tbEmployeeLastName.Text == "" ||
                 tbEmployeeAdress.Text == "" || tbEmployeeCity.Text == "" ||
-                tbEmployeeCountry.Text == "" || tbEmployeeEmail.Text == "" || cbEmployeeContract == null ||
-                cbEmployeeGender.SelectedItem == null || tbEmployeePhoneNumber == null)
+                tbEmployeeCountry.Text == "" || tbEmployeeEmail.Text == "" || tbEmployeeWagePerHour.Text == "" || cbEmployeeContract.SelectedItem == null ||
+                cbEmployeeGender.SelectedItem == null || tbEmployeePhoneNumber.Text == "")
             {
                 return false;
             }
@@ -1525,6 +1474,138 @@ namespace PapaSenpai_Project_Software
             renderScheduleMembers();
         }
 
+        private DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            // Use first Thursday in January to get first week of the year as
+            // it will never be in Week 52/53
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            // As we're adding days to a date in Week 1,
+            // we need to subtract 1 in order to get the right date for week #1
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+
+            // Using the first Thursday as starting week ensures that we are starting in the right year
+            // then we add number of weeks multiplied with days
+            var result = firstThursday.AddDays(weekNum * 7);
+
+            // Subtract 3 days from Thursday to get Monday, which is the first weekday in ISO8601
+            return result.AddDays(-3);
+        }
+
+        private void AutomateSchedule()
+        {
+
+            int employeeCount = Convert.ToInt32(tbEmployeesCount.Text);
+            int week = Convert.ToInt32(cbSelectWeek.SelectedItem);
+            int year = Convert.ToInt32(tbYear.Text);
+
+
+            DateTime date = this.FirstDateOfWeekISO8601(year, week);
+
+            for (int i = 1; i <= 5; i++)
+            {
+                Schedule exists = this.scheduleControl.getScheduleByDate(date);
+                if (exists != null)
+                {
+                    //schedule exists
+                    continue;
+                }
+
+                List<Employee> employees = new List<Employee>();
+
+                foreach (Employee employee in this.employeeControl.getEmployees())
+                {
+                    Boolean shouldAdd = false;
+                    switch (date.DayOfWeek.ToString())
+                    {
+                        case "Monday":
+                            if (employee.Monday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Tuesday":
+                            if (employee.Tuesday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Wednesday":
+                            if (employee.Wednesday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Thursday":
+                            if (employee.Thursday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                        case "Friday":
+                            if (employee.Friday != 1 && employees.Count() <= employeeCount)
+                            {
+                                shouldAdd = true;
+                            }
+                            break;
+                    }
+
+                    if (shouldAdd == true)
+                    {
+                        employees.Add(employee);
+                    }
+                }
+
+                if (employees.Count() < employeeCount)
+                {
+                    foreach (Employee employee in this.employeeControl.getEmployees().OrderBy(a => Guid.NewGuid()).ToList())
+                    {
+
+                        if (employees.Count() > employeeCount)
+                        {
+                            break;
+                        }
+                        employees.Add(employee);
+                    }
+                }
+
+                string[] bindings = { "", date.ToString("MM-dd-yyyy") };
+                int id = Convert.ToInt32(scheduleControl.Insert(bindings));
+
+                foreach (Employee addingEmployee in employees)
+                {
+
+                    string from = date.ToString("MM-dd-yyyy") + " " + "9:00";
+                    string to = date.ToString("MM-dd-yyyy") + " " + "17:00";
+                    string[] member_data = { id.ToString(), addingEmployee.ID.ToString(), from, to, "8" };
+
+                    //check if the datetime string is really a datetime and if yes safe the user to the db
+                    scheduleControl.InsertMember(member_data);
+                }
+
+
+                //create schedule
+                //add the employees
+                date = date.AddDays(1);
+            }
+
+            MessageBox.Show("You successfully created the schedules");
+            this.scheduleControl.retrieveSchedules();
+            this.renderDailySchedule();
+            this.renderScheduleMembers();
+            showPanel(pnlScheduleEmployees);
+            //get all days from monday to friday in that week where there is no schedule already
+            //at least one working from each department
+        }
 
 
         // Home controls
@@ -1689,6 +1770,7 @@ namespace PapaSenpai_Project_Software
             this.hideLabel(materialLabel86);
             this.hideLabel(materialLabel92);
             this.hideLabel(materialLabel93);
+            this.hideLabel(materialLabel112);
             this.hideLabel(materialLabel122);
             this.hideLabel(materialLabel85);
             this.hideLabel(materialLabel99);
@@ -1747,7 +1829,27 @@ namespace PapaSenpai_Project_Software
             this.hidePicture(iconPictureBox16);
         }
 
-
+        private void Permissions()
+        {
+            Admin admin = adminControl.getloggedUser();
+            if (admin.Role.Title == "Admin")
+            {
+                hideLabel(lblWelcomeToEmployeesPage);
+                hideLabel(lblWelcomeToProductPage);
+            }
+            else if (admin.Role.Title == "Manager")
+            {
+                ManagerPermissions();
+            }
+            else if (admin.Role.Title == "Store Manager")
+            {
+                StoreManagerPermissions();
+            }
+            else
+            {
+                DepartmentManagerPermissions();
+            }
+        }
 
         // CRUD Department
         public void AddDepartment()
@@ -1927,11 +2029,25 @@ namespace PapaSenpai_Project_Software
         }
 
 
+        private void DepartmentStatistics()
+        {
+            // total employees 
+            this.tbeTotalEmployees.Text = Convert.ToString(this.employeeControl.GetEmployeesCount());
+
+            // product count
+            tbTotalProducts.Text = productControl.GetProductsCount().ToString();
+
+            // total revenue
+            double totalRevenue = productControl.GetProducts().Sum(item => item.OverallPrice);
+            tbTotalRevenue.Text = totalRevenue.ToString();
+        }
+
         // CRUD Role
         public void AddRole()
         {
             hideButton(btnUpdateRole);
             showButton(btnAddRole);
+            Department department = (Department)cbRoleDepartment.SelectedItem;
             Role r = roleControl.GetRoleByTitle(tbRoleTitle.Text);
 
             if (r != null)
@@ -1946,10 +2062,10 @@ namespace PapaSenpai_Project_Software
                 return;
             }
 
+
             try
             {
                 string title = tbRoleTitle.Text;
-                Department department = (Department)cbRoleDepartment.SelectedItem;
                 if (department == null)
                 {
                     string[] empty_role = { title };
@@ -1970,7 +2086,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("There's been an exception: " + e.Message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         public void EditRole()
@@ -2008,12 +2123,20 @@ namespace PapaSenpai_Project_Software
             Department department = (Department)cbRoleDepartment.SelectedItem;
 
             Role role = roleControl.GetRoleByDeparment(department);
+            Role r = roleControl.GetRoleByTitle(tbRoleTitle.Text);
+
+            if (r != null)
+            {
+                MessageBox.Show("Role with title: " + tbRoleTitle.Text + " Already exist!");
+                return;
+            }
 
 
-            if(role != null)
+
+            if (role != null)
             {
                 MessageBox.Show($"Role with department: " + department.Title + " Already exist." + " Please select a different department!");
-                return; 
+                return;
             }
 
 
@@ -2047,7 +2170,6 @@ namespace PapaSenpai_Project_Software
             {
                 MessageBox.Show("There's been an exception: " + e.Message);
             }
-            TraverseControlsAndSetTextEmpty(this);
         }
 
         public void DeleteRole()
@@ -2129,111 +2251,6 @@ namespace PapaSenpai_Project_Software
         }
 
 
-        private void btnAutomate_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("dsa");
-            int employeeCount = Convert.ToInt32(tbEmployeesCount.Text);
-            int week = Convert.ToInt32(cbSelectWeek.SelectedItem);
-            int year = Convert.ToInt32(tbYear.Text);
 
-            Console.WriteLine(week);
-            Console.WriteLine(year);
-
-            DateTime date = this.FirstDateOfWeekISO8601(year, week);
-
-            for (int i = 1; i <= 5; i++)
-            {
-                Schedule exists = this.scheduleControl.getScheduleByDate(date);
-                if (exists != null)
-                {
-                    //schedule exists
-                    continue;
-                }
-
-                List<Employee> employees = new List<Employee>();
-
-                foreach (Employee employee in this.employeeControl.getEmployees())
-                {
-                    Boolean shouldAdd = false;
-                    switch (date.DayOfWeek.ToString()) {
-                        case "Monday":
-                            if (employee.Monday != 1 && employees.Count() <= employeeCount)
-                            {
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Tuesday":
-                            if (employee.Tuesday != 1 && employees.Count() <= employeeCount)
-                            {
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Wednesday":
-                            if (employee.Wednesday != 1 && employees.Count() <= employeeCount)
-                            {
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Thursday":
-                            if (employee.Thursday != 1 && employees.Count() <= employeeCount)
-                            {
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Friday":
-                            if (employee.Friday != 1 && employees.Count() <= employeeCount)
-                            {
-                                shouldAdd = true;
-                            }
-                            break;
-                    }
-
-                    if (shouldAdd == true)
-                    {
-                        employees.Add(employee);
-                    }
-                }
-
-                if (employees.Count() < employeeCount)
-                {
-                    foreach (Employee employee in this.employeeControl.getEmployees().OrderBy(a => Guid.NewGuid()).ToList())
-                    {
-
-                        if (employees.Count() > employeeCount)
-                        {
-                            break;
-                        }
-                        employees.Add(employee);
-                    }
-                }
-
-                string[] bindings = { "", date.ToString("MM-dd-yyyy") };
-                int id = Convert.ToInt32(scheduleControl.Insert(bindings));
-
-                foreach (Employee addingEmployee in employees)
-                {
-
-                   string from = date.ToString("MM-dd-yyyy") + " " + "9:00";
-                   string to = date.ToString("MM-dd-yyyy") + " " + "17:00";
-                   string[] member_data = { id.ToString(), addingEmployee.ID.ToString(), from, to, "8" };
-
-                   //check if the datetime string is really a datetime and if yes safe the user to the db
-                   scheduleControl.InsertMember(member_data);
-                }
-
-
-                //create schedule
-                //add the employees
-                date = date.AddDays(1);
-            }
-
-            MessageBox.Show("You successfully created the schedules");
-            this.scheduleControl.retrieveSchedules();
-            this.renderDailySchedule();
-            this.renderScheduleMembers();
-
-            //get all days from monday to friday in that week where there is no schedule already
-            //at least one working from each department
-        }
     }
 }
