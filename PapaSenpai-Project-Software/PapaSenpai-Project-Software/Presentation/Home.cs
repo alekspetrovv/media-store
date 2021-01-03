@@ -2134,8 +2134,12 @@ namespace PapaSenpai_Project_Software
             Console.WriteLine("dsa");
             int employeeCount = Convert.ToInt32(tbEmployeesCount.Text);
             int week = Convert.ToInt32(cbSelectWeek.SelectedItem);
+            int year = Convert.ToInt32(tbYear.Text);
 
-            DateTime date = this.FirstDateOfWeekISO8601(2020, week);
+            Console.WriteLine(week);
+            Console.WriteLine(year);
+
+            DateTime date = this.FirstDateOfWeekISO8601(year, week);
 
             for (int i = 1; i <= 5; i++)
             {
@@ -2224,6 +2228,9 @@ namespace PapaSenpai_Project_Software
             }
 
             MessageBox.Show("You successfully created the schedules");
+            this.scheduleControl.retrieveSchedules();
+            this.renderDailySchedule();
+            this.renderScheduleMembers();
 
             //get all days from monday to friday in that week where there is no schedule already
             //at least one working from each department
