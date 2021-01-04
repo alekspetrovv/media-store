@@ -143,6 +143,7 @@ namespace PapaSenpai_Project_Software
             showPanel(pnlAddEditProduct);
             hideButton(btnAddProductItem);
             showButton(btnUpdateProductItem);
+            EditProduct();
         }
 
         private void btnShowProducts_Click(object sender, EventArgs e)
@@ -1207,6 +1208,7 @@ namespace PapaSenpai_Project_Software
                     tbEmployeeId.Text = Convert.ToString(employee.ID);
                     tbEmployeeCountry.Text = employee.Country;
                     tbEmployeeWagePerHour.Text = employee.Wage.ToString();
+                    cbEmployeeDepartment.Text = employee.getDepartmentName();
                     cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
                     showPanel(pnlAddEditEmployee);
                     employeeControl.retrieveAllEmployees();
@@ -2240,7 +2242,7 @@ namespace PapaSenpai_Project_Software
                     string id = dataRow.Cells["ID"].Value.ToString();
                     Role role = roleControl.GetRoleById(Convert.ToInt32(id));
                     tbViewTitle.Text = role.Title;
-                    tbDepartmentRole.Text = role.Department.Title;
+                    tbDepartmentRole.Text = role.getDepartmentName();
                     tbViewId.Text = Convert.ToString(role.Id);
                     roleControl.retrieveAllRoles();
                     RenderRolesTable();
