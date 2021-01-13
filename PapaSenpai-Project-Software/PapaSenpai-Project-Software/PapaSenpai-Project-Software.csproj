@@ -80,6 +80,7 @@
     <Compile Include="Logic\Employee.cs" />
     <Compile Include="Logic\EmployeeControl.cs" />
     <Compile Include="Logic\Gender.cs" />
+    <Compile Include="Logic\Interface.cs" />
     <Compile Include="Logic\OrderProduct.cs" />
     <Compile Include="Logic\OrdersControl.cs" />
     <Compile Include="Logic\Product.cs" />

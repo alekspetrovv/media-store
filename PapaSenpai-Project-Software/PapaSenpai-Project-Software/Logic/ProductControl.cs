@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Logic
 {
-    public class ProductControl
+    public class ProductControl : Interface
     {
         private List<Product> products;
         private ProductDAL productDAL;
@@ -74,19 +74,19 @@ namespace PapaSenpai_Project_Software.Logic
             }
         }
 
-        public void AddProduct(string[] product_bindings)
+        public void Create(string[] product_bindings)
         {
-            this.productDAL.Insert(product_bindings);
+            this.productDAL.Create(product_bindings);
             this.retrieveAllProducts();
         }
 
-        public void UpdateProduct(string[] product_bindings)
+        public void Update(string[] product_bindings)
         {
             this.productDAL.Update(product_bindings);
             this.retrieveAllProducts();
         }
 
-        public void DeleteProduct(string[] product_bindings)
+        public void Delete(string[] product_bindings)
         {
             this.productDAL.Delete(product_bindings);
         }

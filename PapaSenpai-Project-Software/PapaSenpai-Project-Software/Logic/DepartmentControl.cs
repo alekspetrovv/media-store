@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Logic
 {
-    public class DepartmentControl
+    public class DepartmentControl : Interface
     {
         private List<Department> departments;
         private DepartmentsDAL departmentsDAL;
@@ -72,9 +72,9 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-        public void Insert(string[] department_bindings)
+        public void Create(string[] department_bindings)
         {
-            departmentsDAL.Insert(department_bindings);
+            departmentsDAL.Create(department_bindings);
             retrieveAllDepartments();
         }
 

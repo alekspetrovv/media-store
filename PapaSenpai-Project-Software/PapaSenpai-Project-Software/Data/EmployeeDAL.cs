@@ -10,7 +10,7 @@ namespace PapaSenpai_Project_Software.Data
     public class EmployeeDAL : BaseDAL
     {
 
-        public void Insert(string[] employee_bindings)
+        public void Create(string[] employee_bindings)
         {
             executeNonQuery("INSERT INTO `employees`(`first_name`, `last_name`, `address`, `city`, `country`, `wage_per_hour`, `phone_number`, `gender`, `email`, `department_id`, `contract_id`, `username`, `password`) " +
                 "VALUES (@firstname,@lastname,@address,@city,@country,@wage_per_hour,@phone_number,@gender,@email,@department_id,@contract_id,@username,@password)", employee_bindings);

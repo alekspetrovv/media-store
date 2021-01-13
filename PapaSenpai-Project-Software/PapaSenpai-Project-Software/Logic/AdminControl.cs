@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Logic
 {
-    public class AdminControl
+    public class AdminControl : Interface
     {
         private List<Admin> admins;
         private Admin loggedUser;
@@ -55,9 +55,9 @@ namespace PapaSenpai_Project_Software.Logic
         }
 
 
-        public void Insert(string[] admin_bindings)
+        public void Create(string[] admin_bindings)
         {
-            adminDAL.Insert(admin_bindings);
+            adminDAL.Create(admin_bindings);
             this.retrieveAllAdmins();
         }
 
@@ -70,6 +70,7 @@ namespace PapaSenpai_Project_Software.Logic
         public void Delete(string[] admin_bindings)
         {
             adminDAL.Delete(admin_bindings);
+            this.retrieveAllAdmins();
         }
 
         public void retrieveAllAdmins()
@@ -94,7 +95,7 @@ namespace PapaSenpai_Project_Software.Logic
                         }
                         admin.Role = role;
                     }
-                    
+
                     this.addAdmin(admin);
                 }
             }

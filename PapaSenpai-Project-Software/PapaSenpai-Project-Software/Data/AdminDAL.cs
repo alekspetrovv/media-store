@@ -10,7 +10,7 @@ namespace PapaSenpai_Project_Software.Data
     public class AdminDAL : BaseDAL
     {
 
-        public void Insert(string[] admin_bindings)
+        public void Create(string[] admin_bindings)
         {
             executeReader("INSERT INTO `admins`(`username`, `password`, `first_name`, `last_name`, `email`, `role_id`)" +
                        "VALUES(@username,@password,@first_name,@last_name,@email,@role_id)", admin_bindings);

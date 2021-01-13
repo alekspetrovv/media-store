@@ -9,7 +9,7 @@ namespace PapaSenpai_Project_Software.Data
 {
     public class ProductDAL : BaseDAL
     {
-        public void Insert(string[] products_bindings)
+        public void Create(string[] products_bindings)
         {
             executeNonQuery("INSERT INTO `products`(`department_id`,`title`, `description`, " +
                 "`quantity`,`quantitydepo`,`selling_price`, `buying_price`, `threshold`)" +

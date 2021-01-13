@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Logic
 {
-    public class RoleControl
+    public class RoleControl : Interface
     {
         private List<Role> roles;
         private RolesDAL rolesDal;
@@ -34,10 +34,10 @@ namespace PapaSenpai_Project_Software.Logic
         {
             foreach (Role role in roles)
             {
-               if(role.Department.Id == d.Id)
-               {
+                if (role.Department.Id == d.Id)
+                {
                     return role;
-               }
+                }
             }
             return null;
         }
@@ -75,13 +75,13 @@ namespace PapaSenpai_Project_Software.Logic
             }
         }
 
-        public void Insert(string[] role_bindings)
+        public void Create(string[] role_bindings)
         {
-            rolesDal.Insert(role_bindings);
+            rolesDal.Create(role_bindings);
             retrieveAllRoles();
         }
 
-        public void InsertWithoutDepartment(string[] roles_bindings)
+        public void CreateWithoutDepartment(string[] roles_bindings)
         {
             rolesDal.InsertWithoutDepartment(roles_bindings);
             retrieveAllRoles();

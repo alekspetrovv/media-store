@@ -48,9 +48,9 @@ namespace PapaSenpai_Project_Software.Logic
 
 
 
-        public void Insert(string[] request_bindings)
+        public void Create(string[] request_bindings)
         {
-            this.requestDAL.Insert(request_bindings);
+            this.requestDAL.Create(request_bindings);
             this.retrieveAllRequests();
         }
 

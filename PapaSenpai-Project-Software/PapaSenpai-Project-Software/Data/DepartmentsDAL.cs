@@ -9,7 +9,7 @@ namespace PapaSenpai_Project_Software.Data
 {
     public class DepartmentsDAL : BaseDAL
     {
-        public void Insert(string[] department_bindings)
+        public void Create(string[] department_bindings)
         {
             executeNonQuery("INSERT INTO `departments`(`title`) VALUES(@title)", department_bindings);
         }

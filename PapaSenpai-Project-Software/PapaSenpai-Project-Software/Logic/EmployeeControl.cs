@@ -2,13 +2,10 @@
 using PapaSenpai_Project_Software.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PapaSenpai_Project_Software.Logic
 {
-    public class EmployeeControl
+    public class EmployeeControl : Interface
     {
         private List<Employee> employees;
         private EmployeeDAL employeeDAL;
@@ -61,17 +58,17 @@ namespace PapaSenpai_Project_Software.Logic
             }
         }
 
-        public void AddEmployee(string[] employee_bindings)
+        public void Create(string[] employee_bindings)
         {
-            employeeDAL.Insert(employee_bindings);
+            employeeDAL.Create(employee_bindings);
             this.retrieveAllEmployees();
         }
-        public void UpdateEmployee(string[] employee_bindings)
+        public void Update(string[] employee_bindings)
         {
             employeeDAL.Update(employee_bindings);
             this.retrieveAllEmployees();
         }
-        public void DeleteEmployee(string[] employee_bindings)
+        public void Delete(string[] employee_bindings)
         {
             employeeDAL.Delete(employee_bindings);
             this.retrieveAllEmployees();

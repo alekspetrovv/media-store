@@ -10,7 +10,7 @@ namespace PapaSenpai_Project_Software.Data
     public class RequestDAL : BaseDAL
     {
 
-        public void Insert(string[] request_bindings)
+        public void Create(string[] request_bindings)
         {
             executeNonQuery("INSERT INTO `requests`(`products_id`,`quantity`) " +
                 "VALUES (@productid,@quantity)", request_bindings);
