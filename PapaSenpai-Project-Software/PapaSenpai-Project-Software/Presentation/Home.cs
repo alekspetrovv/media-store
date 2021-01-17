@@ -50,8 +50,6 @@ namespace PapaSenpai_Project_Software
             // permissions
             Permissions();
 
-            // statistics
-            DepartmentStatistics();
 
             // render
             GetDepartments();
@@ -135,12 +133,12 @@ namespace PapaSenpai_Project_Software
         {
             showPanel(pnlAddEditProduct);
             showButton(btnAddProductItem);
+            TraverseControlsAndSetTextEmpty(this);
             hideButton(btnUpdateProductItem);
         }
 
         private void btnEditProductPage_Click(object sender, EventArgs e)
         {
-            showPanel(pnlAddEditProduct);
             hideButton(btnAddProductItem);
             showButton(btnUpdateProductItem);
             EditProduct();
@@ -290,7 +288,20 @@ namespace PapaSenpai_Project_Software
             AutomateSchedule();
         }
 
+        private void btnBackToSchedules_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlViewSchedule);
+        }
 
+        private void btnCreateScheduleForDay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGoToAutomaticSchedulePageForDay_Click(object sender, EventArgs e)
+        {
+            showPanel(pnlScheduleForDay);
+        }
 
         // cart buttons
 
@@ -358,6 +369,7 @@ namespace PapaSenpai_Project_Software
         private void BtnAddStaff_Click(object sender, EventArgs e)
         {
             showPanel(pnlAddEditEmployee);
+            TraverseControlsAndSetTextEmpty(this);
             hideButton(btnUpdateEmployee);
             showButton(btnAssignEmployee);
         }
@@ -374,12 +386,11 @@ namespace PapaSenpai_Project_Software
 
 
 
-
-
         // department buttons
         private void btnDepartmentPage_Click(object sender, EventArgs e)
         {
             showPanel(pnlDepartments);
+            DepartmentStatistics();
         }
 
         private void btnAddDepartmentPage_Click(object sender, EventArgs e)
@@ -488,7 +499,6 @@ namespace PapaSenpai_Project_Software
             dtPrd.Columns.Add("Needs Refill", typeof(string));
             dtPrd.Columns.Add("Threshold", typeof(string));
             dtPrd.Columns.Add("Revenue", typeof(string));
-            DepartmentStatistics();
 
             if (cbSelectedProductDepartment.Text == "All")
             {
@@ -526,7 +536,6 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("First Name", typeof(string));
             dtEmp.Columns.Add("Last Name", typeof(string));
             dtEmp.Columns.Add("Role", typeof(string));
-            DepartmentStatistics();
             foreach (Admin admin in adminControl.getAdmins())
             {
                 dtEmp.Rows.Add(false, admin.ID, admin.Username, admin.FirstName, admin.LastName, admin.getRoleName());
@@ -547,8 +556,6 @@ namespace PapaSenpai_Project_Software
             dtEmp.Columns.Add("Department", typeof(string));
             dtEmp.Columns.Add("Contract", typeof(string));
             dtEmp.Columns.Add("Wage per hour", typeof(string));
-
-            DepartmentStatistics();
 
             if (cbSelectDepartment.Text == "All")
             {
@@ -602,7 +609,7 @@ namespace PapaSenpai_Project_Software
 
             foreach (Schedule found_schedule in scheduleControl.getSchedules())
             {
-                    coloredDates.Add(found_schedule.Date);
+                coloredDates.Add(found_schedule.Date);
             }
 
             calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
@@ -656,7 +663,7 @@ namespace PapaSenpai_Project_Software
             dtDep.Columns.Add("Selected", typeof(bool));
             dtDep.Columns.Add("ID", typeof(int));
             dtDep.Columns.Add("Title", typeof(string));
-
+            DepartmentStatistics();
 
             if (cbDepartments.Text == "All")
             {
@@ -847,8 +854,8 @@ namespace PapaSenpai_Project_Software
                         tbProductThreshHold.Text = Convert.ToString(product.ThreshHold);
                         tbProductId.Text = Convert.ToString(product.Id);
                         cbProductDepartment.SelectedItem = product.getDepartmentName();
-                        productControl.retrieveAllProducts();
                         this.renderProductsTable();
+                        productControl.retrieveAllProducts();
                         this.showPanel(pnlAddEditProduct);
                     }
                 }
@@ -1241,10 +1248,10 @@ namespace PapaSenpai_Project_Software
                     tbEmployeeWagePerHour.Text = employee.Wage.ToString();
                     cbEmployeeDepartment.Text = employee.getDepartmentName();
                     cbEmployeeGender.SelectedItem = Convert.ToString(employee.Gender);
-                    showPanel(pnlAddEditEmployee);
                     employeeControl.retrieveAllEmployees();
                     renderStaffTable();
                     renderScheduleMembers();
+                    showPanel(pnlAddEditEmployee);
                 }
             }
 
@@ -1656,6 +1663,7 @@ namespace PapaSenpai_Project_Software
 
         private void showPanel(Panel panel)
         {
+            this.pnlScheduleForDay.Visible = false;
             this.pnlDashBoard.Visible = false;
             this.pnlEmployee.Visible = false;
             this.pnlAddEditEmployee.Visible = false;
@@ -2282,7 +2290,6 @@ namespace PapaSenpai_Project_Software
             }
 
         }
-
 
 
     }
