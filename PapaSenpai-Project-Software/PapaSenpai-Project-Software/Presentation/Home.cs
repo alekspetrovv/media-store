@@ -296,7 +296,7 @@ namespace PapaSenpai_Project_Software
 
         private void btnCreateScheduleForDay_Click(object sender, EventArgs e)
         {
-            
+
             AutomateScheduleDaily();
         }
 
@@ -1545,83 +1545,83 @@ namespace PapaSenpai_Project_Software
 
         private void AutomateScheduleDaily()
         {
-           DateTime date = this.scheduleForDay;
+            DateTime date = this.scheduleForDay;
             int employeeCount = Convert.ToInt32(tbEmployeesForDay.Text);
             List<Employee> employees = new List<Employee>();
             string[] bindings = { "", date.ToString("MM-dd-yyyy") };
             int id = Convert.ToInt32(scheduleControl.Insert(bindings));
 
 
-                Schedule exists = this.scheduleControl.getScheduleByDate(date);
-                if (exists != null)
-                {
-                    //schedule exists
-                    return;
-                }
+            Schedule exists = this.scheduleControl.getScheduleByDate(date);
+            if (exists != null)
+            {
+                //schedule exists
+                return;
+            }
 
 
             foreach (Employee employee in this.employeeControl.getEmployees())
             {
-                    Boolean shouldAdd = false;
-                    switch (date.DayOfWeek.ToString())
-                    {
-                        case "Monday":
-                            if (employee.Monday != 1 && employees.Count() <= employeeCount)
-                            {
-                                this.addMemberToSchedule(id, employee, date, employee.Monday.ToString());
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Tuesday":
-                            if (employee.Tuesday != 1 && employees.Count() <= employeeCount)
-                            {
-                                this.addMemberToSchedule(id, employee, date, employee.Tuesday.ToString());
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Wednesday":
-                            if (employee.Wednesday != 1 && employees.Count() <= employeeCount)
-                            {
-                                this.addMemberToSchedule(id, employee, date, employee.Wednesday.ToString());
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Thursday":
-                            if (employee.Thursday != 1 && employees.Count() <= employeeCount)
-                            {
-                                this.addMemberToSchedule(id, employee, date, employee.Thursday.ToString());
-                                shouldAdd = true;
-                            }
-                            break;
-                        case "Friday":
-                            if (employee.Friday != 1 && employees.Count() <= employeeCount)
-                            {
-
-                                this.addMemberToSchedule(id, employee, date, employee.Friday.ToString());
-                                shouldAdd = true;
-                            }
-                            break;
-                    }
-
-                    if (shouldAdd == true)
-                    {
-                        employees.Add(employee);
-                    }
-                 }
-
-                if (employees.Count() < employeeCount)
+                Boolean shouldAdd = false;
+                switch (date.DayOfWeek.ToString())
                 {
-                    foreach (Employee employee in this.employeeControl.getEmployees().OrderBy(a => Guid.NewGuid()).ToList())
-                    {
-
-                        if (employees.Count() > employeeCount)
+                    case "Monday":
+                        if (employee.Monday != 1 && employees.Count() <= employeeCount)
                         {
-                            break;
+                            this.addMemberToSchedule(id, employee, date, employee.Monday.ToString());
+                            shouldAdd = true;
                         }
-                        this.addMemberToSchedule(id, employee, date, "full");
-                        employees.Add(employee);
-                    }
+                        break;
+                    case "Tuesday":
+                        if (employee.Tuesday != 1 && employees.Count() <= employeeCount)
+                        {
+                            this.addMemberToSchedule(id, employee, date, employee.Tuesday.ToString());
+                            shouldAdd = true;
+                        }
+                        break;
+                    case "Wednesday":
+                        if (employee.Wednesday != 1 && employees.Count() <= employeeCount)
+                        {
+                            this.addMemberToSchedule(id, employee, date, employee.Wednesday.ToString());
+                            shouldAdd = true;
+                        }
+                        break;
+                    case "Thursday":
+                        if (employee.Thursday != 1 && employees.Count() <= employeeCount)
+                        {
+                            this.addMemberToSchedule(id, employee, date, employee.Thursday.ToString());
+                            shouldAdd = true;
+                        }
+                        break;
+                    case "Friday":
+                        if (employee.Friday != 1 && employees.Count() <= employeeCount)
+                        {
+
+                            this.addMemberToSchedule(id, employee, date, employee.Friday.ToString());
+                            shouldAdd = true;
+                        }
+                        break;
                 }
+
+                if (shouldAdd == true)
+                {
+                    employees.Add(employee);
+                }
+            }
+
+            if (employees.Count() < employeeCount)
+            {
+                foreach (Employee employee in this.employeeControl.getEmployees().OrderBy(a => Guid.NewGuid()).ToList())
+                {
+
+                    if (employees.Count() > employeeCount)
+                    {
+                        break;
+                    }
+                    this.addMemberToSchedule(id, employee, date, "full");
+                    employees.Add(employee);
+                }
+            }
 
             MessageBox.Show("You successfully created the schedules");
             this.scheduleControl.retrieveSchedules();
@@ -1738,32 +1738,32 @@ namespace PapaSenpai_Project_Software
         private void addMemberToSchedule(int schedule_id, Employee employee, DateTime date, string type)
         {
 
-                    string from = date.ToString("MM-dd-yyyy") + " " + "9:00";
-                    string to = date.ToString("MM-dd-yyyy") + " " + "17:00";
+            string from = date.ToString("MM-dd-yyyy") + " " + "9:00";
+            string to = date.ToString("MM-dd-yyyy") + " " + "17:00";
 
-                    if (type == "2")
-                    {
-                        from = date.ToString("MM-dd-yyyy") + " " + "5:00";
-                        to = date.ToString("MM-dd-yyyy") + " " + "13:00";
-                    }
+            if (type == "2")
+            {
+                from = date.ToString("MM-dd-yyyy") + " " + "5:00";
+                to = date.ToString("MM-dd-yyyy") + " " + "13:00";
+            }
 
-                    if (type == "3")
-                    {
-                        from = date.ToString("MM-dd-yyyy") + " " + "13:00";
-                        to = date.ToString("MM-dd-yyyy") + " " + "21:00";
-                    }
+            if (type == "3")
+            {
+                from = date.ToString("MM-dd-yyyy") + " " + "13:00";
+                to = date.ToString("MM-dd-yyyy") + " " + "21:00";
+            }
 
-                    if (type == "4")
-                    {
-                        from = date.ToString("MM-dd-yyyy") + " " + "21:00";
-                        to = date.ToString("MM-dd-yyyy") + " " + "05:00";
-                    }
+            if (type == "4")
+            {
+                from = date.ToString("MM-dd-yyyy") + " " + "21:00";
+                to = date.ToString("MM-dd-yyyy") + " " + "05:00";
+            }
 
 
-                    string[] member_data = { schedule_id.ToString(), employee.ID.ToString(), from, to, "8" };
+            string[] member_data = { schedule_id.ToString(), employee.ID.ToString(), from, to, "8" };
 
-                    //check if the datetime string is really a datetime and if yes safe the user to the db
-                    scheduleControl.InsertMember(member_data);
+            //check if the datetime string is really a datetime and if yes safe the user to the db
+            scheduleControl.InsertMember(member_data);
 
         }
 
@@ -2415,5 +2415,6 @@ namespace PapaSenpai_Project_Software
         {
             this.scheduleForDay = e.End;
         }
+
     }
 }
