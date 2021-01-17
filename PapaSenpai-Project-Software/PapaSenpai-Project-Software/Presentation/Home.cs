@@ -602,10 +602,7 @@ namespace PapaSenpai_Project_Software
 
             foreach (Schedule found_schedule in scheduleControl.getSchedules())
             {
-                if (found_schedule.Members.Count() >= 5)
-                {
                     coloredDates.Add(found_schedule.Date);
-                }
             }
 
             calendarSchedule.AnnuallyBoldedDates = coloredDates.ToArray();
@@ -802,7 +799,7 @@ namespace PapaSenpai_Project_Software
                     string[] product_bindings = {department.Id.ToString(), tbProductTitle.Text, tbProductDescription.Text, quantity.ToString(), quantitydepo.ToString(),
                  selling_price.ToString(), buying_price.ToString() , threshold.ToString()};
                     productControl.Create(product_bindings);
-                    MessageBox.Show("you have successfully created a product!");
+                    MessageBox.Show("You have successfully created a product!");
                     TraverseControlsAndSetTextEmpty(this);
                     this.renderProductsTable();
                     this.productControl.retrieveAllProducts();
