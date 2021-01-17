@@ -1734,6 +1734,7 @@ namespace PapaSenpai_Project_Software
             //get all days from monday to friday in that week where there is no schedule already
             //at least one working from each department
         }
+
         private void addMemberToSchedule(int schedule_id, Employee employee, DateTime date, string type)
         {
 
