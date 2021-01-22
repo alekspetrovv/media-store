@@ -1627,7 +1627,7 @@ namespace PapaSenpai_Project_Software
             this.scheduleControl.retrieveSchedules();
             this.renderDailySchedule();
             this.renderScheduleMembers();
-            showPanel(pnlScheduleEmployees);
+            showPanel(pnlViewSchedule);
 
 
         }
@@ -1730,7 +1730,7 @@ namespace PapaSenpai_Project_Software
             this.scheduleControl.retrieveSchedules();
             this.renderDailySchedule();
             this.renderScheduleMembers();
-            showPanel(pnlScheduleEmployees);
+            showPanel(pnlViewSchedule);
             //get all days from monday to friday in that week where there is no schedule already
             //at least one working from each department
         }
